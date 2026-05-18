@@ -35,7 +35,7 @@ const socialLinks = [
     color: "#25D366",
   },
   {
-    href: "https://facebook.com/yakshimakeover",
+    href: "https://facebook.com/snehalpawaracademy",
     Icon: FaFacebookF,
     label: "Facebook",
     color: "#1877F2",
@@ -52,7 +52,7 @@ export default function Footer() {
     <footer
       data-ocid="footer.section"
       className="relative overflow-hidden"
-      style={{ background: "#050505" }}
+      style={{ background: "#f0e8d8" }}
     >
       {/* Gold top border with enhanced glow */}
       <div
@@ -81,18 +81,23 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl font-display italic gold-gradient-text mb-3"
-              style={{ textShadow: "0 0 24px rgba(212,175,55,0.20)" }}
+              className="text-2xl font-display italic gold-gradient-text mb-1"
+              style={{ textShadow: "0 0 24px rgba(139,94,60,0.15)" }}
               data-ocid="footer.logo"
             >
-              Yakshi
+              Makeup by Snehal Pawar
             </h2>
-            <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground mb-4 font-body">
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 font-body">
               {studioInfo.subTagline}
             </p>
-            <p className="text-muted-foreground text-sm font-body leading-relaxed mb-6">
-              Delhi NCR's most celebrated luxury bridal makeup &amp; nail art
-              studio, trusted by brides and celebrities alike.
+            <p className="text-muted-foreground text-sm font-body leading-relaxed mb-3">
+              Amravati's most trusted beauty and bridal salon, loved by 500+
+              brides across Maharashtra.
+            </p>
+            <p className="text-muted-foreground text-xs font-body leading-relaxed mb-6">
+              📍 Kondeshwar Vidyut Colony, Sai Nagar,
+              <br />
+              Amravati, Maharashtra 444607
             </p>
             <div className="flex gap-3">
               {socialLinks.map(({ href, Icon, label, color }) => (
@@ -192,7 +197,9 @@ export default function Footer() {
                   }}
                 />
                 <span className="text-muted-foreground text-sm font-body leading-snug">
-                  Delhi NCR, India
+                  Kondeshwar Vidyut Colony, Sai Nagar,
+                  <br />
+                  Amravati, Maharashtra 444607
                   <br />
                   <span className="text-rose-gold text-xs">
                     Home service available
@@ -212,7 +219,7 @@ export default function Footer() {
                   className="text-muted-foreground text-sm font-body hover:text-gold transition-smooth"
                   data-ocid="footer.contact.phone"
                 >
-                  +91 8766367033
+                  +91 9561548151
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -231,7 +238,7 @@ export default function Footer() {
                   className="text-muted-foreground text-sm font-body hover:text-gold transition-smooth"
                   data-ocid="footer.contact.instagram"
                 >
-                  @yakshimakeover
+                  @snehal_pawar_academy
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -259,10 +266,10 @@ export default function Footer() {
             className="text-muted-foreground text-xs font-body text-center sm:text-left"
             data-ocid="footer.copyright"
           >
-            © {year} Yakshi Makeup &amp; Nail Studio. All rights reserved.
+            © {year} Makeup by Snehal Pawar and Academy. All rights reserved.
           </p>
           <p className="text-muted-foreground text-xs font-body text-center">
-            Made with ❤️ in Delhi NCR
+            Made with ❤️ in Amravati, Maharashtra
           </p>
           <p className="text-muted-foreground text-xs font-body text-center sm:text-right">
             Built with love using{" "}

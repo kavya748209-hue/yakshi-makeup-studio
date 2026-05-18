@@ -1,323 +1,328 @@
-import { Award, Camera, Star, Users } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
-const credentials = [
-  { label: "Trusted by 100+ Celebrities", icon: Star },
-  { label: "Featured in Vogue India", icon: Camera },
-  { label: "Award-Winning Artist", icon: Award },
-  { label: "8+ Years Experience", icon: Users },
+const skills = [
+  "Expert in Bridal HD Makeup",
+  "Certified Airbrush Artist",
+  "Celebrity Makeup Experience",
+  "Academy Founder & Trainer",
 ];
 
-const stats = [
-  { value: "500+", label: "Brides" },
-  { value: "100+", label: "Celebrities" },
-  { value: "8+", label: "Years" },
-  { value: "50K+", label: "Instagram Followers" },
+const celebrities = [
+  {
+    photo: "/assets/celebrity-1.png",
+    name: "Priyanka Singh",
+    event: "Film Premiere, Mumbai",
+  },
+  {
+    photo: "/assets/celebrity-2.png",
+    name: "Ananya Rathod",
+    event: "Award Night, Nagpur",
+  },
+  {
+    photo: "/assets/celebrity-3.png",
+    name: "Riya Kapoor",
+    event: "Fashion Show, Pune",
+  },
 ];
-
-function StatCounter({
-  value,
-  label,
-  delay,
-}: { value: string; label: string; delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay }}
-      className="text-center group"
-      data-ocid={`about.stat.${label.toLowerCase().replace(/\s+/g, "_")}`}
-    >
-      <div className="relative inline-block">
-        <motion.span
-          className="block text-4xl md:text-5xl font-display font-bold gold-gradient-text"
-          style={{ textShadow: "0 0 28px rgba(212,175,55,0.25)" }}
-          initial={{ scale: 0.5 }}
-          animate={inView ? { scale: 1 } : {}}
-          transition={{
-            duration: 0.5,
-            delay: delay + 0.2,
-            type: "spring",
-            stiffness: 150,
-          }}
-        >
-          {value}
-        </motion.span>
-        <motion.div
-          className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-smooth"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-      <p className="mt-1 text-sm uppercase tracking-widest text-muted-foreground font-mono">
-        {label}
-      </p>
-    </motion.div>
-  );
-}
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative section-padding bg-dark-secondary overflow-hidden"
+      className="relative section-padding section-bg-beige overflow-hidden"
       data-ocid="about.section"
     >
-      {/* Enhanced decorative ambient orbs */}
+      {/* Ambient orbs */}
       <div
         className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 70%)",
-          filter: "blur(80px)",
-          transform: "translate(-30%, -30%)",
+            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+          filter: "blur(100px)",
+          transform: "translate(-40%, -40%)",
         }}
       />
       <div
         className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(183,110,121,0.09) 0%, transparent 70%)",
-          filter: "blur(60px)",
+            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 70%)",
+          filter: "blur(80px)",
           transform: "translate(30%, 30%)",
         }}
       />
 
-      {/* Gold divider top */}
-      <div className="divider-gold w-full absolute top-0 left-0" />
+      <div className="section-divider absolute top-0 left-0 right-0" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* Heading */}
+        {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-16 gold-line"
         >
           <p
-            className="text-xs uppercase tracking-[0.35em] text-gold mb-3 font-mono"
-            style={{ textShadow: "0 0 14px rgba(212,175,55,0.5)" }}
+            className="font-accent text-xs uppercase tracking-[3px] text-gold mb-4"
+            style={{ letterSpacing: "3px" }}
           >
             The Artist
           </p>
-          <h2
-            className="text-5xl md:text-6xl font-display gold-gradient-text leading-tight mb-4"
-            style={{ filter: "drop-shadow(0 0 20px rgba(212,175,55,0.15))" }}
-          >
-            About Yakshi
+          <h2 className="font-display text-5xl md:text-6xl gradient-text leading-tight mb-4">
+            About Snehal Pawar
           </h2>
-          <p className="text-lg text-muted-foreground tracking-wide">
-            Celebrity Makeup Artist &amp; Beauty Expert
+          <p className="font-body text-lg" style={{ color: "#8b5e3c" }}>
+            Master Bridal Artist &amp; Academy Founder · Amravati
           </p>
-          <div
-            className="mt-6 mx-auto w-24 h-px"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, #d4af37, transparent)",
-              boxShadow: "0 0 10px rgba(212,175,55,0.35)",
-            }}
-          />
         </motion.div>
 
-        {/* Main content grid */}
+        {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Text + credentials */}
+          {/* LEFT: Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <p className="text-foreground/85 text-base leading-relaxed mb-5">
-              Yakshi is Delhi NCR's most sought-after celebrity makeup artist,
-              with over 8 years of experience transforming brides and
-              celebrities into visions of perfection. Her artistry has graced
-              the most prestigious stages and events across India.
-            </p>
-            <p className="text-foreground/75 text-base leading-relaxed mb-10">
-              Specializing in bridal makeup, nail art, and luxury beauty
-              transformations, Yakshi brings a unique blend of traditional
-              Indian beauty techniques with modern international trends. Her
-              work has been featured in leading fashion magazines and she is
-              trusted by Bollywood celebrities for their most important moments.
-            </p>
-
-            {/* Credential badges — glass-ultra + hover glow */}
-            <div className="flex flex-wrap gap-3">
-              {credentials.map(({ label, icon: Icon }, i) => (
-                <motion.div
-                  key={label}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow:
-                      "0 0 22px rgba(212,175,55,0.35), 0 0 50px rgba(212,175,55,0.12)",
-                  }}
-                  className="glass-ultra flex items-center gap-2 px-4 py-2 rounded-full cursor-default"
-                  data-ocid={`about.credential.${i + 1}`}
-                >
-                  <Icon
-                    size={14}
-                    className="text-gold shrink-0"
-                    style={{
-                      filter: "drop-shadow(0 0 5px rgba(212,175,55,0.7))",
-                    }}
-                  />
-                  <span className="text-xs font-mono tracking-wide text-gold-light whitespace-nowrap">
-                    {label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Visual panel — decorative 3D orbit element */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative flex items-center justify-center"
+            transition={{ duration: 0.9, delay: 0.15 }}
+            className="flex justify-center"
           >
             <motion.div
-              animate={{ rotate: [0, 3, -3, 0] }}
+              animate={{ y: [0, -14, 0] }}
               transition={{
-                duration: 8,
+                duration: 7,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="relative w-64 h-64 md:w-72 md:h-72"
+              className="relative"
             >
-              {/* Outer ring */}
+              {/* Outer glass frame */}
               <div
-                className="absolute inset-0 rounded-full border border-gold/30 animate-spin-slow"
-                style={{ boxShadow: "0 0 12px rgba(212,175,55,0.15)" }}
-              />
-              <div
-                className="absolute inset-4 rounded-full border"
-                style={{
-                  borderColor: "rgba(183,110,121,0.22)",
-                  boxShadow: "0 0 8px rgba(183,110,121,0.12)",
-                  animation: "spin-slow 14s linear infinite reverse",
-                }}
-              />
-
-              {/* Center portrait */}
-              <div
-                className="absolute inset-8 rounded-full glass-ultra flex items-center justify-center overflow-hidden"
+                className="glass-ultra p-3 rounded-3xl glow-gold"
                 style={{
                   boxShadow:
-                    "0 0 30px rgba(212,175,55,0.35), 0 0 70px rgba(212,175,55,0.15), 0 0 120px rgba(212,175,55,0.06)",
+                    "0 0 40px rgba(201,168,76,0.25), 0 0 100px rgba(201,168,76,0.10), inset 0 1px 0 rgba(255,255,255,0.95)",
                 }}
               >
-                <img
-                  src="/assets/hero-bride.png"
-                  alt="Sakshi — Celebrity Makeup Artist"
-                  className="w-full h-full object-cover rounded-full"
-                  style={{ objectPosition: "center top" }}
-                  onError={(e) => {
-                    const img = e.currentTarget as HTMLImageElement;
-                    img.style.display = "none";
-                    const fallback =
-                      img.nextElementSibling as HTMLElement | null;
-                    if (fallback) fallback.style.opacity = "1";
-                  }}
-                />
+                {/* Photo */}
                 <div
-                  className="absolute inset-0 flex items-center justify-center text-4xl font-display text-gold select-none pointer-events-none"
-                  style={{ opacity: 0, transition: "opacity 0.3s" }}
+                  className="relative overflow-hidden rounded-2xl"
+                  style={{ aspectRatio: "3/4", width: 300 }}
                 >
-                  ✦
+                  <img
+                    src="/assets/snehal-about.png"
+                    alt="Snehal Pawar — Bridal Makeup Artist"
+                    className="w-full h-full object-cover object-center glow-img"
+                    style={{ borderRadius: "1rem" }}
+                  />
+                  {/* Shimmer overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.12) 80%, transparent 100%)",
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Floating accent dots */}
-              {[0, 72, 144, 216, 288].map((deg) => (
-                <motion.div
-                  key={deg}
-                  className="absolute w-2 h-2 rounded-full bg-gold"
-                  style={{
-                    top: `${50 - 45 * Math.cos((deg * Math.PI) / 180)}%`,
-                    left: `${50 + 45 * Math.sin((deg * Math.PI) / 180)}%`,
-                    transform: "translate(-50%, -50%)",
-                    boxShadow:
-                      "0 0 10px rgba(212,175,55,0.9), 0 0 20px rgba(212,175,55,0.4)",
-                  }}
-                  animate={{ scale: [1, 1.6, 1], opacity: [0.7, 1, 0.7] }}
-                  transition={{
-                    duration: 2.5,
-                    delay: (deg / 72) * 0.5,
-                    repeat: Number.POSITIVE_INFINITY,
-                  }}
-                />
-              ))}
-            </motion.div>
-
-            {/* Vertical label accent */}
-            <div className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
-              <div
-                className="h-16 w-px"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, transparent, #d4af37, transparent)",
-                  boxShadow: "0 0 6px rgba(212,175,55,0.35)",
+              {/* Certified badge */}
+              <motion.div
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{
+                  duration: 3,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
                 }}
-              />
-              <span
-                className="text-xs font-mono text-gold tracking-widest"
-                style={{ writingMode: "vertical-rl" }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-ultra px-5 py-2 rounded-full border border-gold/50 glow-gold"
+                style={{ whiteSpace: "nowrap" }}
               >
-                DELHI NCR
-              </span>
+                <span className="font-accent text-xs uppercase tracking-widest gradient-text">
+                  ✦ Certified Artist ✦
+                </span>
+              </motion.div>
+
+              {/* Floating corner accents */}
               <div
-                className="h-16 w-px"
+                className="absolute -top-2 -left-2 w-6 h-6 rounded-full"
                 style={{
-                  background:
-                    "linear-gradient(to bottom, transparent, #d4af37, transparent)",
-                  boxShadow: "0 0 6px rgba(212,175,55,0.35)",
+                  background: "#c9a84c",
+                  boxShadow: "0 0 14px rgba(201,168,76,0.8)",
                 }}
               />
-            </div>
+              <div
+                className="absolute -top-2 -right-2 w-4 h-4 rounded-full"
+                style={{
+                  background: "#e8a87c",
+                  boxShadow: "0 0 10px rgba(232,168,124,0.8)",
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* RIGHT: Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.25 }}
+          >
+            {/* Eyebrow */}
+            <p
+              className="font-accent text-xs uppercase mb-3"
+              style={{ color: "#c9a84c", letterSpacing: "3px" }}
+            >
+              Meet Your Artist
+            </p>
+
+            {/* Heading */}
+            <h3
+              className="font-display text-3xl md:text-4xl mb-5 leading-snug"
+              style={{ color: "#3d2817" }}
+            >
+              Transforming Beauty,
+              <br />
+              <span className="gradient-text">Creating Memories</span>
+            </h3>
+
+            {/* Bio */}
+            <p
+              className="font-body text-base leading-[1.8] mb-4"
+              style={{ color: "#5a3a22" }}
+            >
+              With over 12 years of expertise in bridal and beauty artistry,
+              Snehal Pawar has transformed hundreds of brides across
+              Maharashtra. Her passion for flawless makeup and eye for detail
+              has earned her recognition working alongside celebrities and
+              leading fashion houses.
+            </p>
+            <p
+              className="font-body text-base leading-[1.8] mb-8"
+              style={{ color: "#5a3a22" }}
+            >
+              From intimate family ceremonies to grand destination weddings, she
+              brings a personalized touch to every bridal transformation. Based
+              in Amravati, her Academy has trained 500+ aspiring artists across
+              Maharashtra.
+            </p>
+
+            {/* Skills list */}
+            <ul className="space-y-3 mb-8">
+              {skills.map((skill, i) => (
+                <motion.li
+                  key={skill}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <CheckCircle2
+                    size={18}
+                    className="flex-shrink-0"
+                    style={{
+                      color: "#c9a84c",
+                      filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))",
+                    }}
+                  />
+                  <span
+                    className="font-body text-sm"
+                    style={{ color: "#5a3a22" }}
+                  >
+                    {skill}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* CTA */}
+            <a
+              href="https://wa.me/919561548151?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-premium"
+              data-ocid="about.read_more_button"
+            >
+              Book a Consultation
+            </a>
           </motion.div>
         </div>
 
-        {/* Stats row — glass-ultra + stronger gold glow */}
+        {/* Celebrity Work subsection */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="glass-ultra rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8"
-          style={{
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 35px rgba(212,175,55,0.15), 0 0 80px rgba(212,175,55,0.06), 0 0 0 1px rgba(212,175,55,0.08)",
-          }}
-          data-ocid="about.stats"
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {stats.map((s, i) => (
-            <StatCounter
-              key={s.label}
-              value={s.value}
-              label={s.label}
-              delay={0.7 + i * 0.1}
-            />
-          ))}
+          <div
+            className="glass-ultra rounded-3xl p-8 md:p-10"
+            style={{
+              background: "rgba(245,230,211,0.75)",
+              boxShadow:
+                "0 0 50px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
+              borderColor: "rgba(201,168,76,0.35)",
+            }}
+          >
+            <div className="text-center mb-8">
+              <p
+                className="font-accent text-xs uppercase tracking-[3px] mb-2"
+                style={{ color: "#c9a84c" }}
+              >
+                Portfolio
+              </p>
+              <h3
+                className="font-display text-3xl md:text-4xl"
+                style={{ color: "#3d2817" }}
+              >
+                Celebrity Work &amp;{" "}
+                <span className="gradient-text">Recognition</span>
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {celebrities.map((celeb, i) => (
+                <motion.div
+                  key={celeb.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.65 + i * 0.12 }}
+                  className="card-premium p-5 flex flex-col items-center text-center group"
+                  data-ocid={`about.celebrity.${i + 1}`}
+                >
+                  <div
+                    className="w-20 h-20 rounded-full overflow-hidden mb-4 glow-gold"
+                    style={{
+                      border: "2px solid rgba(201,168,76,0.45)",
+                    }}
+                  >
+                    <img
+                      src={celeb.photo}
+                      alt={celeb.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <p
+                    className="font-display text-lg font-semibold mb-1"
+                    style={{ color: "#3d2817" }}
+                  >
+                    {celeb.name}
+                  </p>
+                  <p
+                    className="font-accent text-xs uppercase tracking-wider"
+                    style={{ color: "#c9a84c" }}
+                  >
+                    {celeb.event}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
 
-      {/* Gold divider bottom */}
-      <div className="divider-gold w-full absolute bottom-0 left-0" />
+      <div className="section-divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

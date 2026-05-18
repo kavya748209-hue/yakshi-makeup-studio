@@ -11,7 +11,7 @@ export default function FloatingButtons() {
     <>
       {/* Instagram — Left, vertically centered */}
       <div
-        className="fixed z-[60]"
+        className="fixed z-[60] block"
         style={{ left: "1.5rem", top: "50%", transform: "translateY(-50%)" }}
       >
         {/* Pulsing ring */}
@@ -68,7 +68,7 @@ export default function FloatingButtons() {
 
       {/* WhatsApp — Right, vertically centered */}
       <div
-        className="fixed z-[60]"
+        className="fixed z-[60] block"
         style={{ right: "1.5rem", top: "50%", transform: "translateY(-50%)" }}
       >
         {/* Pulsing ring */}

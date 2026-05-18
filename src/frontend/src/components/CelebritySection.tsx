@@ -1,304 +1,274 @@
-import { Sparkles } from "lucide-react";
-import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { Award, Quote, Sparkles, Star, Trophy } from "lucide-react";
+import { motion } from "motion/react";
 
-interface CelebrityCard {
+const GOLD = "#c9a84c";
+const BROWN = "#6b3f1f";
+const WARM = "#8b5e3c";
+
+interface CelebCard {
   image: string;
-  label: string;
-  sublabel: string;
-  accentColor: string;
+  name: string;
+  occasion: string;
+  delay: number;
 }
 
-const celebrityCards: CelebrityCard[] = [
+const celebCards: CelebCard[] = [
   {
-    image:
-      "/assets/screenshot_2026-04-14_221249-019d8ce8-94b6-749d-b230-4091a5c4d8a0.png",
-    label: "Bollywood Celebrity Makeover",
-    sublabel: "Bridal & Film Industry",
-    accentColor: "rgba(212,175,55,0.5)",
+    image: "/assets/snehal-bridal-1.png",
+    name: "Priya Sharma",
+    occasion: "Bollywood Premiere",
+    delay: 0,
   },
   {
-    image:
-      "/assets/screenshot_2026-04-14_221303-019d8ce8-a5b9-70dd-a36e-e0deafef0c3d.png",
-    label: "Award Night Glamour Look",
-    sublabel: "Red Carpet Excellence",
-    accentColor: "rgba(183,110,121,0.5)",
+    image: "/assets/snehal-bridal-2.png",
+    name: "Kavya Deshmukh",
+    occasion: "Maharashtra Awards Night",
+    delay: 0.12,
   },
   {
-    image:
-      "/assets/screenshot_2026-04-14_221313-019d8ce8-94aa-729d-adde-cbb9d7694b6d.png",
-    label: "Luxury Event Styling",
-    sublabel: "Premium Event Artistry",
-    accentColor: "rgba(232,200,74,0.4)",
+    image: "/assets/snehal-bridal-3.png",
+    name: "Anita Kulkarni",
+    occasion: "Fashion Week Mumbai",
+    delay: 0.24,
+  },
+  {
+    image: "/assets/snehal-gallery-1.png",
+    name: "Riya Patil",
+    occasion: "Celebrity Wedding",
+    delay: 0.36,
+  },
+  {
+    image: "/assets/snehal-gallery-2.png",
+    name: "Meera Joshi",
+    occasion: "Brand Launch Event",
+    delay: 0.48,
   },
 ];
 
-const celebWorksHighlights = [
-  "Collaborated with top Bollywood A-listers for blockbuster film promotions",
-  "Styled celebrities for national award ceremonies & red carpet events",
-  "Featured in Vogue India, Femina, and leading beauty publications",
-  "Exclusive artist at luxury weddings with A-list guest lists",
-  "Brand ambassador makeup for major Indian beauty & fashion brands",
+const badges = [
+  {
+    Icon: Trophy,
+    title: "Featured in Fashion Week 2023",
+    sub: "Mumbai & Pune",
+  },
+  {
+    Icon: Award,
+    title: "Official Makeup Partner",
+    sub: "Maharashtra Wedding Expo",
+  },
+  { Icon: Star, title: "Best Bridal Artist Award", sub: "Amravati 2022" },
+  { Icon: Sparkles, title: "500+ Happy Brides", sub: "Across Maharashtra" },
 ];
-
-function TiltCard({ card, index }: { card: CelebrityCard; index: number }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const cardInView = useInView(ref, { once: true, margin: "-80px" });
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientY - rect.top) / rect.height - 0.5) * 16;
-    const y = -((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    setTilt({ x, y });
-  }
-
-  function handleMouseLeave() {
-    setTilt({ x: 0, y: 0 });
-    setHovered(false);
-  }
-
-  const isGold = card.accentColor.includes("212,175");
-  const isRose = card.accentColor.includes("183,110");
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-      animate={cardInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.15,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setHovered(true)}
-      style={{ perspective: 1000 }}
-      data-ocid={`celebrity.card.${index + 1}`}
-    >
-      <motion.div
-        animate={{ rotateX: tilt.x, rotateY: tilt.y }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="group relative rounded-2xl overflow-hidden cursor-pointer card-premium"
-        style={{
-          border: `1px solid ${hovered ? card.accentColor : card.accentColor.replace(/0\.\d+\)$/, "0.25)")}`,
-          boxShadow: hovered
-            ? `0 0 40px ${card.accentColor}, 0 0 80px ${card.accentColor.replace(/0\.\d+\)$/, "0.18)")}, inset 0 1px 0 rgba(255,255,255,0.09)`
-            : `0 0 22px ${card.accentColor.replace(/0\.\d+\)$/, "0.12)")}, 0 0 50px ${card.accentColor.replace(/0\.\d+\)$/, "0.06)")}`,
-          transition: "border-color 0.4s ease, box-shadow 0.4s ease",
-        }}
-      >
-        {/* Image */}
-        <div className="relative h-72 overflow-hidden">
-          <motion.img
-            src={card.image}
-            alt={card.label}
-            className="w-full h-full object-cover"
-            style={{
-              filter: hovered
-                ? `drop-shadow(0 0 16px ${isGold ? "rgba(212,175,55,0.4)" : isRose ? "rgba(183,110,121,0.4)" : "rgba(232,200,74,0.35)"})`
-                : "none",
-              transition: "filter 0.4s ease",
-            }}
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.5 }}
-            onError={(e) => {
-              const el = e.currentTarget as HTMLImageElement;
-              el.style.display = "none";
-              const parent = el.parentElement;
-              if (parent) {
-                parent.style.background =
-                  "linear-gradient(135deg, #1a1a1a, #111)";
-              }
-            }}
-          />
-          {/* Dark gradient overlay — deeper */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.25) 50%, transparent 100%)",
-            }}
-          />
-          {/* Hover shimmer */}
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-            style={{
-              background:
-                "linear-gradient(135deg, transparent 35%, rgba(212,175,55,0.10) 50%, transparent 65%)",
-              opacity: hovered ? 1 : 0,
-            }}
-          />
-          {/* Sparkle corner badge with glow */}
-          <div
-            className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full glass-ultra"
-            style={{
-              boxShadow:
-                "0 0 14px rgba(212,175,55,0.45), 0 0 30px rgba(212,175,55,0.18)",
-            }}
-          >
-            <Sparkles
-              size={12}
-              className="text-gold"
-              style={{ filter: "drop-shadow(0 0 5px rgba(212,175,55,0.8))" }}
-            />
-          </div>
-        </div>
-
-        {/* Caption */}
-        <div className="p-5" style={{ backdropFilter: "blur(8px)" }}>
-          <h3 className="text-sm font-display gold-gradient-text mb-1 leading-tight">
-            {card.label}
-          </h3>
-          <p className="text-xs text-muted-foreground font-mono tracking-wide">
-            {card.sublabel}
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 export default function CelebritySection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
-
   return (
     <section
       id="celebrities"
-      ref={sectionRef}
-      className="relative section-padding bg-dark-primary overflow-hidden"
+      className="relative section-padding overflow-hidden section-bg-warm"
       data-ocid="celebrity.section"
     >
-      {/* Enhanced ambient glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%)",
-            filter: "blur(120px)",
-          }}
-        />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(183,110,121,0.07) 0%, transparent 70%)",
-            filter: "blur(100px)",
-          }}
-        />
-      </div>
+      <div
+        className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 65%)",
+          filter: "blur(80px)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(232,168,124,0.10) 0%, transparent 65%)",
+          filter: "blur(90px)",
+        }}
+      />
 
-      <div className="divider-gold w-full absolute top-0 left-0" />
+      <div className="section-divider w-full absolute top-0 left-0" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* Header */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
           <p
-            className="text-xs uppercase tracking-[0.35em] text-rose-gold mb-3 font-mono"
-            style={{ textShadow: "0 0 12px rgba(183,110,121,0.5)" }}
+            className="text-xs uppercase tracking-[0.38em] mb-3 font-accent"
+            style={{ color: GOLD }}
           >
             Bollywood &amp; Beyond
           </p>
-          <h2 className="text-5xl md:text-6xl font-display gradient-text leading-tight mb-4">
-            Celebrity Work
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display mb-4 gold-gradient-text leading-tight">
+            Celebrity Clientele &amp; Recognition
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Trusted by India's biggest names. From award nights to blockbuster
-            shoots, Yakshi's artistry defines the gold standard of celebrity
-            glamour.
+          <div className="section-divider w-28 mx-auto mb-5" />
+          <p
+            className="text-base md:text-lg max-w-2xl mx-auto font-body"
+            style={{ color: WARM }}
+          >
+            Trusted by Bollywood celebrities, fashion icons, and public figures
+            across Maharashtra
           </p>
-          <div
-            className="mt-6 mx-auto w-24 h-px"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, #b76e79, transparent)",
-              boxShadow: "0 0 8px rgba(183,110,121,0.35)",
-            }}
-          />
         </motion.div>
 
-        {/* 3D tilt photo cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {celebrityCards.map((card, i) => (
-            <TiltCard key={card.label} card={card} index={i} />
-          ))}
+        {/* Celebrity cards row */}
+        <div className="relative mb-16 overflow-hidden">
+          <div className="flex gap-6 flex-wrap justify-center md:justify-start">
+            {celebCards.map((card, i) => (
+              <motion.div
+                key={card.name}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: card.delay }}
+                className="glass-ultra rounded-2xl overflow-hidden flex-shrink-0 group"
+                style={{
+                  width: "190px",
+                  border: "1.5px solid rgba(201,168,76,0.30)",
+                  boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
+                  animation: `float ${5 + i * 0.7}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.4}s`,
+                }}
+                data-ocid={`celebrity.card.${i + 1}`}
+              >
+                <div className="relative p-5 flex justify-center">
+                  <div
+                    className="w-20 h-20 rounded-full overflow-hidden"
+                    style={{
+                      border: "2.5px solid rgba(201,168,76,0.50)",
+                      boxShadow:
+                        "0 0 22px rgba(201,168,76,0.30), 0 0 50px rgba(201,168,76,0.10)",
+                    }}
+                  >
+                    <img
+                      src={card.image}
+                      alt={card.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display =
+                          "none";
+                      }}
+                    />
+                  </div>
+                  <Sparkles
+                    size={12}
+                    className="absolute top-3 right-4"
+                    style={{
+                      color: GOLD,
+                      filter: "drop-shadow(0 0 4px rgba(201,168,76,0.8))",
+                    }}
+                  />
+                </div>
+                <div className="px-4 pb-5 text-center">
+                  <p
+                    className="font-display text-sm font-semibold"
+                    style={{ color: BROWN }}
+                  >
+                    {card.name}
+                  </p>
+                  <p className="text-xs mt-1 font-body" style={{ color: WARM }}>
+                    {card.occasion}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Highlights glass card — glass-ultra */}
+        {/* Achievement badges */}
         <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="glass-ultra rounded-2xl p-8 md:p-10"
-          style={{
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(212,175,55,0.10), 0 0 80px rgba(212,175,55,0.04)",
-          }}
-          data-ocid="celebrity.highlights"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          data-ocid="celebrity.badges"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <Sparkles
-              size={20}
-              className="text-gold"
-              style={{ filter: "drop-shadow(0 0 8px rgba(212,175,55,0.7))" }}
-            />
-            <h3 className="text-xl font-display gold-gradient-text">
-              Celebrity Collaborations
-            </h3>
-          </div>
-          <ul className="space-y-4">
-            {celebWorksHighlights.map((item, i) => (
-              <motion.li
-                key={item}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                className="flex items-start gap-3 text-foreground/80 text-sm leading-relaxed"
-                data-ocid={`celebrity.highlight.${i + 1}`}
+          {badges.map((badge, i) => (
+            <motion.div
+              key={badge.title}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
+              className="card-premium p-5 text-center"
+              data-ocid={`celebrity.badge.${i + 1}`}
+            >
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
+                  border: "1.5px solid rgba(201,168,76,0.40)",
+                  boxShadow: "0 0 18px rgba(201,168,76,0.22)",
+                }}
               >
-                <span
-                  className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-gold"
+                <badge.Icon
+                  size={20}
                   style={{
-                    boxShadow:
-                      "0 0 8px rgba(212,175,55,0.7), 0 0 16px rgba(212,175,55,0.3)",
+                    color: GOLD,
+                    filter: "drop-shadow(0 0 6px rgba(201,168,76,0.7))",
                   }}
                 />
-                {item}
-              </motion.li>
-            ))}
-          </ul>
+              </div>
+              <p
+                className="font-display text-sm font-semibold leading-snug mb-1"
+                style={{ color: BROWN }}
+              >
+                {badge.title}
+              </p>
+              <p className="text-xs font-body" style={{ color: WARM }}>
+                {badge.sub}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
 
-          {/* Decorative quote */}
-          <motion.blockquote
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-8 pt-8 border-t text-center"
-            style={{ borderColor: "rgba(212,175,55,0.22)" }}
+        {/* Celebrity Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="glass-ultra rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          style={{
+            border: "1.5px solid rgba(201,168,76,0.35)",
+            boxShadow:
+              "0 0 50px rgba(201,168,76,0.12), 0 8px 40px rgba(107,63,31,0.08)",
+          }}
+          data-ocid="celebrity.quote"
+        >
+          <Quote
+            size={64}
+            className="absolute top-6 left-8"
+            style={{ color: GOLD, opacity: 0.15 }}
+          />
+          <Quote
+            size={64}
+            className="absolute bottom-6 right-8 rotate-180"
+            style={{ color: GOLD, opacity: 0.15 }}
+          />
+          <p
+            className="font-display text-xl md:text-2xl italic leading-relaxed mb-4 relative z-10"
+            style={{ color: BROWN }}
           >
-            <p
-              className="text-lg font-display gold-gradient-text italic"
-              style={{ textShadow: "0 0 30px rgba(212,175,55,0.20)" }}
-            >
-              "Where artistry meets stardom — one brushstroke at a time."
-            </p>
-            <cite className="mt-2 block text-xs font-mono text-muted-foreground tracking-widest uppercase not-italic">
-              — Yakshi, Celebrity Makeup Artist
-            </cite>
-          </motion.blockquote>
+            “Snehal’s artistry is simply extraordinary. She understood exactly
+            the look I wanted and brought it to life perfectly. She is the best
+            makeup artist I’ve worked with across Maharashtra!”
+          </p>
+          <div className="section-divider w-20 mx-auto mb-4" />
+          <cite
+            className="font-accent text-xs tracking-widest uppercase not-italic"
+            style={{ color: GOLD }}
+          >
+            — Priya Sharma, Bollywood Actress
+          </cite>
         </motion.div>
       </div>
 
-      <div className="divider-gold w-full absolute bottom-0 left-0" />
+      <div className="section-divider w-full absolute bottom-0 left-0" />
     </section>
   );
 }

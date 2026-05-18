@@ -1,60 +1,61 @@
-# Design Brief — Yakshi Makeup & Nail Studio
+# Design Brief — Makeup by Snehal Pawar and Academy
 
 ## Tone & Differentiation
-**Luxury dark aesthetic with premium 3D immersion.** Deep black backdrop with gold/rose-gold accents. Glassmorphism + blurry glow effects create refined, elevated visual language. Emphasis on celebrity credibility and bridal artistry through sophisticated, long-form storytelling.
+**Premium light luxury aesthetic with warm, elegant, feminine appeal.** Cream ivory backdrop with warm rich brown and soft gold accents. Glassmorphism + balanced blurry glow effects create radiant, sophisticated visual language. Emphasis on beauty, bridal excellence, and artistry through long-form storytelling with advanced 3D animations.
 
 ## Palette
 | Token | OKLCH | Hex | Usage |
 |-------|-------|-----|-------|
-| **Gold** | `0.68 0.16 90` | `#d4af37` | Primary accent, glows, CTAs, headings |
-| **Rose-Gold** | `0.60 0.08 15` | `#b76e79` | Secondary accent, subtle highlights |
-| **Deep BG** | `0.08 0 0` | `#0a0a0a` | Page background, hero depth |
-| **Card BG** | `0.13 0 0` | `#1a1a1a` | Content cards, elevated surfaces |
-| **Muted BG** | `0.18 0 0` | `#2a2a2a` | Section dividers, subtle layers |
-| **Foreground** | `0.95 0 0` | `#f2f2f2` | Text, high contrast |
+| **Warm Brown** | `0.5 0.08 30` | `#8b5e3c` | Primary accent, depth, headings |
+| **Soft Gold** | `0.6 0.08 40` | `#c9a84c` | Secondary accent, glows, highlights |
+| **Rose-Beige** | `0.65 0.06 25` | `#e8c4a0` | Tertiary accent, gentle warmth |
+| **Cream BG** | `0.98 0.02 50` | `#fdf6ee` | Page background, light luxury |
+| **Card BG** | `0.95 0.03 60` | `#f5e6d3` | Content cards, elevated surfaces |
+| **Muted BG** | `0.88 0.02 55` | `#e4d5c0` | Section dividers, subtle layers |
+| **Foreground** | `0.25 0.01 25` | `#3d2817` | Text, high contrast |
 
 ## Typography
 | Layer | Font | Role |
 |-------|------|------|
-| Display | Instrument Serif (Italic) | Headings, premium positioning, hero text |
+| Display | Instrument Serif (Italic) | Headings, elegant positioning, hero text |
 | Body | DM Sans | Body copy, form fields, descriptions |
-| Mono | Space Grotesk | Code, numbers, technical details |
+| Mono | Space Grotesk | Code, numbers, contact details |
 
 ## Elevation & Depth
-- **L0**: Pure background `0.08 0 0` (hero, page base)
-- **L1**: Cards `0.13 0 0` (blog, testimonials, services)
-- **L2**: Popovers `0.18 0 0` (modals, floating panels)
-- **Gold glow**: `0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)` on interactive elements
+- **L0**: Pure background `0.98 0.02 50` (hero, page base)
+- **L1**: Cards `0.95 0.03 60` (services, testimonials, gallery)
+- **L2**: Popovers `0.93 0.04 65` (modals, floating panels)
+- **Warm gold glow**: `0 0 20px rgba(201, 168, 76, 0.25), 0 0 40px rgba(201, 168, 76, 0.12)` on interactive elements
 
 ## Structural Zones
 | Zone | BG | Border | Treatment |
-|------|----|---------|-----------
-| Header | `bg-card/40` glass | `border-primary/20` | Blurred glassmorphism, sticky floating |
-| Hero | `bg-background` | none | Full bleed, 3D canvas with moving objects, premium image |
-| Content Sections | `bg-background` → `bg-card` alternating | subtle | Long-form luxury, cards with gold glow |
+|------|----|---------|-----------|
+| Header | `bg-card/40` glass | `border-primary/15` | Blurred glassmorphism, sticky floating |
+| Hero | `bg-background` | none | Full bleed, 3D canvas with warm glow, premium image |
+| Content Sections | `bg-background` → `bg-card` alternating | subtle | Long-form luxury, cards with warm gold glow |
 | Floating Buttons | `bg-primary/90` glass | `glow-gold` | Instagram (left), WhatsApp (right), always visible |
 | Footer | `bg-card/50` | `border-t border-primary/10` | Maps, contact, refined typography |
 
 ## Component Patterns
 - **Buttons**: `bg-primary text-primary-foreground glow-gold rounded-md` with hover glow intensification
-- **Cards**: `glass-card glow-subtle` with gradient borders (gold→rose-gold)
-- **Text Headings**: `text-gradient-gold-rose font-display` with leading spacing
+- **Cards**: `glass-card glow-subtle` with warm border accents (brown→gold)
+- **Text Headings**: `text-gradient-gold-rose font-display` with generous leading
 - **Testimonials**: `glass-card glow-rose` with italic serif quotes
 - **Service Cards**: `glass-card` with icon + title + hover rise animation
 
 ## Motion & Animation
 - **Scroll**: Motion library scroll-triggered animations (fade-in, slide-up)
-- **Hover**: Glow intensification on cards/buttons
-- **Hero**: Floating 3D objects with parallax depth
+- **Hover**: Glow intensification on cards/buttons with warm tone shift
+- **Hero**: Floating 3D objects with parallax depth and warm ambient lighting
 - **Fade-in**: Staggered section reveals (0.8s ease-out)
 - **Float**: Continuous 6s cycle on decorative elements
 
 ## Constraints
-- No GSAP (use Motion + Framer Motion for scroll)
+- Light theme only (no dark mode)
 - All images served from `/assets/` folder
-- Glow effects use CSS filters + box-shadow (not SVG)
-- Dark theme always active (no light mode)
-- Accessible contrast ratios maintained despite dark aesthetic
+- Glow effects use CSS filters + box-shadow with warm OKLCH tones
+- Accessible contrast ratios maintained (AA+ on light backgrounds)
+- Studio: Makeup by Snehal Pawar and Academy | Location: Kondeshwar Vidyut Colony, Amravati 444607 | Mobile: 09561548151
 
 ## Signature Detail
-**Blurry glow text effect** on hero headlines: `text-gradient-gold-rose` with ambient `blur-glow` filter creates luxury luminescence. Gold glow border on service cards subtly pulses on interaction, reinforcing premium positioning. 3D animated objects in hero section move independently with parallax layering.
+**Warm luxe glow text effect** on hero headlines: `text-gradient-gold-rose` with subtle `blur-glow` filter creates radiant luminescence. Warm brown glow border on service cards pulses gently on interaction. 3D animated objects in hero move with warm ambient lighting and parallax layering for premium visual depth.

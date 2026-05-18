@@ -1,28 +1,27 @@
 {
-  "overview": "Premium luxury 3D website for Yakshi Makeup & Nail Studio — a celebrity bridal makeup artist based in Delhi NCR. Features a dark gold theme with advanced 3D animations, floating particles, glassmorphism cards, celebrity portfolio, Indian testimonials, services showcase, FAQ, WhatsApp & Instagram floating buttons, and an embedded map.",
+  "overview": "Premium luxury website for Makeup by Snehal Pawar and Academy, a Beauty and Bridal Salon in Amravati, Maharashtra. Features a warm brown and beige light theme with advanced 3D animations, glassmorphism, and glow effects throughout. Includes Academy/Training, Bridal Packages, and Before & After pages.",
   "features": [
-    "Full 3D animated hero with floating particles and rose petals",
-    "Celebrity makeup artist showcase with portfolio gallery",
-    "Bridal & nail art services section with 3D card effects",
-    "Indian client testimonials with animated carousel",
-    "Why Choose Us with animated 3D cards",
-    "FAQ accordion section",
-    "Delhi NCR map section",
-    "Instagram & WhatsApp floating action buttons",
-    "Dark luxury theme with gold glow effects and glassmorphism",
-    "All 10 portfolio photos displayed across sections"
+    "Complete identity rebrand to Makeup by Snehal Pawar and Academy",
+    "Warm brown and beige light luxury theme with glow and blur effects",
+    "Advanced 3D animations with Three.js and GSAP throughout",
+    "Mobile-friendly navigation with hamburger menu",
+    "Academy and Training Programs page",
+    "Bridal Packages and Pricing page",
+    "Before and After Transformations page",
+    "10 new portfolio photos across hero, gallery, and all sections",
+    "Floating WhatsApp and Instagram buttons",
+    "Premium glassmorphism cards and sections",
+    "Google Maps with Amravati address"
   ],
-  "category": "business",
+  "category": "beauty-wellness",
   "tags": [
     "makeup",
     "bridal",
-    "nail-art",
+    "beauty-salon",
+    "academy",
     "3d-animations",
-    "luxury",
-    "dark-theme",
-    "delhi-ncr",
-    "portfolio",
-    "beauty-studio"
+    "luxury-website",
+    "amravati"
   ],
-  "last_updated": "2026-04-14T16:58:55.270Z"
+  "last_updated": "2026-05-18T07:04:23.261Z"
 }

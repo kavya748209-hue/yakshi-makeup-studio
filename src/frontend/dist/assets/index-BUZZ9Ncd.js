@@ -5385,28 +5385,28 @@ react_production.useDebugValue = function() {
 react_production.useDeferredValue = function(value, initialValue) {
   return ReactSharedInternals$2.H.useDeferredValue(value, initialValue);
 };
-react_production.useEffect = function(create2, createDeps, update2) {
+react_production.useEffect = function(create, createDeps, update2) {
   var dispatcher = ReactSharedInternals$2.H;
   if ("function" === typeof update2)
     throw Error(
       "useEffect CRUD overload is not enabled in this build of React."
     );
-  return dispatcher.useEffect(create2, createDeps);
+  return dispatcher.useEffect(create, createDeps);
 };
 react_production.useId = function() {
   return ReactSharedInternals$2.H.useId();
 };
-react_production.useImperativeHandle = function(ref, create2, deps) {
-  return ReactSharedInternals$2.H.useImperativeHandle(ref, create2, deps);
+react_production.useImperativeHandle = function(ref, create, deps) {
+  return ReactSharedInternals$2.H.useImperativeHandle(ref, create, deps);
 };
-react_production.useInsertionEffect = function(create2, deps) {
-  return ReactSharedInternals$2.H.useInsertionEffect(create2, deps);
+react_production.useInsertionEffect = function(create, deps) {
+  return ReactSharedInternals$2.H.useInsertionEffect(create, deps);
 };
-react_production.useLayoutEffect = function(create2, deps) {
-  return ReactSharedInternals$2.H.useLayoutEffect(create2, deps);
+react_production.useLayoutEffect = function(create, deps) {
+  return ReactSharedInternals$2.H.useLayoutEffect(create, deps);
 };
-react_production.useMemo = function(create2, deps) {
-  return ReactSharedInternals$2.H.useMemo(create2, deps);
+react_production.useMemo = function(create, deps) {
+  return ReactSharedInternals$2.H.useMemo(create, deps);
 };
 react_production.useOptimistic = function(passthrough, reducer) {
   return ReactSharedInternals$2.H.useOptimistic(passthrough, reducer);
@@ -10096,8 +10096,8 @@ function updateSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
   );
   snapshotChanged && (hook.memoizedState = getServerSnapshot, didReceiveUpdate = true);
   hook = hook.queue;
-  var create2 = subscribeToStore.bind(null, fiber, hook, subscribe);
-  updateEffectImpl(2048, 8, create2, [subscribe]);
+  var create = subscribeToStore.bind(null, fiber, hook, subscribe);
+  updateEffectImpl(2048, 8, create, [subscribe]);
   if (hook.getSnapshot !== getSnapshot || snapshotChanged || null !== workInProgressHook && workInProgressHook.memoizedState.tag & 1) {
     fiber.flags |= 2048;
     pushSimpleEffect(
@@ -10385,12 +10385,12 @@ function rerenderActionState(action) {
   currentStateHook.memoizedState = action;
   return [stateHook, dispatch, false];
 }
-function pushSimpleEffect(tag, inst, create2, createDeps) {
-  tag = { tag, create: create2, deps: createDeps, inst, next: null };
+function pushSimpleEffect(tag, inst, create, createDeps) {
+  tag = { tag, create, deps: createDeps, inst, next: null };
   inst = currentlyRenderingFiber.updateQueue;
   null === inst && (inst = createFunctionComponentUpdateQueue(), currentlyRenderingFiber.updateQueue = inst);
-  create2 = inst.lastEffect;
-  null === create2 ? inst.lastEffect = tag.next = tag : (createDeps = create2.next, create2.next = tag, tag.next = createDeps, inst.lastEffect = tag);
+  create = inst.lastEffect;
+  null === create ? inst.lastEffect = tag.next = tag : (createDeps = create.next, create.next = tag, tag.next = createDeps, inst.lastEffect = tag);
   return tag;
 }
 function createEffectInstance() {
@@ -10399,56 +10399,56 @@ function createEffectInstance() {
 function updateRef() {
   return updateWorkInProgressHook().memoizedState;
 }
-function mountEffectImpl(fiberFlags, hookFlags, create2, createDeps) {
+function mountEffectImpl(fiberFlags, hookFlags, create, createDeps) {
   var hook = mountWorkInProgressHook();
   createDeps = void 0 === createDeps ? null : createDeps;
   currentlyRenderingFiber.flags |= fiberFlags;
   hook.memoizedState = pushSimpleEffect(
     1 | hookFlags,
     createEffectInstance(),
-    create2,
+    create,
     createDeps
   );
 }
-function updateEffectImpl(fiberFlags, hookFlags, create2, deps) {
+function updateEffectImpl(fiberFlags, hookFlags, create, deps) {
   var hook = updateWorkInProgressHook();
   deps = void 0 === deps ? null : deps;
   var inst = hook.memoizedState.inst;
-  null !== currentHook && null !== deps && areHookInputsEqual(deps, currentHook.memoizedState.deps) ? hook.memoizedState = pushSimpleEffect(hookFlags, inst, create2, deps) : (currentlyRenderingFiber.flags |= fiberFlags, hook.memoizedState = pushSimpleEffect(
+  null !== currentHook && null !== deps && areHookInputsEqual(deps, currentHook.memoizedState.deps) ? hook.memoizedState = pushSimpleEffect(hookFlags, inst, create, deps) : (currentlyRenderingFiber.flags |= fiberFlags, hook.memoizedState = pushSimpleEffect(
     1 | hookFlags,
     inst,
-    create2,
+    create,
     deps
   ));
 }
-function mountEffect(create2, createDeps) {
-  mountEffectImpl(8390656, 8, create2, createDeps);
+function mountEffect(create, createDeps) {
+  mountEffectImpl(8390656, 8, create, createDeps);
 }
-function updateEffect(create2, createDeps) {
-  updateEffectImpl(2048, 8, create2, createDeps);
+function updateEffect(create, createDeps) {
+  updateEffectImpl(2048, 8, create, createDeps);
 }
-function updateInsertionEffect(create2, deps) {
-  return updateEffectImpl(4, 2, create2, deps);
+function updateInsertionEffect(create, deps) {
+  return updateEffectImpl(4, 2, create, deps);
 }
-function updateLayoutEffect(create2, deps) {
-  return updateEffectImpl(4, 4, create2, deps);
+function updateLayoutEffect(create, deps) {
+  return updateEffectImpl(4, 4, create, deps);
 }
-function imperativeHandleEffect(create2, ref) {
+function imperativeHandleEffect(create, ref) {
   if ("function" === typeof ref) {
-    create2 = create2();
-    var refCleanup = ref(create2);
+    create = create();
+    var refCleanup = ref(create);
     return function() {
       "function" === typeof refCleanup ? refCleanup() : ref(null);
     };
   }
   if (null !== ref && void 0 !== ref)
-    return create2 = create2(), ref.current = create2, function() {
+    return create = create(), ref.current = create, function() {
       ref.current = null;
     };
 }
-function updateImperativeHandle(ref, create2, deps) {
+function updateImperativeHandle(ref, create, deps) {
   deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
-  updateEffectImpl(4, 4, imperativeHandleEffect.bind(null, create2, ref), deps);
+  updateEffectImpl(4, 4, imperativeHandleEffect.bind(null, create, ref), deps);
 }
 function mountDebugValue() {
 }
@@ -10736,20 +10736,20 @@ var ContextOnlyDispatcher = {
   },
   useContext: readContext,
   useEffect: mountEffect,
-  useImperativeHandle: function(ref, create2, deps) {
+  useImperativeHandle: function(ref, create, deps) {
     deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
     mountEffectImpl(
       4194308,
       4,
-      imperativeHandleEffect.bind(null, create2, ref),
+      imperativeHandleEffect.bind(null, create, ref),
       deps
     );
   },
-  useLayoutEffect: function(create2, deps) {
-    return mountEffectImpl(4194308, 4, create2, deps);
+  useLayoutEffect: function(create, deps) {
+    return mountEffectImpl(4194308, 4, create, deps);
   },
-  useInsertionEffect: function(create2, deps) {
-    mountEffectImpl(4, 2, create2, deps);
+  useInsertionEffect: function(create, deps) {
+    mountEffectImpl(4, 2, create, deps);
   },
   useMemo: function(nextCreate, deps) {
     var hook = mountWorkInProgressHook();
@@ -13162,8 +13162,8 @@ function commitHookEffectListMount(flags, finishedWork) {
       do {
         if ((updateQueue.tag & flags) === flags) {
           lastEffect = void 0;
-          var create2 = updateQueue.create, inst = updateQueue.inst;
-          lastEffect = create2();
+          var create = updateQueue.create, inst = updateQueue.inst;
+          lastEffect = create();
           inst.destroy = lastEffect;
         }
         updateQueue = updateQueue.next;
@@ -18505,7 +18505,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$k = [
+const __iconNode$s = [
   [
     "path",
     {
@@ -18515,7 +18515,102 @@ const __iconNode$k = [
   ],
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const Award = createLucideIcon("award", __iconNode$k);
+const Award = createLucideIcon("award", __iconNode$s);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
+  ["path", { d: "M12 7v14", key: "1akyts" }],
+  [
+    "path",
+    {
+      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+      key: "ruj8y"
+    }
+  ]
+];
+const BookOpen = createLucideIcon("book-open", __iconNode$r);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  ["path", { d: "m11 10 3 3", key: "fzmg1i" }],
+  [
+    "path",
+    { d: "M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z", key: "p4q2r7" }
+  ],
+  ["path", { d: "M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031", key: "wy6l02" }]
+];
+const Brush = createLucideIcon("brush", __iconNode$q);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$p = [
+  [
+    "path",
+    {
+      d: "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z",
+      key: "1tc9qg"
+    }
+  ],
+  ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
+];
+const Camera$1 = createLucideIcon("camera", __iconNode$p);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$o = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$o);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$n);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$m);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$l);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$k = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+];
+const Clock$1 = createLucideIcon("clock", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18526,37 +18621,59 @@ const __iconNode$j = [
   [
     "path",
     {
-      d: "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z",
-      key: "1tc9qg"
+      d: "M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
+      key: "1vdc57"
     }
   ],
-  ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
+  ["path", { d: "M5 21h14", key: "11awu3" }]
 ];
-const Camera$1 = createLucideIcon("camera", __iconNode$j);
+const Crown = createLucideIcon("crown", __iconNode$j);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$i);
+const __iconNode$i = [
+  ["path", { d: "M6 3h12l4 6-10 13L2 9Z", key: "1pcd5k" }],
+  ["path", { d: "M11 3 8 9l4 13 4-13-3-6", key: "1fcu3u" }],
+  ["path", { d: "M2 9h20", key: "16fsjt" }]
+];
+const Gem = createLucideIcon("gem", __iconNode$i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$h);
+const __iconNode$h = [
+  [
+    "path",
+    {
+      d: "M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z",
+      key: "j76jl0"
+    }
+  ],
+  ["path", { d: "M22 10v6", key: "1lu8f3" }],
+  ["path", { d: "M6 12.5V16a6 3 0 0 0 12 0v-3.5", key: "1r8lef" }]
+];
+const GraduationCap = createLucideIcon("graduation-cap", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$g = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$g);
+const __iconNode$g = [
+  [
+    "path",
+    {
+      d: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z",
+      key: "c3ymky"
+    }
+  ]
+];
+const Heart = createLucideIcon("heart", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18564,10 +18681,10 @@ const ChevronRight = createLucideIcon("chevron-right", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+  ["path", { d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", key: "132q7q" }],
+  ["rect", { x: "2", y: "4", width: "20", height: "16", rx: "2", key: "izxlao" }]
 ];
-const Clock$1 = createLucideIcon("clock", __iconNode$f);
+const Mail = createLucideIcon("mail", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18578,13 +18695,13 @@ const __iconNode$e = [
   [
     "path",
     {
-      d: "M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
-      key: "1vdc57"
+      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
+      key: "1r0f0z"
     }
   ],
-  ["path", { d: "M5 21h14", key: "11awu3" }]
+  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const Crown = createLucideIcon("crown", __iconNode$e);
+const MapPin = createLucideIcon("map-pin", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18592,15 +18709,11 @@ const Crown = createLucideIcon("crown", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  [
-    "path",
-    {
-      d: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z",
-      key: "c3ymky"
-    }
-  ]
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 18h16", key: "19g7jn" }],
+  ["path", { d: "M4 6h16", key: "1o0s65" }]
 ];
-const Heart = createLucideIcon("heart", __iconNode$d);
+const Menu = createLucideIcon("menu", __iconNode$d);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18608,22 +18721,17 @@ const Heart = createLucideIcon("heart", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5", key: "2e1cvw" }],
-  ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", key: "9exkf1" }],
-  ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5", key: "r4j83e" }]
+  ["path", { d: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z", key: "vv11sd" }]
 ];
-const Instagram = createLucideIcon("instagram", __iconNode$c);
+const MessageCircle = createLucideIcon("message-circle", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$b = [
-  ["path", { d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", key: "132q7q" }],
-  ["rect", { x: "2", y: "4", width: "20", height: "16", rx: "2", key: "izxlao" }]
-];
-const Mail = createLucideIcon("mail", __iconNode$b);
+const __iconNode$b = [["path", { d: "M5 12h14", key: "1ays0h" }]];
+const Minus = createLucideIcon("minus", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18631,65 +18739,8 @@ const Mail = createLucideIcon("mail", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
-  [
-    "path",
-    {
-      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
-      key: "1r0f0z"
-    }
-  ],
-  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
-];
-const MapPin = createLucideIcon("map-pin", __iconNode$a);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$9 = [
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 18h16", key: "19g7jn" }],
-  ["path", { d: "M4 6h16", key: "1o0s65" }]
-];
-const Menu = createLucideIcon("menu", __iconNode$9);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
-  ["path", { d: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z", key: "vv11sd" }]
-];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$8);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$7 = [
-  [
-    "path",
-    {
-      d: "M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z",
-      key: "e79jfc"
-    }
-  ],
-  ["circle", { cx: "13.5", cy: "6.5", r: ".5", fill: "currentColor", key: "1okk4w" }],
-  ["circle", { cx: "17.5", cy: "10.5", r: ".5", fill: "currentColor", key: "f64h9f" }],
-  ["circle", { cx: "6.5", cy: "12.5", r: ".5", fill: "currentColor", key: "qy21gx" }],
-  ["circle", { cx: "8.5", cy: "7.5", r: ".5", fill: "currentColor", key: "fotxhn" }]
-];
-const Palette = createLucideIcon("palette", __iconNode$7);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
+  ["path", { d: "M13 2a9 9 0 0 1 9 9", key: "1itnx2" }],
+  ["path", { d: "M13 6a5 5 0 0 1 5 5", key: "11nki7" }],
   [
     "path",
     {
@@ -18698,14 +18749,41 @@ const __iconNode$6 = [
     }
   ]
 ];
-const Phone = createLucideIcon("phone", __iconNode$6);
+const PhoneCall = createLucideIcon("phone-call", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$5 = [
+const __iconNode$9 = [
+  [
+    "path",
+    {
+      d: "M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384",
+      key: "9njp5v"
+    }
+  ]
+];
+const Phone = createLucideIcon("phone", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
+];
+const Plus = createLucideIcon("plus", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
   [
     "path",
     {
@@ -18721,14 +18799,14 @@ const __iconNode$5 = [
     }
   ]
 ];
-const Quote = createLucideIcon("quote", __iconNode$5);
+const Quote = createLucideIcon("quote", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$4 = [
+const __iconNode$6 = [
   [
     "path",
     {
@@ -18741,14 +18819,14 @@ const __iconNode$4 = [
   ["path", { d: "M4 17v2", key: "vumght" }],
   ["path", { d: "M5 18H3", key: "zchphs" }]
 ];
-const Sparkles$1 = createLucideIcon("sparkles", __iconNode$4);
+const Sparkles$1 = createLucideIcon("sparkles", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$3 = [
+const __iconNode$5 = [
   [
     "path",
     {
@@ -18757,7 +18835,33 @@ const __iconNode$3 = [
     }
   ]
 ];
-const Star = createLucideIcon("star", __iconNode$3);
+const Star = createLucideIcon("star", __iconNode$5);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
+];
+const TrendingUp = createLucideIcon("trending-up", __iconNode$4);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
+  ["path", { d: "M6 9H4.5a2.5 2.5 0 0 1 0-5H6", key: "17hqa7" }],
+  ["path", { d: "M18 9h1.5a2.5 2.5 0 0 0 0-5H18", key: "lmptdp" }],
+  ["path", { d: "M4 22h16", key: "57wxv0" }],
+  ["path", { d: "M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22", key: "1nw9bq" }],
+  ["path", { d: "M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22", key: "1np0yb" }],
+  ["path", { d: "M18 2H6v7a6 6 0 0 0 12 0V2Z", key: "u46fv3" }]
+];
+const Trophy = createLucideIcon("trophy", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -26915,76 +27019,38 @@ function useInView(ref, { root: root2, margin, amount, once = false, initial = f
   }, [root2, ref, margin, once, amount]);
   return isInView;
 }
-const credentials = [
-  { label: "Trusted by 100+ Celebrities", icon: Star },
-  { label: "Featured in Vogue India", icon: Camera$1 },
-  { label: "Award-Winning Artist", icon: Award },
-  { label: "8+ Years Experience", icon: Users }
+const skills = [
+  "Expert in Bridal HD Makeup",
+  "Certified Airbrush Artist",
+  "Celebrity Makeup Experience",
+  "Academy Founder & Trainer"
 ];
-const stats$1 = [
-  { value: "500+", label: "Brides" },
-  { value: "100+", label: "Celebrities" },
-  { value: "8+", label: "Years" },
-  { value: "50K+", label: "Instagram Followers" }
+const celebrities = [
+  {
+    photo: "/assets/celebrity-1.png",
+    name: "Priyanka Singh",
+    event: "Film Premiere, Mumbai"
+  },
+  {
+    photo: "/assets/celebrity-2.png",
+    name: "Ananya Rathod",
+    event: "Award Night, Nagpur"
+  },
+  {
+    photo: "/assets/celebrity-3.png",
+    name: "Riya Kapoor",
+    event: "Fashion Show, Pune"
+  }
 ];
-function StatCounter({
-  value,
-  label,
-  delay: delay2
-}) {
-  const ref = reactExports.useRef(null);
-  const inView2 = useInView(ref, { once: true });
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    motion.div,
-    {
-      ref,
-      initial: { opacity: 0, y: 30 },
-      animate: inView2 ? { opacity: 1, y: 0 } : {},
-      transition: { duration: 0.6, delay: delay2 },
-      className: "text-center group",
-      "data-ocid": `about.stat.${label.toLowerCase().replace(/\s+/g, "_")}`,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative inline-block", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.span,
-            {
-              className: "block text-4xl md:text-5xl font-display font-bold gold-gradient-text",
-              style: { textShadow: "0 0 28px rgba(212,175,55,0.25)" },
-              initial: { scale: 0.5 },
-              animate: inView2 ? { scale: 1 } : {},
-              transition: {
-                duration: 0.5,
-                delay: delay2 + 0.2,
-                type: "spring",
-                stiffness: 150
-              },
-              children: value
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              className: "absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-smooth",
-              style: {
-                background: "radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)"
-              }
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm uppercase tracking-widest text-muted-foreground font-mono", children: label })
-      ]
-    }
-  );
-}
 function AboutSection() {
   const sectionRef = reactExports.useRef(null);
-  const inView2 = useInView(sectionRef, { once: true, margin: "-100px" });
+  const inView2 = useInView(sectionRef, { once: true, margin: "-80px" });
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
       id: "about",
       ref: sectionRef,
-      className: "relative section-padding bg-dark-secondary overflow-hidden",
+      className: "relative section-padding section-bg-beige overflow-hidden",
       "data-ocid": "about.section",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -26992,9 +27058,9 @@ function AboutSection() {
           {
             className: "absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 70%)",
-              filter: "blur(80px)",
-              transform: "translate(-30%, -30%)"
+              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+              filter: "blur(100px)",
+              transform: "translate(-40%, -40%)"
             }
           }
         ),
@@ -27003,13 +27069,13 @@ function AboutSection() {
           {
             className: "absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(183,110,121,0.09) 0%, transparent 70%)",
-              filter: "blur(60px)",
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 70%)",
+              filter: "blur(80px)",
               transform: "translate(30%, 30%)"
             }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold w-full absolute top-0 left-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute top-0 left-0 right-0" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-6xl mx-auto px-6", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
@@ -27017,203 +27083,200 @@ function AboutSection() {
               initial: { opacity: 0, y: 40 },
               animate: inView2 ? { opacity: 1, y: 0 } : {},
               transition: { duration: 0.8 },
-              className: "text-center mb-16",
+              className: "text-center mb-16 gold-line",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-xs uppercase tracking-[0.35em] text-gold mb-3 font-mono",
-                    style: { textShadow: "0 0 14px rgba(212,175,55,0.5)" },
+                    className: "font-accent text-xs uppercase tracking-[3px] text-gold mb-4",
+                    style: { letterSpacing: "3px" },
                     children: "The Artist"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "text-5xl md:text-6xl font-display gold-gradient-text leading-tight mb-4",
-                    style: { filter: "drop-shadow(0 0 20px rgba(212,175,55,0.15))" },
-                    children: "About Yakshi"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-muted-foreground tracking-wide", children: "Celebrity Makeup Artist & Beauty Expert" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: "mt-6 mx-auto w-24 h-px",
-                    style: {
-                      background: "linear-gradient(90deg, transparent, #d4af37, transparent)",
-                      boxShadow: "0 0 10px rgba(212,175,55,0.35)"
-                    }
-                  }
-                )
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display text-5xl md:text-6xl gradient-text leading-tight mb-4", children: "About Snehal Pawar" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body text-lg", style: { color: "#8b5e3c" }, children: "Master Bridal Artist & Academy Founder · Amravati" })
               ]
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
               motion.div,
               {
-                initial: { opacity: 0, x: -50 },
+                initial: { opacity: 0, x: -60 },
                 animate: inView2 ? { opacity: 1, x: 0 } : {},
-                transition: { duration: 0.8, delay: 0.2 },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/85 text-base leading-relaxed mb-5", children: "Yakshi is Delhi NCR's most sought-after celebrity makeup artist, with over 8 years of experience transforming brides and celebrities into visions of perfection. Her artistry has graced the most prestigious stages and events across India." }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/75 text-base leading-relaxed mb-10", children: "Specializing in bridal makeup, nail art, and luxury beauty transformations, Yakshi brings a unique blend of traditional Indian beauty techniques with modern international trends. Her work has been featured in leading fashion magazines and she is trusted by Bollywood celebrities for their most important moments." }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-3", children: credentials.map(({ label, icon: Icon2 }, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    motion.div,
-                    {
-                      initial: { opacity: 0, scale: 0.8, y: 20 },
-                      animate: inView2 ? { opacity: 1, scale: 1, y: 0 } : {},
-                      transition: { duration: 0.5, delay: 0.4 + i2 * 0.1 },
-                      whileHover: {
-                        scale: 1.05,
-                        y: -2,
-                        boxShadow: "0 0 22px rgba(212,175,55,0.35), 0 0 50px rgba(212,175,55,0.12)"
-                      },
-                      className: "glass-ultra flex items-center gap-2 px-4 py-2 rounded-full cursor-default",
-                      "data-ocid": `about.credential.${i2 + 1}`,
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Icon2,
-                          {
-                            size: 14,
-                            className: "text-gold shrink-0",
-                            style: {
-                              filter: "drop-shadow(0 0 5px rgba(212,175,55,0.7))"
-                            }
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-mono tracking-wide text-gold-light whitespace-nowrap", children: label })
-                      ]
+                transition: { duration: 0.9, delay: 0.15 },
+                className: "flex justify-center",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    animate: { y: [0, -14, 0] },
+                    transition: {
+                      duration: 7,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut"
                     },
-                    label
-                  )) })
-                ]
+                    className: "relative",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "glass-ultra p-3 rounded-3xl glow-gold",
+                          style: {
+                            boxShadow: "0 0 40px rgba(201,168,76,0.25), 0 0 100px rgba(201,168,76,0.10), inset 0 1px 0 rgba(255,255,255,0.95)"
+                          },
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "div",
+                            {
+                              className: "relative overflow-hidden rounded-2xl",
+                              style: { aspectRatio: "3/4", width: 300 },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "img",
+                                  {
+                                    src: "/assets/snehal-about.png",
+                                    alt: "Snehal Pawar — Bridal Makeup Artist",
+                                    className: "w-full h-full object-cover object-center glow-img",
+                                    style: { borderRadius: "1rem" }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    className: "absolute inset-0 pointer-events-none rounded-2xl",
+                                    style: {
+                                      background: "linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.12) 80%, transparent 100%)"
+                                    }
+                                  }
+                                )
+                              ]
+                            }
+                          )
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        motion.div,
+                        {
+                          animate: { scale: [1, 1.04, 1] },
+                          transition: {
+                            duration: 3,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: "easeInOut"
+                          },
+                          className: "absolute -bottom-4 left-1/2 -translate-x-1/2 glass-ultra px-5 py-2 rounded-full border border-gold/50 glow-gold",
+                          style: { whiteSpace: "nowrap" },
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-accent text-xs uppercase tracking-widest gradient-text", children: "✦ Certified Artist ✦" })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute -top-2 -left-2 w-6 h-6 rounded-full",
+                          style: {
+                            background: "#c9a84c",
+                            boxShadow: "0 0 14px rgba(201,168,76,0.8)"
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute -top-2 -right-2 w-4 h-4 rounded-full",
+                          style: {
+                            background: "#e8a87c",
+                            boxShadow: "0 0 10px rgba(232,168,124,0.8)"
+                          }
+                        }
+                      )
+                    ]
+                  }
+                )
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               motion.div,
               {
-                initial: { opacity: 0, x: 50 },
+                initial: { opacity: 0, x: 60 },
                 animate: inView2 ? { opacity: 1, x: 0 } : {},
-                transition: { duration: 0.8, delay: 0.3 },
-                className: "relative flex items-center justify-center",
+                transition: { duration: 0.9, delay: 0.25 },
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    motion.div,
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
                     {
-                      animate: { rotate: [0, 3, -3, 0] },
-                      transition: {
-                        duration: 8,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut"
-                      },
-                      className: "relative w-64 h-64 md:w-72 md:h-72",
+                      className: "font-accent text-xs uppercase mb-3",
+                      style: { color: "#c9a84c", letterSpacing: "3px" },
+                      children: "Meet Your Artist"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "h3",
+                    {
+                      className: "font-display text-3xl md:text-4xl mb-5 leading-snug",
+                      style: { color: "#3d2817" },
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "div",
-                          {
-                            className: "absolute inset-0 rounded-full border border-gold/30 animate-spin-slow",
-                            style: { boxShadow: "0 0 12px rgba(212,175,55,0.15)" }
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "div",
-                          {
-                            className: "absolute inset-4 rounded-full border",
-                            style: {
-                              borderColor: "rgba(183,110,121,0.22)",
-                              boxShadow: "0 0 8px rgba(183,110,121,0.12)",
-                              animation: "spin-slow 14s linear infinite reverse"
-                            }
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          "div",
-                          {
-                            className: "absolute inset-8 rounded-full glass-ultra flex items-center justify-center overflow-hidden",
-                            style: {
-                              boxShadow: "0 0 30px rgba(212,175,55,0.35), 0 0 70px rgba(212,175,55,0.15), 0 0 120px rgba(212,175,55,0.06)"
-                            },
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "img",
-                                {
-                                  src: "/assets/hero-bride.png",
-                                  alt: "Sakshi — Celebrity Makeup Artist",
-                                  className: "w-full h-full object-cover rounded-full",
-                                  style: { objectPosition: "center top" },
-                                  onError: (e) => {
-                                    const img = e.currentTarget;
-                                    img.style.display = "none";
-                                    const fallback = img.nextElementSibling;
-                                    if (fallback) fallback.style.opacity = "1";
-                                  }
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "div",
-                                {
-                                  className: "absolute inset-0 flex items-center justify-center text-4xl font-display text-gold select-none pointer-events-none",
-                                  style: { opacity: 0, transition: "opacity 0.3s" },
-                                  children: "✦"
-                                }
-                              )
-                            ]
-                          }
-                        ),
-                        [0, 72, 144, 216, 288].map((deg) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          motion.div,
-                          {
-                            className: "absolute w-2 h-2 rounded-full bg-gold",
-                            style: {
-                              top: `${50 - 45 * Math.cos(deg * Math.PI / 180)}%`,
-                              left: `${50 + 45 * Math.sin(deg * Math.PI / 180)}%`,
-                              transform: "translate(-50%, -50%)",
-                              boxShadow: "0 0 10px rgba(212,175,55,0.9), 0 0 20px rgba(212,175,55,0.4)"
-                            },
-                            animate: { scale: [1, 1.6, 1], opacity: [0.7, 1, 0.7] },
-                            transition: {
-                              duration: 2.5,
-                              delay: deg / 72 * 0.5,
-                              repeat: Number.POSITIVE_INFINITY
-                            }
-                          },
-                          deg
-                        ))
+                        "Transforming Beauty,",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "gradient-text", children: "Creating Memories" })
                       ]
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        className: "h-16 w-px",
-                        style: {
-                          background: "linear-gradient(to bottom, transparent, #d4af37, transparent)",
-                          boxShadow: "0 0 6px rgba(212,175,55,0.35)"
-                        }
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "span",
-                      {
-                        className: "text-xs font-mono text-gold tracking-widest",
-                        style: { writingMode: "vertical-rl" },
-                        children: "DELHI NCR"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        className: "h-16 w-px",
-                        style: {
-                          background: "linear-gradient(to bottom, transparent, #d4af37, transparent)",
-                          boxShadow: "0 0 6px rgba(212,175,55,0.35)"
-                        }
-                      }
-                    )
-                  ] })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "font-body text-base leading-[1.8] mb-4",
+                      style: { color: "#5a3a22" },
+                      children: "With over 12 years of expertise in bridal and beauty artistry, Snehal Pawar has transformed hundreds of brides across Maharashtra. Her passion for flawless makeup and eye for detail has earned her recognition working alongside celebrities and leading fashion houses."
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "font-body text-base leading-[1.8] mb-8",
+                      style: { color: "#5a3a22" },
+                      children: "From intimate family ceremonies to grand destination weddings, she brings a personalized touch to every bridal transformation. Based in Amravati, her Academy has trained 500+ aspiring artists across Maharashtra."
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-3 mb-8", children: skills.map((skill, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.li,
+                    {
+                      initial: { opacity: 0, x: 20 },
+                      animate: inView2 ? { opacity: 1, x: 0 } : {},
+                      transition: { duration: 0.5, delay: 0.5 + i2 * 0.1 },
+                      className: "flex items-center gap-3",
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          CircleCheck,
+                          {
+                            size: 18,
+                            className: "flex-shrink-0",
+                            style: {
+                              color: "#c9a84c",
+                              filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                            }
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "span",
+                          {
+                            className: "font-body text-sm",
+                            style: { color: "#5a3a22" },
+                            children: skill
+                          }
+                        )
+                      ]
+                    },
+                    skill
+                  )) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "a",
+                    {
+                      href: "https://wa.me/919561548151?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "btn-outline-premium",
+                      "data-ocid": "about.read_more_button",
+                      children: "Book a Consultation"
+                    }
+                  )
                 ]
               }
             )
@@ -27221,39 +27284,1812 @@ function AboutSection() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
-              initial: { opacity: 0, y: 30 },
+              initial: { opacity: 0, y: 40 },
               animate: inView2 ? { opacity: 1, y: 0 } : {},
-              transition: { duration: 0.7, delay: 0.6 },
-              className: "glass-ultra rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8",
-              style: {
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 35px rgba(212,175,55,0.15), 0 0 80px rgba(212,175,55,0.06), 0 0 0 1px rgba(212,175,55,0.08)"
-              },
-              "data-ocid": "about.stats",
-              children: stats$1.map((s, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                StatCounter,
+              transition: { duration: 0.8, delay: 0.5 },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
                 {
-                  value: s.value,
-                  label: s.label,
-                  delay: 0.7 + i2 * 0.1
-                },
-                s.label
-              ))
+                  className: "glass-ultra rounded-3xl p-8 md:p-10",
+                  style: {
+                    background: "rgba(245,230,211,0.75)",
+                    boxShadow: "0 0 50px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
+                    borderColor: "rgba(201,168,76,0.35)"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-8", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "p",
+                        {
+                          className: "font-accent text-xs uppercase tracking-[3px] mb-2",
+                          style: { color: "#c9a84c" },
+                          children: "Portfolio"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "h3",
+                        {
+                          className: "font-display text-3xl md:text-4xl",
+                          style: { color: "#3d2817" },
+                          children: [
+                            "Celebrity Work &",
+                            " ",
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "gradient-text", children: "Recognition" })
+                          ]
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-6", children: celebrities.map((celeb, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: 30 },
+                        animate: inView2 ? { opacity: 1, y: 0 } : {},
+                        transition: { duration: 0.6, delay: 0.65 + i2 * 0.12 },
+                        className: "card-premium p-5 flex flex-col items-center text-center group",
+                        "data-ocid": `about.celebrity.${i2 + 1}`,
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              className: "w-20 h-20 rounded-full overflow-hidden mb-4 glow-gold",
+                              style: {
+                                border: "2px solid rgba(201,168,76,0.45)"
+                              },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "img",
+                                {
+                                  src: celeb.photo,
+                                  alt: celeb.name,
+                                  className: "w-full h-full object-cover object-top"
+                                }
+                              )
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "font-display text-lg font-semibold mb-1",
+                              style: { color: "#3d2817" },
+                              children: celeb.name
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "font-accent text-xs uppercase tracking-wider",
+                              style: { color: "#c9a84c" },
+                              children: celeb.event
+                            }
+                          )
+                        ]
+                      },
+                      celeb.name
+                    )) })
+                  ]
+                }
+              )
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold w-full absolute bottom-0 left-0" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute bottom-0 left-0 right-0" })
       ]
     }
   );
 }
-const studioInfo = {
-  shortName: "Yakshi",
-  subTagline: "Bridal Makeup & Nail Art in Delhi NCR",
-  phoneLink: "tel:+918766367033",
-  instagramUrl: "https://instagram.com/yakshimakeover",
-  whatsappUrl: "https://wa.me/918766367033",
-  email: "book@yakshimakeupart.com"
-};
+function FloatingOrbs$2() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "absolute inset-0 overflow-hidden pointer-events-none",
+      style: { zIndex: 0 },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float-slow",
+            style: {
+              width: 480,
+              height: 480,
+              top: "-15%",
+              right: "-10%",
+              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(212,175,55,0.06) 40%, transparent 70%)",
+              filter: "blur(60px)"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float",
+            style: {
+              width: 360,
+              height: 360,
+              bottom: "-10%",
+              left: "-8%",
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+              filter: "blur(50px)",
+              animationDelay: "-3s"
+            }
+          }
+        ),
+        [...Array(12)].map((_, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            className: "absolute rounded-full",
+            style: {
+              width: 3 + i2 % 3 * 2,
+              height: 3 + i2 % 3 * 2,
+              background: `rgba(201,168,76,${0.3 + i2 % 4 * 0.1})`,
+              left: `${8 + i2 * 8 % 88}%`,
+              top: `${10 + i2 * 13 % 80}%`,
+              boxShadow: "0 0 8px rgba(201,168,76,0.4)"
+            },
+            animate: { y: [0, -20, 0], opacity: [0.3, 0.9, 0.3] },
+            transition: {
+              duration: 3 + i2 % 3,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: i2 * 0.4,
+              ease: "easeInOut"
+            }
+          },
+          `orb-pos-${8 + i2 * 8 % 88}-${10 + i2 * 13 % 80}`
+        ))
+      ]
+    }
+  );
+}
+function GoldParticlesCanvas$1() {
+  const canvasRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    canvas.width = canvas.offsetWidth;
+    let w = canvas.width;
+    canvas.height = canvas.offsetHeight;
+    let h2 = canvas.height;
+    const pts = Array.from({ length: 70 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h2,
+      r: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: -Math.random() * 0.4 - 0.1,
+      op: Math.random() * 0.5 + 0.12
+    }));
+    let raf;
+    function draw() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h2);
+      for (const p2 of pts) {
+        ctx.beginPath();
+        ctx.arc(p2.x, p2.y, p2.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201,168,76,${p2.op})`;
+        ctx.fill();
+        p2.x += p2.dx;
+        p2.y += p2.dy;
+        if (p2.y < -5) {
+          p2.y = h2 + 5;
+          p2.x = Math.random() * w;
+        }
+        if (p2.x < 0) p2.x = w;
+        if (p2.x > w) p2.x = 0;
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    draw();
+    const onResize = () => {
+      canvas.width = canvas.offsetWidth;
+      w = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      h2 = canvas.offsetHeight;
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "canvas",
+    {
+      ref: canvasRef,
+      className: "absolute inset-0 w-full h-full pointer-events-none",
+      style: { zIndex: 0 }
+    }
+  );
+}
+const courses = [
+  {
+    icon: Brush,
+    title: "Foundation Course",
+    subtitle: "Begin Your Journey",
+    duration: "1 Month",
+    fee: "₹8,000",
+    popular: false,
+    curriculum: [
+      "Skincare prep & base application",
+      "Eye makeup fundamentals",
+      "Contouring & highlighting basics",
+      "Day & party looks",
+      "Makeup tools & hygiene"
+    ],
+    color: "#8b5e3c"
+  },
+  {
+    icon: GraduationCap,
+    title: "Professional Diploma",
+    subtitle: "Complete Career Training",
+    duration: "3 Months",
+    fee: "₹25,000",
+    popular: true,
+    curriculum: [
+      "HD & airbrush techniques",
+      "Bridal look creation A–Z",
+      "Regional bridal styles",
+      "Portfolio & client management",
+      "Live model practice sessions"
+    ],
+    color: "#c9a84c"
+  },
+  {
+    icon: Sparkles$1,
+    title: "Bridal Specialist",
+    subtitle: "Intensive Bridal Training",
+    duration: "2 Months",
+    fee: "₹18,000",
+    popular: false,
+    curriculum: [
+      "Luxury bridal looks",
+      "Saree & lehenga styling",
+      "Pre-bridal skin treatments",
+      "On-location bridal shoots",
+      "Business launch support"
+    ],
+    color: "#8b5e3c"
+  },
+  {
+    icon: BookOpen,
+    title: "Advanced Master Class",
+    subtitle: "For Working Professionals",
+    duration: "1 Week",
+    fee: "₹5,000",
+    popular: false,
+    curriculum: [
+      "Advanced airbrush skills",
+      "Film & TV makeup standards",
+      "Long-wear formula mastery",
+      "Speed bridal techniques",
+      "Certificate of completion"
+    ],
+    color: "#8b5e3c"
+  }
+];
+const whyJoin = [
+  {
+    icon: Award,
+    title: "Certified Courses",
+    desc: "Industry-recognised certificate upon completion, backed by 10+ years of professional experience."
+  },
+  {
+    icon: Users,
+    title: "500+ Alumni",
+    desc: "Join a thriving community of 500+ trained artists working across Maharashtra and beyond."
+  },
+  {
+    icon: CircleCheck,
+    title: "Hands-On Training",
+    desc: "Every session is practical — you apply, practice, and master. No purely theoretical classes."
+  },
+  {
+    icon: GraduationCap,
+    title: "Job Placement",
+    desc: "Career guidance, portfolio building, and direct referrals to salons and production houses."
+  }
+];
+const studentReviews = [
+  {
+    name: "Prachi Deshmukh",
+    location: "Amravati, Maharashtra",
+    rating: 5,
+    text: "Snehal madam ka teaching ek dam practical hai. Har technique pe focus tha. Ab main freelance artist hoon aur regular clients milte hain. Best decision ever!"
+  },
+  {
+    name: "Isha Kulkarni",
+    location: "Nagpur, Maharashtra",
+    rating: 5,
+    text: "Professional diploma course ne meri zindagi badal di. Portfolio shoot, real clients, certification — sab kuch ek jagah mila. Highly recommend to every aspiring artist!"
+  },
+  {
+    name: "Tanvi Rathore",
+    location: "Akola, Maharashtra",
+    rating: 5,
+    text: "Foundation course bilkul beginner-friendly tha. Madam har student ko personally dhyan deti hain. Bahut kuch seekha — now I run my own studio!"
+  }
+];
+function AcademyPage() {
+  const [formData, setFormData] = reactExports.useState({
+    name: "",
+    phone: "",
+    email: "",
+    course: ""
+  });
+  const [submitted, setSubmitted] = reactExports.useState(false);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = `Hi! I'm ${formData.name}. I'm interested in the ${formData.course} course. My contact: ${formData.phone} / ${formData.email}`;
+    window.open(
+      `https://wa.me/919561548151?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
+    setSubmitted(true);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "min-h-screen",
+      style: { backgroundColor: "#fdf8f3" },
+      "data-ocid": "academy.page",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "relative overflow-hidden py-32",
+            style: {
+              background: "linear-gradient(160deg, #fdf8f3 0%, #f5e6d3 50%, #fdf8f3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GoldParticlesCanvas$1, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingOrbs$2, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute rounded-full pointer-events-none",
+                  style: {
+                    width: 600,
+                    height: 600,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%,-50%)",
+                    border: "1px solid rgba(201,168,76,0.10)",
+                    zIndex: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute rounded-full pointer-events-none",
+                  style: {
+                    width: 800,
+                    height: 800,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%,-50%)",
+                    border: "1px solid rgba(201,168,76,0.06)",
+                    zIndex: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "max-w-4xl mx-auto px-4 text-center relative",
+                  style: { zIndex: 2 },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: -20 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.7 },
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(GraduationCap, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-xs tracking-[0.3em] uppercase font-accent",
+                              style: { color: "#8b5e3c" },
+                              children: "Professional Makeup Academy"
+                            }
+                          )
+                        ] })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.h1,
+                      {
+                        className: "font-display italic gradient-text mb-4",
+                        style: { fontSize: "clamp(2.8rem, 6vw, 5rem)", lineHeight: 1.12 },
+                        initial: { opacity: 0, y: 30 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.8, delay: 0.1 },
+                        children: [
+                          "Beauty & Makeup",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "0.75em" }, children: "Academy" })
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        className: "text-lg font-body mb-3 max-w-2xl mx-auto",
+                        style: { color: "#8b5e3c" },
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { delay: 0.3 },
+                        children: "Learn from a Certified Professional — Transform Your Passion into a Career"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        className: "text-sm font-body mb-10 tracking-wide",
+                        style: { color: "#c9a84c" },
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { delay: 0.4 },
+                        children: "500+ Students Trained · 10+ Years Teaching · Certified Courses"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        className: "flex flex-wrap justify-center gap-4",
+                        initial: { opacity: 0, y: 15 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { delay: 0.5 },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "#enroll",
+                              className: "btn-premium",
+                              "data-ocid": "academy.hero.enroll_button",
+                              children: "Enroll Now"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "#courses",
+                              className: "btn-outline-premium",
+                              "data-ocid": "academy.hero.courses_button",
+                              children: "View Courses"
+                            }
+                          )
+                        ]
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: "py-10 border-y",
+            style: {
+              background: "rgba(255,255,255,0.75)",
+              backdropFilter: "blur(20px)",
+              borderColor: "rgba(201,168,76,0.18)"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-5xl mx-auto px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-6", children: [
+              { val: "500+", label: "Students Trained" },
+              { val: "10+", label: "Years Teaching" },
+              { val: "4", label: "Professional Courses" },
+              { val: "100%", label: "Placement Support" }
+            ].map((s, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                className: "text-center",
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { delay: i2 * 0.1 },
+                "data-ocid": `academy.stat.${i2 + 1}`,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-3xl font-display font-bold gradient-text",
+                      style: { WebkitTextFillColor: "unset", color: "#c9a84c" },
+                      children: s.val
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-sm font-body mt-1",
+                      style: { color: "#8b5e3c" },
+                      children: s.label
+                    }
+                  )
+                ]
+              },
+              s.label
+            )) }) })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            id: "courses",
+            className: "section-padding section-bg-cream relative overflow-hidden",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto px-4 relative", style: { zIndex: 1 }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    className: "text-center mb-14",
+                    initial: { opacity: 0, y: 25 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Our Programmes" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl md:text-5xl font-display italic gradient-text mb-5", children: "Professional Courses" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 80 } })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "grid md:grid-cols-2 gap-7",
+                    "data-ocid": "academy.courses.list",
+                    children: courses.map((course, i2) => {
+                      const Icon2 = course.icon;
+                      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        motion.div,
+                        {
+                          className: "card-premium rounded-2xl p-8 relative overflow-hidden",
+                          initial: { opacity: 0, y: 30 },
+                          whileInView: { opacity: 1, y: 0 },
+                          viewport: { once: true },
+                          transition: { delay: i2 * 0.12 },
+                          whileHover: { y: -6 },
+                          "data-ocid": `academy.course.item.${i2 + 1}`,
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "div",
+                              {
+                                className: "absolute top-0 right-0 rounded-bl-full pointer-events-none",
+                                style: {
+                                  width: 120,
+                                  height: 120,
+                                  background: course.color === "#c9a84c" ? "radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%)" : "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%)"
+                                }
+                              }
+                            ),
+                            course.popular && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "div",
+                              {
+                                className: "absolute top-5 right-5 px-3 py-1 rounded-full text-xs font-accent font-bold tracking-widest",
+                                style: {
+                                  background: "linear-gradient(135deg,#c9a84c,#d4af37)",
+                                  color: "#3d2817",
+                                  boxShadow: "0 4px 16px rgba(201,168,76,0.4)"
+                                },
+                                children: "Most Popular"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-4 mb-6", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "div",
+                                {
+                                  className: "w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0",
+                                  style: {
+                                    background: course.color === "#c9a84c" ? "rgba(201,168,76,0.14)" : "rgba(139,94,60,0.10)",
+                                    border: `1px solid ${course.color}44`,
+                                    boxShadow: `0 0 20px ${course.color}22`
+                                  },
+                                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 24, style: { color: course.color } })
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "h3",
+                                  {
+                                    className: "text-xl font-display italic",
+                                    style: { color: "#3d2817" },
+                                    children: course.title
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "p",
+                                  {
+                                    className: "text-sm font-body",
+                                    style: { color: "#8b5e3c" },
+                                    children: course.subtitle
+                                  }
+                                )
+                              ] })
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-2.5 mb-7", children: course.curriculum.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "li",
+                              {
+                                className: "flex items-center gap-2.5 text-sm font-body",
+                                style: { color: "#5a3825" },
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                    CircleCheck,
+                                    {
+                                      size: 14,
+                                      style: { color: "#c9a84c", flexShrink: 0 }
+                                    }
+                                  ),
+                                  item
+                                ]
+                              },
+                              item
+                            )) }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "div",
+                              {
+                                className: "flex items-center justify-between pt-5",
+                                style: { borderTop: "1px solid rgba(201,168,76,0.18)" },
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(Clock$1, { size: 14, style: { color: "#8b5e3c" } }),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "span",
+                                      {
+                                        className: "text-sm font-body",
+                                        style: { color: "#8b5e3c" },
+                                        children: course.duration
+                                      }
+                                    )
+                                  ] }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                    "span",
+                                    {
+                                      className: "text-2xl font-display font-bold",
+                                      style: {
+                                        color: "#c9a84c",
+                                        textShadow: "0 0 16px rgba(201,168,76,0.3)"
+                                      },
+                                      children: course.fee
+                                    }
+                                  )
+                                ]
+                              }
+                            )
+                          ]
+                        },
+                        course.title
+                      );
+                    })
+                  }
+                )
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "section-padding relative overflow-hidden",
+            style: {
+              background: "linear-gradient(180deg, #f5e6d3 0%, #fdf8f3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 relative", style: { zIndex: 1 }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    className: "text-center mb-14",
+                    initial: { opacity: 0, y: 25 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Advantages" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-5", children: "Why Join Our Academy" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 70 } })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid sm:grid-cols-2 md:grid-cols-4 gap-6", children: whyJoin.map((item, i2) => {
+                  const Icon2 = item.icon;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      className: "glass-medium rounded-2xl p-6 text-center",
+                      initial: { opacity: 0, y: 25 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      transition: { delay: i2 * 0.1 },
+                      whileHover: {
+                        y: -5,
+                        boxShadow: "0 8px 40px rgba(201,168,76,0.2)"
+                      },
+                      "data-ocid": `academy.why.item.${i2 + 1}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4",
+                            style: {
+                              background: "rgba(201,168,76,0.12)",
+                              border: "1px solid rgba(201,168,76,0.3)",
+                              boxShadow: "0 0 20px rgba(201,168,76,0.18)"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#c9a84c" } })
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "h4",
+                          {
+                            className: "font-display italic text-base mb-2",
+                            style: { color: "#3d2817" },
+                            children: item.title
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-xs font-body leading-relaxed",
+                            style: { color: "#8b5e3c" },
+                            children: item.desc
+                          }
+                        )
+                      ]
+                    },
+                    item.title
+                  );
+                }) })
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "section-padding section-bg-cream", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              className: "text-center mb-14",
+              initial: { opacity: 0, y: 25 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Student Stories" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-5", children: "What Our Students Say" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 70 } })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid md:grid-cols-3 gap-7", children: studentReviews.map((review, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              className: "card-premium rounded-2xl p-7",
+              initial: { opacity: 0, x: i2 % 2 === 0 ? -25 : 25 },
+              whileInView: { opacity: 1, x: 0 },
+              viewport: { once: true },
+              transition: { delay: i2 * 0.12 },
+              "data-ocid": `academy.review.item.${i2 + 1}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 mb-4", children: Array.from({ length: review.rating }, (_, si) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Star,
+                  {
+                    size: 14,
+                    fill: "#c9a84c",
+                    style: { color: "#c9a84c" }
+                  },
+                  `star-${review.name}-${si}`
+                )) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "p",
+                  {
+                    className: "text-sm font-body leading-relaxed mb-5",
+                    style: { color: "#5a3825" },
+                    children: [
+                      "“",
+                      review.text,
+                      "”"
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "pt-4",
+                    style: { borderTop: "1px solid rgba(201,168,76,0.18)" },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "p",
+                        {
+                          className: "font-display italic text-sm",
+                          style: { color: "#6b3f1f" },
+                          children: review.name
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body", style: { color: "#8b5e3c" }, children: review.location })
+                    ]
+                  }
+                )
+              ]
+            },
+            review.name
+          )) })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            id: "enroll",
+            className: "section-padding relative overflow-hidden",
+            style: {
+              background: "linear-gradient(160deg, #f5e6d3 0%, #fdf8f3 60%, #f5e6d3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-2xl mx-auto px-4 relative", style: { zIndex: 1 }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    className: "text-center mb-10",
+                    initial: { opacity: 0, y: 25 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        GraduationCap,
+                        {
+                          size: 48,
+                          className: "mx-auto mb-5",
+                          style: {
+                            color: "#c9a84c",
+                            filter: "drop-shadow(0 0 14px rgba(201,168,76,0.4))"
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-3", children: "Enroll in Our Academy" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body", style: { color: "#8b5e3c" }, children: "Fill in your details and we'll connect you via WhatsApp. Limited seats available." })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  motion.div,
+                  {
+                    className: "glass-ultra rounded-3xl p-8 md:p-10",
+                    initial: { opacity: 0, y: 30 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    transition: { delay: 0.1 },
+                    children: submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "div",
+                      {
+                        className: "text-center py-8",
+                        "data-ocid": "academy.form.success_state",
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              className: "w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4",
+                              style: {
+                                background: "rgba(201,168,76,0.15)",
+                                border: "1px solid rgba(201,168,76,0.4)"
+                              },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 32, style: { color: "#c9a84c" } })
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-2xl font-display italic gradient-text mb-2", children: "Enrollment Initiated!" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body", style: { color: "#8b5e3c" }, children: "Your WhatsApp has opened. We'll confirm your seat shortly." })
+                        ]
+                      }
+                    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "form",
+                      {
+                        onSubmit: handleSubmit,
+                        className: "space-y-5",
+                        "data-ocid": "academy.enrollment.form",
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                htmlFor: "enroll-name",
+                                className: "block text-sm font-body mb-1.5",
+                                style: { color: "#6b3f1f" },
+                                children: "Full Name *"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "input",
+                              {
+                                id: "enroll-name",
+                                type: "text",
+                                required: true,
+                                value: formData.name,
+                                onChange: (e) => setFormData((p2) => ({ ...p2, name: e.target.value })),
+                                className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
+                                style: {
+                                  background: "rgba(255,255,255,0.8)",
+                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  color: "#3d2817",
+                                  outline: "none"
+                                },
+                                placeholder: "Your full name",
+                                "data-ocid": "academy.form.name_input"
+                              }
+                            )
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                htmlFor: "enroll-phone",
+                                className: "block text-sm font-body mb-1.5",
+                                style: { color: "#6b3f1f" },
+                                children: "Phone Number *"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "input",
+                              {
+                                id: "enroll-phone",
+                                type: "tel",
+                                required: true,
+                                value: formData.phone,
+                                onChange: (e) => setFormData((p2) => ({ ...p2, phone: e.target.value })),
+                                className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
+                                style: {
+                                  background: "rgba(255,255,255,0.8)",
+                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  color: "#3d2817",
+                                  outline: "none"
+                                },
+                                placeholder: "Your mobile number",
+                                "data-ocid": "academy.form.phone_input"
+                              }
+                            )
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                htmlFor: "enroll-email",
+                                className: "block text-sm font-body mb-1.5",
+                                style: { color: "#6b3f1f" },
+                                children: "Email (Optional)"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "input",
+                              {
+                                id: "enroll-email",
+                                type: "email",
+                                value: formData.email,
+                                onChange: (e) => setFormData((p2) => ({ ...p2, email: e.target.value })),
+                                className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
+                                style: {
+                                  background: "rgba(255,255,255,0.8)",
+                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  color: "#3d2817",
+                                  outline: "none"
+                                },
+                                placeholder: "your@email.com",
+                                "data-ocid": "academy.form.email_input"
+                              }
+                            )
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "label",
+                              {
+                                htmlFor: "enroll-course",
+                                className: "block text-sm font-body mb-1.5",
+                                style: { color: "#6b3f1f" },
+                                children: "Course Interest *"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "select",
+                              {
+                                id: "enroll-course",
+                                required: true,
+                                value: formData.course,
+                                onChange: (e) => setFormData((p2) => ({ ...p2, course: e.target.value })),
+                                className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
+                                style: {
+                                  background: "rgba(255,255,255,0.8)",
+                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  color: formData.course ? "#3d2817" : "#8b5e3c",
+                                  outline: "none"
+                                },
+                                "data-ocid": "academy.form.course_select",
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Select a course" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Foundation Course", children: "Foundation Course — ₹8,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Professional Diploma", children: "Professional Diploma — ₹25,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Bridal Specialist", children: "Bridal Specialist — ₹18,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Advanced Master Class", children: "Advanced Master Class — ₹5,000" })
+                                ]
+                              }
+                            )
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "button",
+                            {
+                              type: "submit",
+                              className: "btn-premium w-full mt-2",
+                              "data-ocid": "academy.form.submit_button",
+                              children: "Enroll via WhatsApp"
+                            }
+                          )
+                        ]
+                      }
+                    )
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
+function FloatingOrbs$1() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "absolute inset-0 overflow-hidden pointer-events-none",
+      style: { zIndex: 0 },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float",
+            style: {
+              width: 500,
+              height: 500,
+              top: "-20%",
+              right: "-12%",
+              background: "radial-gradient(circle, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.06) 40%, transparent 70%)",
+              filter: "blur(70px)"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float-slow",
+            style: {
+              width: 350,
+              height: 350,
+              bottom: "-10%",
+              left: "-8%",
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+              filter: "blur(50px)",
+              animationDelay: "-4s"
+            }
+          }
+        ),
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            className: "absolute rounded-full",
+            style: {
+              width: 4 + i2 % 3 * 1.5,
+              height: 4 + i2 % 3 * 1.5,
+              background: `rgba(201,168,76,${0.25 + i2 % 4 * 0.1})`,
+              left: `${6 + i2 * 7 % 90}%`,
+              top: `${15 + i2 * 11 % 75}%`,
+              boxShadow: "0 0 6px rgba(201,168,76,0.35)"
+            },
+            animate: { y: [0, -16, 0], opacity: [0.25, 0.8, 0.25] },
+            transition: {
+              duration: 2.5 + i2 % 3,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: i2 * 0.35,
+              ease: "easeInOut"
+            }
+          },
+          i2
+        ))
+      ]
+    }
+  );
+}
+function GoldParticlesCanvas() {
+  const canvasRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    let w = canvas.offsetWidth;
+    let h2 = canvas.offsetHeight;
+    const pts = Array.from({ length: 60 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h2,
+      r: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.28,
+      dy: -Math.random() * 0.38 - 0.1,
+      op: Math.random() * 0.45 + 0.1
+    }));
+    let raf;
+    function draw() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h2);
+      for (const p2 of pts) {
+        ctx.beginPath();
+        ctx.arc(p2.x, p2.y, p2.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201,168,76,${p2.op})`;
+        ctx.fill();
+        p2.x += p2.dx;
+        p2.y += p2.dy;
+        if (p2.y < -5) {
+          p2.y = h2 + 5;
+          p2.x = Math.random() * w;
+        }
+        if (p2.x < 0) p2.x = w;
+        if (p2.x > w) p2.x = 0;
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    draw();
+    const onResize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      w = canvas.offsetWidth;
+      h2 = canvas.offsetHeight;
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "canvas",
+    {
+      ref: canvasRef,
+      className: "absolute inset-0 w-full h-full pointer-events-none",
+      style: { zIndex: 0 }
+    }
+  );
+}
+const packages = [
+  {
+    icon: Star,
+    tier: "Essential Bridal",
+    price: "₹12,000",
+    popular: false,
+    includes: [
+      "Pre-bridal trial session",
+      "Wedding day full makeup",
+      "HD foundation base",
+      "Touch-up kit provided",
+      "1 event (wedding only)"
+    ],
+    color: "#8b7a6b"
+  },
+  {
+    icon: Gem,
+    tier: "Premium Bridal",
+    price: "₹22,000",
+    popular: true,
+    badge: "Most Popular",
+    includes: [
+      "Trial + consultation session",
+      "Wedding + engagement makeup",
+      "Mehendi event look included",
+      "Premium luxury products used",
+      "Photoshoot ready look",
+      "Hair styling for 1 event"
+    ],
+    color: "#c9a84c"
+  },
+  {
+    icon: Crown,
+    tier: "Luxury Complete",
+    price: "₹35,000",
+    popular: false,
+    includes: [
+      "All 5 events covered",
+      "Pre-bridal skin treatment",
+      "Hairdo for all events",
+      "Airport pickup & drop",
+      "Luxury international product kit",
+      "Dedicated artist full weekend",
+      "WhatsApp support all week"
+    ],
+    color: "#8b5e3c"
+  }
+];
+const included = [
+  {
+    icon: Heart,
+    title: "Personal Consultation",
+    desc: "We understand your skin tone, outfit, and vision before touch 1."
+  },
+  {
+    icon: Sparkles$1,
+    title: "Premium Products",
+    desc: "MAC, Charlotte Tilbury, Huda Beauty, Kryolan — international brands only."
+  },
+  {
+    icon: Camera$1,
+    title: "Photo-Ready Finish",
+    desc: "HD airbrush technique for flawless camera-ready results all day long."
+  },
+  {
+    icon: CircleCheck,
+    title: "Touch-Up Support",
+    desc: "On-call artist available for quick touch-ups between ceremonies."
+  }
+];
+const gallery = [
+  { src: "/assets/snehal-bridal-1.png", label: "Wedding Look" },
+  { src: "/assets/snehal-bridal-2.png", label: "Royal Bridal" },
+  { src: "/assets/snehal-bridal-3.png", label: "Elegant Bride" },
+  { src: "/assets/bridal-gold.png", label: "Gold Glam" },
+  { src: "/assets/bridal-lehenga.png", label: "Lehenga Look" },
+  { src: "/assets/bridal-lipstick.png", label: "Lip Art" }
+];
+function BridalPackagesPage() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "min-h-screen",
+      style: { backgroundColor: "#fdf8f3" },
+      "data-ocid": "packages.page",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "relative overflow-hidden py-32",
+            style: {
+              background: "linear-gradient(160deg, #fdf8f3 0%, #f5e6d3 50%, #ede0d0 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GoldParticlesCanvas, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingOrbs$1, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute rounded-full pointer-events-none",
+                  style: {
+                    width: 700,
+                    height: 700,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%,-50%)",
+                    border: "1px solid rgba(201,168,76,0.08)",
+                    zIndex: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "max-w-3xl mx-auto px-4 text-center relative",
+                  style: { zIndex: 2 },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: -15 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.7 },
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-xs tracking-[0.3em] uppercase font-accent",
+                              style: { color: "#8b5e3c" },
+                              children: "Makeup by Snehal Pawar"
+                            }
+                          )
+                        ] })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.h1,
+                      {
+                        className: "font-display italic gradient-text mb-4",
+                        style: { fontSize: "clamp(2.8rem, 6vw, 5rem)", lineHeight: 1.12 },
+                        initial: { opacity: 0, y: 25 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.8, delay: 0.1 },
+                        children: "Bridal Packages"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        className: "text-lg font-body mb-10 max-w-xl mx-auto",
+                        style: { color: "#8b5e3c" },
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { delay: 0.3 },
+                        children: "From Engagement to Reception — Every Moment, Perfectly Crafted"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        className: "flex flex-wrap justify-center gap-4",
+                        initial: { opacity: 0, y: 15 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { delay: 0.5 },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "tel:+919561548151",
+                              className: "btn-premium",
+                              "data-ocid": "packages.hero.call_button",
+                              children: "Book Your Package"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "https://wa.me/919561548151",
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              className: "btn-outline-premium",
+                              "data-ocid": "packages.hero.whatsapp_button",
+                              children: "WhatsApp Us"
+                            }
+                          )
+                        ]
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "section-padding section-bg-cream relative overflow-hidden", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute inset-0 pointer-events-none",
+              style: {
+                background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto px-4 relative", style: { zIndex: 1 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                className: "text-center mb-14",
+                initial: { opacity: 0, y: 25 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Choose Your Celebration" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl md:text-5xl font-display italic gradient-text mb-5", children: "Wedding Packages" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 80 } })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "grid md:grid-cols-3 gap-7",
+                "data-ocid": "packages.packages.list",
+                children: packages.map((pkg, i2) => {
+                  const Icon2 = pkg.icon;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      className: "card-premium rounded-2xl p-8 flex flex-col relative overflow-hidden",
+                      initial: { opacity: 0, y: 30 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      transition: { delay: i2 * 0.12 },
+                      whileHover: { y: -8 },
+                      "data-ocid": `packages.package.item.${i2 + 1}`,
+                      style: pkg.popular ? {
+                        outline: "2.5px solid rgba(201,168,76,0.6)",
+                        outlineOffset: "0px",
+                        boxShadow: "0 0 40px rgba(201,168,76,0.18), 0 20px 60px rgba(107,63,31,0.10)"
+                      } : {},
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "absolute top-0 right-0 pointer-events-none",
+                            style: {
+                              width: 150,
+                              height: 150,
+                              background: `radial-gradient(circle at top right, ${pkg.color}18 0%, transparent 70%)`,
+                              borderRadius: "0 20px 0 0"
+                            }
+                          }
+                        ),
+                        pkg.popular && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "absolute top-0 left-0 right-0 text-center py-2 text-xs font-accent font-bold tracking-widest uppercase rounded-t-2xl",
+                            style: {
+                              background: "linear-gradient(135deg,#c9a84c,#d4af37)",
+                              color: "#3d2817"
+                            },
+                            children: "✦ Most Popular ✦"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "div",
+                          {
+                            className: `flex flex-col flex-1 ${pkg.popular ? "mt-7" : ""}`,
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-6", children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    className: "w-14 h-14 rounded-2xl flex items-center justify-center mb-4",
+                                    style: {
+                                      background: `${pkg.color}18`,
+                                      border: `1px solid ${pkg.color}44`,
+                                      boxShadow: `0 0 20px ${pkg.color}22`
+                                    },
+                                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 24, style: { color: pkg.color } })
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "h3",
+                                  {
+                                    className: "text-2xl font-display italic",
+                                    style: { color: "#3d2817" },
+                                    children: pkg.tier
+                                  }
+                                )
+                              ] }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-3 flex-1 mb-7", children: pkg.includes.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "li",
+                                {
+                                  className: "flex items-start gap-2.5 text-sm font-body",
+                                  style: { color: "#5a3825" },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      CircleCheck,
+                                      {
+                                        size: 14,
+                                        style: {
+                                          color: "#c9a84c",
+                                          flexShrink: 0,
+                                          marginTop: 2
+                                        }
+                                      }
+                                    ),
+                                    item
+                                  ]
+                                },
+                                item
+                              )) }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "div",
+                                {
+                                  className: "pt-5",
+                                  style: { borderTop: "1px solid rgba(201,168,76,0.2)" },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "p",
+                                      {
+                                        className: "text-3xl font-display font-bold",
+                                        style: {
+                                          color: "#c9a84c",
+                                          textShadow: "0 0 20px rgba(201,168,76,0.3)"
+                                        },
+                                        children: pkg.price
+                                      }
+                                    ),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "p",
+                                      {
+                                        className: "text-xs font-body mt-1",
+                                        style: { color: "#8b5e3c" },
+                                        children: "All-inclusive"
+                                      }
+                                    ),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "a",
+                                      {
+                                        href: "https://wa.me/919561548151",
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        className: "btn-outline-premium w-full text-center block mt-4 text-sm py-3",
+                                        "data-ocid": `packages.package.book_button.${i2 + 1}`,
+                                        children: "Book This Package"
+                                      }
+                                    )
+                                  ]
+                                }
+                              )
+                            ]
+                          }
+                        )
+                      ]
+                    },
+                    pkg.tier
+                  );
+                })
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "section-padding relative overflow-hidden",
+            style: {
+              background: "linear-gradient(180deg, #f5e6d3 0%, #fdf8f3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 relative", style: { zIndex: 1 }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    className: "text-center mb-14",
+                    initial: { opacity: 0, y: 25 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Every Package Includes" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-5", children: "What's Included" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 70 } })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid sm:grid-cols-2 md:grid-cols-4 gap-6", children: included.map((item, i2) => {
+                  const Icon2 = item.icon;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      className: "glass-medium rounded-2xl p-6 text-center",
+                      initial: { opacity: 0, y: 25 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      transition: { delay: i2 * 0.1 },
+                      whileHover: { y: -5 },
+                      "data-ocid": `packages.included.item.${i2 + 1}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4",
+                            style: {
+                              background: "rgba(201,168,76,0.12)",
+                              border: "1px solid rgba(201,168,76,0.3)",
+                              boxShadow: "0 0 18px rgba(201,168,76,0.18)"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#c9a84c" } })
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "h4",
+                          {
+                            className: "font-display italic text-base mb-2",
+                            style: { color: "#3d2817" },
+                            children: item.title
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-xs font-body leading-relaxed",
+                            style: { color: "#8b5e3c" },
+                            children: item.desc
+                          }
+                        )
+                      ]
+                    },
+                    item.title
+                  );
+                }) })
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "section-padding section-bg-cream", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto px-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              className: "text-center mb-14",
+              initial: { opacity: 0, y: 25 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Our Bridal Work" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-5", children: "Bridal Portfolio" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 70 } })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "grid grid-cols-2 md:grid-cols-3 gap-5",
+              "data-ocid": "packages.gallery.list",
+              children: gallery.map((item, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  className: "relative overflow-hidden rounded-2xl group cursor-pointer",
+                  style: {
+                    height: i2 === 0 || i2 === 3 ? 340 : 240,
+                    border: "1.5px solid rgba(201,168,76,0.2)",
+                    boxShadow: "0 4px 20px rgba(107,63,31,0.07)"
+                  },
+                  initial: { opacity: 0, scale: 0.94 },
+                  whileInView: { opacity: 1, scale: 1 },
+                  viewport: { once: true },
+                  transition: { delay: i2 * 0.1 },
+                  whileHover: { scale: 1.02 },
+                  "data-ocid": `packages.gallery.item.${i2 + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "img",
+                      {
+                        src: item.src,
+                        alt: item.label,
+                        className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110",
+                        onError: (e) => {
+                          e.target.style.display = "none";
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                        style: {
+                          background: "linear-gradient(to top, rgba(107,63,31,0.75) 0%, rgba(107,63,31,0.2) 50%, transparent 100%)"
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none",
+                        style: {
+                          boxShadow: "inset 0 0 40px rgba(201,168,76,0.2)",
+                          borderRadius: "inherit"
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "text-sm font-display italic",
+                        style: {
+                          color: "#fdf6ee",
+                          textShadow: "0 1px 4px rgba(0,0,0,0.4)"
+                        },
+                        children: item.label
+                      }
+                    ) })
+                  ]
+                },
+                item.src
+              ))
+            }
+          )
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "section-padding relative overflow-hidden",
+            style: {
+              background: "linear-gradient(160deg, #f5e6d3 0%, #fdf8f3 60%, #f5e6d3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "max-w-xl mx-auto px-4 text-center relative",
+                  style: { zIndex: 1 },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      initial: { opacity: 0, y: 25 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Crown,
+                          {
+                            size: 50,
+                            className: "mx-auto mb-5",
+                            style: {
+                              color: "#c9a84c",
+                              filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))"
+                            }
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-4", children: "Book Your Bridal Look" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body mb-8", style: { color: "#8b5e3c" }, children: "Slots fill quickly — especially for peak wedding season (Oct–Mar). Secure your date today!" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap justify-center gap-4", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "a",
+                            {
+                              href: "tel:+919561548151",
+                              className: "btn-premium flex items-center gap-2",
+                              "data-ocid": "packages.cta.call_button",
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(PhoneCall, { size: 16 }),
+                                " Call: 09561548151"
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "https://wa.me/919561548151",
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              className: "btn-outline-premium",
+                              "data-ocid": "packages.cta.whatsapp_button",
+                              children: "WhatsApp Now"
+                            }
+                          )
+                        ] })
+                      ]
+                    }
+                  )
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
 const SPARKLES = [
   { id: "s1", top: "10%", left: "5%", size: 18, delay: 0 },
   { id: "s2", top: "20%", right: "8%", size: 14, delay: 0.4 },
@@ -27271,7 +29107,7 @@ function CTASection() {
       "data-ocid": "cta.section",
       className: "relative overflow-hidden section-padding",
       style: {
-        background: "linear-gradient(135deg, #060606 0%, #111111 50%, #070707 100%)"
+        background: "linear-gradient(135deg, #6b3f1f 0%, #8b5e3c 50%, #6b3f1f 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27279,7 +29115,7 @@ function CTASection() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(212,175,55,0.11) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(201,168,76,0.18) 0%, transparent 65%)",
               animation: "pulse-glow 5s ease-in-out infinite"
             }
           }
@@ -27289,12 +29125,21 @@ function CTASection() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(183,110,121,0.09) 0%, transparent 60%)",
+              background: "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(232,168,124,0.15) 0%, transparent 60%)",
               animation: "pulse-glow 7s ease-in-out infinite reverse"
             }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-0 right-0 divider-gold" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-0 left-0 right-0 h-px",
+            style: {
+              background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
+              boxShadow: "0 0 18px rgba(212,175,55,0.55)"
+            }
+          }
+        ),
         SPARKLES.map((pos, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
@@ -27305,8 +29150,8 @@ function CTASection() {
               right: "right" in pos ? pos.right : void 0
             },
             animate: {
-              y: [0, -10, 0],
-              opacity: [0.4, 1, 0.4],
+              y: [0, -12, 0],
+              opacity: [0.5, 1, 0.5],
               rotate: [0, 20, -20, 0]
             },
             transition: {
@@ -27320,8 +29165,8 @@ function CTASection() {
               {
                 size: pos.size,
                 style: {
-                  color: "rgba(212,175,55,0.75)",
-                  filter: "drop-shadow(0 0 6px rgba(212,175,55,0.6))"
+                  color: "rgba(255,220,100,0.80)",
+                  filter: "drop-shadow(0 0 8px rgba(212,175,55,0.70))"
                 }
               }
             )
@@ -27336,14 +29181,20 @@ function CTASection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.6 },
-              className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 font-body text-xs tracking-widest uppercase glass-ultra",
-              style: { color: "#d4af37" },
+              className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 font-body text-xs tracking-widest uppercase",
+              style: {
+                background: "rgba(255,255,255,0.12)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(255,220,100,0.40)",
+                color: "rgba(255,220,100,0.95)",
+                boxShadow: "0 0 20px rgba(212,175,55,0.22)"
+              },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Sparkles$1,
                   {
                     size: 12,
-                    style: { filter: "drop-shadow(0 0 5px rgba(212,175,55,0.7))" }
+                    style: { filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }
                   }
                 ),
                 "Limited Slots Available",
@@ -27351,7 +29202,7 @@ function CTASection() {
                   Sparkles$1,
                   {
                     size: 12,
-                    style: { filter: "drop-shadow(0 0 5px rgba(212,175,55,0.7))" }
+                    style: { filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }
                   }
                 )
               ]
@@ -27361,22 +29212,38 @@ function CTASection() {
             motion.h2,
             {
               className: "text-5xl md:text-6xl lg:text-7xl font-display italic mb-6",
-              style: { lineHeight: 1.1 },
+              style: { lineHeight: 1.1, color: "#fdf8f3" },
               initial: { opacity: 0, scale: 0.9 },
               whileInView: { opacity: 1, scale: 1 },
               viewport: { once: true },
               transition: { duration: 0.8, delay: 0.1 },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "gradient-text", children: "Ready for Your" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    style: {
+                      background: "linear-gradient(135deg, #f5d878 0%, #e8c060 40%, #d4a730 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      filter: "drop-shadow(0 0 22px rgba(212,175,55,0.35))"
+                    },
+                    children: "Ready for Your"
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "Glow Up?" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#fdf8f3" }, children: "Dream Look?" })
               ]
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
-              className: "divider-gold w-32 mx-auto mb-8",
+              className: "h-px w-32 mx-auto mb-8",
+              style: {
+                background: "linear-gradient(90deg, transparent, rgba(255,220,100,0.9), transparent)",
+                boxShadow: "0 0 10px rgba(212,175,55,0.45)"
+              },
               initial: { scaleX: 0 },
               whileInView: { scaleX: 1 },
               viewport: { once: true },
@@ -27386,24 +29253,28 @@ function CTASection() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.p,
             {
-              className: "text-muted-foreground font-body text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed",
+              className: "font-body text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed",
+              style: { color: "rgba(253,248,243,0.80)" },
               initial: { opacity: 0, y: 20 },
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.6, delay: 0.35 },
               children: [
-                "Book your luxury makeup experience today and join",
+                "Book your bridal consultation today and take the first step towards your perfect wedding day transformation. Join",
                 " ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
-                    className: "text-gold font-semibold",
-                    style: { textShadow: "0 0 18px rgba(212,175,55,0.4)" },
+                    style: {
+                      color: "#f5d878",
+                      fontWeight: 600,
+                      textShadow: "0 0 18px rgba(212,175,55,0.45)"
+                    },
                     children: "500+ brides"
                   }
                 ),
                 " ",
-                "who trusted Yakshi for their most precious moments."
+                "who trusted Snehal Pawar for their most precious moments."
               ]
             }
           ),
@@ -27419,39 +29290,49 @@ function CTASection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   motion.a,
                   {
-                    href: studioInfo.whatsappUrl,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
+                    href: "tel:09561548151",
                     "data-ocid": "cta.book_button",
-                    className: "btn-gold text-base px-10 py-4 rounded-xl flex items-center gap-3 min-w-[260px] justify-center",
+                    className: "flex items-center gap-3 px-10 py-4 rounded-xl font-accent font-semibold tracking-widest uppercase text-sm min-w-[260px] justify-center",
                     style: {
-                      textDecoration: "none",
-                      fontSize: "0.95rem",
-                      boxShadow: "0 0 30px rgba(212,175,55,0.60), 0 0 65px rgba(212,175,55,0.28), 0 4px 20px rgba(0,0,0,0.35)"
+                      background: "linear-gradient(135deg, #f0d060 0%, #d4a730 50%, #f0d060 100%)",
+                      backgroundSize: "200% auto",
+                      color: "#3d2817",
+                      boxShadow: "0 0 30px rgba(212,175,55,0.65), 0 0 65px rgba(212,175,55,0.28), 0 4px 20px rgba(0,0,0,0.25)",
+                      textDecoration: "none"
                     },
                     whileHover: {
                       scale: 1.05,
-                      boxShadow: "0 0 45px rgba(212,175,55,0.75), 0 0 90px rgba(212,175,55,0.35)"
+                      boxShadow: "0 0 45px rgba(212,175,55,0.80), 0 0 90px rgba(212,175,55,0.35)"
                     },
                     whileTap: { scale: 0.97 },
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles$1, { size: 18 }),
-                      "Book Appointment Now"
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { size: 18 }),
+                      "Book Now — 09561548151"
                     ]
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   motion.a,
                   {
-                    href: studioInfo.phoneLink,
-                    "data-ocid": "cta.call_button",
-                    className: "btn-outline-gold text-base px-10 py-4 rounded-xl flex items-center gap-3 min-w-[260px] justify-center",
-                    style: { textDecoration: "none", fontSize: "0.95rem" },
-                    whileHover: { scale: 1.05 },
+                    href: "https://wa.me/919561548151",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "data-ocid": "cta.whatsapp_button",
+                    className: "flex items-center gap-3 px-10 py-4 rounded-xl font-body font-semibold text-sm min-w-[260px] justify-center",
+                    style: {
+                      background: "linear-gradient(135deg, #25d366, #1ea952)",
+                      color: "#fff",
+                      boxShadow: "0 4px 25px rgba(37,211,102,0.40)",
+                      textDecoration: "none"
+                    },
+                    whileHover: {
+                      scale: 1.05,
+                      boxShadow: "0 8px 35px rgba(37,211,102,0.60)"
+                    },
                     whileTap: { scale: 0.97 },
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { size: 18 }),
-                      "Call Us: 08766367033"
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { size: 18 }),
+                      "WhatsApp Us"
                     ]
                   }
                 )
@@ -27461,337 +29342,348 @@ function CTASection() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.p,
             {
-              className: "mt-10 text-sm text-muted-foreground font-body tracking-wide",
+              className: "mt-10 text-sm font-body tracking-wide",
+              style: { color: "rgba(253,248,243,0.55)" },
               initial: { opacity: 0 },
               whileInView: { opacity: 1 },
               viewport: { once: true },
               transition: { duration: 0.6, delay: 0.6 },
-              children: "✦ Trusted by celebrities & brides across Delhi NCR ✦ Home service available ✦"
+              children: "✦ Trusted by 500+ brides across Maharashtra ✦ Home service available ✦ Academy Certified ✦"
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 divider-gold" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute bottom-0 left-0 right-0 h-px",
+            style: {
+              background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
+              boxShadow: "0 0 18px rgba(212,175,55,0.55)"
+            }
+          }
+        )
       ]
     }
   );
 }
-const celebrityCards = [
+const GOLD$3 = "#c9a84c";
+const BROWN$2 = "#6b3f1f";
+const WARM$2 = "#8b5e3c";
+const celebCards = [
   {
-    image: "/assets/screenshot_2026-04-14_221249-019d8ce8-94b6-749d-b230-4091a5c4d8a0.png",
-    label: "Bollywood Celebrity Makeover",
-    sublabel: "Bridal & Film Industry",
-    accentColor: "rgba(212,175,55,0.5)"
+    image: "/assets/snehal-bridal-1.png",
+    name: "Priya Sharma",
+    occasion: "Bollywood Premiere",
+    delay: 0
   },
   {
-    image: "/assets/screenshot_2026-04-14_221303-019d8ce8-a5b9-70dd-a36e-e0deafef0c3d.png",
-    label: "Award Night Glamour Look",
-    sublabel: "Red Carpet Excellence",
-    accentColor: "rgba(183,110,121,0.5)"
+    image: "/assets/snehal-bridal-2.png",
+    name: "Kavya Deshmukh",
+    occasion: "Maharashtra Awards Night",
+    delay: 0.12
   },
   {
-    image: "/assets/screenshot_2026-04-14_221313-019d8ce8-94aa-729d-adde-cbb9d7694b6d.png",
-    label: "Luxury Event Styling",
-    sublabel: "Premium Event Artistry",
-    accentColor: "rgba(232,200,74,0.4)"
+    image: "/assets/snehal-bridal-3.png",
+    name: "Anita Kulkarni",
+    occasion: "Fashion Week Mumbai",
+    delay: 0.24
+  },
+  {
+    image: "/assets/snehal-gallery-1.png",
+    name: "Riya Patil",
+    occasion: "Celebrity Wedding",
+    delay: 0.36
+  },
+  {
+    image: "/assets/snehal-gallery-2.png",
+    name: "Meera Joshi",
+    occasion: "Brand Launch Event",
+    delay: 0.48
   }
 ];
-const celebWorksHighlights = [
-  "Collaborated with top Bollywood A-listers for blockbuster film promotions",
-  "Styled celebrities for national award ceremonies & red carpet events",
-  "Featured in Vogue India, Femina, and leading beauty publications",
-  "Exclusive artist at luxury weddings with A-list guest lists",
-  "Brand ambassador makeup for major Indian beauty & fashion brands"
+const badges = [
+  {
+    Icon: Trophy,
+    title: "Featured in Fashion Week 2023",
+    sub: "Mumbai & Pune"
+  },
+  {
+    Icon: Award,
+    title: "Official Makeup Partner",
+    sub: "Maharashtra Wedding Expo"
+  },
+  { Icon: Star, title: "Best Bridal Artist Award", sub: "Amravati 2022" },
+  { Icon: Sparkles$1, title: "500+ Happy Brides", sub: "Across Maharashtra" }
 ];
-function TiltCard$1({ card, index: index2 }) {
-  const [tilt, setTilt] = reactExports.useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = reactExports.useState(false);
-  const ref = reactExports.useRef(null);
-  const cardInView = useInView(ref, { once: true, margin: "-80px" });
-  function handleMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x2 = ((e.clientY - rect.top) / rect.height - 0.5) * 16;
-    const y = -((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    setTilt({ x: x2, y });
-  }
-  function handleMouseLeave() {
-    setTilt({ x: 0, y: 0 });
-    setHovered(false);
-  }
-  const isGold = card.accentColor.includes("212,175");
-  const isRose = card.accentColor.includes("183,110");
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    motion.div,
-    {
-      ref,
-      initial: { opacity: 0, y: 60, scale: 0.9 },
-      animate: cardInView ? { opacity: 1, y: 0, scale: 1 } : {},
-      transition: {
-        duration: 0.7,
-        delay: index2 * 0.15,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      },
-      onMouseMove: handleMouseMove,
-      onMouseLeave: handleMouseLeave,
-      onMouseEnter: () => setHovered(true),
-      style: { perspective: 1e3 },
-      "data-ocid": `celebrity.card.${index2 + 1}`,
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          animate: { rotateX: tilt.x, rotateY: tilt.y },
-          transition: { type: "spring", stiffness: 300, damping: 20 },
-          className: "group relative rounded-2xl overflow-hidden cursor-pointer card-premium",
-          style: {
-            border: `1px solid ${hovered ? card.accentColor : card.accentColor.replace(/0\.\d+\)$/, "0.25)")}`,
-            boxShadow: hovered ? `0 0 40px ${card.accentColor}, 0 0 80px ${card.accentColor.replace(/0\.\d+\)$/, "0.18)")}, inset 0 1px 0 rgba(255,255,255,0.09)` : `0 0 22px ${card.accentColor.replace(/0\.\d+\)$/, "0.12)")}, 0 0 50px ${card.accentColor.replace(/0\.\d+\)$/, "0.06)")}`,
-            transition: "border-color 0.4s ease, box-shadow 0.4s ease"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-72 overflow-hidden", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                motion.img,
-                {
-                  src: card.image,
-                  alt: card.label,
-                  className: "w-full h-full object-cover",
-                  style: {
-                    filter: hovered ? `drop-shadow(0 0 16px ${isGold ? "rgba(212,175,55,0.4)" : isRose ? "rgba(183,110,121,0.4)" : "rgba(232,200,74,0.35)"})` : "none",
-                    transition: "filter 0.4s ease"
-                  },
-                  whileHover: { scale: 1.08 },
-                  transition: { duration: 0.5 },
-                  onError: (e) => {
-                    const el = e.currentTarget;
-                    el.style.display = "none";
-                    const parent = el.parentElement;
-                    if (parent) {
-                      parent.style.background = "linear-gradient(135deg, #1a1a1a, #111)";
-                    }
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "absolute inset-0",
-                  style: {
-                    background: "linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.25) 50%, transparent 100%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "absolute inset-0 pointer-events-none transition-opacity duration-500",
-                  style: {
-                    background: "linear-gradient(135deg, transparent 35%, rgba(212,175,55,0.10) 50%, transparent 65%)",
-                    opacity: hovered ? 1 : 0
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full glass-ultra",
-                  style: {
-                    boxShadow: "0 0 14px rgba(212,175,55,0.45), 0 0 30px rgba(212,175,55,0.18)"
-                  },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Sparkles$1,
-                    {
-                      size: 12,
-                      className: "text-gold",
-                      style: { filter: "drop-shadow(0 0 5px rgba(212,175,55,0.8))" }
-                    }
-                  )
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-5", style: { backdropFilter: "blur(8px)" }, children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-display gold-gradient-text mb-1 leading-tight", children: card.label }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground font-mono tracking-wide", children: card.sublabel })
-            ] })
-          ]
-        }
-      )
-    }
-  );
-}
 function CelebritySection() {
-  const sectionRef = reactExports.useRef(null);
-  const inView2 = useInView(sectionRef, { once: true, margin: "-100px" });
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
       id: "celebrities",
-      ref: sectionRef,
-      className: "relative section-padding bg-dark-primary overflow-hidden",
+      className: "relative section-padding overflow-hidden section-bg-warm",
       "data-ocid": "celebrity.section",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full",
-              style: {
-                background: "radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%)",
-                filter: "blur(120px)"
-              }
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none",
+            style: {
+              background: "radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 65%)",
+              filter: "blur(80px)"
             }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full",
-              style: {
-                background: "radial-gradient(circle, rgba(183,110,121,0.07) 0%, transparent 70%)",
-                filter: "blur(100px)"
-              }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none",
+            style: {
+              background: "radial-gradient(ellipse, rgba(232,168,124,0.10) 0%, transparent 65%)",
+              filter: "blur(90px)"
             }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold w-full absolute top-0 left-0" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-6xl mx-auto px-6", children: [
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider w-full absolute top-0 left-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-6xl mx-auto px-4 sm:px-6", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
               initial: { opacity: 0, y: 40 },
-              animate: inView2 ? { opacity: 1, y: 0 } : {},
-              transition: { duration: 0.8 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.7 },
               className: "text-center mb-16",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-xs uppercase tracking-[0.35em] text-rose-gold mb-3 font-mono",
-                    style: { textShadow: "0 0 12px rgba(183,110,121,0.5)" },
+                    className: "text-xs uppercase tracking-[0.38em] mb-3 font-accent",
+                    style: { color: GOLD$3 },
                     children: "Bollywood & Beyond"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-5xl md:text-6xl font-display gradient-text leading-tight mb-4", children: "Celebrity Work" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground max-w-xl mx-auto leading-relaxed", children: "Trusted by India's biggest names. From award nights to blockbuster shoots, Yakshi's artistry defines the gold standard of celebrity glamour." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl md:text-5xl lg:text-6xl font-display mb-4 gold-gradient-text leading-tight", children: "Celebrity Clientele & Recognition" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider w-28 mx-auto mb-5" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
+                  "p",
                   {
-                    className: "mt-6 mx-auto w-24 h-px",
-                    style: {
-                      background: "linear-gradient(90deg, transparent, #b76e79, transparent)",
-                      boxShadow: "0 0 8px rgba(183,110,121,0.35)"
-                    }
+                    className: "text-base md:text-lg max-w-2xl mx-auto font-body",
+                    style: { color: WARM$2 },
+                    children: "Trusted by Bollywood celebrities, fashion icons, and public figures across Maharashtra"
                   }
                 )
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-8 mb-20", children: celebrityCards.map((card, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(TiltCard$1, { card, index: i2 }, card.label)) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative mb-16 overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-6 flex-wrap justify-center md:justify-start", children: celebCards.map((card, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 40, scale: 0.95 },
+              whileInView: { opacity: 1, y: 0, scale: 1 },
+              viewport: { once: true },
+              transition: { duration: 0.6, delay: card.delay },
+              className: "glass-ultra rounded-2xl overflow-hidden flex-shrink-0 group",
+              style: {
+                width: "190px",
+                border: "1.5px solid rgba(201,168,76,0.30)",
+                boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
+                animation: `float ${5 + i2 * 0.7}s ease-in-out infinite`,
+                animationDelay: `${i2 * 0.4}s`
+              },
+              "data-ocid": `celebrity.card.${i2 + 1}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative p-5 flex justify-center", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      className: "w-20 h-20 rounded-full overflow-hidden",
+                      style: {
+                        border: "2.5px solid rgba(201,168,76,0.50)",
+                        boxShadow: "0 0 22px rgba(201,168,76,0.30), 0 0 50px rgba(201,168,76,0.10)"
+                      },
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "img",
+                        {
+                          src: card.image,
+                          alt: card.name,
+                          className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500",
+                          onError: (e) => {
+                            e.currentTarget.style.display = "none";
+                          }
+                        }
+                      )
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Sparkles$1,
+                    {
+                      size: 12,
+                      className: "absolute top-3 right-4",
+                      style: {
+                        color: GOLD$3,
+                        filter: "drop-shadow(0 0 4px rgba(201,168,76,0.8))"
+                      }
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 pb-5 text-center", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "font-display text-sm font-semibold",
+                      style: { color: BROWN$2 },
+                      children: card.name
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs mt-1 font-body", style: { color: WARM$2 }, children: card.occasion })
+                ] })
+              ]
+            },
+            card.name
+          )) }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            motion.div,
+            {
+              className: "grid grid-cols-2 md:grid-cols-4 gap-5 mb-16",
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.7, delay: 0.3 },
+              "data-ocid": "celebrity.badges",
+              children: badges.map((badge, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: { opacity: 0, scale: 0.9 },
+                  whileInView: { opacity: 1, scale: 1 },
+                  viewport: { once: true },
+                  transition: { duration: 0.5, delay: 0.35 + i2 * 0.1 },
+                  className: "card-premium p-5 text-center",
+                  "data-ocid": `celebrity.badge.${i2 + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3",
+                        style: {
+                          background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
+                          border: "1.5px solid rgba(201,168,76,0.40)",
+                          boxShadow: "0 0 18px rgba(201,168,76,0.22)"
+                        },
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          badge.Icon,
+                          {
+                            size: 20,
+                            style: {
+                              color: GOLD$3,
+                              filter: "drop-shadow(0 0 6px rgba(201,168,76,0.7))"
+                            }
+                          }
+                        )
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "font-display text-sm font-semibold leading-snug mb-1",
+                        style: { color: BROWN$2 },
+                        children: badge.title
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body", style: { color: WARM$2 }, children: badge.sub })
+                  ]
+                },
+                badge.title
+              ))
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
               initial: { opacity: 0, y: 30 },
-              animate: inView2 ? { opacity: 1, y: 0 } : {},
-              transition: { duration: 0.7, delay: 0.5 },
-              className: "glass-ultra rounded-2xl p-8 md:p-10",
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.8, delay: 0.5 },
+              className: "glass-ultra rounded-2xl p-8 md:p-12 text-center relative overflow-hidden",
               style: {
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(212,175,55,0.10), 0 0 80px rgba(212,175,55,0.04)"
+                border: "1.5px solid rgba(201,168,76,0.35)",
+                boxShadow: "0 0 50px rgba(201,168,76,0.12), 0 8px 40px rgba(107,63,31,0.08)"
               },
-              "data-ocid": "celebrity.highlights",
+              "data-ocid": "celebrity.quote",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-8", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Sparkles$1,
-                    {
-                      size: 20,
-                      className: "text-gold",
-                      style: { filter: "drop-shadow(0 0 8px rgba(212,175,55,0.7))" }
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-display gold-gradient-text", children: "Celebrity Collaborations" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-4", children: celebWorksHighlights.map((item, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.li,
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Quote,
                   {
-                    initial: { opacity: 0, x: -20 },
-                    animate: inView2 ? { opacity: 1, x: 0 } : {},
-                    transition: { duration: 0.5, delay: 0.6 + i2 * 0.1 },
-                    className: "flex items-start gap-3 text-foreground/80 text-sm leading-relaxed",
-                    "data-ocid": `celebrity.highlight.${i2 + 1}`,
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "span",
-                        {
-                          className: "mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-gold",
-                          style: {
-                            boxShadow: "0 0 8px rgba(212,175,55,0.7), 0 0 16px rgba(212,175,55,0.3)"
-                          }
-                        }
-                      ),
-                      item
-                    ]
-                  },
-                  item
-                )) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.blockquote,
+                    size: 64,
+                    className: "absolute top-6 left-8",
+                    style: { color: GOLD$3, opacity: 0.15 }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Quote,
                   {
-                    initial: { opacity: 0 },
-                    animate: inView2 ? { opacity: 1 } : {},
-                    transition: { duration: 0.8, delay: 1.2 },
-                    className: "mt-8 pt-8 border-t text-center",
-                    style: { borderColor: "rgba(212,175,55,0.22)" },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "p",
-                        {
-                          className: "text-lg font-display gold-gradient-text italic",
-                          style: { textShadow: "0 0 30px rgba(212,175,55,0.20)" },
-                          children: '"Where artistry meets stardom — one brushstroke at a time."'
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("cite", { className: "mt-2 block text-xs font-mono text-muted-foreground tracking-widest uppercase not-italic", children: "— Yakshi, Celebrity Makeup Artist" })
-                    ]
+                    size: 64,
+                    className: "absolute bottom-6 right-8 rotate-180",
+                    style: { color: GOLD$3, opacity: 0.15 }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-display text-xl md:text-2xl italic leading-relaxed mb-4 relative z-10",
+                    style: { color: BROWN$2 },
+                    children: "“Snehal’s artistry is simply extraordinary. She understood exactly the look I wanted and brought it to life perfectly. She is the best makeup artist I’ve worked with across Maharashtra!”"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider w-20 mx-auto mb-4" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "cite",
+                  {
+                    className: "font-accent text-xs tracking-widest uppercase not-italic",
+                    style: { color: GOLD$3 },
+                    children: "— Priya Sharma, Bollywood Actress"
                   }
                 )
               ]
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold w-full absolute bottom-0 left-0" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider w-full absolute bottom-0 left-0" })
       ]
     }
   );
 }
 const faqs = [
   {
-    question: "How do I book an appointment with Yakshi Makeup Studio?",
-    answer: "You can book by calling or WhatsApp-ing us at 08766367033. We recommend booking at least 4–6 weeks in advance for bridal makeup and 1–2 weeks for party/event makeup. We'll confirm your appointment within 24 hours."
+    question: "How far in advance should I book bridal makeup?",
+    answer: "We recommend booking at least 3-4 months in advance for wedding season (October-February). For other months, 4-6 weeks notice is usually sufficient. Contact us early to secure your date!"
   },
   {
     question: "Do you offer a bridal trial session?",
-    answer: "Yes! We strongly recommend a bridal trial 1–2 months before your wedding day. This allows us to perfect your look, understand your preferences, and ensure everything is flawless on the big day. Trial sessions are available at our studio."
+    answer: "Absolutely! We strongly recommend a bridal trial 2-4 weeks before the wedding. This helps us perfect your look and gives you peace of mind on the big day."
   },
   {
-    question: "What makeup brands do you use?",
-    answer: "We exclusively use premium international brands including MAC, NARS, Charlotte Tilbury, Huda Beauty, Giorgio Armani, Dior, and top Indian luxury brands. All products are skin-tested and safe for sensitive skin."
+    question: "What is included in the bridal package?",
+    answer: "Bridal packages include pre-bridal consultation, trial session, wedding day makeup, touch-up kit, and post-application guidance. Each package is customized to your needs."
   },
   {
-    question: "Do you travel to the client's location?",
-    answer: "Yes, we provide home/venue service across Delhi NCR including Delhi, Gurgaon, Noida, Faridabad, and Ghaziabad. Travel charges may apply based on distance. Please call us to discuss your requirements."
+    question: "Do you travel outside Amravati?",
+    answer: "Yes! We travel across Maharashtra for weddings. Travel charges apply based on distance. Please contact us for out-of-city bookings."
   },
   {
-    question: "How long does bridal makeup take?",
-    answer: "Bridal makeup typically takes 2–3 hours for the complete look including base, eyes, lips, and finishing. Pre-bridal prep and elaborate looks may take longer. We always recommend starting early on the wedding day."
+    question: "What are the academy course durations?",
+    answer: "We offer short-term weekend courses (1-2 months), full professional diploma courses (3-6 months), and advanced certification programs. All include hands-on practice."
   },
   {
-    question: "What is your cancellation policy?",
-    answer: "Appointments can be rescheduled up to 48 hours before with no charge. Cancellations within 24 hours may incur a cancellation fee. Bridal bookings require a 30% advance payment which is non-refundable upon cancellation."
+    question: "Which makeup products do you use?",
+    answer: "We use premium international and Indian brands including MAC, Kryolan, Charlotte Tilbury, Bobbi Brown, and Huda Beauty — all skin-tested and long-lasting."
   },
   {
-    question: "Do you customize looks for different skin tones and types?",
-    answer: "Absolutely! Yakshi specializes in customizing every look for the client's unique skin tone, undertone, and skin type. Whether you have dry, oily, or sensitive skin, we prep and create makeup that lasts and enhances your natural beauty."
+    question: "Do you provide airbrush makeup?",
+    answer: "Yes! Our airbrush makeup uses professional-grade equipment for a flawless, lightweight finish that lasts 12-16 hours and photographs beautifully."
   },
   {
-    question: "Can I see your work with celebrities?",
-    answer: "Yes! Check our gallery and Instagram @yakshimakeover to see celebrity work, editorial looks, and before/after transformations. We've worked with Bollywood celebrities, models, and prominent personalities across Delhi NCR."
+    question: "How do I book an appointment?",
+    answer: "Simply call/WhatsApp us at 09561548151 or fill out the contact form on our website. We'll get back to you within 24 hours to confirm your appointment."
   }
 ];
 const containerVariants$1 = {
@@ -27819,21 +29711,20 @@ function FAQSection() {
     {
       id: "faq",
       "data-ocid": "faq.section",
-      className: "relative py-24 md:py-32 overflow-hidden",
-      style: { background: "oklch(0.06 0 0)" },
+      className: "relative section-padding section-bg-cream overflow-hidden",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
+            className: "absolute inset-0 flex items-center justify-center pointer-events-none",
             "aria-hidden": "true",
-            className: "pointer-events-none absolute inset-0 flex items-center justify-center",
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: "h-[600px] w-[800px] rounded-full",
+                className: "w-[800px] h-[600px] rounded-full",
                 style: {
-                  background: "oklch(0.68 0.16 90 / 0.06)",
-                  filter: "blur(160px)"
+                  background: "radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 65%)",
+                  filter: "blur(100px)"
                 }
               }
             )
@@ -27842,82 +29733,49 @@ function FAQSection() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
+            className: "absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 65%)",
-              filter: "blur(100px)",
+              background: "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              filter: "blur(80px)",
               transform: "translate(30%, -30%)"
             }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "absolute top-0 left-0 right-0 h-px",
-            style: {
-              background: "linear-gradient(to right, transparent, #d4af37 50%, transparent)",
-              opacity: 0.45,
-              boxShadow: "0 0 10px rgba(212,175,55,0.25)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            "aria-hidden": "true",
-            className: "absolute bottom-0 left-0 right-0 h-px",
-            style: {
-              background: "linear-gradient(to right, transparent, #d4af37 50%, transparent)",
-              opacity: 0.28,
-              boxShadow: "0 0 8px rgba(212,175,55,0.15)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute top-0 left-0 right-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
               initial: { opacity: 0, y: 30 },
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
-              transition: { duration: 0.7, ease: "easeOut" },
-              className: "mb-16 text-center",
+              transition: { duration: 0.7 },
+              className: "mb-14 text-center gold-line",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "mb-3 text-xs font-semibold uppercase tracking-[0.3em]",
-                    style: {
-                      color: "#d4af37",
-                      textShadow: "0 0 16px rgba(212,175,55,0.5)"
-                    },
+                    className: "font-accent text-xs uppercase tracking-[3px] mb-3",
+                    style: { color: "#c9a84c", letterSpacing: "3px" },
                     children: "Got Questions?"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display text-4xl md:text-5xl lg:text-6xl leading-tight", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
-                    {
-                      className: "bg-clip-text text-transparent",
-                      style: {
-                        backgroundImage: "linear-gradient(135deg, #d4af37 0%, #f5e09a 50%, #b8962e 100%)"
-                      },
-                      children: "Frequently Asked"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground/90", children: "Questions" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-5 text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed", children: "Everything you need to know before booking" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display text-4xl md:text-5xl lg:text-6xl gradient-text leading-tight mb-5", children: "Frequently Asked Questions" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-body text-lg max-w-xl mx-auto",
+                    style: { color: "#8b5e3c" },
+                    children: "Everything you need to know before booking with us"
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto mt-8 flex items-center gap-3 justify-center", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
                     {
                       className: "h-px w-16",
                       style: {
-                        background: "linear-gradient(to right, transparent, #d4af37)",
-                        boxShadow: "0 0 6px rgba(212,175,55,0.3)"
+                        background: "linear-gradient(to right, transparent, #c9a84c)"
                       }
                     }
                   ),
@@ -27926,8 +29784,8 @@ function FAQSection() {
                     {
                       className: "h-1.5 w-1.5 rounded-full",
                       style: {
-                        background: "#d4af37",
-                        boxShadow: "0 0 10px rgba(212,175,55,0.8), 0 0 20px rgba(212,175,55,0.3)"
+                        background: "#c9a84c",
+                        boxShadow: "0 0 10px rgba(201,168,76,0.8)"
                       }
                     }
                   ),
@@ -27936,8 +29794,7 @@ function FAQSection() {
                     {
                       className: "h-px w-16",
                       style: {
-                        background: "linear-gradient(to left, transparent, #d4af37)",
-                        boxShadow: "0 0 6px rgba(212,175,55,0.3)"
+                        background: "linear-gradient(to left, transparent, #c9a84c)"
                       }
                     }
                   )
@@ -27956,18 +29813,18 @@ function FAQSection() {
               "data-ocid": "faq.list",
               children: faqs.map((faq, index2) => {
                 const isOpen = openIndex === index2;
-                const bgColor = index2 % 2 === 0 ? "oklch(0.09 0 0)" : "oklch(0.08 0 0)";
                 const itemKey = faq.question.slice(0, 30).replace(/\s+/g, "-").toLowerCase();
                 return /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   motion.div,
                   {
                     variants: itemVariants$1,
                     "data-ocid": `faq.item.${index2 + 1}`,
-                    className: "relative rounded-xl border transition-all duration-300",
+                    className: "relative card-premium overflow-hidden",
                     style: {
-                      borderColor: isOpen ? "rgba(212,175,55,0.55)" : "oklch(0.18 0 0)",
-                      background: isOpen ? "oklch(0.10 0 0)" : bgColor,
-                      boxShadow: isOpen ? "0 0 32px rgba(212,175,55,0.16), 0 0 60px rgba(212,175,55,0.06)" : "none"
+                      borderColor: isOpen ? "rgba(201,168,76,0.55)" : "rgba(201,168,76,0.25)",
+                      background: isOpen ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.65)",
+                      boxShadow: isOpen ? "0 0 32px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.06), 0 8px 30px rgba(107,63,31,0.08)" : "0 4px 16px rgba(107,63,31,0.06)",
+                      transition: "border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease"
                     },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27979,8 +29836,8 @@ function FAQSection() {
                           transition: { duration: 0.3 },
                           className: "absolute left-0 top-3 bottom-3 w-[3px] rounded-full origin-top",
                           style: {
-                            background: "linear-gradient(to bottom, #d4af37, #b8962e)",
-                            boxShadow: "-3px 0 12px rgba(212,175,55,0.55)"
+                            background: "linear-gradient(to bottom, #c9a84c, #d4af37)",
+                            boxShadow: "-2px 0 12px rgba(201,168,76,0.50)"
                           }
                         }
                       ),
@@ -27991,15 +29848,17 @@ function FAQSection() {
                           onClick: () => toggle(index2),
                           "aria-expanded": isOpen,
                           "data-ocid": `faq.toggle.${index2 + 1}`,
-                          className: "relative flex w-full items-start justify-between gap-4 px-6 py-5 text-left rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50",
+                          className: "relative flex w-full items-start justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2",
+                          style: {
+                            focusRingColor: "rgba(201,168,76,0.50)"
+                          },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(
                               "span",
                               {
-                                className: "pl-3 text-base md:text-lg font-semibold leading-snug transition-colors duration-300",
+                                className: "pl-3 font-display text-base md:text-lg font-semibold leading-snug transition-colors duration-300",
                                 style: {
-                                  color: isOpen ? "#d4af37" : "oklch(0.85 0 0)",
-                                  textShadow: isOpen ? "0 0 20px rgba(212,175,55,0.3)" : "none"
+                                  color: isOpen ? "#c9a84c" : "#3d2817"
                                 },
                                 children: faq.question
                               }
@@ -28007,16 +29866,15 @@ function FAQSection() {
                             /* @__PURE__ */ jsxRuntimeExports.jsx(
                               motion.span,
                               {
-                                animate: { rotate: isOpen ? 180 : 0 },
-                                transition: { duration: 0.3, ease: "easeInOut" },
-                                className: "mt-0.5 flex-shrink-0 rounded-full border p-1 transition-colors duration-300",
+                                animate: { rotate: isOpen ? 0 : 0 },
+                                className: "mt-0.5 flex-shrink-0 rounded-full border p-1.5 transition-all duration-300",
                                 style: {
-                                  borderColor: isOpen ? "rgba(212,175,55,0.65)" : "oklch(0.25 0 0)",
-                                  color: isOpen ? "#d4af37" : "oklch(0.55 0 0)",
-                                  background: isOpen ? "rgba(212,175,55,0.12)" : "transparent",
-                                  boxShadow: isOpen ? "0 0 10px rgba(212,175,55,0.3)" : "none"
+                                  borderColor: isOpen ? "rgba(201,168,76,0.65)" : "rgba(201,168,76,0.30)",
+                                  color: isOpen ? "#c9a84c" : "#8b5e3c",
+                                  background: isOpen ? "rgba(201,168,76,0.12)" : "transparent",
+                                  boxShadow: isOpen ? "0 0 10px rgba(201,168,76,0.30)" : "none"
                                 },
-                                children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "h-4 w-4", strokeWidth: 2.5 })
+                                children: isOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(Minus, { className: "h-4 w-4", strokeWidth: 2.5 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "h-4 w-4", strokeWidth: 2.5 })
                               }
                             )
                           ]
@@ -28036,12 +29894,18 @@ function FAQSection() {
                               {
                                 className: "h-px w-full mb-4",
                                 style: {
-                                  background: "linear-gradient(to right, #d4af3760, #d4af3728, transparent)",
-                                  boxShadow: "0 0 6px rgba(212,175,55,0.15)"
+                                  background: "linear-gradient(to right, rgba(201,168,76,0.5), rgba(201,168,76,0.2), transparent)"
                                 }
                               }
                             ),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed", children: faq.answer })
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "p",
+                              {
+                                className: "font-body text-base leading-relaxed",
+                                style: { color: "#5a3a22" },
+                                children: faq.answer
+                              }
+                            )
                           ] })
                         },
                         "answer"
@@ -28060,25 +29924,29 @@ function FAQSection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.6, delay: 0.4 },
-              className: "mt-14 text-center",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-base", children: [
+              className: "mt-12 text-center",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-body text-base", style: { color: "#8b5e3c" }, children: [
                 "Still have questions?",
                 " ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "a",
                   {
-                    href: "https://wa.me/918766367033",
+                    href: "https://wa.me/919561548151",
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    className: "font-medium underline underline-offset-4 transition-colors duration-200",
-                    style: { color: "#d4af37", textDecorationColor: "#d4af3777" },
+                    className: "font-semibold underline underline-offset-4 transition-colors duration-200",
+                    style: {
+                      color: "#c9a84c",
+                      textDecorationColor: "rgba(201,168,76,0.5)"
+                    },
                     children: "Chat with us on WhatsApp"
                   }
                 )
               ] })
             }
           )
-        ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute bottom-0 left-0 right-0" })
       ]
     }
   );
@@ -28203,6 +30071,13 @@ function FaInstagram(props) {
 function FaFacebookF(props) {
   return GenIcon({ "attr": { "viewBox": "0 0 320 512" }, "child": [{ "tag": "path", "attr": { "d": "M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" }, "child": [] }] })(props);
 }
+const studioInfo = {
+  subTagline: "Premium Bridal Makeup & Beauty Academy in Amravati",
+  phoneLink: "tel:+919561548151",
+  instagramUrl: "https://instagram.com/snehal_pawar_academy",
+  whatsappUrl: "https://wa.me/919561548151",
+  email: "info@snehalpawaracademy.com"
+};
 function FloatingButtons() {
   const [igHovered, setIgHovered] = reactExports.useState(false);
   const [waHovered, setWaHovered] = reactExports.useState(false);
@@ -28210,7 +30085,7 @@ function FloatingButtons() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: "fixed z-[60]",
+        className: "fixed z-[60] block",
         style: { left: "1.5rem", top: "50%", transform: "translateY(-50%)" },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28267,7 +30142,7 @@ function FloatingButtons() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: "fixed z-[60]",
+        className: "fixed z-[60] block",
         style: { right: "1.5rem", top: "50%", transform: "translateY(-50%)" },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28353,7 +30228,7 @@ const socialLinks = [
     color: "#25D366"
   },
   {
-    href: "https://facebook.com/yakshimakeover",
+    href: "https://facebook.com/snehalpawaracademy",
     Icon: FaFacebookF,
     label: "Facebook",
     color: "#1877F2"
@@ -28369,7 +30244,7 @@ function Footer() {
     {
       "data-ocid": "footer.section",
       className: "relative overflow-hidden",
-      style: { background: "#050505" },
+      style: { background: "#f0e8d8" },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
@@ -28401,14 +30276,19 @@ function Footer() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "h2",
                     {
-                      className: "text-3xl font-display italic gold-gradient-text mb-3",
-                      style: { textShadow: "0 0 24px rgba(212,175,55,0.20)" },
+                      className: "text-2xl font-display italic gold-gradient-text mb-1",
+                      style: { textShadow: "0 0 24px rgba(139,94,60,0.15)" },
                       "data-ocid": "footer.logo",
-                      children: "Yakshi"
+                      children: "Makeup by Snehal Pawar"
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.25em] uppercase text-muted-foreground mb-4 font-body", children: studioInfo.subTagline }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm font-body leading-relaxed mb-6", children: "Delhi NCR's most celebrated luxury bridal makeup & nail art studio, trusted by brides and celebrities alike." }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 font-body", children: studioInfo.subTagline }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm font-body leading-relaxed mb-3", children: "Amravati's most trusted beauty and bridal salon, loved by 500+ brides across Maharashtra." }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs font-body leading-relaxed mb-6", children: [
+                    "📍 Kondeshwar Vidyut Colony, Sai Nagar,",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                    "Amravati, Maharashtra 444607"
+                  ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-3", children: socialLinks.map(({ href, Icon: Icon2, label, color: color2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.a,
                     {
@@ -28510,7 +30390,9 @@ function Footer() {
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground text-sm font-body leading-snug", children: [
-                        "Delhi NCR, India",
+                        "Kondeshwar Vidyut Colony, Sai Nagar,",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                        "Amravati, Maharashtra 444607",
                         /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
                         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-rose-gold text-xs", children: "Home service available" })
                       ] })
@@ -28532,7 +30414,7 @@ function Footer() {
                           href: studioInfo.phoneLink,
                           className: "text-muted-foreground text-sm font-body hover:text-gold transition-smooth",
                           "data-ocid": "footer.contact.phone",
-                          children: "+91 8766367033"
+                          children: "+91 9561548151"
                         }
                       )
                     ] }),
@@ -28556,7 +30438,7 @@ function Footer() {
                           rel: "noopener noreferrer",
                           className: "text-muted-foreground text-sm font-body hover:text-gold transition-smooth",
                           "data-ocid": "footer.contact.instagram",
-                          children: "@yakshimakeover"
+                          children: "@snehal_pawar_academy"
                         }
                       )
                     ] }),
@@ -28588,11 +30470,11 @@ function Footer() {
                 children: [
                   "© ",
                   year,
-                  " Yakshi Makeup & Nail Studio. All rights reserved."
+                  " Makeup by Snehal Pawar and Academy. All rights reserved."
                 ]
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs font-body text-center", children: "Made with ❤️ in Delhi NCR" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs font-body text-center", children: "Made with ❤️ in Amravati, Maharashtra" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs font-body text-center sm:text-right", children: [
               "Built with love using",
               " ",
@@ -28614,102 +30496,101 @@ function Footer() {
     }
   );
 }
+const GOLD$2 = "#c9a84c";
+const BROWN$1 = "#6b3f1f";
 const images = [
   {
-    src: "/assets/hero-bride.png",
+    src: "/assets/snehal-hero.png",
     title: "Kundan Bridal Look",
     category: "bridal"
   },
   {
-    src: "/assets/nail-art-1.png",
-    title: "Dark Red Bow Nails",
-    category: "nail"
+    src: "/assets/snehal-gallery-1.png",
+    title: "Classic Bridal Elegance",
+    category: "bridal"
   },
   {
-    src: "/assets/celebrity-1.png",
+    src: "/assets/snehal-bridal-1.png",
     title: "Diamond Gala Look",
-    category: "celebrity"
+    category: "hd"
   },
   {
-    src: "/assets/bridal-gold.png",
+    src: "/assets/snehal-gallery-4.png",
     title: "Gold Floral Bridal",
     category: "bridal"
   },
   {
-    src: "/assets/nail-art-2.png",
-    title: "Pink Glitter Nails",
-    category: "nail"
+    src: "/assets/snehal-gallery-2.png",
+    title: "Radiant Bridal Glam",
+    category: "bridal"
   },
   {
-    src: "/assets/bridal-lehenga.png",
+    src: "/assets/snehal-gallery-5.png",
     title: "Red Lehenga Bride",
     category: "bridal"
   },
   {
-    src: "/assets/nail-art-3.png",
-    title: "Red Rhinestone Nails",
-    category: "nail"
+    src: "/assets/snehal-gallery-3.png",
+    title: "Festive Party Look",
+    category: "academy"
   },
   {
-    src: "/assets/celebrity-2.png",
-    title: "Smoky Eye Updo",
-    category: "celebrity"
+    src: "/assets/snehal-bridal-2.png",
+    title: "Smoky Eye Glam",
+    category: "hd"
   },
   {
-    src: "/assets/bridal-lipstick.png",
-    title: "Bridal Lipstick Artistry",
+    src: "/assets/snehal-about.png",
+    title: "Bridal Portrait Artistry",
     category: "bridal"
   },
   {
-    src: "/assets/celebrity-3.png",
-    title: "Purple Sequin Gown",
-    category: "celebrity"
+    src: "/assets/snehal-bridal-3.png",
+    title: "Premium Bridal Styling",
+    category: "nail"
   }
 ];
-const filters = [
+const filters$1 = [
   { label: "All", value: "all" },
   { label: "Bridal", value: "bridal" },
-  { label: "Celebrity", value: "celebrity" },
-  { label: "Nail Art", value: "nail" }
+  { label: "HD Makeup", value: "hd" },
+  { label: "Nail Art", value: "nail" },
+  { label: "Academy", value: "academy" }
 ];
 function GallerySection() {
-  var _a2, _b2, _c2, _d2;
+  var _a2, _b2, _c2;
   const [activeFilter, setActiveFilter] = reactExports.useState("all");
   const [lightboxIndex, setLightboxIndex] = reactExports.useState(null);
   const [imgErrors, setImgErrors] = reactExports.useState({});
   const filtered = images.filter(
     (img) => activeFilter === "all" || img.category === activeFilter
   );
-  const handleImgError = (idx) => {
-    setImgErrors((prev) => ({ ...prev, [idx]: true }));
-  };
+  const handleImgError = (idx) => setImgErrors((prev) => ({ ...prev, [idx]: true }));
   const openLightbox = (idx) => setLightboxIndex(idx);
   const closeLightbox = () => setLightboxIndex(null);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
       id: "gallery",
-      className: "relative py-24 overflow-hidden",
-      style: {
-        background: "linear-gradient(180deg, #0a0a0a 0%, #111008 50%, #0a0a0a 100%)"
-      },
+      className: "relative section-padding overflow-hidden section-bg-beige",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute inset-0 pointer-events-none",
+            className: "absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 75% 45% at 50% 0%, rgba(212,175,55,0.10) 0%, transparent 70%)"
+              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)",
+              filter: "blur(90px)"
             }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none",
+            className: "absolute bottom-0 right-1/4 w-[350px] h-[350px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse at bottom, rgba(183,110,121,0.07) 0%, transparent 65%)",
-              filter: "blur(40px)"
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 65%)",
+              filter: "blur(80px)"
             }
           }
         ),
@@ -28726,37 +30607,14 @@ function GallerySection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-xs uppercase tracking-[0.4em] mb-3",
-                    style: {
-                      color: "#d4af37",
-                      textShadow: "0 0 16px rgba(212,175,55,0.5)"
-                    },
+                    className: "text-xs uppercase tracking-[0.4em] mb-3 font-accent",
+                    style: { color: GOLD$2 },
                     children: "Portfolio"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "text-4xl md:text-5xl lg:text-6xl font-serif mb-4 leading-tight",
-                    style: {
-                      fontFamily: "var(--font-display)",
-                      background: "linear-gradient(135deg, #d4af37 0%, #f0d060 40%, #b8922e 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      filter: "drop-shadow(0 0 20px rgba(212,175,55,0.18))"
-                    },
-                    children: "Our Portfolio"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "p",
-                  {
-                    className: "text-base md:text-lg max-w-xl mx-auto",
-                    style: { color: "rgba(212,175,55,0.65)" },
-                    children: "A glimpse into our world of luxury beauty transformations"
-                  }
-                )
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl md:text-5xl lg:text-6xl font-display mb-4 leading-tight gold-gradient-text", children: "Portfolio Gallery" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider w-24 mx-auto mb-5" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base md:text-lg max-w-xl mx-auto text-warm-brown", children: "A glimpse into our world of luxury beauty transformations across Amravati & Maharashtra" })
               ]
             }
           ),
@@ -28769,18 +30627,18 @@ function GallerySection() {
               transition: { duration: 0.5, delay: 0.2 },
               className: "flex justify-center gap-3 mb-12 flex-wrap",
               "data-ocid": "gallery.filter.tabs",
-              children: filters.map((f) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              children: filters$1.map((f) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
                   type: "button",
                   onClick: () => setActiveFilter(f.value),
                   "data-ocid": `gallery.filter.tab.${f.value}`,
-                  className: "relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border",
+                  className: "relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border font-body",
                   style: {
-                    background: activeFilter === f.value ? "linear-gradient(135deg, #d4af37, #b8922e)" : "rgba(255,255,255,0.04)",
-                    color: activeFilter === f.value ? "#0a0a0a" : "rgba(212,175,55,0.8)",
-                    borderColor: activeFilter === f.value ? "#d4af37" : "rgba(212,175,55,0.22)",
-                    boxShadow: activeFilter === f.value ? "0 0 22px rgba(212,175,55,0.45), 0 0 50px rgba(212,175,55,0.15)" : "0 0 8px rgba(212,175,55,0.08)"
+                    background: activeFilter === f.value ? `linear-gradient(135deg, ${GOLD$2}, #d4af37)` : "rgba(255,255,255,0.65)",
+                    color: activeFilter === f.value ? "#fff" : BROWN$1,
+                    borderColor: activeFilter === f.value ? GOLD$2 : "rgba(201,168,76,0.30)",
+                    boxShadow: activeFilter === f.value ? "0 4px 20px rgba(201,168,76,0.45), 0 0 30px rgba(201,168,76,0.18)" : "0 2px 10px rgba(139,94,60,0.06)"
                   },
                   children: f.label
                 },
@@ -28795,81 +30653,83 @@ function GallerySection() {
               animate: { opacity: 1 },
               exit: { opacity: 0 },
               transition: { duration: 0.35 },
-              className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5",
               "data-ocid": "gallery.list",
+              className: "columns-1 sm:columns-2 lg:columns-3 gap-5",
+              style: { columnGap: "20px" },
               children: filtered.map((img, i2) => {
                 const globalIdx = images.findIndex((im) => im.src === img.src);
+                if (imgErrors[globalIdx]) return null;
                 return /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   motion.div,
                   {
                     initial: { opacity: 0, y: 30 },
                     animate: { opacity: 1, y: 0 },
                     transition: { duration: 0.5, delay: i2 * 0.07 },
-                    className: "group relative rounded-xl overflow-hidden cursor-pointer",
+                    className: "group relative rounded-2xl overflow-hidden cursor-pointer mb-5 break-inside-avoid",
                     style: {
-                      aspectRatio: "4/3",
-                      boxShadow: "0 0 0 1px rgba(212,175,55,0.12), 0 8px 30px rgba(0,0,0,0.4)",
-                      transition: "box-shadow 0.4s ease"
+                      border: "1.5px solid rgba(201,168,76,0.18)",
+                      boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
+                      transition: "box-shadow 0.4s ease, border-color 0.4s ease"
                     },
                     onClick: () => openLightbox(globalIdx),
                     "data-ocid": `gallery.item.${i2 + 1}`,
                     onMouseEnter: (e) => {
-                      e.currentTarget.style.boxShadow = "0 0 0 1.5px rgba(212,175,55,0.55), 0 0 28px rgba(212,175,55,0.22), 0 0 55px rgba(212,175,55,0.09)";
+                      const el = e.currentTarget;
+                      el.style.boxShadow = "0 0 28px rgba(201,168,76,0.40), 0 0 60px rgba(201,168,76,0.15), 0 8px 30px rgba(107,63,31,0.12)";
+                      el.style.borderColor = "rgba(201,168,76,0.55)";
                     },
                     onMouseLeave: (e) => {
-                      e.currentTarget.style.boxShadow = "0 0 0 1px rgba(212,175,55,0.12), 0 8px 30px rgba(0,0,0,0.4)";
+                      const el = e.currentTarget;
+                      el.style.boxShadow = "0 4px 24px rgba(107,63,31,0.08)";
+                      el.style.borderColor = "rgba(201,168,76,0.18)";
                     },
                     children: [
-                      imgErrors[globalIdx] ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          className: "w-full h-full flex items-center justify-center",
-                          style: { background: "rgba(212,175,55,0.05)" },
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "span",
-                            {
-                              className: "text-xs",
-                              style: { color: "rgba(212,175,55,0.4)" },
-                              children: img.title
-                            }
-                          )
-                        }
-                      ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
                         {
                           src: img.src,
                           alt: img.title,
                           onError: () => handleImgError(globalIdx),
-                          className: "w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110",
+                          className: "w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-105",
                           style: { display: "block" }
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
-                          className: "absolute bottom-0 left-0 right-0 px-4 py-3 transition-all duration-300",
+                          className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
                           style: {
-                            background: "linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)"
-                          },
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "p",
-                            {
-                              className: "text-sm font-medium tracking-wide",
-                              style: { color: "#f5e6a3" },
-                              children: img.title
-                            }
-                          )
+                            background: "linear-gradient(to top, rgba(201,168,76,0.65) 0%, rgba(201,168,76,0.20) 40%, transparent 70%)"
+                          }
                         }
                       ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-sm font-semibold tracking-wide",
+                            style: { color: "#fff" },
+                            children: img.title
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-xs mt-0.5",
+                            style: { color: "rgba(255,255,255,0.78)" },
+                            children: "View"
+                          }
+                        )
+                      ] }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
-                          className: "w-8 h-8 rounded-full flex items-center justify-center",
+                          className: "w-9 h-9 rounded-full flex items-center justify-center",
                           style: {
-                            background: "rgba(212,175,55,0.88)",
-                            boxShadow: "0 0 16px rgba(212,175,55,0.65), 0 0 32px rgba(212,175,55,0.25)"
+                            background: "rgba(255,255,255,0.92)",
+                            boxShadow: "0 0 16px rgba(201,168,76,0.50)"
                           },
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomIn, { size: 14, color: "#0a0a0a" })
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomIn, { size: 16, style: { color: BROWN$1 } })
                         }
                       ) })
                     ]
@@ -28890,8 +30750,8 @@ function GallerySection() {
             transition: { duration: 0.25 },
             className: "fixed inset-0 z-50 flex items-center justify-center p-4",
             style: {
-              background: "rgba(0,0,0,0.94)",
-              backdropFilter: "blur(16px)"
+              background: "rgba(61,40,23,0.85)",
+              backdropFilter: "blur(20px)"
             },
             onClick: closeLightbox,
             "data-ocid": "gallery.dialog",
@@ -28902,27 +30762,22 @@ function GallerySection() {
                 animate: { scale: 1, opacity: 1 },
                 exit: { scale: 0.88, opacity: 0 },
                 transition: { duration: 0.3, ease: "easeOut" },
-                className: "relative max-w-3xl w-full rounded-2xl overflow-hidden glass-ultra",
+                className: "relative max-w-3xl w-full rounded-2xl overflow-hidden",
                 style: {
-                  boxShadow: "0 0 60px rgba(212,175,55,0.35), 0 0 120px rgba(212,175,55,0.12), 0 0 0 1px rgba(212,175,55,0.25)"
+                  background: "rgba(253,248,243,0.97)",
+                  border: "1.5px solid rgba(201,168,76,0.45)",
+                  boxShadow: "0 0 60px rgba(201,168,76,0.35), 0 0 120px rgba(201,168,76,0.12)"
                 },
                 onClick: (e) => e.stopPropagation(),
                 children: [
-                  imgErrors[lightboxIndex] ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      className: "w-full aspect-video flex items-center justify-center",
-                      style: { background: "#111" },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "rgba(212,175,55,0.5)" }, children: (_a2 = images[lightboxIndex]) == null ? void 0 : _a2.title })
-                    }
-                  ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "img",
                     {
-                      src: (_b2 = images[lightboxIndex]) == null ? void 0 : _b2.src,
-                      alt: (_c2 = images[lightboxIndex]) == null ? void 0 : _c2.title,
+                      src: (_a2 = images[lightboxIndex]) == null ? void 0 : _a2.src,
+                      alt: (_b2 = images[lightboxIndex]) == null ? void 0 : _b2.title,
                       onError: () => handleImgError(lightboxIndex),
                       className: "w-full max-h-[80vh] object-contain",
-                      style: { background: "#0a0a0a" }
+                      style: { background: "#fdf8f3" }
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28930,14 +30785,14 @@ function GallerySection() {
                     {
                       className: "absolute bottom-0 left-0 right-0 px-5 py-3",
                       style: {
-                        background: "linear-gradient(0deg, rgba(0,0,0,0.92) 0%, transparent 100%)"
+                        background: "linear-gradient(0deg, rgba(61,40,23,0.82) 0%, transparent 100%)"
                       },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "p",
                         {
                           className: "text-base font-medium",
-                          style: { color: "#f5e6a3" },
-                          children: (_d2 = images[lightboxIndex]) == null ? void 0 : _d2.title
+                          style: { color: "#f5e6d3" },
+                          children: (_c2 = images[lightboxIndex]) == null ? void 0 : _c2.title
                         }
                       )
                     }
@@ -28951,10 +30806,10 @@ function GallerySection() {
                       className: "absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110",
                       "aria-label": "Close lightbox",
                       style: {
-                        background: "rgba(212,175,55,0.9)",
-                        boxShadow: "0 0 18px rgba(212,175,55,0.55), 0 0 36px rgba(212,175,55,0.20)"
+                        background: "rgba(201,168,76,0.92)",
+                        boxShadow: "0 0 18px rgba(201,168,76,0.55)"
                       },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 16, color: "#0a0a0a" })
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 16, style: { color: BROWN$1 } })
                     }
                   )
                 ]
@@ -34417,7 +36272,7 @@ function satForAxes(axes, v0, v1, v2, extents) {
 const _box$3 = /* @__PURE__ */ new Box3();
 const _v1$6 = /* @__PURE__ */ new Vector3();
 const _v2$3 = /* @__PURE__ */ new Vector3();
-let Sphere$1 = class Sphere {
+class Sphere {
   /**
    * Constructs a new sphere.
    *
@@ -34662,7 +36517,7 @@ let Sphere$1 = class Sphere {
   clone() {
     return new this.constructor().copy(this);
   }
-};
+}
 const _vector$a = /* @__PURE__ */ new Vector3();
 const _segCenter = /* @__PURE__ */ new Vector3();
 const _segDir = /* @__PURE__ */ new Vector3();
@@ -40086,7 +41941,7 @@ class BufferGeometry extends EventDispatcher {
    */
   computeBoundingSphere() {
     if (this.boundingSphere === null) {
-      this.boundingSphere = new Sphere$1();
+      this.boundingSphere = new Sphere();
     }
     const position = this.attributes.position;
     const morphAttributesPosition = this.morphAttributes.position;
@@ -40499,7 +42354,7 @@ class BufferGeometry extends EventDispatcher {
 }
 const _inverseMatrix$3 = /* @__PURE__ */ new Matrix4();
 const _ray$3 = /* @__PURE__ */ new Ray();
-const _sphere$6 = /* @__PURE__ */ new Sphere$1();
+const _sphere$6 = /* @__PURE__ */ new Sphere();
 const _sphereHitAt = /* @__PURE__ */ new Vector3();
 const _vA$1 = /* @__PURE__ */ new Vector3();
 const _vB$1 = /* @__PURE__ */ new Vector3();
@@ -42762,7 +44617,7 @@ const _skinWeight = /* @__PURE__ */ new Vector4();
 const _vector3 = /* @__PURE__ */ new Vector3();
 const _matrix4 = /* @__PURE__ */ new Matrix4();
 const _vertex = /* @__PURE__ */ new Vector3();
-const _sphere$5 = /* @__PURE__ */ new Sphere$1();
+const _sphere$5 = /* @__PURE__ */ new Sphere();
 const _inverseMatrix$2 = /* @__PURE__ */ new Matrix4();
 const _ray$2 = /* @__PURE__ */ new Ray();
 class SkinnedMesh extends Mesh {
@@ -42809,7 +44664,7 @@ class SkinnedMesh extends Mesh {
   computeBoundingSphere() {
     const geometry = this.geometry;
     if (this.boundingSphere === null) {
-      this.boundingSphere = new Sphere$1();
+      this.boundingSphere = new Sphere();
     }
     this.boundingSphere.makeEmpty();
     const positionAttribute = geometry.getAttribute("position");
@@ -43188,7 +45043,7 @@ const _instanceIntersects = [];
 const _box3 = /* @__PURE__ */ new Box3();
 const _identity = /* @__PURE__ */ new Matrix4();
 const _mesh$1 = /* @__PURE__ */ new Mesh();
-const _sphere$4 = /* @__PURE__ */ new Sphere$1();
+const _sphere$4 = /* @__PURE__ */ new Sphere();
 class InstancedMesh extends Mesh {
   /**
    * Constructs a new instanced mesh.
@@ -43240,7 +45095,7 @@ class InstancedMesh extends Mesh {
     const geometry = this.geometry;
     const count = this.count;
     if (this.boundingSphere === null) {
-      this.boundingSphere = new Sphere$1();
+      this.boundingSphere = new Sphere();
     }
     if (geometry.boundingSphere === null) {
       geometry.computeBoundingSphere();
@@ -43621,7 +45476,7 @@ class Plane {
     return new this.constructor().copy(this);
   }
 }
-const _sphere$3 = /* @__PURE__ */ new Sphere$1();
+const _sphere$3 = /* @__PURE__ */ new Sphere();
 const _vector$6 = /* @__PURE__ */ new Vector3();
 class Frustum {
   /**
@@ -43994,7 +45849,7 @@ const _whiteColor = /* @__PURE__ */ new Color(1, 1, 1);
 const _frustum = /* @__PURE__ */ new Frustum();
 const _frustumArray = /* @__PURE__ */ new FrustumArray();
 const _box$1 = /* @__PURE__ */ new Box3();
-const _sphere$2 = /* @__PURE__ */ new Sphere$1();
+const _sphere$2 = /* @__PURE__ */ new Sphere();
 const _vector$5 = /* @__PURE__ */ new Vector3();
 const _forward = /* @__PURE__ */ new Vector3();
 const _temp = /* @__PURE__ */ new Vector3();
@@ -44220,7 +46075,7 @@ class BatchedMesh extends Mesh {
    */
   computeBoundingSphere() {
     if (this.boundingSphere === null) {
-      this.boundingSphere = new Sphere$1();
+      this.boundingSphere = new Sphere();
     }
     const boundingSphere = this.boundingSphere;
     const instanceInfo = this._instanceInfo;
@@ -44529,7 +46384,7 @@ class BatchedMesh extends Mesh {
     const geometry = this.geometry;
     const geometryInfo = this._geometryInfo[geometryId];
     if (geometryInfo.boundingSphere === null) {
-      const sphere = new Sphere$1();
+      const sphere = new Sphere();
       this.getBoundingBoxAt(geometryId, _box$1);
       _box$1.getCenter(sphere.center);
       const index2 = geometry.index;
@@ -44766,7 +46621,7 @@ class BatchedMesh extends Mesh {
       _mesh.geometry.boundingBox = new Box3();
     }
     if (_mesh.geometry.boundingSphere === null) {
-      _mesh.geometry.boundingSphere = new Sphere$1();
+      _mesh.geometry.boundingSphere = new Sphere();
     }
     for (let i2 = 0, l2 = instanceInfo.length; i2 < l2; i2++) {
       if (!instanceInfo[i2].visible || !instanceInfo[i2].active) {
@@ -44963,7 +46818,7 @@ const _vStart = /* @__PURE__ */ new Vector3();
 const _vEnd = /* @__PURE__ */ new Vector3();
 const _inverseMatrix$1 = /* @__PURE__ */ new Matrix4();
 const _ray$1 = /* @__PURE__ */ new Ray();
-const _sphere$1 = /* @__PURE__ */ new Sphere$1();
+const _sphere$1 = /* @__PURE__ */ new Sphere();
 const _intersectPointOnRay = /* @__PURE__ */ new Vector3();
 const _intersectPointOnSegment = /* @__PURE__ */ new Vector3();
 class Line extends Object3D {
@@ -45196,7 +47051,7 @@ class PointsMaterial extends Material {
 }
 const _inverseMatrix = /* @__PURE__ */ new Matrix4();
 const _ray = /* @__PURE__ */ new Ray();
-const _sphere = /* @__PURE__ */ new Sphere$1();
+const _sphere = /* @__PURE__ */ new Sphere();
 const _position$2 = /* @__PURE__ */ new Vector3();
 class Points extends Object3D {
   /**
@@ -54044,7 +55899,7 @@ class BufferGeometryLoader extends Loader {
       if (boundingSphere.center !== void 0) {
         center.fromArray(boundingSphere.center);
       }
-      geometry.boundingSphere = new Sphere$1(center, boundingSphere.radius);
+      geometry.boundingSphere = new Sphere(center, boundingSphere.radius);
     }
     if (json.name) geometry.name = json.name;
     if (json.userData) geometry.userData = json.userData;
@@ -54557,7 +56412,7 @@ class ObjectLoader extends Loader {
             box.max.fromArray(info.boundingBox.max);
           }
           if (info.boundingSphere !== void 0) {
-            sphere = new Sphere$1();
+            sphere = new Sphere();
             sphere.radius = info.boundingSphere.radius;
             sphere.center.fromArray(info.boundingSphere.center);
           }
@@ -54583,7 +56438,7 @@ class ObjectLoader extends Loader {
           object._colorsTexture = getTexture(data.colorsTexture.uuid);
         }
         if (data.boundingSphere !== void 0) {
-          object.boundingSphere = new Sphere$1();
+          object.boundingSphere = new Sphere();
           object.boundingSphere.center.fromArray(data.boundingSphere.center);
           object.boundingSphere.radius = data.boundingSphere.radius;
         }
@@ -70173,7 +72028,7 @@ const THREE = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
   SkeletonHelper,
   SkinnedMesh,
   Source,
-  Sphere: Sphere$1,
+  Sphere,
   SphereGeometry,
   Spherical,
   SphericalHarmonics3,
@@ -72928,64 +74783,64 @@ var schedulerExports = scheduler.exports;
       currentStateHook.memoizedState = action;
       return [stateHook, dispatch, false];
     }
-    function pushEffect(tag, create2, inst, deps) {
-      tag = { tag, create: create2, inst, deps, next: null };
-      create2 = currentlyRenderingFiber$12.updateQueue;
-      null === create2 && (create2 = createFunctionComponentUpdateQueue2(), currentlyRenderingFiber$12.updateQueue = create2);
-      inst = create2.lastEffect;
-      null === inst ? create2.lastEffect = tag.next = tag : (deps = inst.next, inst.next = tag, tag.next = deps, create2.lastEffect = tag);
+    function pushEffect(tag, create, inst, deps) {
+      tag = { tag, create, inst, deps, next: null };
+      create = currentlyRenderingFiber$12.updateQueue;
+      null === create && (create = createFunctionComponentUpdateQueue2(), currentlyRenderingFiber$12.updateQueue = create);
+      inst = create.lastEffect;
+      null === inst ? create.lastEffect = tag.next = tag : (deps = inst.next, inst.next = tag, tag.next = deps, create.lastEffect = tag);
       return tag;
     }
     function updateRef2() {
       return updateWorkInProgressHook2().memoizedState;
     }
-    function mountEffectImpl2(fiberFlags, hookFlags, create2, deps) {
+    function mountEffectImpl2(fiberFlags, hookFlags, create, deps) {
       var hook = mountWorkInProgressHook2();
       currentlyRenderingFiber$12.flags |= fiberFlags;
       hook.memoizedState = pushEffect(
         1 | hookFlags,
-        create2,
+        create,
         { destroy: void 0 },
         void 0 === deps ? null : deps
       );
     }
-    function updateEffectImpl2(fiberFlags, hookFlags, create2, deps) {
+    function updateEffectImpl2(fiberFlags, hookFlags, create, deps) {
       var hook = updateWorkInProgressHook2();
       deps = void 0 === deps ? null : deps;
       var inst = hook.memoizedState.inst;
-      null !== currentHook2 && null !== deps && areHookInputsEqual2(deps, currentHook2.memoizedState.deps) ? hook.memoizedState = pushEffect(hookFlags, create2, inst, deps) : (currentlyRenderingFiber$12.flags |= fiberFlags, hook.memoizedState = pushEffect(1 | hookFlags, create2, inst, deps));
+      null !== currentHook2 && null !== deps && areHookInputsEqual2(deps, currentHook2.memoizedState.deps) ? hook.memoizedState = pushEffect(hookFlags, create, inst, deps) : (currentlyRenderingFiber$12.flags |= fiberFlags, hook.memoizedState = pushEffect(1 | hookFlags, create, inst, deps));
     }
-    function mountEffect2(create2, deps) {
-      mountEffectImpl2(8390656, 8, create2, deps);
+    function mountEffect2(create, deps) {
+      mountEffectImpl2(8390656, 8, create, deps);
     }
-    function updateEffect2(create2, deps) {
-      updateEffectImpl2(2048, 8, create2, deps);
+    function updateEffect2(create, deps) {
+      updateEffectImpl2(2048, 8, create, deps);
     }
-    function updateInsertionEffect2(create2, deps) {
-      return updateEffectImpl2(4, 2, create2, deps);
+    function updateInsertionEffect2(create, deps) {
+      return updateEffectImpl2(4, 2, create, deps);
     }
-    function updateLayoutEffect2(create2, deps) {
-      return updateEffectImpl2(4, 4, create2, deps);
+    function updateLayoutEffect2(create, deps) {
+      return updateEffectImpl2(4, 4, create, deps);
     }
-    function imperativeHandleEffect2(create2, ref) {
+    function imperativeHandleEffect2(create, ref) {
       if ("function" === typeof ref) {
-        create2 = create2();
-        var refCleanup = ref(create2);
+        create = create();
+        var refCleanup = ref(create);
         return function() {
           "function" === typeof refCleanup ? refCleanup() : ref(null);
         };
       }
       if (null !== ref && void 0 !== ref)
-        return create2 = create2(), ref.current = create2, function() {
+        return create = create(), ref.current = create, function() {
           ref.current = null;
         };
     }
-    function updateImperativeHandle2(ref, create2, deps) {
+    function updateImperativeHandle2(ref, create, deps) {
       deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
       updateEffectImpl2(
         4,
         4,
-        imperativeHandleEffect2.bind(null, create2, ref),
+        imperativeHandleEffect2.bind(null, create, ref),
         deps
       );
     }
@@ -75156,8 +77011,8 @@ var schedulerExports = scheduler.exports;
           do {
             if ((updateQueue.tag & flags) === flags) {
               lastEffect = void 0;
-              var create2 = updateQueue.create, inst = updateQueue.inst;
-              lastEffect = create2();
+              var create = updateQueue.create, inst = updateQueue.inst;
+              lastEffect = create();
               inst.destroy = lastEffect;
             }
             updateQueue = updateQueue.next;
@@ -77744,20 +79599,20 @@ var schedulerExports = scheduler.exports;
       },
       useContext: readContext2,
       useEffect: mountEffect2,
-      useImperativeHandle: function(ref, create2, deps) {
+      useImperativeHandle: function(ref, create, deps) {
         deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
         mountEffectImpl2(
           4194308,
           4,
-          imperativeHandleEffect2.bind(null, create2, ref),
+          imperativeHandleEffect2.bind(null, create, ref),
           deps
         );
       },
-      useLayoutEffect: function(create2, deps) {
-        return mountEffectImpl2(4194308, 4, create2, deps);
+      useLayoutEffect: function(create, deps) {
+        return mountEffectImpl2(4194308, 4, create, deps);
       },
-      useInsertionEffect: function(create2, deps) {
-        mountEffectImpl2(4, 2, create2, deps);
+      useInsertionEffect: function(create, deps) {
+        mountEffectImpl2(4, 2, create, deps);
       },
       useMemo: function(nextCreate, deps) {
         var hook = mountWorkInProgressHook2();
@@ -80448,25 +82303,6 @@ const MeshDistortMaterial = /* @__PURE__ */ reactExports.forwardRef(({
     attach: "material"
   }, props));
 });
-function create(type, effect) {
-  const El = type + "Geometry";
-  return /* @__PURE__ */ reactExports.forwardRef(({
-    args,
-    children,
-    ...props
-  }, fref) => {
-    const ref = reactExports.useRef(null);
-    reactExports.useImperativeHandle(fref, () => ref.current);
-    reactExports.useLayoutEffect(() => void (effect == null ? void 0 : effect(ref.current)));
-    return /* @__PURE__ */ reactExports.createElement("mesh", _extends({
-      ref
-    }, props), /* @__PURE__ */ reactExports.createElement(El, {
-      attach: "geometry",
-      args
-    }), children);
-  });
-}
-const Sphere2 = /* @__PURE__ */ create("sphere");
 const Float = /* @__PURE__ */ reactExports.forwardRef(({
   children,
   enabled = true,
@@ -80669,15 +82505,13 @@ let CanvasErrorBoundary$1 = class CanvasErrorBoundary extends reactExports.Compo
   componentDidCatch(_error, _info) {
   }
   render() {
-    if (this.state.hasError) {
-      return this.props.fallback ?? null;
-    }
+    if (this.state.hasError) return this.props.fallback ?? null;
     return this.props.children;
   }
 };
 function GoldenParticles() {
   const meshRef = reactExports.useRef(null);
-  const count = 80;
+  const count = 120;
   const particles = reactExports.useMemo(() => {
     const positions = [];
     const speeds = [];
@@ -80685,12 +82519,12 @@ function GoldenParticles() {
     for (let i2 = 0; i2 < count; i2++) {
       positions.push(
         new Vector3(
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 12,
-          (Math.random() - 0.5) * 8
+          (Math.random() - 0.5) * 22,
+          (Math.random() - 0.5) * 14,
+          (Math.random() - 0.5) * 10
         )
       );
-      speeds.push(0.3 + Math.random() * 0.7);
+      speeds.push(0.25 + Math.random() * 0.6);
       phases.push(Math.random() * Math.PI * 2);
     }
     return { positions, speeds, phases };
@@ -80701,11 +82535,11 @@ function GoldenParticles() {
     const t = state2.clock.elapsedTime;
     particles.positions.forEach((pos, idx) => {
       dummy.position.set(
-        pos.x + Math.sin(t * particles.speeds[idx] * 0.3 + particles.phases[idx]) * 0.5,
-        pos.y + Math.cos(t * particles.speeds[idx] * 0.2 + particles.phases[idx]) * 0.8,
+        pos.x + Math.sin(t * particles.speeds[idx] * 0.3 + particles.phases[idx]) * 0.6,
+        pos.y + Math.cos(t * particles.speeds[idx] * 0.2 + particles.phases[idx]) * 0.9,
         pos.z
       );
-      const scale2 = 0.04 + Math.sin(t * particles.speeds[idx] + particles.phases[idx]) * 0.015;
+      const scale2 = 0.035 + Math.sin(t * particles.speeds[idx] + particles.phases[idx]) * 0.012;
       dummy.scale.setScalar(scale2);
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(idx, dummy.matrix);
@@ -80713,99 +82547,60 @@ function GoldenParticles() {
     meshRef.current.instanceMatrix.needsUpdate = true;
   });
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("instancedMesh", { ref: meshRef, args: [void 0, void 0, count], children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [1, 6, 6] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [1, 8, 8] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
-        color: "#d4af37",
+        color: "#c9a84c",
         emissive: "#d4af37",
-        emissiveIntensity: 2,
-        roughness: 0.1,
+        emissiveIntensity: 0.8,
+        roughness: 0.15,
         metalness: 0.9
       }
     )
   ] });
 }
-function FloatingTorus() {
+function TorusRing({
+  position,
+  scale: scale2,
+  phase
+}) {
   const ref = reactExports.useRef(null);
   useFrame((state2) => {
     if (!ref.current) return;
-    ref.current.rotation.x = state2.clock.elapsedTime * 0.3;
-    ref.current.rotation.y = state2.clock.elapsedTime * 0.2;
-    ref.current.position.y = Math.sin(state2.clock.elapsedTime * 0.5) * 0.5 + 1;
+    const t = state2.clock.elapsedTime;
+    ref.current.rotation.x = t * 0.15 + phase;
+    ref.current.rotation.y = t * 0.22 + phase * 0.5;
+    ref.current.position.y = position[1] + Math.sin(t * 0.4 + phase) * 0.6;
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position: [4.5, 1, -2], children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("torusKnotGeometry", { args: [0.8, 0.2, 128, 32] }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position, scale: scale2, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("torusGeometry", { args: [1.2, 0.04, 16, 80] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
         color: "#d4af37",
-        emissive: "#b8941f",
-        emissiveIntensity: 1,
-        roughness: 0.1,
+        emissive: "#c9a84c",
+        emissiveIntensity: 0.5,
+        roughness: 0.05,
         metalness: 1,
         wireframe: false
       }
     )
   ] });
 }
-function FloatingDiamond() {
-  const ref = reactExports.useRef(null);
-  useFrame((state2) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = state2.clock.elapsedTime * 0.4;
-    ref.current.rotation.z = state2.clock.elapsedTime * 0.2;
-    ref.current.position.y = Math.cos(state2.clock.elapsedTime * 0.4 + 1) * 0.6 - 1.5;
-  });
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position: [-5, -1.5, -1.5], children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("octahedronGeometry", { args: [0.6, 0] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "meshStandardMaterial",
-      {
-        color: "#b76e79",
-        emissive: "#b76e79",
-        emissiveIntensity: 1.2,
-        roughness: 0.05,
-        metalness: 0.95
-      }
-    )
-  ] });
-}
-function FloatingRing() {
-  const ref = reactExports.useRef(null);
-  useFrame((state2) => {
-    if (!ref.current) return;
-    ref.current.rotation.x = state2.clock.elapsedTime * 0.15 + 0.5;
-    ref.current.rotation.y = state2.clock.elapsedTime * 0.25;
-    ref.current.position.y = Math.sin(state2.clock.elapsedTime * 0.35 + 2) * 0.7 + 0.5;
-  });
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position: [3, 0.5, -3], children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("torusGeometry", { args: [1.2, 0.08, 16, 60] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "meshStandardMaterial",
-      {
-        color: "#e8c84a",
-        emissive: "#d4af37",
-        emissiveIntensity: 1,
-        roughness: 0.05,
-        metalness: 1
-      }
-    )
-  ] });
-}
 function RosePetals() {
-  const petalCount = 18;
+  const petalCount = 20;
   const refs = reactExports.useRef([]);
   const data = reactExports.useMemo(
     () => Array.from({ length: petalCount }, () => ({
-      x: (Math.random() - 0.5) * 18,
-      y: Math.random() * 14 + 4,
-      z: (Math.random() - 0.5) * 6,
-      speed: 0.3 + Math.random() * 0.5,
-      drift: (Math.random() - 0.5) * 0.01,
-      rotSpeed: (Math.random() - 0.5) * 0.02,
+      x: (Math.random() - 0.5) * 20,
+      y: Math.random() * 16 + 4,
+      z: (Math.random() - 0.5) * 8,
+      speed: 0.25 + Math.random() * 0.45,
+      drift: (Math.random() - 0.5) * 8e-3,
+      rotSpeed: (Math.random() - 0.5) * 0.018,
       phase: Math.random() * Math.PI * 2,
-      scale: 0.12 + Math.random() * 0.15
+      scale: 0.1 + Math.random() * 0.13
     })),
     []
   );
@@ -80817,9 +82612,9 @@ function RosePetals() {
       mesh.position.x += d.drift;
       mesh.rotation.z += d.rotSpeed;
       mesh.rotation.x += d.rotSpeed * 0.5;
-      if (mesh.position.y < -8) {
-        mesh.position.y = 8;
-        mesh.position.x = (Math.random() - 0.5) * 18;
+      if (mesh.position.y < -9) {
+        mesh.position.y = 9;
+        mesh.position.x = (Math.random() - 0.5) * 20;
       }
     });
   });
@@ -80837,13 +82632,13 @@ function RosePetals() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "meshStandardMaterial",
           {
-            color: "#c2556d",
-            emissive: "#b76e79",
-            emissiveIntensity: 0.6,
+            color: "#e8a87c",
+            emissive: "#c9a84c",
+            emissiveIntensity: 0.35,
             side: DoubleSide,
             transparent: true,
-            opacity: 0.75,
-            roughness: 0.8
+            opacity: 0.55,
+            roughness: 0.85
           }
         )
       ]
@@ -80856,26 +82651,20 @@ function DistortOrb({
   color: color2,
   emissive
 }) {
-  const ref = reactExports.useRef(null);
-  useFrame((state2) => {
-    if (!ref.current) return;
-    ref.current.rotation.x = state2.clock.elapsedTime * 0.1;
-    ref.current.rotation.y = state2.clock.elapsedTime * 0.15;
-  });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed: 1.5, rotationIntensity: 0.3, floatIntensity: 0.8, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [0.9, 32, 32] }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed: 1.2, rotationIntensity: 0.25, floatIntensity: 0.7, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { position, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [0.85, 32, 32] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       MeshDistortMaterial,
       {
         color: color2,
         emissive,
-        emissiveIntensity: 0.7,
-        distort: 0.45,
-        speed: 1.5,
-        roughness: 0.1,
-        metalness: 0.8,
+        emissiveIntensity: 0.4,
+        distort: 0.4,
+        speed: 1.4,
+        roughness: 0.15,
+        metalness: 0.7,
         transparent: true,
-        opacity: 0.6
+        opacity: 0.45
       }
     )
   ] }) });
@@ -80885,8 +82674,8 @@ function CameraParallax() {
   const target = reactExports.useRef({ x: 0, y: 0 });
   reactExports.useEffect(() => {
     const handleMouse = (e) => {
-      target.current.x = (e.clientX / window.innerWidth - 0.5) * 1.5;
-      target.current.y = -(e.clientY / window.innerHeight - 0.5) * 0.8;
+      target.current.x = (e.clientX / window.innerWidth - 0.5) * 1.2;
+      target.current.y = -(e.clientY / window.innerHeight - 0.5) * 0.7;
     };
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
@@ -80900,27 +82689,27 @@ function CameraParallax() {
 }
 function Scene2() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.4 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 2.5, color: "#d4af37" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-5, -3, 3], intensity: 2, color: "#b76e79" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 8, -4], intensity: 1.5, color: "#e8c84a" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 2, color: "#fff8ee" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2.5, color: "#d4af37" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -3, 4], intensity: 1.8, color: "#e8c4a0" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 10, -4], intensity: 1.2, color: "#fdf8f3" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(CameraParallax, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(GoldenParticles, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingTorus, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingDiamond, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingRing, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TorusRing, { position: [5, 1, -3], scale: 1.1, phase: 0 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TorusRing, { position: [-5, -1, -4], scale: 0.8, phase: 1.2 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TorusRing, { position: [3, 3, -5], scale: 0.6, phase: 2.4 }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(RosePetals, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [-3.5, 2, -4], color: "#d4af37", emissive: "#b8941f" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [3, -2.5, -5], color: "#b76e79", emissive: "#7a2d3d" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [-4, 2, -5], color: "#e8c4a0", emissive: "#c9a84c" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [4, -2.5, -6], color: "#d4af37", emissive: "#c9a84c" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Sparkles,
       {
         count: 80,
-        scale: [18, 14, 6],
-        size: 2.5,
-        speed: 0.25,
-        color: "#d4af37",
-        opacity: 0.75
+        scale: [20, 16, 8],
+        size: 1.5,
+        speed: 0.15,
+        color: "#c9a84c",
+        opacity: 0.45
       }
     )
   ] });
@@ -80929,385 +82718,585 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.3 }
+    transition: { staggerChildren: 0.14, delayChildren: 0.25 }
   }
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" }
+    transition: { duration: 0.75, ease: "easeOut" }
   }
 };
-function DecorativeRing({
-  size,
-  opacity,
-  rotDuration
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    motion.div,
-    {
-      className: "absolute rounded-full border border-gold pointer-events-none",
-      style: {
-        width: size,
-        height: size,
-        opacity,
-        boxShadow: `0 0 12px rgba(212,175,55,${opacity * 0.6})`
-      },
-      animate: { rotate: 360 },
-      transition: {
-        duration: rotDuration,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "linear"
-      }
-    }
-  );
-}
-function StatBadge({ value, label }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "span",
-      {
-        className: "text-2xl font-bold gold-gradient-text font-display",
-        style: { textShadow: "0 0 20px rgba(212,175,55,0.4)" },
-        children: value
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground uppercase tracking-widest", children: label })
-  ] });
-}
 const SPARKLE_DOTS = [
-  { top: "15%", left: "15%", animDuration: 2, animDelay: 0 },
-  { top: "72%", left: "22%", animDuration: 2.4, animDelay: 0.3 },
-  { top: "30%", left: "78%", animDuration: 2.8, animDelay: 0.6 },
-  { top: "65%", left: "80%", animDuration: 2.2, animDelay: 0.9 },
-  { top: "10%", left: "55%", animDuration: 2.6, animDelay: 1.2 },
-  { top: "85%", left: "50%", animDuration: 2.3, animDelay: 1.5 }
+  { top: "12%", left: "10%", dur: 2, delay: 0 },
+  { top: "70%", left: "18%", dur: 2.5, delay: 0.4 },
+  { top: "28%", left: "82%", dur: 2.8, delay: 0.7 },
+  { top: "62%", left: "85%", dur: 2.2, delay: 1 },
+  { top: "8%", left: "58%", dur: 2.6, delay: 1.3 },
+  { top: "88%", left: "52%", dur: 2.4, delay: 1.6 }
 ];
 function HeroSection() {
   const handleScroll = () => {
-    const next = document.getElementById("about");
-    if (next) next.scrollIntoView({ behavior: "smooth" });
+    var _a2;
+    (_a2 = document.getElementById("about")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth" });
   };
   const handleBooking = () => {
     window.open(
-      "https://wa.me/918766367033?text=Hi! I would like to book an appointment at Yakshi Makeup %26 Nail Studio.",
+      "https://wa.me/919561548151?text=Hi%20Snehal%20Pawar%2C%20I%20would%20like%20to%20book%20an%20appointment.",
       "_blank"
     );
   };
   const handlePortfolio = () => {
-    const gallery = document.getElementById("gallery");
-    if (gallery) gallery.scrollIntoView({ behavior: "smooth" });
+    var _a2;
+    (_a2 = document.getElementById("gallery")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth" });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
       id: "home",
-      className: "relative min-h-screen flex items-center bg-dark-primary",
       "data-ocid": "hero.section",
+      style: {
+        background: "linear-gradient(160deg, #fdf8f3 0%, #f5e6d3 45%, #fdf8f3 100%)",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center"
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 z-0 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasErrorBoundary$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Canvas,
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
           {
-            camera: { position: [0, 0, 8], fov: 60 },
-            gl: { antialias: true, alpha: true },
-            dpr: [1, 1.5],
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Scene2, {}) })
+            className: "absolute inset-0 pointer-events-none",
+            style: {
+              background: "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.07) 40%, transparent 70%)",
+              zIndex: 1
+            }
           }
-        ) }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 z-[1] pointer-events-none", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/85 via-[#0a0a0a]/50 to-[#0a0a0a]/20" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute inset-0",
-              style: {
-                background: "radial-gradient(ellipse 60% 50% at 65% 50%, rgba(212,175,55,0.06) 0%, transparent 65%)"
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute pointer-events-none",
+            style: {
+              top: "-10%",
+              left: "-8%",
+              width: 500,
+              height: 500,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(232,168,124,0.18) 0%, transparent 65%)",
+              filter: "blur(60px)",
+              zIndex: 1
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0 pointer-events-none",
+            style: { zIndex: 2 },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasErrorBoundary$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Canvas,
+              {
+                camera: { position: [0, 0, 9], fov: 58 },
+                gl: { antialias: true, alpha: true },
+                dpr: [1, 1.5],
+                style: { background: "transparent" },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Scene2, {}) })
               }
+            ) })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute bottom-0 left-0 right-0 pointer-events-none",
+            style: {
+              height: 120,
+              background: "linear-gradient(to top, #fdf8f3 0%, transparent 100%)",
+              zIndex: 3
             }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              className: "flex-1 max-w-xl",
-              variants: containerVariants,
-              initial: "hidden",
-              animate: "visible",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { variants: itemVariants, className: "mb-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "span",
-                  {
-                    className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest glass-ultra text-gold",
-                    style: { boxShadow: "0 0 18px rgba(212,175,55,0.20)" },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-3 h-3 fill-current" }),
-                      "Delhi's Premier Celebrity Makeup Artist"
-                    ]
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.h1,
-                  {
-                    variants: itemVariants,
-                    className: "font-display text-4xl sm:text-5xl xl:text-6xl font-bold leading-tight mb-4",
-                    style: {
-                      fontFamily: '"Instrument Serif", "Playfair Display", serif'
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block text-foreground/90", children: "Yakshi" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "span",
-                        {
-                          className: "block gradient-text",
-                          style: { textShadow: "0 0 30px rgba(212,175,55,0.25)" },
-                          children: "Makeup & Nail"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block text-foreground/90", children: "Studio" })
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.p,
-                  {
-                    variants: itemVariants,
-                    className: "text-base sm:text-lg text-muted-foreground mb-3 tracking-wide",
-                    children: "Bridal Makeup & Nail Art in Delhi NCR"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    variants: itemVariants,
-                    className: "flex items-center gap-2 mb-7",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: ["s1", "s2", "s3", "s4", "s5"].map((key) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Star,
-                        {
-                          className: "w-4 h-4 text-gold fill-current",
-                          style: {
-                            filter: "drop-shadow(0 0 4px rgba(212,175,55,0.7))"
-                          }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24",
+            style: { zIndex: 10 },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col lg:flex-row items-center justify-between gap-14 lg:gap-10", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  className: "flex-1 max-w-xl",
+                  variants: containerVariants,
+                  initial: "hidden",
+                  animate: "visible",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { variants: itemVariants, className: "mb-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "span",
+                      {
+                        style: {
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 8,
+                          padding: "8px 20px",
+                          borderRadius: 999,
+                          fontSize: "0.68rem",
+                          fontFamily: "var(--font-accent)",
+                          letterSpacing: "0.3em",
+                          textTransform: "uppercase",
+                          color: "#8b5e3c",
+                          background: "rgba(255,255,255,0.72)",
+                          border: "1px solid rgba(201,168,76,0.35)",
+                          boxShadow: "0 2px 20px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
+                          backdropFilter: "blur(14px)"
                         },
-                        key
-                      )) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm text-muted-foreground", children: [
-                        "Trusted by",
-                        " ",
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gold font-semibold", children: "Bollywood Celebrities" }),
-                        " ",
-                        "& Elite Brides"
-                      ] })
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    variants: itemVariants,
-                    className: "flex flex-wrap gap-4 mb-10",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "button",
-                        {
-                          type: "button",
-                          className: "btn-gold flex items-center gap-2",
-                          onClick: handleBooking,
-                          "data-ocid": "hero.book_appointment_button",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4" }),
-                            "Book Appointment"
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "button",
-                        {
-                          type: "button",
-                          className: "btn-outline-gold",
-                          onClick: handlePortfolio,
-                          "data-ocid": "hero.view_portfolio_button",
-                          children: "View Portfolio"
-                        }
-                      )
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    variants: itemVariants,
-                    className: "flex items-center gap-6 pt-6 border-t border-gold/20",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(StatBadge, { value: "500+", label: "Brides" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-8 w-px bg-gold/20" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(StatBadge, { value: "100+", label: "Celebrities" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-8 w-px bg-gold/20" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(StatBadge, { value: "5★", label: "Rated" })
-                    ]
-                  }
-                )
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              className: "relative flex-shrink-0 flex items-center justify-center",
-              initial: { opacity: 0, x: 60, scale: 0.92 },
-              animate: { opacity: 1, x: 0, scale: 1 },
-              transition: {
-                duration: 1,
-                delay: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              },
-              "data-ocid": "hero.portrait_card",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 flex items-center justify-center pointer-events-none", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(DecorativeRing, { size: "380px", opacity: 0.22, rotDuration: 20 }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(DecorativeRing, { size: "440px", opacity: 0.12, rotDuration: 25 }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(DecorativeRing, { size: "500px", opacity: 0.06, rotDuration: 30 })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: "absolute w-96 h-96 rounded-full pointer-events-none hero-glow-bg",
-                    style: { zIndex: 0 }
-                  }
-                ),
-                SPARKLE_DOTS.map((dot) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.div,
-                  {
-                    className: "absolute w-2 h-2 rounded-full bg-gold pointer-events-none",
-                    style: {
-                      top: dot.top,
-                      left: dot.left,
-                      boxShadow: "0 0 12px rgba(212,175,55,0.9), 0 0 24px rgba(212,175,55,0.4)"
-                    },
-                    animate: {
-                      scale: [1, 1.8, 1],
-                      opacity: [0.6, 1, 0.6]
-                    },
-                    transition: {
-                      duration: dot.animDuration,
-                      repeat: Number.POSITIVE_INFINITY,
-                      delay: dot.animDelay
-                    }
-                  },
-                  `sparkle-${dot.top}-${dot.left}`
-                )),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.div,
-                  {
-                    className: "relative z-10",
-                    animate: { y: [-8, 8, -8] },
-                    transition: {
-                      duration: 6,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut"
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        "div",
-                        {
-                          className: "relative rounded-2xl overflow-hidden animate-pulse-glow",
-                          style: {
-                            width: "300px",
-                            height: "400px",
-                            border: "1.5px solid rgba(212,175,55,0.55)",
-                            boxShadow: "0 0 40px rgba(212,175,55,0.45), 0 0 90px rgba(212,175,55,0.20), 0 0 160px rgba(212,175,55,0.08), 0 25px 60px rgba(0,0,0,0.6)"
-                          },
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              "img",
-                              {
-                                src: "/assets/hero-bride.png",
-                                alt: "Yakshi - Celebrity Makeup Artist",
-                                className: "w-full h-full object-cover",
-                                style: { filter: "contrast(1.05) saturate(1.1)" }
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#c9a84c" }, children: "✦" }),
+                          "Award-Winning Makeup Artist"
+                        ]
+                      }
+                    ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.h1,
+                      {
+                        variants: itemVariants,
+                        style: {
+                          fontFamily: "var(--font-display)",
+                          lineHeight: 1.1,
+                          marginBottom: "1rem"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              style: {
+                                display: "block",
+                                fontSize: "clamp(1.9rem, 3.5vw, 3rem)",
+                                color: "#3d2817",
+                                fontWeight: 400,
+                                letterSpacing: "-0.01em"
+                              },
+                              children: "Makeup by"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "gradient-text",
+                              style: {
+                                display: "block",
+                                fontSize: "clamp(3rem, 6vw, 5rem)",
+                                fontWeight: 600,
+                                letterSpacing: "-0.02em",
+                                lineHeight: 1.05,
+                                filter: "drop-shadow(0 2px 16px rgba(201,168,76,0.22))"
+                              },
+                              children: "Snehal Pawar"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              style: {
+                                display: "block",
+                                fontSize: "clamp(1.5rem, 2.8vw, 2.4rem)",
+                                color: "#6b3f1f",
+                                fontWeight: 400,
+                                letterSpacing: "0.02em",
+                                marginTop: "0.1rem"
+                              },
+                              children: "& Academy"
+                            }
+                          )
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        variants: itemVariants,
+                        style: {
+                          fontFamily: "var(--font-body)",
+                          fontSize: "1.05rem",
+                          color: "#8b5e3c",
+                          marginBottom: "0.6rem",
+                          letterSpacing: "0.03em"
+                        },
+                        children: "Bridal Makeup & Beauty Academy — Amravati, Maharashtra"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        variants: itemVariants,
+                        style: {
+                          fontFamily: "var(--font-body)",
+                          fontSize: "0.9rem",
+                          color: "#b5845a",
+                          marginBottom: "1.75rem",
+                          lineHeight: 1.7
+                        },
+                        children: "Transforming bridal dreams into timeless art. Expert in HD, airbrush, and luxury bridal looks with over a decade of perfecting beauty."
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        variants: itemVariants,
+                        style: {
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 12,
+                          marginBottom: "2rem"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "button",
+                            {
+                              type: "button",
+                              className: "btn-premium",
+                              onClick: handleBooking,
+                              "data-ocid": "hero.book_appointment_button",
+                              children: "Book Your Bridal Look"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "button",
+                            {
+                              type: "button",
+                              className: "btn-outline-premium",
+                              onClick: handlePortfolio,
+                              "data-ocid": "hero.view_gallery_button",
+                              children: "View Gallery"
+                            }
+                          )
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        variants: itemVariants,
+                        style: {
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 0,
+                          paddingTop: "1.25rem",
+                          borderTop: "1px solid rgba(201,168,76,0.22)"
+                        },
+                        children: [
+                          { val: "500+", label: "Brides" },
+                          { val: "12+", label: "Years" },
+                          { val: "100+", label: "Students" }
+                        ].map((stat, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(reactExports.Fragment, { children: [
+                          i2 > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              style: {
+                                width: 1,
+                                height: 32,
+                                background: "rgba(201,168,76,0.3)",
+                                margin: "0 20px"
                               }
-                            ),
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { textAlign: "center" }, children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(
                               "div",
                               {
-                                className: "absolute inset-0 pointer-events-none",
                                 style: {
-                                  background: "linear-gradient(135deg, rgba(212,175,55,0.10) 0%, transparent 50%, rgba(183,110,121,0.07) 100%)"
-                                }
+                                  fontFamily: "var(--font-accent)",
+                                  fontSize: "1.35rem",
+                                  fontWeight: 700,
+                                  color: "#c9a84c",
+                                  textShadow: "0 0 18px rgba(201,168,76,0.35)",
+                                  lineHeight: 1.1
+                                },
+                                children: stat.val
                               }
                             ),
                             /* @__PURE__ */ jsxRuntimeExports.jsx(
                               "div",
                               {
-                                className: "absolute top-0 left-0 right-0 h-px pointer-events-none",
-                                style: { background: "rgba(212,175,55,0.35)" }
+                                style: {
+                                  fontFamily: "var(--font-accent)",
+                                  fontSize: "0.6rem",
+                                  letterSpacing: "0.2em",
+                                  textTransform: "uppercase",
+                                  color: "#8b5e3c",
+                                  marginTop: 2
+                                },
+                                children: stat.label
                               }
                             )
-                          ]
+                          ] })
+                        ] }, stat.label))
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  style: {
+                    position: "relative",
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  },
+                  initial: { opacity: 0, x: 60, scale: 0.92 },
+                  animate: { opacity: 1, x: 0, scale: 1 },
+                  transition: {
+                    duration: 1,
+                    delay: 0.5,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  },
+                  "data-ocid": "hero.portrait_card",
+                  children: [
+                    [
+                      { size: 380, opacity: 0.2, dur: 22 },
+                      { size: 450, opacity: 0.1, dur: 28 },
+                      { size: 520, opacity: 0.055, dur: 35 }
+                    ].map(({ size, opacity, dur }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        style: {
+                          position: "absolute",
+                          width: size,
+                          height: size,
+                          borderRadius: "50%",
+                          border: `1px solid rgba(201,168,76,${opacity * 2.5})`,
+                          pointerEvents: "none",
+                          boxShadow: `0 0 14px rgba(201,168,76,${opacity * 0.6})`
+                        },
+                        animate: { rotate: 360 },
+                        transition: {
+                          duration: dur,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "linear"
                         }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        motion.div,
-                        {
-                          className: "absolute -top-3 -right-6 glass-ultra px-3 py-1.5 rounded-full text-xs font-semibold text-gold",
-                          style: {
-                            boxShadow: "0 0 22px rgba(212,175,55,0.38), 0 0 50px rgba(212,175,55,0.12)"
-                          },
-                          animate: { y: [-3, 3, -3] },
-                          transition: {
-                            duration: 4,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "easeInOut",
-                            delay: 1
-                          },
-                          children: "✦ Celebrity Artist"
+                      },
+                      size
+                    )),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          position: "absolute",
+                          width: 320,
+                          height: 320,
+                          borderRadius: "50%",
+                          background: "radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(232,200,120,0.10) 40%, transparent 70%)",
+                          filter: "blur(40px)",
+                          pointerEvents: "none"
                         }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        motion.div,
-                        {
-                          className: "absolute -bottom-3 -left-6 glass-ultra px-3 py-1.5 rounded-full text-xs font-semibold text-rose-gold",
-                          style: {
-                            boxShadow: "0 0 22px rgba(183,110,121,0.35), 0 0 50px rgba(183,110,121,0.12)"
-                          },
-                          animate: { y: [3, -3, 3] },
-                          transition: {
-                            duration: 4,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "easeInOut",
-                            delay: 0.5
-                          },
-                          children: "✦ 10+ Years Exp"
+                      }
+                    ),
+                    SPARKLE_DOTS.map((dot) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        style: {
+                          position: "absolute",
+                          top: dot.top,
+                          left: dot.left,
+                          width: 7,
+                          height: 7,
+                          borderRadius: "50%",
+                          background: "rgba(201,168,76,0.9)",
+                          boxShadow: "0 0 10px rgba(201,168,76,0.8), 0 0 22px rgba(201,168,76,0.35)",
+                          pointerEvents: "none"
+                        },
+                        animate: { scale: [1, 1.9, 1], opacity: [0.55, 1, 0.55] },
+                        transition: {
+                          duration: dot.dur,
+                          repeat: Number.POSITIVE_INFINITY,
+                          delay: dot.delay
                         }
-                      )
-                    ]
-                  }
-                )
-              ]
-            }
-          )
-        ] }) }),
+                      },
+                      `sparkle-${dot.top}-${dot.left}`
+                    )),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        style: { position: "relative", zIndex: 10 },
+                        animate: { y: [-9, 9, -9] },
+                        transition: {
+                          duration: 6.5,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "easeInOut"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "div",
+                            {
+                              style: {
+                                width: 300,
+                                height: 400,
+                                borderRadius: 20,
+                                overflow: "hidden",
+                                border: "1.5px solid rgba(201,168,76,0.5)",
+                                boxShadow: "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.15), 0 30px 70px rgba(139,94,60,0.25)",
+                                background: "rgba(255,255,255,0.08)",
+                                backdropFilter: "blur(2px)",
+                                position: "relative"
+                              },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "img",
+                                  {
+                                    src: "/assets/snehal-hero.png",
+                                    alt: "Snehal Pawar - Bridal Makeup Artist",
+                                    style: {
+                                      width: "100%",
+                                      height: "100%",
+                                      objectFit: "cover",
+                                      filter: "contrast(1.04) saturate(1.08) brightness(1.02)"
+                                    }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    style: {
+                                      position: "absolute",
+                                      inset: 0,
+                                      background: "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 45%, rgba(232,168,124,0.06) 100%)",
+                                      pointerEvents: "none"
+                                    }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "div",
+                                  {
+                                    style: {
+                                      position: "absolute",
+                                      top: 0,
+                                      left: 0,
+                                      right: 0,
+                                      height: 1,
+                                      background: "rgba(201,168,76,0.45)",
+                                      pointerEvents: "none"
+                                    }
+                                  }
+                                )
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            motion.div,
+                            {
+                              style: {
+                                position: "absolute",
+                                top: -12,
+                                right: -24,
+                                padding: "6px 14px",
+                                borderRadius: 999,
+                                fontSize: "0.7rem",
+                                fontFamily: "var(--font-accent)",
+                                letterSpacing: "0.12em",
+                                background: "rgba(255,255,255,0.85)",
+                                border: "1px solid rgba(201,168,76,0.45)",
+                                color: "#8b5e3c",
+                                boxShadow: "0 4px 20px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
+                                backdropFilter: "blur(12px)",
+                                whiteSpace: "nowrap"
+                              },
+                              animate: { y: [-3, 4, -3] },
+                              transition: {
+                                duration: 4,
+                                repeat: Number.POSITIVE_INFINITY,
+                                ease: "easeInOut",
+                                delay: 1
+                              },
+                              children: "✦ Bridal Expert"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            motion.div,
+                            {
+                              style: {
+                                position: "absolute",
+                                bottom: -12,
+                                left: -24,
+                                padding: "6px 14px",
+                                borderRadius: 999,
+                                fontSize: "0.7rem",
+                                fontFamily: "var(--font-accent)",
+                                letterSpacing: "0.12em",
+                                background: "rgba(255,255,255,0.85)",
+                                border: "1px solid rgba(201,168,76,0.4)",
+                                color: "#8b5e3c",
+                                boxShadow: "0 4px 20px rgba(201,168,76,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
+                                backdropFilter: "blur(12px)",
+                                whiteSpace: "nowrap"
+                              },
+                              animate: { y: [4, -3, 4] },
+                              transition: {
+                                duration: 4,
+                                repeat: Number.POSITIVE_INFINITY,
+                                ease: "easeInOut",
+                                delay: 0.5
+                              },
+                              children: "✦ 12+ Years Exp"
+                            }
+                          )
+                        ]
+                      }
+                    )
+                  ]
+                }
+              )
+            ] })
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           motion.button,
           {
             type: "button",
-            className: "absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-gold/60 hover:text-gold transition-smooth cursor-pointer",
+            style: {
+              position: "absolute",
+              bottom: 28,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 20,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 4,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "rgba(139,94,60,0.65)"
+            },
             animate: { y: [0, 8, 0] },
             transition: {
-              duration: 2,
+              duration: 2.2,
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut"
             },
             onClick: handleScroll,
             "aria-label": "Scroll to next section",
             "data-ocid": "hero.scroll_down_button",
+            whileHover: { color: "rgba(139,94,60,1)" },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] uppercase tracking-widest font-semibold", children: "Scroll" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "w-5 h-5" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  style: {
+                    fontFamily: "var(--font-accent)",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase"
+                  },
+                  children: "Scroll to explore"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { style: { width: 18, height: 18 } })
             ]
           }
         )
@@ -81315,87 +83304,76 @@ function HeroSection() {
     }
   );
 }
-const contactDetails = [
-  {
-    icon: MapPin,
-    label: "Address",
-    value: "Delhi NCR (Home Service Available)",
-    href: void 0,
-    color: "#d4af37"
-  },
-  {
-    icon: Phone,
-    label: "Call Us",
-    value: "+91 8766367033",
-    href: studioInfo.phoneLink,
-    color: "#d4af37"
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    value: "@yakshimakeover",
-    href: studioInfo.instagramUrl,
-    color: "#b76e79"
-  },
-  {
-    icon: Clock$1,
-    label: "Working Hours",
-    value: "Mon–Sun: 9:00 AM – 8:00 PM",
-    href: void 0,
-    color: "#d4af37"
-  }
-];
-function ContactCard({ item, idx }) {
-  const Icon2 = item.icon;
+const GOLD$1 = "#c9a84c";
+const WARM$1 = "#8b5e3c";
+function ContactCard({
+  icon,
+  label,
+  value,
+  href,
+  delay: delay2 = 0,
+  ocid
+}) {
   const inner = /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
+    motion.div,
     {
-      className: "card-premium p-4 flex items-start gap-4 rounded-xl",
-      "data-ocid": `map.contact.item.${idx + 1}`,
+      "data-ocid": ocid,
+      className: "flex items-start gap-4 rounded-2xl p-4 glass-ultra transition-all duration-300",
+      style: {
+        border: "1.5px solid rgba(201,168,76,0.25)",
+        boxShadow: "0 2px 16px rgba(107,63,31,0.06)"
+      },
+      whileHover: {
+        y: -3,
+        boxShadow: "0 8px 32px rgba(201,168,76,0.28), 0 0 50px rgba(201,168,76,0.10)",
+        borderColor: "rgba(201,168,76,0.55)"
+      },
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.6, delay: delay2 },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300",
+            className: "w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0",
             style: {
-              background: `radial-gradient(circle, ${item.color}25, ${item.color}12)`,
-              border: `1px solid ${item.color}55`,
-              boxShadow: `0 0 14px ${item.color}25`
+              background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
+              border: "1.5px solid rgba(201,168,76,0.42)",
+              boxShadow: "0 0 16px rgba(201,168,76,0.24)"
             },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Icon2,
-              {
-                size: 18,
-                style: {
-                  color: item.color,
-                  filter: `drop-shadow(0 0 5px ${item.color}70)`
-                }
-              }
-            )
+            children: icon
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-widest uppercase text-muted-foreground font-body mb-1", children: item.label }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "p",
             {
-              className: "font-body text-sm font-medium truncate",
-              style: { color: item.color },
-              children: item.value
+              className: "text-xs tracking-widest uppercase font-accent mb-1",
+              style: { color: GOLD$1 },
+              children: label
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "font-body text-sm font-semibold leading-snug",
+              style: { color: WARM$1 },
+              children: value
             }
           )
         ] })
       ]
     }
   );
-  if (item.href) {
+  if (href) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       "a",
       {
-        href: item.href,
+        href,
         target: "_blank",
         rel: "noopener noreferrer",
-        className: "block hover:scale-[1.02] transition-smooth",
+        className: "block",
         children: inner
       }
     );
@@ -81408,26 +83386,25 @@ function MapSection() {
     {
       id: "contact",
       "data-ocid": "map.section",
-      className: "bg-dark-primary section-padding relative overflow-hidden",
+      className: "relative overflow-hidden section-padding section-bg-beige",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full pointer-events-none",
+            className: "absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 65%)",
-              filter: "blur(120px)"
+              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+              filter: "blur(90px)"
             }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
+            className: "absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(183,110,121,0.08) 0%, transparent 65%)",
-              filter: "blur(100px)",
-              transform: "translate(20%, 20%)"
+              background: "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              filter: "blur(80px)"
             }
           }
         ),
@@ -81444,64 +83421,162 @@ function MapSection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-sm tracking-[0.3em] uppercase text-rose-gold mb-3 font-body",
-                    style: { textShadow: "0 0 14px rgba(183,110,121,0.5)" },
-                    children: "Find Us"
+                    className: "text-xs tracking-[0.38em] uppercase font-accent mb-3",
+                    style: { color: GOLD$1 },
+                    children: "Visit Us"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "text-4xl md:text-5xl font-display italic gradient-text mb-4",
-                    style: { lineHeight: 1.2 },
-                    children: "Visit Our Studio"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold w-24 mx-auto mb-5" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground font-body text-lg max-w-xl mx-auto", children: [
-                  "Delhi NCR |",
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display italic text-4xl md:text-5xl mb-4 gold-gradient-text leading-tight", children: [
+                  "Find Us in",
                   " ",
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "span",
                     {
-                      className: "text-gold font-medium",
-                      style: { textShadow: "0 0 14px rgba(212,175,55,0.35)" },
-                      children: "Available for Home Service Across NCR"
+                      style: {
+                        WebkitTextFillColor: "#6b3f1f",
+                        backgroundImage: "none",
+                        color: "#6b3f1f"
+                      },
+                      children: "Amravati"
                     }
                   )
-                ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  motion.div,
+                  {
+                    className: "mx-auto h-px section-divider mb-4",
+                    initial: { width: 0 },
+                    whileInView: { width: 96 },
+                    viewport: { once: true },
+                    transition: { duration: 0.8, delay: 0.3 }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-body text-base max-w-xl mx-auto",
+                    style: { color: WARM$1 },
+                    children: "Kondeshwar Vidyut Colony · Sai Nagar · Amravati"
+                  }
+                )
               ]
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid lg:grid-cols-5 gap-8 items-start", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lg:col-span-2 flex flex-col gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ContactCard,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    MapPin,
+                    {
+                      size: 18,
+                      style: {
+                        color: GOLD$1,
+                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                      }
+                    }
+                  ),
+                  label: "Address",
+                  value: "Kondeshwar Vidyut Colony, Near Radhey Radhey Milk Dairy, Sai Nagar, Amravati, Maharashtra 444607",
+                  delay: 0.1,
+                  ocid: "map.contact.address"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ContactCard,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Phone,
+                    {
+                      size: 18,
+                      style: {
+                        color: GOLD$1,
+                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                      }
+                    }
+                  ),
+                  label: "Call Us",
+                  value: "+91 95615 48151",
+                  href: "tel:+919561548151",
+                  delay: 0.2,
+                  ocid: "map.contact.phone"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ContactCard,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Clock$1,
+                    {
+                      size: 18,
+                      style: {
+                        color: GOLD$1,
+                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                      }
+                    }
+                  ),
+                  label: "Working Hours",
+                  value: "Monday – Sunday: 9:00 AM – 8:00 PM",
+                  delay: 0.3,
+                  ocid: "map.contact.hours"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.a,
+                {
+                  href: "https://wa.me/919561548151",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  "data-ocid": "map.whatsapp_button",
+                  className: "flex items-center justify-center gap-3 py-3 px-6 rounded-xl font-body font-semibold text-sm tracking-wide",
+                  style: {
+                    background: "linear-gradient(135deg, #25d366, #1ea952)",
+                    color: "#fff",
+                    boxShadow: "0 4px 20px rgba(37,211,102,0.30)",
+                    textDecoration: "none"
+                  },
+                  whileHover: {
+                    scale: 1.03,
+                    boxShadow: "0 8px 28px rgba(37,211,102,0.50)"
+                  },
+                  whileTap: { scale: 0.97 },
+                  initial: { opacity: 0, y: 16 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true },
+                  transition: { duration: 0.6, delay: 0.4 },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { size: 18 }),
+                    "WhatsApp Us Now"
+                  ]
+                }
+              )
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               motion.div,
               {
                 className: "lg:col-span-3",
-                initial: { opacity: 0, x: -40 },
+                initial: { opacity: 0, x: 40 },
                 whileInView: { opacity: 1, x: 0 },
                 viewport: { once: true },
-                transition: { duration: 0.7 },
+                transition: { duration: 0.7, delay: 0.15 },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
                     className: "rounded-2xl overflow-hidden",
                     style: {
-                      height: "400px",
-                      border: "1.5px solid rgba(212,175,55,0.38)",
-                      boxShadow: "0 0 35px rgba(212,175,55,0.22), 0 0 80px rgba(212,175,55,0.10), 0 0 0 1px rgba(212,175,55,0.06)"
+                      height: "380px",
+                      border: "2px solid rgba(201,168,76,0.40)",
+                      boxShadow: "0 4px 40px rgba(107,63,31,0.10), 0 0 60px rgba(201,168,76,0.10)"
                     },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "iframe",
                       {
-                        title: "Yakshi Makeup Studio Location",
-                        src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448193.9510984937!2d76.76357485!3d28.6427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1234567890",
+                        title: "Makeup by Snehal Pawar Academy — Amravati",
+                        src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59663.51596095788!2d77.73050564179689!3d20.937501799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd7295d5f3ad58d%3A0x81c1862b41a8df3e!2sAmravati%2C%20Maharashtra%20444601!5e0!3m2!1sen!2sin!4v1716000000000!5m2!1sen!2sin",
                         width: "100%",
                         height: "100%",
-                        style: {
-                          border: 0,
-                          filter: "grayscale(30%) invert(90%) hue-rotate(180deg)"
-                        },
+                        style: { border: 0 },
                         allowFullScreen: true,
                         loading: "lazy",
                         referrerPolicy: "no-referrer-when-downgrade"
@@ -81509,36 +83584,6 @@ function MapSection() {
                     )
                   }
                 )
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
-              {
-                className: "lg:col-span-2 flex flex-col gap-4",
-                initial: { opacity: 0, x: 40 },
-                whileInView: { opacity: 1, x: 0 },
-                viewport: { once: true },
-                transition: { duration: 0.7, delay: 0.15 },
-                children: [
-                  contactDetails.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(ContactCard, { item, idx }, item.label)),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    motion.a,
-                    {
-                      href: studioInfo.whatsappUrl,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      "data-ocid": "map.whatsapp_button",
-                      className: "btn-gold flex items-center justify-center gap-3 mt-2 rounded-xl",
-                      style: { textDecoration: "none" },
-                      whileHover: { scale: 1.04 },
-                      whileTap: { scale: 0.97 },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { size: 18 }),
-                        "WhatsApp Us Now"
-                      ]
-                    }
-                  )
-                ]
               }
             )
           ] })
@@ -81548,13 +83593,15 @@ function MapSection() {
   );
 }
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" }
+  { label: "Home", href: "/", isPage: true },
+  { label: "About", href: "#about", isPage: false },
+  { label: "Services", href: "#services", isPage: false },
+  { label: "Gallery", href: "#gallery", isPage: false },
+  { label: "Academy", href: "/academy", isPage: true },
+  { label: "Packages", href: "/packages", isPage: true },
+  { label: "Contact", href: "#contact", isPage: false }
 ];
-function Navbar() {
+function Navbar({ currentPage = "/", onNavigate }) {
   const [scrolled, setScrolled] = reactExports.useState(false);
   const [mobileOpen, setMobileOpen] = reactExports.useState(false);
   reactExports.useEffect(() => {
@@ -81562,10 +83609,25 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const scrollTo = (href) => {
+  const handleNav = (href, isPage) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (isPage) {
+      window.history.pushState({}, "", href);
+      onNavigate == null ? void 0 : onNavigate(href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      if (currentPage !== "/") {
+        window.history.pushState({}, "", "/");
+        onNavigate == null ? void 0 : onNavigate("/");
+        setTimeout(() => {
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -81576,11 +83638,11 @@ function Navbar() {
         transition: { duration: 0.7, ease: "easeOut" },
         className: `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "border-b" : "bg-transparent"}`,
         style: scrolled ? {
-          background: "rgba(8,8,8,0.92)",
+          background: "rgba(253,246,238,0.95)",
           backdropFilter: "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
-          borderBottomColor: "rgba(212,175,55,0.22)",
-          boxShadow: "0 4px 30px rgba(0,0,0,0.55), 0 1px 0 rgba(212,175,55,0.15)"
+          borderBottomColor: "rgba(139,94,60,0.22)",
+          boxShadow: "0 4px 30px rgba(139,94,60,0.12), 0 1px 0 rgba(201,168,76,0.15)"
         } : {},
         "data-ocid": "navbar",
         children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between h-16 md:h-20", children: [
@@ -81588,46 +83650,48 @@ function Navbar() {
             "button",
             {
               type: "button",
-              onClick: () => scrollTo("#home"),
+              onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
               className: "flex flex-col leading-none text-left",
               "data-ocid": "navbar.logo_link",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
-                    className: "font-display text-2xl md:text-3xl font-bold gradient-text tracking-wide",
-                    style: { textShadow: "0 0 30px rgba(212,175,55,0.20)" },
-                    children: studioInfo.shortName
+                    className: "font-display text-xl md:text-2xl font-bold gradient-text tracking-wide leading-tight",
+                    style: { textShadow: "0 0 20px rgba(139,94,60,0.15)" },
+                    children: "Makeup by Snehal Pawar"
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
-                    className: "text-[10px] tracking-[0.3em] uppercase font-body font-light mt-0.5",
-                    style: { color: "rgba(212,175,55,0.72)" },
-                    children: "Makeup & Nail Studio"
+                    className: "text-[9px] tracking-[0.25em] uppercase font-body font-medium mt-0.5",
+                    style: { color: "rgba(139,94,60,0.72)" },
+                    children: "Beauty & Bridal Salon"
                   }
                 )
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-8", children: navLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-6", children: navLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "button",
             {
               type: "button",
-              onClick: () => scrollTo(link.href),
-              className: "text-sm font-body font-medium tracking-widest uppercase transition-colors duration-300 relative group",
-              style: { color: "rgba(245,240,232,0.72)" },
+              onClick: () => handleNav(link.href, link.isPage),
+              className: "text-sm font-body font-medium tracking-wider uppercase transition-colors duration-300 relative group",
+              style: {
+                color: scrolled ? "rgba(60,30,10,0.82)" : "rgba(60,30,10,0.75)"
+              },
               "data-ocid": `navbar.${link.label.toLowerCase()}_link`,
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hover:text-[#d4af37] transition-colors duration-300", children: link.label }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hover:text-[#8b5e3c] transition-colors duration-300", children: link.label }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
                     className: "absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full",
                     style: {
-                      background: "#d4af37",
-                      boxShadow: "0 0 8px rgba(212,175,55,0.6)"
+                      background: "#8b5e3c",
+                      boxShadow: "0 0 8px rgba(139,94,60,0.5)"
                     }
                   }
                 )
@@ -81635,10 +83699,11 @@ function Navbar() {
             }
           ) }, link.href)) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden md:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
+            "a",
             {
-              type: "button",
-              onClick: () => window.open(studioInfo.whatsappUrl, "_blank"),
+              href: studioInfo.whatsappUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
               className: "btn-gold text-xs py-2.5 px-5 rounded-md",
               "data-ocid": "navbar.book_now_button",
               children: "Book Now"
@@ -81649,10 +83714,10 @@ function Navbar() {
             {
               type: "button",
               onClick: () => setMobileOpen(!mobileOpen),
-              className: "md:hidden p-2",
+              className: "md:hidden p-2 rounded-lg transition-smooth",
               style: {
-                color: "#d4af37",
-                filter: "drop-shadow(0 0 6px rgba(212,175,55,0.5))"
+                color: "#8b5e3c",
+                background: mobileOpen ? "rgba(139,94,60,0.1)" : "transparent"
               },
               "aria-label": "Toggle mobile menu",
               "data-ocid": "navbar.mobile_menu_toggle",
@@ -81665,42 +83730,46 @@ function Navbar() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
       motion.div,
       {
-        initial: { opacity: 0, y: -20 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -20 },
-        transition: { duration: 0.25 },
-        className: "fixed inset-0 z-[55] pt-16",
+        initial: { opacity: 0, height: 0 },
+        animate: { opacity: 1, height: "auto" },
+        exit: { opacity: 0, height: 0 },
+        transition: { duration: 0.3, ease: "easeInOut" },
+        className: "fixed top-16 left-0 right-0 z-[55] overflow-hidden",
         style: {
-          background: "rgba(5,5,5,0.97)",
+          background: "rgba(253,246,238,0.98)",
           backdropFilter: "blur(32px)",
-          WebkitBackdropFilter: "blur(32px)"
+          WebkitBackdropFilter: "blur(32px)",
+          borderBottom: "1px solid rgba(139,94,60,0.2)",
+          boxShadow: "0 8px 40px rgba(139,94,60,0.15)"
         },
         "data-ocid": "navbar.mobile_menu",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center h-full gap-8 pb-20", children: [
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col px-6 py-6 gap-1", children: [
           navLinks.map((link, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.button,
             {
               type: "button",
-              onClick: () => scrollTo(link.href),
-              initial: { opacity: 0, y: 20 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: i2 * 0.08 },
-              className: "font-display text-3xl font-semibold transition-colors",
-              style: { color: "rgba(245,240,232,0.88)" },
+              onClick: () => handleNav(link.href, link.isPage),
+              initial: { opacity: 0, x: -20 },
+              animate: { opacity: 1, x: 0 },
+              transition: { delay: i2 * 0.06 },
+              className: "text-left py-3.5 px-4 rounded-xl font-body text-base font-semibold transition-smooth hover:bg-[rgba(139,94,60,0.08)] active:bg-[rgba(139,94,60,0.15)] border-b border-[rgba(139,94,60,0.08)] last:border-0",
+              style: { color: "rgba(60,30,10,0.85)" },
               "data-ocid": `navbar.mobile_${link.label.toLowerCase()}_link`,
               children: link.label
             },
             link.href
           )),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.button,
+            motion.a,
             {
-              type: "button",
-              onClick: () => window.open(studioInfo.whatsappUrl, "_blank"),
-              initial: { opacity: 0, y: 20 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: navLinks.length * 0.08 },
-              className: "btn-gold mt-4",
+              href: studioInfo.whatsappUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              initial: { opacity: 0, x: -20 },
+              animate: { opacity: 1, x: 0 },
+              transition: { delay: navLinks.length * 0.06 },
+              className: "btn-gold mt-4 text-center",
+              onClick: () => setMobileOpen(false),
               "data-ocid": "navbar.mobile_book_button",
               children: "Book Appointment"
             }
@@ -81710,330 +83779,223 @@ function Navbar() {
     ) })
   ] });
 }
-function FloatingOrb({
-  position,
-  color: color2,
-  speed,
-  distort: distort2
-}) {
-  const meshRef = reactExports.useRef(null);
-  useFrame((state2) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state2.clock.elapsedTime * speed * 0.3) * 0.3;
-      meshRef.current.rotation.y = state2.clock.elapsedTime * speed * 0.2;
-    }
-  });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed, rotationIntensity: 0.4, floatIntensity: 1.2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sphere2, { ref: meshRef, args: [1, 48, 48], position, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-    MeshDistortMaterial,
-    {
-      color: color2,
-      attach: "material",
-      distort: distort2,
-      speed: 2,
-      roughness: 0.1,
-      metalness: 0.8,
-      transparent: true,
-      opacity: 0.22
-    }
-  ) }) });
-}
-function Scene3D() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.5 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 1.2, color: "#d4af37" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-5, -5, 3], intensity: 0.8, color: "#b76e79" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      FloatingOrb,
-      {
-        position: [-4, 2, -2],
-        color: "#d4af37",
-        speed: 0.8,
-        distort: 0.5
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      FloatingOrb,
-      {
-        position: [4, -2, -3],
-        color: "#b76e79",
-        speed: 1.2,
-        distort: 0.4
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      FloatingOrb,
-      {
-        position: [0, 3, -4],
-        color: "#e8c84a",
-        speed: 0.6,
-        distort: 0.6
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      FloatingOrb,
-      {
-        position: [-3, -3, -2],
-        color: "#c9a227",
-        speed: 1,
-        distort: 0.35
-      }
-    )
-  ] });
-}
-function ServiceCard({ icon, name, description, index: index2 }) {
+const services = [
+  {
+    emoji: "👰",
+    name: "Bridal Makeup",
+    description: "Flawless bridal transformations for your big day. Timeless looks crafted with premium techniques.",
+    price: "₹8,000 onwards"
+  },
+  {
+    emoji: "✨",
+    name: "HD Makeup",
+    description: "High-definition finish for photos and events. Camera-perfect glow that lasts all day.",
+    price: "₹4,000 onwards"
+  },
+  {
+    emoji: "💨",
+    name: "Airbrush Makeup",
+    description: "Flawless airbrush finish, lasts all day. Lightweight feel with a second-skin natural look.",
+    price: "₹5,000 onwards"
+  },
+  {
+    emoji: "💍",
+    name: "Engagement Makeup",
+    description: "Look stunning at your engagement ceremony. Elegant and romantic looks for this special milestone.",
+    price: "₹4,500 onwards"
+  },
+  {
+    emoji: "🌟",
+    name: "Reception Makeup",
+    description: "Glamorous reception look to dazzle all night. Bold, beautiful, and party-ready till dawn.",
+    price: "₹5,500 onwards"
+  },
+  {
+    emoji: "💅",
+    name: "Nail Art",
+    description: "Custom nail art designs for every occasion. Intricate 3D designs, gel art, and bridal sets.",
+    price: "₹500 onwards"
+  },
+  {
+    emoji: "🎉",
+    name: "Party Makeup",
+    description: "Perfect glam for parties and celebrations. Bold or subtle, we create the look you vision.",
+    price: "₹2,500 onwards"
+  },
+  {
+    emoji: "🎓",
+    name: "Academy Training",
+    description: "Professional makeup courses for aspiring artists. Hands-on training with industry expertise.",
+    price: "₹15,000 onwards"
+  }
+];
+function ServiceCard({ service, index: index2 }) {
+  const [hovered, setHovered] = reactExports.useState(false);
   const cardRef = reactExports.useRef(null);
   const [tilt, setTilt] = reactExports.useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = reactExports.useState(false);
   const handleMouseMove = (e) => {
     var _a2;
     const rect = (_a2 = cardRef.current) == null ? void 0 : _a2.getBoundingClientRect();
     if (!rect) return;
-    const x2 = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const tiltX = (y - centerY) / centerY * -10;
-    const tiltY = (x2 - centerX) / centerX * 10;
-    setTilt({ x: tiltX, y: tiltY });
-  };
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setIsHovered(false);
+    const x2 = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+    const y = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+    setTilt({ x: x2, y });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     motion.div,
     {
       initial: { opacity: 0, y: 50 },
       whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, margin: "-60px" },
+      viewport: { once: true, margin: "-50px" },
       transition: {
         duration: 0.65,
-        delay: index2 * 0.1,
+        delay: index2 * 0.08,
         ease: [0.22, 1, 0.36, 1]
       },
       "data-ocid": `services.item.${index2 + 1}`,
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
           ref: cardRef,
           onMouseMove: handleMouseMove,
-          onMouseEnter: () => setIsHovered(true),
-          onMouseLeave: handleMouseLeave,
-          className: "relative group cursor-pointer h-full",
-          style: {
-            transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-            transition: isHovered ? "transform 0.1s ease-out" : "transform 0.5s ease-out"
+          onMouseEnter: () => setHovered(true),
+          onMouseLeave: () => {
+            setHovered(false);
+            setTilt({ x: 0, y: 0 });
           },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              className: "relative flex flex-col gap-4 p-7 h-full rounded-2xl overflow-hidden",
-              style: {
-                background: "rgba(10,10,10,0.62)",
-                backdropFilter: "blur(28px)",
-                WebkitBackdropFilter: "blur(28px)",
-                border: isHovered ? "1px solid rgba(212, 175, 55, 0.55)" : "1px solid rgba(212, 175, 55, 0.20)",
-                boxShadow: isHovered ? "inset 0 1px 0 rgba(255,255,255,0.09), 0 0 28px rgba(212,175,55,0.22), 0 0 58px rgba(212,175,55,0.10), 0 20px 60px rgba(0,0,0,0.55)" : "inset 0 1px 0 rgba(255,255,255,0.055), 0 4px 24px rgba(0,0,0,0.40)",
-                transition: "border-color 0.4s ease, box-shadow 0.4s ease"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-2xl overflow-hidden pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: "absolute inset-0 transition-opacity duration-700",
-                    style: {
-                      background: "linear-gradient(135deg, transparent 35%, rgba(212,175,55,0.08) 50%, transparent 65%)",
-                      opacity: isHovered ? 1 : 0
-                    }
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: "w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-400",
-                    style: {
-                      background: "linear-gradient(135deg, rgba(212,175,55,0.18), rgba(183,110,121,0.10))",
-                      border: "1px solid rgba(212,175,55,0.28)",
-                      boxShadow: isHovered ? "0 0 22px rgba(212,175,55,0.50), 0 0 45px rgba(212,175,55,0.20)" : "0 0 10px rgba(212,175,55,0.18)",
-                      transition: "box-shadow 0.3s ease"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "span",
-                      {
-                        className: "text-gold",
-                        style: { filter: "drop-shadow(0 0 8px rgba(212,175,55,0.60))" },
-                        children: icon
-                      }
-                    )
-                  }
+          className: "card-premium p-7 h-full flex flex-col gap-4 cursor-pointer relative overflow-hidden",
+          style: {
+            transform: hovered ? `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : "perspective(900px) rotateX(0deg) rotateY(0deg)",
+            transition: hovered ? "transform 0.1s" : "transform 0.5s ease-out",
+            boxShadow: hovered ? "0 0 35px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.12), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.08)",
+            borderColor: hovered ? "rgba(201,168,76,0.6)" : "rgba(201,168,76,0.3)"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none rounded-[20px] overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.09) 55%, transparent 70%)",
+                  opacity: hovered ? 1 : 0,
+                  transition: "opacity 0.4s"
+                }
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0",
+                style: {
+                  background: "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(232,168,124,0.10))",
+                  border: "1px solid rgba(201,168,76,0.35)",
+                  boxShadow: hovered ? "0 0 22px rgba(201,168,76,0.45), 0 0 45px rgba(201,168,76,0.18)" : "0 0 10px rgba(201,168,76,0.15)",
+                  transition: "box-shadow 0.3s"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { role: "img", "aria-hidden": "true", children: service.emoji })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "h3",
+              {
+                className: "font-display text-xl leading-tight",
+                style: { color: "#6b3f1f" },
+                children: service.name
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "font-body text-sm leading-relaxed flex-1",
+                style: { color: "#8b5e3c" },
+                children: service.description
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "font-accent text-sm gradient-text",
+                style: { letterSpacing: "1px" },
+                children: service.price
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                className: "btn-outline-premium w-full text-center text-xs mt-1",
+                "data-ocid": `services.book_button.${index2 + 1}`,
+                onClick: () => window.open(
+                  `https://wa.me/919561548151?text=Hi%2C%20I%20want%20to%20book%20${encodeURIComponent(service.name)}`,
+                  "_blank"
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h3",
-                  {
-                    className: "font-display text-xl leading-tight",
-                    style: {
-                      background: "linear-gradient(135deg, #d4af37 0%, #e8c84a 50%, #b76e79 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    },
-                    children: name
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "p",
-                  {
-                    className: "text-sm leading-relaxed flex-1",
-                    style: { color: "rgba(230,220,210,0.72)" },
-                    children: description
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "button",
-                  {
-                    type: "button",
-                    className: "btn-outline-gold w-full text-center text-xs mt-1",
-                    "data-ocid": `services.book_button.${index2 + 1}`,
-                    onClick: () => window.open(
-                      `https://wa.me/918766367033?text=Hi%2C%20I%20want%20to%20book%20${encodeURIComponent(name)}`,
-                      "_blank"
-                    ),
-                    children: "Book Now"
-                  }
-                )
-              ]
-            }
-          )
+                children: "Book Now"
+              }
+            )
+          ]
         }
       )
     }
   );
 }
-const services = [
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { size: 24 }),
-    name: "Bridal Makeup",
-    description: "A timeless bridal look crafted to make you glow on your special day. HD, airbrush & traditional techniques blended for perfection."
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles$1, { size: 24 }),
-    name: "Pre-Bridal Package",
-    description: "Complete 5-session pre-bridal package including deep facials, skin prep treatments & trial makeup for a radiant transformation."
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { size: 24 }),
-    name: "Party & Event Makeup",
-    description: "Glamorous party looks, reception glam, and event-ready beauty for every occasion — from intimate gatherings to grand soirées."
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Palette, { size: 24 }),
-    name: "Nail Art & Extensions",
-    description: "Intricate nail designs, gel extensions, 3D nail art & bridal nail packages — curated for the modern Indian woman."
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Camera$1, { size: 24 }),
-    name: "HD & Airbrush Makeup",
-    description: "Camera-perfect finish with HD and airbrush techniques for photoshoots, music videos & professional portfolios."
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { size: 24 }),
-    name: "Engagement Makeup",
-    description: "Elegant engagement looks blending tradition with modern beauty aesthetics — where timeless grace meets contemporary style."
-  }
-];
 function ServicesSection() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
       id: "services",
-      className: "relative overflow-hidden",
-      style: {
-        background: "#070707",
-        paddingTop: "7rem",
-        paddingBottom: "7rem"
-      },
+      className: "relative section-padding section-bg-warm overflow-hidden",
+      "data-ocid": "services.section",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute inset-0 pointer-events-none",
-            style: { zIndex: 0 },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Canvas,
-              {
-                camera: { position: [0, 0, 6], fov: 60 },
-                style: { opacity: 0.55 },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Scene3D, {})
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
+            className: "absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 65%)",
               filter: "blur(80px)",
-              transform: "translate(-20%, -20%)"
+              transform: "translateY(-30%)"
             }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full pointer-events-none",
+            className: "absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(183,110,121,0.08) 0%, transparent 65%)",
-              filter: "blur(80px)",
-              transform: "translate(20%, 20%)"
+              background: "radial-gradient(ellipse, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              filter: "blur(70px)",
+              transform: "translateY(20%)"
             }
           }
         ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute top-0 left-0 right-0" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
-              className: "text-center mb-16",
+              className: "text-center mb-14 gold-line",
               initial: { opacity: 0, y: 30 },
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
-              transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-              "data-ocid": "services.section",
+              transition: { duration: 0.8 },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.div,
-                  {
-                    className: "inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full glass-ultra",
-                    initial: { opacity: 0, scale: 0.9 },
-                    whileInView: { opacity: 1, scale: 1 },
-                    viewport: { once: true },
-                    transition: { duration: 0.5, delay: 0.1 },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gold text-xs tracking-widest uppercase font-mono", children: "What We Offer" })
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "font-display text-4xl sm:text-5xl lg:text-6xl mb-5 leading-tight",
-                    style: {
-                      background: "linear-gradient(135deg, #b8941f 0%, #d4af37 40%, #e8c84a 60%, #b76e79 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      textShadow: "none",
-                      filter: "drop-shadow(0 0 20px rgba(212,175,55,0.15))"
-                    },
-                    children: "Our Signature Services"
-                  }
-                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-lg max-w-2xl mx-auto",
-                    style: { color: "rgba(210,195,175,0.72)" },
-                    children: "Luxury beauty services crafted for your most precious moments — where artistry meets elegance."
+                    className: "font-accent text-xs uppercase tracking-[3px] mb-3",
+                    style: { color: "#c9a84c", letterSpacing: "3px" },
+                    children: "What We Offer"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display text-4xl sm:text-5xl lg:text-6xl mb-5 leading-tight gradient-text", children: "Our Services" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-body text-lg max-w-2xl mx-auto",
+                    style: { color: "#8b5e3c" },
+                    children: "Expert beauty services tailored for your special moments"
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 flex items-center justify-center gap-4", children: [
@@ -82044,7 +84006,7 @@ function ServicesSection() {
                       className: "w-2 h-2 rounded-full",
                       style: {
                         background: "#d4af37",
-                        boxShadow: "0 0 12px rgba(212,175,55,0.9), 0 0 24px rgba(212,175,55,0.4)"
+                        boxShadow: "0 0 12px rgba(212,175,55,0.9)"
                       }
                     }
                   ),
@@ -82056,54 +84018,46 @@ function ServicesSection() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+              className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
               "data-ocid": "services.list",
-              children: services.map((service, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                ServiceCard,
-                {
-                  icon: service.icon,
-                  name: service.name,
-                  description: service.description,
-                  index: index2
-                },
-                service.name
-              ))
+              children: services.map((service, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(ServiceCard, { service, index: i2 }, service.name))
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
             {
               className: "text-center mt-14",
-              initial: { opacity: 0, y: 25 },
+              initial: { opacity: 0, y: 20 },
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
-              transition: { duration: 0.7, delay: 0.3 },
+              transition: { duration: 0.6, delay: 0.3 },
               children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-accent text-sm uppercase tracking-widest mb-6",
+                    style: { color: "#c9a84c", letterSpacing: "2px" },
+                    children: "All packages customizable — Contact for personalized quotes"
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "button",
                   {
                     type: "button",
-                    className: "btn-gold text-sm",
+                    className: "btn-premium",
                     "data-ocid": "services.cta_button",
                     onClick: () => window.open(
-                      "https://wa.me/918766367033?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services",
+                      "https://wa.me/919561548151?text=Hi%2C%20I%20would%20like%20a%20personalized%20quote",
                       "_blank"
                     ),
-                    children: "Book a Free Consultation"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "p",
-                  {
-                    className: "mt-4 text-xs",
-                    style: { color: "rgba(180,160,130,0.65)" },
-                    children: "All services available in Delhi NCR · Home visits on request"
+                    children: "Get a Free Quote"
                   }
                 )
               ]
             }
           )
-        ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute bottom-0 left-0 right-0" })
       ]
     }
   );
@@ -82111,102 +84065,65 @@ function ServicesSection() {
 const testimonials = [
   {
     name: "Priya Sharma",
-    location: "South Delhi",
+    location: "Bridal — Amravati",
     service: "Bridal Makeup",
-    rating: 5,
-    review: "Yakshi transformed me into the most beautiful version of myself on my wedding day. The makeup lasted all 12 hours and I got compliments throughout! Her attention to detail and understanding of Indian bridal aesthetics is unmatched. Truly a celebrity experience!",
-    initial: "P",
-    avatarColor: "from-rose-400 to-pink-600"
+    review: "Snehal Didi made me look absolutely stunning on my wedding day! Every photo turned out perfect. She truly understands Indian bridal makeup.",
+    initial: "P"
   },
   {
-    name: "Ananya Kapoor",
-    location: "Gurgaon",
-    service: "Celebrity Event",
-    rating: 5,
-    review: "I've worked with many makeup artists, but Yakshi is on another level. She created the most stunning look for my film premiere. The airbrush technique was flawless on camera. Everyone kept asking who did my makeup!",
-    initial: "A",
-    avatarColor: "from-amber-400 to-orange-500"
+    name: "Kavya Deshmukh",
+    location: "Academy Student — Nagpur",
+    service: "Academy Training",
+    review: "I attended her makeup academy and it completely changed my career. Best investment I ever made! The hands-on training is exceptional.",
+    initial: "K"
   },
   {
-    name: "Meera Patel",
-    location: "Noida",
-    service: "Bridal + Nail Art",
-    rating: 5,
-    review: "Got both bridal makeup and nail art done for my wedding. The intricate nail designs she created perfectly matched my lehenga. She has an incredible eye for detail. Highly recommend for brides who want perfection!",
-    initial: "M",
-    avatarColor: "from-purple-400 to-violet-600"
+    name: "Riya Patel",
+    location: "Engagement Makeup — Akola",
+    service: "Engagement Makeup",
+    review: "For my engagement, she created the most beautiful look. All my relatives were asking who did my makeup! Snehal Didi is truly talented.",
+    initial: "R"
   },
   {
-    name: "Deepika Srivastava",
-    location: "Greater Noida",
-    service: "Pre-Bridal Package",
-    rating: 5,
-    review: "Booked the complete pre-bridal package and it was worth every rupee! My skin glowed on the wedding day and the makeup lasted through all the ceremonies. Yakshi is truly talented and professional.",
-    initial: "D",
-    avatarColor: "from-teal-400 to-cyan-600"
+    name: "Anjali Kulkarni",
+    location: "Reception — Amravati",
+    service: "Reception Makeup",
+    review: "Professional, punctual and absolutely talented. My reception look was better than I imagined. Will always recommend Snehal!",
+    initial: "A"
   },
   {
-    name: "Ritu Agarwal",
-    location: "Delhi Cantt",
-    service: "Party Makeup",
-    rating: 5,
-    review: "Had party makeup done for my sister's reception and I looked like a celebrity! The glow, the contour, everything was perfect. Yakshi truly deserves her reputation as a celebrity artist. Will definitely come back!",
-    initial: "R",
-    avatarColor: "from-pink-400 to-rose-600"
+    name: "Neha Joshi",
+    location: "Bridal — Wardha",
+    service: "Bridal Makeup",
+    review: "Celebrity-level makeup at an affordable price. I felt like a queen on my big day! The airbrush finish lasted all night without a touch-up.",
+    initial: "N"
+  },
+  {
+    name: "Pooja Mahajan",
+    location: "Nail Art — Pune",
+    service: "Nail Art",
+    review: "The nail art she did for my wedding was extraordinary. All my bridesmaids were jealous! Intricate designs perfectly matched my lehenga.",
+    initial: "P"
   }
 ];
-function Particle({
-  x: x2,
-  y,
-  size,
-  delay: delay2
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    motion.div,
-    {
-      className: "absolute rounded-full pointer-events-none",
-      style: {
-        left: `${x2}%`,
-        top: `${y}%`,
-        width: size,
-        height: size,
-        background: "radial-gradient(circle, rgba(212,175,55,0.55) 0%, transparent 70%)",
-        boxShadow: "0 0 8px rgba(212,175,55,0.3)"
-      },
-      animate: {
-        y: [0, -28, 0],
-        opacity: [0.25, 0.75, 0.25],
-        scale: [1, 1.4, 1]
-      },
-      transition: {
-        duration: 4 + delay2,
-        repeat: Number.POSITIVE_INFINITY,
-        delay: delay2,
-        ease: "easeInOut"
-      }
-    }
-  );
-}
-const PARTICLES = Array.from({ length: 18 }, (_, i2) => ({
-  id: i2,
-  x: (i2 * 17 + 5) % 100,
-  y: (i2 * 23 + 10) % 90,
-  size: 4 + i2 % 5 * 3,
-  delay: i2 * 0.4
-}));
+const AVATAR_COLORS = [
+  "#c9a84c",
+  "#e8a87c",
+  "#b5845a",
+  "#d4af37",
+  "#c9a84c",
+  "#e8c878"
+];
 const cardVariants = {
-  enter: (d) => ({ x: d > 0 ? 130 : -130, opacity: 0, scale: 0.94 }),
+  enter: (d) => ({ x: d > 0 ? 140 : -140, opacity: 0, scale: 0.94 }),
   center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: {
-      duration: 0.55,
-      ease: "easeOut"
-    }
+    transition: { duration: 0.55, ease: "easeOut" }
   },
   exit: (d) => ({
-    x: d > 0 ? -130 : 130,
+    x: d > 0 ? -140 : 140,
     opacity: 0,
     scale: 0.94,
     transition: { duration: 0.38, ease: "easeIn" }
@@ -82215,6 +84132,7 @@ const cardVariants = {
 function TestimonialsSection() {
   const [current, setCurrent] = reactExports.useState(0);
   const [direction, setDirection] = reactExports.useState(1);
+  const [paused, setPaused] = reactExports.useState(false);
   const autoRef = reactExports.useRef(null);
   const touchStartX = reactExports.useRef(null);
   const goTo = reactExports.useCallback((idx, dir) => {
@@ -82222,21 +84140,20 @@ function TestimonialsSection() {
     setCurrent((idx + testimonials.length) % testimonials.length);
   }, []);
   const next = reactExports.useCallback(() => {
-    setCurrent((c2) => {
-      setDirection(1);
-      return (c2 + 1) % testimonials.length;
-    });
+    setDirection(1);
+    setCurrent((c2) => (c2 + 1) % testimonials.length);
   }, []);
   const startAuto = reactExports.useCallback(() => {
     if (autoRef.current) clearInterval(autoRef.current);
-    autoRef.current = setInterval(next, 4e3);
+    autoRef.current = setInterval(next, 4500);
   }, [next]);
   reactExports.useEffect(() => {
-    startAuto();
+    if (!paused) startAuto();
+    else if (autoRef.current) clearInterval(autoRef.current);
     return () => {
       if (autoRef.current) clearInterval(autoRef.current);
     };
-  }, [startAuto]);
+  }, [paused, startAuto]);
   const handlePrev = () => {
     goTo(current - 1, -1);
     startAuto();
@@ -82263,36 +84180,44 @@ function TestimonialsSection() {
     "section",
     {
       id: "testimonials",
-      className: "relative py-28 overflow-hidden",
-      style: {
-        background: "linear-gradient(180deg, #0a0a0a 0%, #0d0a14 50%, #0a0a0a 100%)"
-      },
+      className: "relative section-padding section-bg-beige overflow-hidden",
+      "data-ocid": "testimonials.section",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none", "aria-hidden": "true", children: [
-          PARTICLES.map((p2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Particle, { x: p2.x, y: p2.y, size: p2.size, delay: p2.delay }, p2.id)),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full",
-              style: {
-                background: "radial-gradient(circle, #d4af37 0%, transparent 70%)",
-                filter: "blur(80px)",
-                opacity: 0.09
-              }
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
+            style: {
+              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+              filter: "blur(80px)",
+              transform: "translateX(-50%)"
             }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full",
-              style: {
-                background: "radial-gradient(circle, #b76e79 0%, transparent 70%)",
-                filter: "blur(70px)",
-                opacity: 0.09
-              }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
+            style: {
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 65%)",
+              filter: "blur(70px)",
+              transform: "translate(30%, 30%)"
             }
-          )
-        ] }),
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute top-0 left-0 right-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-24 left-1/2 -translate-x-1/2 font-display text-[220px] leading-none pointer-events-none select-none",
+            style: {
+              color: "rgba(201,168,76,0.06)",
+              fontWeight: 700
+            },
+            "aria-hidden": "true",
+            children: "❝"
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             motion.div,
@@ -82301,43 +84226,23 @@ function TestimonialsSection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.7 },
-              className: "text-center mb-16",
+              className: "text-center mb-16 gold-line",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.span,
-                  {
-                    initial: { opacity: 0 },
-                    whileInView: { opacity: 1 },
-                    viewport: { once: true },
-                    transition: { duration: 0.8, delay: 0.15 },
-                    className: "block text-xs uppercase tracking-[0.28em] mb-4 font-medium",
-                    style: {
-                      color: "#d4af37",
-                      textShadow: "0 0 16px rgba(212,175,55,0.5)"
-                    },
-                    children: "Testimonials"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight",
-                    style: {
-                      background: "linear-gradient(135deg, #d4af37 0%, #f5e6a3 50%, #c9984a 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      filter: "drop-shadow(0 0 20px rgba(212,175,55,0.18))"
-                    },
-                    children: "Client Love Stories"
-                  }
-                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "p",
                   {
-                    className: "text-lg md:text-xl max-w-2xl mx-auto",
-                    style: { color: "rgba(255,255,255,0.62)" },
-                    children: "What our brides and clients say about their experience"
+                    className: "font-accent text-xs uppercase tracking-[3px] mb-3",
+                    style: { color: "#c9a84c", letterSpacing: "3px" },
+                    children: "Testimonials"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display text-4xl md:text-5xl lg:text-6xl gradient-text leading-tight mb-5", children: "What Our Brides Say" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-body text-lg max-w-2xl mx-auto",
+                    style: { color: "#8b5e3c" },
+                    children: "Real stories from real brides — hearts full of joy and faces full of glow"
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -82347,19 +84252,12 @@ function TestimonialsSection() {
                     whileInView: { opacity: 1, scale: 1 },
                     viewport: { once: true },
                     transition: { duration: 0.5, delay: 0.3 },
-                    className: "inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full text-sm font-medium glass-ultra",
-                    style: { color: "#d4af37" },
+                    className: "inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full glass-ultra",
                     children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Star,
-                        {
-                          className: "w-4 h-4 fill-current",
-                          style: { filter: "drop-shadow(0 0 6px rgba(212,175,55,0.7))" }
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "4.9★ on Google" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "rgba(212,175,55,0.4)" }, children: "|" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "500+ Happy Clients" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm gradient-text font-accent", children: "★★★★★" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-body text-sm", style: { color: "#6b3f1f" }, children: "4.9 on Google" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "rgba(201,168,76,0.4)" }, children: "|" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-body text-sm", style: { color: "#6b3f1f" }, children: "500+ Happy Clients" })
                     ]
                   }
                 )
@@ -82370,10 +84268,12 @@ function TestimonialsSection() {
             "div",
             {
               className: "relative",
+              onMouseEnter: () => setPaused(true),
+              onMouseLeave: () => setPaused(false),
               onTouchStart: handleTouchStart,
               onTouchEnd: handleTouchEnd,
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative min-h-[420px] flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { custom: direction, mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative min-h-[380px] flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { custom: direction, mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   motion.div,
                   {
                     custom: direction,
@@ -82385,64 +84285,59 @@ function TestimonialsSection() {
                     children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "div",
                       {
-                        className: "relative rounded-2xl p-8 md:p-10 glass-ultra",
+                        className: "card-premium relative rounded-3xl p-8 md:p-10 overflow-hidden",
                         style: {
-                          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(212,175,55,0.12), 0 0 0 1px rgba(212,175,55,0.10), 0 24px 60px rgba(0,0,0,0.50)",
-                          borderColor: "rgba(212,175,55,0.28)"
+                          background: "rgba(255,255,255,0.80)",
+                          boxShadow: "0 0 50px rgba(201,168,76,0.15), 0 20px 60px rgba(107,63,31,0.10), inset 0 1px 0 rgba(255,255,255,1)",
+                          borderColor: "rgba(201,168,76,0.35)"
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             "div",
                             {
-                              className: "absolute inset-0 rounded-2xl pointer-events-none",
+                              className: "absolute top-4 right-6 font-display text-8xl leading-none pointer-events-none select-none",
                               style: {
-                                background: "linear-gradient(135deg, rgba(212,175,55,0.10) 0%, transparent 55%, rgba(183,110,121,0.07) 100%)"
-                              }
+                                color: "rgba(201,168,76,0.10)",
+                                fontWeight: 700
+                              },
+                              "aria-hidden": "true",
+                              children: "❞"
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10", children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              Quote,
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 mb-5", children: ["s1", "s2", "s3", "s4", "s5"].map((k2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "span",
                               {
-                                className: "w-12 h-12 mb-5",
-                                style: {
-                                  color: "#d4af37",
-                                  opacity: 0.85,
-                                  filter: "drop-shadow(0 0 10px rgba(212,175,55,0.55))"
-                                },
-                                strokeWidth: 1.5
-                              }
-                            ),
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                              "p",
-                              {
-                                className: "text-base md:text-lg leading-relaxed mb-8 italic",
-                                style: { color: "rgba(255,255,255,0.85)" },
-                                children: [
-                                  '"',
-                                  t.review,
-                                  '"'
-                                ]
-                              }
-                            ),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 mb-6", children: ["★", "★★", "★★★", "★★★★", "★★★★★"].slice(0, t.rating).map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                              Star,
-                              {
-                                className: "w-5 h-5 fill-current",
+                                className: "text-lg",
                                 style: {
                                   color: "#d4af37",
                                   filter: "drop-shadow(0 0 5px rgba(212,175,55,0.65))"
-                                }
+                                },
+                                children: "★"
                               },
-                              s
+                              k2
                             )) }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "p",
+                              {
+                                className: "font-body text-base md:text-lg leading-relaxed mb-8 italic",
+                                style: { color: "#5a3a22" },
+                                children: [
+                                  "“",
+                                  t.review,
+                                  "”"
+                                ]
+                              }
+                            ),
                             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4", children: [
                               /* @__PURE__ */ jsxRuntimeExports.jsx(
                                 "div",
                                 {
-                                  className: `w-12 h-12 rounded-full bg-gradient-to-br ${t.avatarColor} flex items-center justify-center text-white font-bold text-lg flex-shrink-0`,
+                                  className: "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0 font-display",
                                   style: {
-                                    boxShadow: "0 0 18px rgba(212,175,55,0.35), 0 0 40px rgba(212,175,55,0.12)"
+                                    background: AVATAR_COLORS[current % AVATAR_COLORS.length],
+                                    boxShadow: "0 0 18px rgba(201,168,76,0.35)",
+                                    color: "#3d2817"
                                   },
                                   children: t.initial
                                 }
@@ -82451,30 +84346,17 @@ function TestimonialsSection() {
                                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                                   "p",
                                   {
-                                    className: "font-semibold text-base",
-                                    style: {
-                                      color: "#d4af37",
-                                      textShadow: "0 0 14px rgba(212,175,55,0.4)"
-                                    },
+                                    className: "font-display text-lg font-semibold",
+                                    style: { color: "#3d2817" },
                                     children: t.name
                                   }
                                 ),
                                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                                   "p",
                                   {
-                                    className: "text-sm",
-                                    style: { color: "rgba(255,255,255,0.52)" },
+                                    className: "font-accent text-xs uppercase tracking-wider mt-0.5",
+                                    style: { color: "#c9a84c" },
                                     children: t.location
-                                  }
-                                ),
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  "span",
-                                  {
-                                    className: "inline-block text-xs px-2.5 py-0.5 rounded-full mt-1 font-medium glass-card",
-                                    style: {
-                                      color: "#d4af37"
-                                    },
-                                    children: t.service
                                   }
                                 )
                               ] })
@@ -82490,14 +84372,15 @@ function TestimonialsSection() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.button,
                     {
+                      type: "button",
                       "data-ocid": "testimonials.pagination_prev",
                       "aria-label": "Previous testimonial",
                       onClick: handlePrev,
-                      className: "w-12 h-12 rounded-full flex items-center justify-center focus:outline-none focus-visible:ring-2 glass-ultra",
-                      style: { color: "#d4af37" },
+                      className: "w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth",
+                      style: { color: "#c9a84c" },
                       whileHover: {
                         scale: 1.12,
-                        boxShadow: "0 0 22px rgba(212,175,55,0.40), 0 0 50px rgba(212,175,55,0.15)"
+                        boxShadow: "0 0 22px rgba(201,168,76,0.40)"
                       },
                       whileTap: { scale: 0.93 },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-5 h-5" })
@@ -82510,12 +84393,12 @@ function TestimonialsSection() {
                       "data-ocid": `testimonials.item.${i2 + 1}`,
                       "aria-label": `Go to testimonial ${i2 + 1}`,
                       onClick: () => handleDot(i2),
-                      className: "rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2",
+                      className: "rounded-full transition-all duration-300",
                       style: {
                         width: i2 === current ? 24 : 8,
                         height: 8,
-                        background: i2 === current ? "#d4af37" : "rgba(212,175,55,0.28)",
-                        boxShadow: i2 === current ? "0 0 12px rgba(212,175,55,0.65), 0 0 24px rgba(212,175,55,0.25)" : "none"
+                        background: i2 === current ? "#c9a84c" : "rgba(201,168,76,0.28)",
+                        boxShadow: i2 === current ? "0 0 12px rgba(201,168,76,0.65)" : "none"
                       }
                     },
                     item.name
@@ -82523,14 +84406,15 @@ function TestimonialsSection() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.button,
                     {
+                      type: "button",
                       "data-ocid": "testimonials.pagination_next",
                       "aria-label": "Next testimonial",
                       onClick: handleNext,
-                      className: "w-12 h-12 rounded-full flex items-center justify-center focus:outline-none focus-visible:ring-2 glass-ultra",
-                      style: { color: "#d4af37" },
+                      className: "w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth",
+                      style: { color: "#c9a84c" },
                       whileHover: {
                         scale: 1.12,
-                        boxShadow: "0 0 22px rgba(212,175,55,0.40), 0 0 50px rgba(212,175,55,0.15)"
+                        boxShadow: "0 0 22px rgba(201,168,76,0.40)"
                       },
                       whileTap: { scale: 0.93 },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-5 h-5" })
@@ -82538,14 +84422,10 @@ function TestimonialsSection() {
                   )
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  motion.p,
+                  "p",
                   {
-                    initial: { opacity: 0 },
-                    whileInView: { opacity: 1 },
-                    viewport: { once: true },
-                    transition: { delay: 0.5 },
-                    className: "text-center mt-5 text-sm tabular-nums",
-                    style: { color: "rgba(255,255,255,0.30)" },
+                    className: "text-center mt-4 text-sm tabular-nums font-body",
+                    style: { color: "rgba(107,63,31,0.45)" },
                     children: [
                       current + 1,
                       " / ",
@@ -82556,11 +84436,546 @@ function TestimonialsSection() {
               ]
             }
           )
-        ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-divider absolute bottom-0 left-0 right-0" })
       ]
     }
   );
 }
+const allTransformations = [
+  {
+    src: "/assets/snehal-bridal-1.png",
+    caption: "Bridal Glam",
+    category: "Bridal",
+    desc: "Full HD bridal transformation with rose-gold eyes"
+  },
+  {
+    src: "/assets/snehal-bridal-2.png",
+    caption: "Royal Bride",
+    category: "Bridal",
+    desc: "Luxury gold & red bridal look for wedding day"
+  },
+  {
+    src: "/assets/snehal-bridal-3.png",
+    caption: "Traditional Elegance",
+    category: "Bridal",
+    desc: "Classic Indian bridal makeup with dewy base"
+  },
+  {
+    src: "/assets/snehal-gallery-1.png",
+    caption: "Glamour Eyes",
+    category: "HD Makeup",
+    desc: "Stunning eye artistry & airbrushed glow"
+  },
+  {
+    src: "/assets/snehal-gallery-2.png",
+    caption: "HD Airbrush Perfection",
+    category: "HD Makeup",
+    desc: "Camera-ready flawless matte finish"
+  },
+  {
+    src: "/assets/snehal-gallery-3.png",
+    caption: "Reception Grand Look",
+    category: "Reception",
+    desc: "Bold reception night look with smoky drama"
+  },
+  {
+    src: "/assets/snehal-gallery-4.png",
+    caption: "Engagement Radiance",
+    category: "Engagement",
+    desc: "Fresh & dewy engagement ceremony makeup"
+  },
+  {
+    src: "/assets/snehal-gallery-5.png",
+    caption: "Airbrush Masterpiece",
+    category: "Airbrush",
+    desc: "Professional airbrush for long-wear perfection"
+  },
+  {
+    src: "/assets/snehal-hero.png",
+    caption: "Signature Look",
+    category: "HD Makeup",
+    desc: "Snehal&apos;s signature premium HD technique"
+  },
+  {
+    src: "/assets/photos/photo1.jpg",
+    caption: "Gold Goddess",
+    category: "Bridal",
+    desc: "Golden hour bridal with shimmery highlights"
+  },
+  {
+    src: "/assets/photos/photo2.jpg",
+    caption: "Lehenga Bride",
+    category: "Bridal",
+    desc: "Coordinated look to complement lehenga ensemble"
+  },
+  {
+    src: "/assets/photos/photo3.jpg",
+    caption: "Statement Lip",
+    category: "Engagement",
+    desc: "Bold lip art for the pre-wedding photoshoot"
+  }
+];
+const stats$1 = [
+  { val: "1000+", label: "Transformations", icon: TrendingUp },
+  { val: "10+", label: "Years of Mastery", icon: Star },
+  { val: "100%", label: "Client Satisfaction", icon: Heart },
+  { val: "500+", label: "Brides Beautified", icon: Camera$1 }
+];
+const filters = [
+  "All",
+  "Bridal",
+  "HD Makeup",
+  "Airbrush",
+  "Engagement",
+  "Reception"
+];
+const categoryColors = {
+  Bridal: "#c9a84c",
+  "HD Makeup": "#8b5e3c",
+  Airbrush: "#c9a84c",
+  Reception: "#8b5e3c",
+  Engagement: "#c9a84c"
+};
+function FloatingOrbs() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "absolute inset-0 overflow-hidden pointer-events-none",
+      style: { zIndex: 0 },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float-slow",
+            style: {
+              width: 500,
+              height: 500,
+              top: "-20%",
+              left: "-10%",
+              background: "radial-gradient(circle, rgba(201,168,76,0.11) 0%, transparent 70%)",
+              filter: "blur(65px)"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute rounded-full animate-float",
+            style: {
+              width: 350,
+              height: 350,
+              bottom: "-15%",
+              right: "-8%",
+              background: "radial-gradient(circle, rgba(232,168,124,0.09) 0%, transparent 70%)",
+              filter: "blur(50px)",
+              animationDelay: "-2s"
+            }
+          }
+        ),
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            className: "absolute rounded-full",
+            style: {
+              width: 3 + i2 % 3,
+              height: 3 + i2 % 3,
+              background: `rgba(201,168,76,${0.3 + i2 % 3 * 0.12})`,
+              left: `${5 + i2 * 9 % 90}%`,
+              top: `${15 + i2 * 11 % 70}%`,
+              boxShadow: "0 0 6px rgba(201,168,76,0.3)"
+            },
+            animate: { y: [0, -14, 0], opacity: [0.25, 0.75, 0.25] },
+            transition: {
+              duration: 2.5 + i2 % 3,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: i2 * 0.4,
+              ease: "easeInOut"
+            }
+          },
+          i2
+        ))
+      ]
+    }
+  );
+}
+function TransformationsPage() {
+  const [activeFilter, setActiveFilter] = reactExports.useState("All");
+  const filtered = activeFilter === "All" ? allTransformations : allTransformations.filter((t) => t.category === activeFilter);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "min-h-screen",
+      style: { backgroundColor: "#fdf8f3" },
+      "data-ocid": "transformations.page",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "relative overflow-hidden py-32",
+            style: {
+              background: "linear-gradient(160deg, #fdf8f3 0%, #f5e6d3 50%, #fdf8f3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingOrbs, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute rounded-full pointer-events-none",
+                  style: {
+                    width: 650,
+                    height: 650,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%,-50%)",
+                    border: "1px solid rgba(201,168,76,0.09)",
+                    zIndex: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "max-w-3xl mx-auto px-4 text-center relative",
+                  style: { zIndex: 2 },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, y: -15 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.7 },
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles$1, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "span",
+                            {
+                              className: "text-xs tracking-[0.3em] uppercase font-accent",
+                              style: { color: "#8b5e3c" },
+                              children: "Portfolio & Gallery"
+                            }
+                          )
+                        ] })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.h1,
+                      {
+                        className: "font-display italic gradient-text mb-4",
+                        style: { fontSize: "clamp(2.8rem, 6vw, 5rem)", lineHeight: 1.12 },
+                        initial: { opacity: 0, y: 25 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.8, delay: 0.1 },
+                        children: [
+                          "Transformation",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "0.75em" }, children: "Gallery" })
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      motion.p,
+                      {
+                        className: "text-lg font-body mb-10 max-w-xl mx-auto",
+                        style: { color: "#8b5e3c" },
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { delay: 0.3 },
+                        children: "Witness the Magic — Every Face, a Masterpiece"
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: "py-10 border-y",
+            style: {
+              background: "rgba(255,255,255,0.8)",
+              backdropFilter: "blur(20px)",
+              borderColor: "rgba(201,168,76,0.18)"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-4xl mx-auto px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-6", children: stats$1.map((s, i2) => {
+              const Icon2 = s.icon;
+              return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  className: "text-center flex flex-col items-center gap-2",
+                  initial: { opacity: 0, y: 20 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true },
+                  transition: { delay: i2 * 0.1 },
+                  "data-ocid": `transformations.stat.${i2 + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 20, style: { color: "#c9a84c" } }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "text-3xl font-display font-bold",
+                        style: {
+                          color: "#c9a84c",
+                          textShadow: "0 0 20px rgba(201,168,76,0.25)"
+                        },
+                        children: s.val
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body", style: { color: "#8b5e3c" }, children: s.label })
+                  ]
+                },
+                s.label
+              );
+            }) }) })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "section-padding section-bg-cream", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto px-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              className: "text-center mb-10",
+              initial: { opacity: 0, y: 25 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs tracking-[0.35em] uppercase font-accent mb-3 text-gold", children: "Before & After" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl md:text-5xl font-display italic gradient-text mb-5", children: "Transformation Gallery" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divider-gold mx-auto", style: { width: 80 } })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "flex flex-wrap justify-center gap-2 mb-10",
+              "data-ocid": "transformations.filter.tab",
+              children: filters.map((filter2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.button,
+                {
+                  type: "button",
+                  onClick: () => setActiveFilter(filter2),
+                  className: "px-5 py-2 rounded-full text-xs font-accent font-semibold tracking-widest uppercase transition-smooth",
+                  style: {
+                    background: activeFilter === filter2 ? "linear-gradient(135deg, #c9a84c, #d4af37)" : "rgba(255,255,255,0.7)",
+                    color: activeFilter === filter2 ? "#3d2817" : "#8b5e3c",
+                    border: activeFilter === filter2 ? "1px solid rgba(201,168,76,0.6)" : "1px solid rgba(201,168,76,0.25)",
+                    boxShadow: activeFilter === filter2 ? "0 4px 20px rgba(201,168,76,0.35)" : "none",
+                    backdropFilter: "blur(12px)"
+                  },
+                  whileHover: { scale: 1.04 },
+                  whileTap: { scale: 0.97 },
+                  "data-ocid": `transformations.filter.${filter2.toLowerCase().replace(" ", "_")}`,
+                  children: filter2
+                },
+                filter2
+              ))
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            motion.div,
+            {
+              className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4",
+              style: { gridAutoRows: "220px" },
+              "data-ocid": "transformations.gallery.list",
+              layout: true,
+              children: filtered.map((item, i2) => {
+                const spanClass = i2 === 0 ? "row-span-2" : i2 === 4 ? "col-span-2" : i2 === 6 ? "row-span-2" : "";
+                const catColor = categoryColors[item.category] ?? "#c9a84c";
+                return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    layout: true,
+                    className: `relative overflow-hidden rounded-2xl group cursor-pointer ${spanClass}`,
+                    initial: { opacity: 0, scale: 0.94 },
+                    whileInView: { opacity: 1, scale: 1 },
+                    viewport: { once: true },
+                    transition: { delay: i2 * 0.07, duration: 0.5 },
+                    whileHover: { scale: 1.02 },
+                    style: {
+                      border: "1.5px solid rgba(201,168,76,0.2)",
+                      boxShadow: "0 4px 20px rgba(107,63,31,0.07)"
+                    },
+                    "data-ocid": `transformations.gallery.item.${i2 + 1}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none",
+                          style: {
+                            boxShadow: `inset 0 0 50px ${catColor}30`,
+                            borderRadius: "inherit",
+                            zIndex: 2
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "img",
+                        {
+                          src: item.src,
+                          alt: item.caption,
+                          className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110",
+                          onError: (e) => {
+                            e.target.style.display = "none";
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                          style: {
+                            background: "linear-gradient(to top, rgba(63,37,17,0.80) 0%, rgba(63,37,17,0.2) 55%, transparent 100%)",
+                            zIndex: 1
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "div",
+                        {
+                          className: "absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300",
+                          style: { zIndex: 3 },
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "div",
+                              {
+                                className: "inline-block px-2.5 py-0.5 rounded-full text-xs font-accent font-semibold mb-1",
+                                style: {
+                                  background: `${catColor}25`,
+                                  border: `1px solid ${catColor}50`,
+                                  color: "#fdf6ee"
+                                },
+                                children: item.category
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "p",
+                              {
+                                className: "text-sm font-display italic block",
+                                style: {
+                                  color: "#fdf6ee",
+                                  textShadow: "0 1px 4px rgba(0,0,0,0.4)"
+                                },
+                                children: item.caption
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "p",
+                              {
+                                className: "text-xs font-body",
+                                style: { color: "rgba(253,246,238,0.78)" },
+                                children: item.desc
+                              }
+                            )
+                          ]
+                        }
+                      )
+                    ]
+                  },
+                  `${item.src}-${i2}`
+                );
+              })
+            }
+          ),
+          filtered.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "text-center py-20",
+              "data-ocid": "transformations.gallery.empty_state",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "font-display italic text-2xl",
+                  style: { color: "#8b5e3c" },
+                  children: "No results for this filter"
+                }
+              )
+            }
+          )
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: "section-padding relative overflow-hidden",
+            style: {
+              background: "linear-gradient(160deg, #f5e6d3 0%, #fdf8f3 60%, #f5e6d3 100%)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "absolute inset-0 pointer-events-none",
+                  style: {
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "max-w-xl mx-auto px-4 text-center relative",
+                  style: { zIndex: 1 },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      initial: { opacity: 0, y: 25 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Sparkles$1,
+                          {
+                            size: 50,
+                            className: "mx-auto mb-5",
+                            style: {
+                              color: "#c9a84c",
+                              filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))"
+                            }
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-display italic gradient-text mb-4", children: "Book Your Transformation" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body mb-8", style: { color: "#8b5e3c" }, children: "Your dream look is just a call away. Let Snehal Pawar work her magic on your special day." }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap justify-center gap-4", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "a",
+                            {
+                              href: "tel:+919561548151",
+                              className: "btn-premium flex items-center gap-2",
+                              "data-ocid": "transformations.cta.call_button",
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(PhoneCall, { size: 16 }),
+                                " Call: 09561548151"
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "a",
+                            {
+                              href: "https://wa.me/919561548151",
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              className: "btn-outline-premium",
+                              "data-ocid": "transformations.cta.whatsapp_button",
+                              children: "WhatsApp Now"
+                            }
+                          )
+                        ] })
+                      ]
+                    }
+                  )
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
+const GOLD = "#c9a84c";
+const BROWN = "#6b3f1f";
+const WARM = "#8b5e3c";
 class CanvasErrorBoundary2 extends reactExports.Component {
   constructor(props) {
     super(props);
@@ -82576,7 +84991,7 @@ class CanvasErrorBoundary2 extends reactExports.Component {
     return this.props.children;
   }
 }
-function Diamond({
+function GoldGem({
   position,
   scale: scale2,
   speed
@@ -82585,95 +85000,85 @@ function Diamond({
   useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.y += delta * speed;
-      ref.current.rotation.x += delta * speed * 0.4;
+      ref.current.rotation.x += delta * speed * 0.35;
     }
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { floatIntensity: 1.2, speed: 1.5, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position, scale: scale2, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { floatIntensity: 1, speed: 1.2, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position, scale: scale2, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("octahedronGeometry", { args: [1, 0] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
         color: "#d4af37",
-        metalness: 0.9,
-        roughness: 0.1,
+        metalness: 0.95,
+        roughness: 0.05,
         emissive: "#b8941f",
-        emissiveIntensity: 0.9,
+        emissiveIntensity: 0.6,
         transparent: true,
-        opacity: 0.6
-      }
-    )
-  ] }) });
-}
-function Pyramid({
-  position,
-  scale: scale2,
-  speed
-}) {
-  const ref = reactExports.useRef(null);
-  useFrame((_, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y += delta * speed;
-    }
-  });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { floatIntensity: 1, speed: 1.2, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref, position, scale: scale2, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("coneGeometry", { args: [1, 2, 4] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "meshStandardMaterial",
-      {
-        color: "#b76e79",
-        metalness: 0.8,
-        roughness: 0.15,
-        emissive: "#b76e79",
-        emissiveIntensity: 0.3,
-        transparent: true,
-        opacity: 0.45,
-        wireframe: true
+        opacity: 0.5
       }
     )
   ] }) });
 }
 function BackgroundScene() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.4, color: "#d4af37" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 1.2, color: "#d4af37" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-5, -3, 3], intensity: 0.8, color: "#b76e79" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Diamond, { position: [-4, 2, -3], scale: 0.45, speed: 0.4 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Diamond, { position: [4.5, -2, -4], scale: 0.6, speed: 0.25 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Diamond, { position: [0, 3.5, -5], scale: 0.35, speed: 0.55 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Diamond, { position: [-5, -1, -6], scale: 0.5, speed: 0.3 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Diamond, { position: [3, 1.5, -3.5], scale: 0.28, speed: 0.6 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Pyramid, { position: [-2, -3, -4], scale: 0.5, speed: 0.3 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Pyramid, { position: [2.5, 3, -5], scale: 0.4, speed: 0.4 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Pyramid, { position: [-3.5, 1, -3], scale: 0.3, speed: 0.5 })
+    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.6, color: "#e8d5a0" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 1.5, color: "#d4af37" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-5, -3, 3], intensity: 0.8, color: "#e8a87c" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [-4, 2, -3], scale: 0.38, speed: 0.35 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [4.5, -2, -4], scale: 0.5, speed: 0.22 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [0, 3.5, -5], scale: 0.3, speed: 0.48 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [-5, -1, -6], scale: 0.42, speed: 0.28 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [3, 1.5, -3.5], scale: 0.24, speed: 0.55 })
   ] });
 }
 const features = [
   {
     Icon: Star,
-    title: "Expert Artistry",
-    desc: "8+ years of professional experience with advanced techniques in bridal, HD & airbrush makeup",
+    title: "12+ Years Experience",
+    desc: "Over a decade of expertise in bridal and beauty artistry across Amravati & Maharashtra",
     number: "01"
   },
   {
-    Icon: Sparkles$1,
+    Icon: Award,
     title: "Premium Products Only",
-    desc: "We use only MAC, NARS, Charlotte Tilbury and top-tier brands for flawless, long-lasting results",
+    desc: "We use only top international and premium Indian brands for flawless, long-lasting results",
     number: "02"
   },
   {
-    Icon: Crown,
-    title: "Celebrity Trusted",
-    desc: "Trusted by 100+ Bollywood celebrities, models & film industry professionals for their big events",
+    Icon: BookOpen,
+    title: "Certified & Trained",
+    desc: "Internationally certified with continuous professional development in the latest trends",
     number: "03"
   },
   {
-    Icon: Heart,
-    title: "Personalized Experience",
-    desc: "Every look is uniquely crafted to match your features, outfit, and occasion for a truly custom result",
+    Icon: GraduationCap,
+    title: "100+ Students Trained",
+    desc: "Empowering the next generation of beauty artists through our professional academy",
     number: "04"
+  },
+  {
+    Icon: MapPin,
+    title: "Travel Across Maharashtra",
+    desc: "Available for destination weddings and events across Maharashtra and beyond",
+    number: "05"
+  },
+  {
+    Icon: Heart,
+    title: "Personalized Consultation",
+    desc: "Free pre-bridal consultation to plan your perfect look tailored just for you",
+    number: "06"
   }
 ];
-function TiltCard({ feature, index: index2, inView: inView2 }) {
+const stats = [
+  { value: "500+", label: "Brides" },
+  { value: "12+", label: "Years" },
+  { value: "100+", label: "Students" },
+  { value: "50+", label: "Celebrity Looks" }
+];
+function FeatureCard({
+  feature,
+  index: index2
+}) {
   const [tilt, setTilt] = reactExports.useState({ x: 0, y: 0 });
   const [hovered, setHovered] = reactExports.useState(false);
   const cardRef = reactExports.useRef(null);
@@ -82682,21 +85087,23 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
     const card = cardRef.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
-    const x2 = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = -((e.clientY - rect.top) / rect.height - 0.5) * 20;
+    const x2 = ((e.clientX - rect.left) / rect.width - 0.5) * 18;
+    const y = -((e.clientY - rect.top) / rect.height - 0.5) * 18;
     setTilt({ x: x2, y });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     motion.div,
     {
-      initial: { opacity: 0, y: 60 },
-      animate: inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 },
+      initial: { opacity: 0, y: 50 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
       transition: {
-        duration: 0.7,
-        delay: index2 * 0.15,
+        duration: 0.6,
+        delay: index2 * 0.1,
         ease: [0.22, 1, 0.36, 1]
       },
       "data-ocid": `why-choose.card.${index2 + 1}`,
+      style: { perspective: 1e3 },
       children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -82708,22 +85115,23 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
             setHovered(false);
           },
           style: {
-            transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg) scale(${hovered ? 1.03 : 1})`,
-            background: "rgba(10,10,10,0.62)",
-            backdropFilter: "blur(28px)",
-            WebkitBackdropFilter: "blur(28px)",
-            border: hovered ? "1px solid rgba(212,175,55,0.55)" : "1px solid rgba(212,175,55,0.22)",
-            boxShadow: hovered ? "inset 0 1px 0 rgba(255,255,255,0.09), 0 0 30px rgba(212,175,55,0.28), 0 0 65px rgba(212,175,55,0.12), 0 20px 60px rgba(0,0,0,0.60)" : "inset 0 1px 0 rgba(255,255,255,0.055), 0 4px 30px rgba(0,0,0,0.45)",
-            transition: "border-color 0.4s ease, box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.23,1,0.32,1)"
+            transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg) scale(${hovered ? 1.03 : 1}) translateY(${hovered ? -6 : 0}px)`,
+            background: hovered ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.65)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            border: hovered ? "1.5px solid rgba(201,168,76,0.60)" : "1.5px solid rgba(201,168,76,0.25)",
+            boxShadow: hovered ? "0 0 30px rgba(201,168,76,0.40), 0 0 70px rgba(201,168,76,0.14), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.07)",
+            transition: "border-color 0.4s ease, box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.23,1,0.32,1), background 0.3s ease",
+            borderRadius: "20px"
           },
-          className: "relative h-full rounded-2xl p-8 cursor-default overflow-hidden",
+          className: "relative h-full p-7 cursor-default overflow-hidden",
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: "pointer-events-none absolute inset-0 rounded-2xl",
+                className: "pointer-events-none absolute inset-0 rounded-[20px]",
                 style: {
-                  background: "linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 60%)",
+                  background: "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%)",
                   opacity: hovered ? 1 : 0,
                   transition: "opacity 0.3s ease"
                 }
@@ -82732,11 +85140,10 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {
-                className: "absolute top-5 right-5 font-mono text-xs font-bold tracking-widest select-none",
+                className: "absolute top-5 right-5 font-accent text-xs font-bold tracking-widest select-none",
                 style: {
-                  color: hovered ? "rgba(212,175,55,0.75)" : "rgba(212,175,55,0.45)",
-                  textShadow: hovered ? "0 0 12px rgba(212,175,55,0.5)" : "none",
-                  transition: "color 0.3s ease, text-shadow 0.3s ease"
+                  color: hovered ? "rgba(201,168,76,0.85)" : "rgba(201,168,76,0.45)",
+                  transition: "color 0.3s ease"
                 },
                 children: feature.number
               }
@@ -82744,32 +85151,39 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: "mb-6 inline-flex items-center justify-center rounded-full w-14 h-14",
+                className: "mb-5 inline-flex items-center justify-center rounded-full w-14 h-14",
                 style: {
-                  background: "linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06))",
-                  border: "1px solid rgba(212,175,55,0.38)",
-                  boxShadow: hovered ? "0 0 26px rgba(212,175,55,0.55), 0 0 55px rgba(212,175,55,0.22)" : "0 0 14px rgba(212,175,55,0.22)",
+                  background: "linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.07))",
+                  border: "1.5px solid rgba(201,168,76,0.42)",
+                  boxShadow: hovered ? "0 0 26px rgba(201,168,76,0.55), 0 0 55px rgba(201,168,76,0.20)" : "0 0 14px rgba(201,168,76,0.22)",
                   transition: "box-shadow 0.3s ease"
                 },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Icon2,
                   {
-                    size: 24,
+                    size: 22,
                     style: {
-                      color: "#d4af37",
-                      filter: hovered ? "drop-shadow(0 0 8px rgba(212,175,55,0.85))" : "drop-shadow(0 0 5px rgba(212,175,55,0.60))"
+                      color: GOLD,
+                      filter: hovered ? "drop-shadow(0 0 8px rgba(201,168,76,0.85))" : "drop-shadow(0 0 5px rgba(201,168,76,0.55))"
                     },
                     strokeWidth: 1.5
                   }
                 )
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-xl mb-3 text-foreground", children: feature.title }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "h3",
+              {
+                className: "font-display text-lg mb-2 leading-tight",
+                style: { color: BROWN },
+                children: feature.title
+              }
+            ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "p",
               {
-                className: "text-sm leading-relaxed",
-                style: { color: "rgba(240,230,210,0.68)" },
+                className: "text-sm leading-relaxed font-body",
+                style: { color: WARM },
                 children: feature.desc
               }
             ),
@@ -82778,10 +85192,9 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
               {
                 className: "absolute bottom-0 left-0 h-px w-full",
                 style: {
-                  background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.65), transparent)",
-                  boxShadow: hovered ? "0 0 8px rgba(212,175,55,0.3)" : "none",
-                  opacity: hovered ? 1 : 0.3,
-                  transition: "opacity 0.3s ease, box-shadow 0.3s ease"
+                  background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.65), transparent)",
+                  opacity: hovered ? 1 : 0.25,
+                  transition: "opacity 0.3s ease"
                 }
               }
             )
@@ -82791,11 +85204,6 @@ function TiltCard({ feature, index: index2, inView: inView2 }) {
     }
   );
 }
-const stats = [
-  { value: "8+", label: "Years Experience" },
-  { value: "100+", label: "Celebrity Clients" },
-  { value: "1500+", label: "Brides Styled" }
-];
 function WhyChooseUs() {
   const sectionRef = reactExports.useRef(null);
   const inView2 = useInView(sectionRef, { once: true, margin: "-80px" });
@@ -82804,23 +85212,19 @@ function WhyChooseUs() {
     {
       id: "why-choose-us",
       ref: sectionRef,
-      className: "relative section-padding overflow-hidden",
-      style: {
-        background: "linear-gradient(180deg, #0a0a0a 0%, #0e0a06 50%, #0a0a0a 100%)"
-      },
+      className: "relative section-padding overflow-hidden section-bg-cream",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
             className: "absolute inset-0 pointer-events-none",
             "aria-hidden": "true",
-            style: { zIndex: 0 },
+            style: { zIndex: 0, opacity: 0.18 },
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasErrorBoundary2, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               Canvas,
               {
                 camera: { position: [0, 0, 8], fov: 50 },
                 gl: { antialias: true, alpha: true },
-                style: { opacity: 0.55 },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(BackgroundScene, {}) })
               }
             ) })
@@ -82829,9 +85233,9 @@ function WhyChooseUs() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none",
+            className: "absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
               filter: "blur(100px)"
             }
           }
@@ -82839,9 +85243,9 @@ function WhyChooseUs() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none",
+            className: "absolute bottom-1/3 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(183,110,121,0.09) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
               filter: "blur(90px)"
             }
           }
@@ -82854,26 +85258,19 @@ function WhyChooseUs() {
                 initial: { opacity: 0, y: 20 },
                 animate: inView2 ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "text-xs uppercase tracking-[0.3em] mb-4 font-mono",
-                style: {
-                  color: "#d4af37",
-                  textShadow: "0 0 16px rgba(212,175,55,0.45)"
-                },
+                className: "text-xs uppercase tracking-[0.35em] mb-3 font-accent",
+                style: { color: GOLD },
                 children: "Our Promise to You"
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
               motion.h2,
               {
                 initial: { opacity: 0, y: 30 },
                 animate: inView2 ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.8, delay: 0.1 },
-                className: "font-display text-4xl sm:text-5xl md:text-6xl mb-6",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "gold-gradient-text", children: "Why Choose" }),
-                  " ",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground italic", children: "Yakshi" })
-                ]
+                className: "font-display text-4xl sm:text-5xl md:text-6xl mb-4 gold-gradient-text leading-tight",
+                children: "Why Choose Snehal Pawar?"
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -82882,7 +85279,7 @@ function WhyChooseUs() {
                 initial: { scaleX: 0 },
                 animate: inView2 ? { scaleX: 1 } : {},
                 transition: { duration: 0.8, delay: 0.2 },
-                className: "divider-gold mx-auto mb-6",
+                className: "section-divider mx-auto mb-5",
                 style: { maxWidth: "200px" }
               }
             ),
@@ -82892,50 +85289,36 @@ function WhyChooseUs() {
                 initial: { opacity: 0, y: 20 },
                 animate: inView2 ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.7, delay: 0.3 },
-                className: "text-base sm:text-lg max-w-2xl mx-auto",
-                style: { color: "rgba(240,230,210,0.65)" },
-                children: "Experience luxury beauty artistry trusted by celebrities and elite brides across Delhi NCR"
+                className: "text-base sm:text-lg max-w-2xl mx-auto font-body",
+                style: { color: WARM },
+                children: "Experience luxury beauty artistry trusted by brides and celebrities across Amravati & Maharashtra"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16", children: features.map((feature, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-            TiltCard,
-            {
-              feature,
-              index: i2,
-              inView: inView2
-            },
-            feature.number
-          )) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14", children: features.map((feature, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(FeatureCard, { feature, index: i2 }, feature.number)) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
               initial: { opacity: 0, y: 30 },
               animate: inView2 ? { opacity: 1, y: 0 } : {},
               transition: { duration: 0.7, delay: 0.7 },
-              className: "grid grid-cols-3 gap-4 mb-16",
+              className: "grid grid-cols-2 md:grid-cols-4 gap-4",
               children: stats.map((stat, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
                   className: "text-center py-7 rounded-xl glass-ultra",
                   style: {
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), 0 0 22px rgba(212,175,55,0.10), 0 0 50px rgba(212,175,55,0.05)"
+                    border: "1.5px solid rgba(201,168,76,0.35)",
+                    boxShadow: "0 0 24px rgba(201,168,76,0.12), 0 4px 20px rgba(107,63,31,0.06)"
                   },
                   "data-ocid": `why-choose.stat.${idx + 1}`,
                   children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-display text-3xl sm:text-4xl font-bold mb-1 gold-gradient-text", children: stat.value }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "div",
                       {
-                        className: "gold-gradient-text font-display text-3xl sm:text-4xl font-bold mb-1",
-                        style: { textShadow: "0 0 24px rgba(212,175,55,0.3)" },
-                        children: stat.value
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        className: "text-xs uppercase tracking-widest",
-                        style: { color: "rgba(212,175,55,0.60)" },
+                        className: "text-xs uppercase tracking-widest font-accent",
+                        style: { color: WARM },
                         children: stat.label
                       }
                     )
@@ -82944,64 +85327,52 @@ function WhyChooseUs() {
                 stat.label
               ))
             }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              initial: { opacity: 0, y: 30 },
-              animate: inView2 ? { opacity: 1, y: 0 } : {},
-              transition: { duration: 0.7, delay: 0.85 },
-              className: "text-center",
-              "data-ocid": "why-choose.cta",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "a",
-                  {
-                    href: "https://wa.me/918766367033?text=Hi%20Yakshi%2C%20I%20would%20like%20to%20book%20an%20appointment",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    className: "btn-gold inline-flex items-center gap-3",
-                    "data-ocid": "why-choose.book_button",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { size: 18, strokeWidth: 2 }),
-                      "Book Your Appointment"
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "p",
-                  {
-                    className: "mt-4 text-xs",
-                    style: { color: "rgba(212,175,55,0.48)" },
-                    children: "Trusted by celebrities · Delhi NCR's finest bridal studio"
-                  }
-                )
-              ]
-            }
           )
         ] })
       ]
     }
   );
 }
-function App() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen bg-dark-primary text-foreground overflow-x-hidden", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingButtons, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(HeroSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(AboutSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ServicesSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(GallerySection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(WhyChooseUs, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CelebritySection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialsSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(FAQSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(MapSection, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CTASection, {})
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+function HomePage() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(HeroSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AboutSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ServicesSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(GallerySection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(WhyChooseUs, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CelebritySection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialsSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(FAQSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(MapSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CTASection, {})
   ] });
+}
+function App() {
+  const [page, setPage] = reactExports.useState("/");
+  reactExports.useEffect(() => {
+    const updatePage = () => setPage(window.location.pathname);
+    updatePage();
+    window.addEventListener("popstate", updatePage);
+    return () => window.removeEventListener("popstate", updatePage);
+  }, []);
+  let content;
+  if (page === "/academy") content = /* @__PURE__ */ jsxRuntimeExports.jsx(AcademyPage, {});
+  else if (page === "/packages") content = /* @__PURE__ */ jsxRuntimeExports.jsx(BridalPackagesPage, {});
+  else if (page === "/transformations") content = /* @__PURE__ */ jsxRuntimeExports.jsx(TransformationsPage, {});
+  else content = /* @__PURE__ */ jsxRuntimeExports.jsx(HomePage, {});
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "min-h-screen overflow-x-hidden",
+      style: { backgroundColor: "#fdf8f3", color: "#3d2817" },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, { currentPage: page, onNavigate: setPage }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingButtons, {}),
+        content,
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+      ]
+    }
+  );
 }
 BigInt.prototype.toJSON = function() {
   return this.toString();

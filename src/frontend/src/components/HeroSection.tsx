@@ -1,8 +1,15 @@
 import { Float, MeshDistortMaterial, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ChevronDown, Phone, Star } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
-import { Component, Suspense, useEffect, useMemo, useRef } from "react";
+import {
+  Component,
+  Fragment,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import type { ErrorInfo, ReactNode } from "react";
 import * as THREE from "three";
 
@@ -18,23 +25,17 @@ class CanvasErrorBoundary extends Component<
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-  componentDidCatch(_error: Error, _info: ErrorInfo) {
-    // Silently catch WebGL errors
-  }
+  componentDidCatch(_error: Error, _info: ErrorInfo) {}
   render() {
-    if (this.state.hasError) {
-      return this.props.fallback ?? null;
-    }
+    if (this.state.hasError) return this.props.fallback ?? null;
     return this.props.children;
   }
 }
 
-/* ─── 3D Scene Components ─── */
-
+/* ─── Golden Particles ─── */
 function GoldenParticles() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const count = 80;
-
+  const count = 120;
   const particles = useMemo(() => {
     const positions: THREE.Vector3[] = [];
     const speeds: number[] = [];
@@ -42,12 +43,12 @@ function GoldenParticles() {
     for (let i = 0; i < count; i++) {
       positions.push(
         new THREE.Vector3(
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 12,
-          (Math.random() - 0.5) * 8,
+          (Math.random() - 0.5) * 22,
+          (Math.random() - 0.5) * 14,
+          (Math.random() - 0.5) * 10,
         ),
       );
-      speeds.push(0.3 + Math.random() * 0.7);
+      speeds.push(0.25 + Math.random() * 0.6);
       phases.push(Math.random() * Math.PI * 2);
     }
     return { positions, speeds, phases };
@@ -62,15 +63,15 @@ function GoldenParticles() {
       dummy.position.set(
         pos.x +
           Math.sin(t * particles.speeds[idx] * 0.3 + particles.phases[idx]) *
-            0.5,
+            0.6,
         pos.y +
           Math.cos(t * particles.speeds[idx] * 0.2 + particles.phases[idx]) *
-            0.8,
+            0.9,
         pos.z,
       );
       const scale =
-        0.04 +
-        Math.sin(t * particles.speeds[idx] + particles.phases[idx]) * 0.015;
+        0.035 +
+        Math.sin(t * particles.speeds[idx] + particles.phases[idx]) * 0.012;
       dummy.scale.setScalar(scale);
       dummy.updateMatrix();
       meshRef.current!.setMatrixAt(idx, dummy.matrix);
@@ -80,34 +81,40 @@ function GoldenParticles() {
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[1, 6, 6]} />
+      <sphereGeometry args={[1, 8, 8]} />
       <meshStandardMaterial
-        color="#d4af37"
+        color="#c9a84c"
         emissive="#d4af37"
-        emissiveIntensity={2.0}
-        roughness={0.1}
+        emissiveIntensity={0.8}
+        roughness={0.15}
         metalness={0.9}
       />
     </instancedMesh>
   );
 }
 
-function FloatingTorus() {
+/* ─── Floating Torus Rings ─── */
+function TorusRing({
+  position,
+  scale,
+  phase,
+}: { position: [number, number, number]; scale: number; phase: number }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((state) => {
     if (!ref.current) return;
-    ref.current.rotation.x = state.clock.elapsedTime * 0.3;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.2;
-    ref.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.5 + 1;
+    const t = state.clock.elapsedTime;
+    ref.current.rotation.x = t * 0.15 + phase;
+    ref.current.rotation.y = t * 0.22 + phase * 0.5;
+    ref.current.position.y = position[1] + Math.sin(t * 0.4 + phase) * 0.6;
   });
   return (
-    <mesh ref={ref} position={[4.5, 1, -2]}>
-      <torusKnotGeometry args={[0.8, 0.2, 128, 32]} />
+    <mesh ref={ref} position={position} scale={scale}>
+      <torusGeometry args={[1.2, 0.04, 16, 80]} />
       <meshStandardMaterial
         color="#d4af37"
-        emissive="#b8941f"
-        emissiveIntensity={1.0}
-        roughness={0.1}
+        emissive="#c9a84c"
+        emissiveIntensity={0.5}
+        roughness={0.05}
         metalness={1}
         wireframe={false}
       />
@@ -115,52 +122,7 @@ function FloatingTorus() {
   );
 }
 
-function FloatingDiamond() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.4;
-    ref.current.rotation.z = state.clock.elapsedTime * 0.2;
-    ref.current.position.y =
-      Math.cos(state.clock.elapsedTime * 0.4 + 1) * 0.6 - 1.5;
-  });
-  return (
-    <mesh ref={ref} position={[-5, -1.5, -1.5]}>
-      <octahedronGeometry args={[0.6, 0]} />
-      <meshStandardMaterial
-        color="#b76e79"
-        emissive="#b76e79"
-        emissiveIntensity={1.2}
-        roughness={0.05}
-        metalness={0.95}
-      />
-    </mesh>
-  );
-}
-
-function FloatingRing() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (!ref.current) return;
-    ref.current.rotation.x = state.clock.elapsedTime * 0.15 + 0.5;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.25;
-    ref.current.position.y =
-      Math.sin(state.clock.elapsedTime * 0.35 + 2) * 0.7 + 0.5;
-  });
-  return (
-    <mesh ref={ref} position={[3, 0.5, -3]}>
-      <torusGeometry args={[1.2, 0.08, 16, 60]} />
-      <meshStandardMaterial
-        color="#e8c84a"
-        emissive="#d4af37"
-        emissiveIntensity={1.0}
-        roughness={0.05}
-        metalness={1}
-      />
-    </mesh>
-  );
-}
-
+/* ─── Petal Data ─── */
 interface PetalData {
   x: number;
   y: number;
@@ -173,19 +135,19 @@ interface PetalData {
 }
 
 function RosePetals() {
-  const petalCount = 18;
+  const petalCount = 20;
   const refs = useRef<THREE.Mesh[]>([]);
   const data = useMemo<PetalData[]>(
     () =>
       Array.from({ length: petalCount }, () => ({
-        x: (Math.random() - 0.5) * 18,
-        y: Math.random() * 14 + 4,
-        z: (Math.random() - 0.5) * 6,
-        speed: 0.3 + Math.random() * 0.5,
-        drift: (Math.random() - 0.5) * 0.01,
-        rotSpeed: (Math.random() - 0.5) * 0.02,
+        x: (Math.random() - 0.5) * 20,
+        y: Math.random() * 16 + 4,
+        z: (Math.random() - 0.5) * 8,
+        speed: 0.25 + Math.random() * 0.45,
+        drift: (Math.random() - 0.5) * 0.008,
+        rotSpeed: (Math.random() - 0.5) * 0.018,
         phase: Math.random() * Math.PI * 2,
-        scale: 0.12 + Math.random() * 0.15,
+        scale: 0.1 + Math.random() * 0.13,
       })),
     [],
   );
@@ -198,9 +160,9 @@ function RosePetals() {
       mesh.position.x += d.drift;
       mesh.rotation.z += d.rotSpeed;
       mesh.rotation.x += d.rotSpeed * 0.5;
-      if (mesh.position.y < -8) {
-        mesh.position.y = 8;
-        mesh.position.x = (Math.random() - 0.5) * 18;
+      if (mesh.position.y < -9) {
+        mesh.position.y = 9;
+        mesh.position.x = (Math.random() - 0.5) * 20;
       }
     });
   });
@@ -219,13 +181,13 @@ function RosePetals() {
         >
           <planeGeometry args={[1, 1.4, 1, 1]} />
           <meshStandardMaterial
-            color="#c2556d"
-            emissive="#b76e79"
-            emissiveIntensity={0.6}
+            color="#e8a87c"
+            emissive="#c9a84c"
+            emissiveIntensity={0.35}
             side={THREE.DoubleSide}
             transparent
-            opacity={0.75}
-            roughness={0.8}
+            opacity={0.55}
+            roughness={0.85}
           />
         </mesh>
       ))}
@@ -233,189 +195,173 @@ function RosePetals() {
   );
 }
 
+/* ─── Distort Orb ─── */
 function DistortOrb({
   position,
   color,
   emissive,
 }: { position: [number, number, number]; color: string; emissive: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (!ref.current) return;
-    ref.current.rotation.x = state.clock.elapsedTime * 0.1;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.15;
-  });
   return (
-    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
-      <mesh ref={ref} position={position}>
-        <sphereGeometry args={[0.9, 32, 32]} />
+    <Float speed={1.2} rotationIntensity={0.25} floatIntensity={0.7}>
+      <mesh position={position}>
+        <sphereGeometry args={[0.85, 32, 32]} />
         <MeshDistortMaterial
           color={color}
           emissive={emissive}
-          emissiveIntensity={0.7}
-          distort={0.45}
-          speed={1.5}
-          roughness={0.1}
-          metalness={0.8}
+          emissiveIntensity={0.4}
+          distort={0.4}
+          speed={1.4}
+          roughness={0.15}
+          metalness={0.7}
           transparent
-          opacity={0.6}
+          opacity={0.45}
         />
       </mesh>
     </Float>
   );
 }
 
+/* ─── Camera Parallax ─── */
 function CameraParallax() {
   const { camera } = useThree();
   const target = useRef({ x: 0, y: 0 });
-
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
-      target.current.x = (e.clientX / window.innerWidth - 0.5) * 1.5;
-      target.current.y = -(e.clientY / window.innerHeight - 0.5) * 0.8;
+      target.current.x = (e.clientX / window.innerWidth - 0.5) * 1.2;
+      target.current.y = -(e.clientY / window.innerHeight - 0.5) * 0.7;
     };
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
   }, []);
-
   useFrame(() => {
     camera.position.x += (target.current.x - camera.position.x) * 0.03;
     camera.position.y += (target.current.y - camera.position.y) * 0.03;
     camera.lookAt(0, 0, 0);
   });
-
   return null;
 }
 
+/* ─── 3D Scene ─── */
 function Scene() {
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={2.5} color="#d4af37" />
-      <pointLight position={[-5, -3, 3]} intensity={2.0} color="#b76e79" />
-      <pointLight position={[0, 8, -4]} intensity={1.5} color="#e8c84a" />
+      {/* Warm cream-toned ambient + gold point lights */}
+      <ambientLight intensity={2.0} color="#fff8ee" />
+      <pointLight position={[6, 6, 4]} intensity={2.5} color="#d4af37" />
+      <pointLight position={[-6, -3, 4]} intensity={1.8} color="#e8c4a0" />
+      <pointLight position={[0, 10, -4]} intensity={1.2} color="#fdf8f3" />
       <CameraParallax />
       <GoldenParticles />
-      <FloatingTorus />
-      <FloatingDiamond />
-      <FloatingRing />
+      <TorusRing position={[5, 1, -3]} scale={1.1} phase={0} />
+      <TorusRing position={[-5, -1, -4]} scale={0.8} phase={1.2} />
+      <TorusRing position={[3, 3, -5]} scale={0.6} phase={2.4} />
       <RosePetals />
-      <DistortOrb position={[-3.5, 2, -4]} color="#d4af37" emissive="#b8941f" />
-      <DistortOrb position={[3, -2.5, -5]} color="#b76e79" emissive="#7a2d3d" />
+      <DistortOrb position={[-4, 2, -5]} color="#e8c4a0" emissive="#c9a84c" />
+      <DistortOrb position={[4, -2.5, -6]} color="#d4af37" emissive="#c9a84c" />
       <Sparkles
         count={80}
-        scale={[18, 14, 6]}
-        size={2.5}
-        speed={0.25}
-        color="#d4af37"
-        opacity={0.75}
+        scale={[20, 16, 8]}
+        size={1.5}
+        speed={0.15}
+        color="#c9a84c"
+        opacity={0.45}
       />
     </>
   );
 }
 
-/* ─── Text animation variants ─── */
-
+/* ─── Animation Variants ─── */
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.14, delayChildren: 0.25 },
   },
 };
-
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" as const },
+    transition: { duration: 0.75, ease: "easeOut" as const },
   },
 };
 
-/* ─── Decorative ring component ─── */
-function DecorativeRing({
-  size,
-  opacity,
-  rotDuration,
-}: { size: string; opacity: number; rotDuration: number }) {
-  return (
-    <motion.div
-      className="absolute rounded-full border border-gold pointer-events-none"
-      style={{
-        width: size,
-        height: size,
-        opacity,
-        boxShadow: `0 0 12px rgba(212,175,55,${opacity * 0.6})`,
-      }}
-      animate={{ rotate: 360 }}
-      transition={{
-        duration: rotDuration,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "linear",
-      }}
-    />
-  );
-}
-
-/* ─── Stat Badge ─── */
-function StatBadge({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex flex-col items-center">
-      <span
-        className="text-2xl font-bold gold-gradient-text font-display"
-        style={{ textShadow: "0 0 20px rgba(212,175,55,0.4)" }}
-      >
-        {value}
-      </span>
-      <span className="text-xs text-muted-foreground uppercase tracking-widest">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* ─── Sparkle dot data ─── */
+/* ─── Sparkle dots data ─── */
 const SPARKLE_DOTS = [
-  { top: "15%", left: "15%", animDuration: 2.0, animDelay: 0.0 },
-  { top: "72%", left: "22%", animDuration: 2.4, animDelay: 0.3 },
-  { top: "30%", left: "78%", animDuration: 2.8, animDelay: 0.6 },
-  { top: "65%", left: "80%", animDuration: 2.2, animDelay: 0.9 },
-  { top: "10%", left: "55%", animDuration: 2.6, animDelay: 1.2 },
-  { top: "85%", left: "50%", animDuration: 2.3, animDelay: 1.5 },
+  { top: "12%", left: "10%", dur: 2.0, delay: 0.0 },
+  { top: "70%", left: "18%", dur: 2.5, delay: 0.4 },
+  { top: "28%", left: "82%", dur: 2.8, delay: 0.7 },
+  { top: "62%", left: "85%", dur: 2.2, delay: 1.0 },
+  { top: "8%", left: "58%", dur: 2.6, delay: 1.3 },
+  { top: "88%", left: "52%", dur: 2.4, delay: 1.6 },
 ];
 
 /* ─── Main HeroSection ─── */
 export default function HeroSection() {
   const handleScroll = () => {
-    const next = document.getElementById("about");
-    if (next) next.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
-
   const handleBooking = () => {
     window.open(
-      "https://wa.me/918766367033?text=Hi! I would like to book an appointment at Yakshi Makeup %26 Nail Studio.",
+      "https://wa.me/919561548151?text=Hi%20Snehal%20Pawar%2C%20I%20would%20like%20to%20book%20an%20appointment.",
       "_blank",
     );
   };
-
   const handlePortfolio = () => {
-    const gallery = document.getElementById("gallery");
-    if (gallery) gallery.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center bg-dark-primary"
       data-ocid="hero.section"
+      style={{
+        background:
+          "linear-gradient(160deg, #fdf8f3 0%, #f5e6d3 45%, #fdf8f3 100%)",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
     >
-      {/* ── 3D Canvas Background — pointer-events-none CRITICAL ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* ── Subtle warm radial glow behind portrait ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.07) 40%, transparent 70%)",
+          zIndex: 1,
+        }}
+      />
+      {/* ── Top-left ambient warm blush ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "-10%",
+          left: "-8%",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(232,168,124,0.18) 0%, transparent 65%)",
+          filter: "blur(60px)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* ── 3D Canvas — absolutely behind content ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 2 }}
+      >
         <CanvasErrorBoundary>
           <Canvas
-            camera={{ position: [0, 0, 8], fov: 60 }}
+            camera={{ position: [0, 0, 9], fov: 58 }}
             gl={{ antialias: true, alpha: true }}
             dpr={[1, 1.5]}
+            style={{ background: "transparent" }}
           >
             <Suspense fallback={null}>
               <Scene />
@@ -424,25 +370,22 @@ export default function HeroSection() {
         </CanvasErrorBoundary>
       </div>
 
-      {/* ── Gradient overlay — reduced from /95 to /60 so content is visible ── */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
-        {/* Left-side dark panel so left text column stays readable */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/85 via-[#0a0a0a]/50 to-[#0a0a0a]/20" />
-        {/* Bottom fade to next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
-        {/* Subtle center gold glow */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 65% 50%, rgba(212,175,55,0.06) 0%, transparent 65%)",
-          }}
-        />
-      </div>
+      {/* ── Bottom section fade ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: 120,
+          background: "linear-gradient(to top, #fdf8f3 0%, transparent 100%)",
+          zIndex: 3,
+        }}
+      />
 
-      {/* ── Main content — z-10 sits above canvas (z-0) and overlay (z-[1]) ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+      {/* ── Main content — z-10 above canvas ── */}
+      <div
+        className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24"
+        style={{ zIndex: 10 }}
+      >
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-14 lg:gap-10">
           {/* ── LEFT: Text content ── */}
           <motion.div
             className="flex-1 max-w-xl"
@@ -450,202 +393,358 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            {/* Subtitle badge */}
+            {/* Eyebrow label */}
             <motion.div variants={itemVariants} className="mb-5">
               <span
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest glass-ultra text-gold"
-                style={{ boxShadow: "0 0 18px rgba(212,175,55,0.20)" }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "8px 20px",
+                  borderRadius: 999,
+                  fontSize: "0.68rem",
+                  fontFamily: "var(--font-accent)",
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  color: "#8b5e3c",
+                  background: "rgba(255,255,255,0.72)",
+                  border: "1px solid rgba(201,168,76,0.35)",
+                  boxShadow:
+                    "0 2px 20px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
+                  backdropFilter: "blur(14px)",
+                }}
               >
-                <Star className="w-3 h-3 fill-current" />
-                Delhi's Premier Celebrity Makeup Artist
+                <span style={{ color: "#c9a84c" }}>✦</span>
+                Award-Winning Makeup Artist
               </span>
             </motion.div>
 
-            {/* Main title */}
+            {/* Main heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-display text-4xl sm:text-5xl xl:text-6xl font-bold leading-tight mb-4"
               style={{
-                fontFamily: '"Instrument Serif", "Playfair Display", serif',
+                fontFamily: "var(--font-display)",
+                lineHeight: 1.1,
+                marginBottom: "1rem",
               }}
             >
-              <span className="block text-foreground/90">Yakshi</span>
               <span
-                className="block gradient-text"
-                style={{ textShadow: "0 0 30px rgba(212,175,55,0.25)" }}
+                style={{
+                  display: "block",
+                  fontSize: "clamp(1.9rem, 3.5vw, 3rem)",
+                  color: "#3d2817",
+                  fontWeight: 400,
+                  letterSpacing: "-0.01em",
+                }}
               >
-                Makeup &amp; Nail
+                Makeup by
               </span>
-              <span className="block text-foreground/90">Studio</span>
+              <span
+                className="gradient-text"
+                style={{
+                  display: "block",
+                  fontSize: "clamp(3rem, 6vw, 5rem)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.05,
+                  filter: "drop-shadow(0 2px 16px rgba(201,168,76,0.22))",
+                }}
+              >
+                Snehal Pawar
+              </span>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "clamp(1.5rem, 2.8vw, 2.4rem)",
+                  color: "#6b3f1f",
+                  fontWeight: 400,
+                  letterSpacing: "0.02em",
+                  marginTop: "0.1rem",
+                }}
+              >
+                &amp; Academy
+              </span>
             </motion.h1>
 
             {/* Tagline */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg text-muted-foreground mb-3 tracking-wide"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "1.05rem",
+                color: "#8b5e3c",
+                marginBottom: "0.6rem",
+                letterSpacing: "0.03em",
+              }}
             >
-              Bridal Makeup &amp; Nail Art in Delhi NCR
+              Bridal Makeup &amp; Beauty Academy — Amravati, Maharashtra
             </motion.p>
 
-            {/* Celebrity trust badge */}
-            <motion.div
+            {/* Sub description */}
+            <motion.p
               variants={itemVariants}
-              className="flex items-center gap-2 mb-7"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.9rem",
+                color: "#b5845a",
+                marginBottom: "1.75rem",
+                lineHeight: 1.7,
+              }}
             >
-              <div className="flex">
-                {(["s1", "s2", "s3", "s4", "s5"] as const).map((key) => (
-                  <Star
-                    key={key}
-                    className="w-4 h-4 text-gold fill-current"
-                    style={{
-                      filter: "drop-shadow(0 0 4px rgba(212,175,55,0.7))",
-                    }}
-                  />
-                ))}
-              </div>
-              <span className="text-sm text-muted-foreground">
-                Trusted by{" "}
-                <span className="text-gold font-semibold">
-                  Bollywood Celebrities
-                </span>{" "}
-                &amp; Elite Brides
-              </span>
-            </motion.div>
+              Transforming bridal dreams into timeless art. Expert in HD,
+              airbrush, and luxury bridal looks with over a decade of perfecting
+              beauty.
+            </motion.p>
 
             {/* CTA buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4 mb-10"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 12,
+                marginBottom: "2rem",
+              }}
             >
               <button
                 type="button"
-                className="btn-gold flex items-center gap-2"
+                className="btn-premium"
                 onClick={handleBooking}
                 data-ocid="hero.book_appointment_button"
               >
-                <Phone className="w-4 h-4" />
-                Book Appointment
+                Book Your Bridal Look
               </button>
               <button
                 type="button"
-                className="btn-outline-gold"
+                className="btn-outline-premium"
                 onClick={handlePortfolio}
-                data-ocid="hero.view_portfolio_button"
+                data-ocid="hero.view_gallery_button"
               >
-                View Portfolio
+                View Gallery
               </button>
             </motion.div>
 
             {/* Stats row */}
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-6 pt-6 border-t border-gold/20"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0,
+                paddingTop: "1.25rem",
+                borderTop: "1px solid rgba(201,168,76,0.22)",
+              }}
             >
-              <StatBadge value="500+" label="Brides" />
-              <div className="h-8 w-px bg-gold/20" />
-              <StatBadge value="100+" label="Celebrities" />
-              <div className="h-8 w-px bg-gold/20" />
-              <StatBadge value="5★" label="Rated" />
+              {[
+                { val: "500+", label: "Brides" },
+                { val: "12+", label: "Years" },
+                { val: "100+", label: "Students" },
+              ].map((stat, i) => (
+                <Fragment key={stat.label}>
+                  {i > 0 && (
+                    <div
+                      style={{
+                        width: 1,
+                        height: 32,
+                        background: "rgba(201,168,76,0.3)",
+                        margin: "0 20px",
+                      }}
+                    />
+                  )}
+                  <div style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-accent)",
+                        fontSize: "1.35rem",
+                        fontWeight: 700,
+                        color: "#c9a84c",
+                        textShadow: "0 0 18px rgba(201,168,76,0.35)",
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {stat.val}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-accent)",
+                        fontSize: "0.6rem",
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: "#8b5e3c",
+                        marginTop: 2,
+                      }}
+                    >
+                      {stat.label}
+                    </div>
+                  </div>
+                </Fragment>
+              ))}
             </motion.div>
           </motion.div>
 
           {/* ── RIGHT: Portrait image ── */}
           <motion.div
-            className="relative flex-shrink-0 flex items-center justify-center"
+            style={{
+              position: "relative",
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             initial={{ opacity: 0, x: 60, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{
-              duration: 1,
+              duration: 1.0,
               delay: 0.5,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
             data-ocid="hero.portrait_card"
           >
-            {/* Decorative rings */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <DecorativeRing size="380px" opacity={0.22} rotDuration={20} />
-              <DecorativeRing size="440px" opacity={0.12} rotDuration={25} />
-              <DecorativeRing size="500px" opacity={0.06} rotDuration={30} />
-            </div>
+            {/* Rotating decorative rings */}
+            {[
+              { size: 380, opacity: 0.2, dur: 22 },
+              { size: 450, opacity: 0.1, dur: 28 },
+              { size: 520, opacity: 0.055, dur: 35 },
+            ].map(({ size, opacity, dur }) => (
+              <motion.div
+                key={size}
+                style={{
+                  position: "absolute",
+                  width: size,
+                  height: size,
+                  borderRadius: "50%",
+                  border: `1px solid rgba(201,168,76,${opacity * 2.5})`,
 
-            {/* Outer halo aura behind portrait */}
+                  pointerEvents: "none",
+                  boxShadow: `0 0 14px rgba(201,168,76,${opacity * 0.6})`,
+                }}
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: dur,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
+              />
+            ))}
+
+            {/* Back glow halo */}
             <div
-              className="absolute w-96 h-96 rounded-full pointer-events-none hero-glow-bg"
-              style={{ zIndex: 0 }}
+              style={{
+                position: "absolute",
+                width: 320,
+                height: 320,
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(232,200,120,0.10) 40%, transparent 70%)",
+                filter: "blur(40px)",
+                pointerEvents: "none",
+              }}
             />
 
             {/* Gold sparkle dots */}
             {SPARKLE_DOTS.map((dot) => (
               <motion.div
                 key={`sparkle-${dot.top}-${dot.left}`}
-                className="absolute w-2 h-2 rounded-full bg-gold pointer-events-none"
                 style={{
+                  position: "absolute",
                   top: dot.top,
                   left: dot.left,
+                  width: 7,
+                  height: 7,
+                  borderRadius: "50%",
+                  background: "rgba(201,168,76,0.9)",
                   boxShadow:
-                    "0 0 12px rgba(212,175,55,0.9), 0 0 24px rgba(212,175,55,0.4)",
+                    "0 0 10px rgba(201,168,76,0.8), 0 0 22px rgba(201,168,76,0.35)",
+                  pointerEvents: "none",
                 }}
-                animate={{
-                  scale: [1, 1.8, 1],
-                  opacity: [0.6, 1, 0.6],
-                }}
+                animate={{ scale: [1, 1.9, 1], opacity: [0.55, 1, 0.55] }}
                 transition={{
-                  duration: dot.animDuration,
+                  duration: dot.dur,
                   repeat: Number.POSITIVE_INFINITY,
-                  delay: dot.animDelay,
+                  delay: dot.delay,
                 }}
               />
             ))}
 
-            {/* Portrait image with float animation */}
+            {/* Portrait with float animation */}
             <motion.div
-              className="relative z-10"
-              animate={{ y: [-8, 8, -8] }}
+              style={{ position: "relative", zIndex: 10 }}
+              animate={{ y: [-9, 9, -9] }}
               transition={{
-                duration: 6,
+                duration: 6.5,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
             >
+              {/* Glass frame */}
               <div
-                className="relative rounded-2xl overflow-hidden animate-pulse-glow"
                 style={{
-                  width: "300px",
-                  height: "400px",
-                  border: "1.5px solid rgba(212,175,55,0.55)",
+                  width: 300,
+                  height: 400,
+                  borderRadius: 20,
+                  overflow: "hidden",
+                  border: "1.5px solid rgba(201,168,76,0.5)",
                   boxShadow:
-                    "0 0 40px rgba(212,175,55,0.45), 0 0 90px rgba(212,175,55,0.20), 0 0 160px rgba(212,175,55,0.08), 0 25px 60px rgba(0,0,0,0.6)",
+                    "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.15), 0 30px 70px rgba(139,94,60,0.25)",
+                  background: "rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(2px)",
+                  position: "relative",
                 }}
               >
                 <img
-                  src="/assets/hero-bride.png"
-                  alt="Yakshi - Celebrity Makeup Artist"
-                  className="w-full h-full object-cover"
-                  style={{ filter: "contrast(1.05) saturate(1.1)" }}
-                />
-                {/* Inner shimmer overlay */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
+                  src="/assets/snehal-hero.png"
+                  alt="Snehal Pawar - Bridal Makeup Artist"
                   style={{
-                    background:
-                      "linear-gradient(135deg, rgba(212,175,55,0.10) 0%, transparent 50%, rgba(183,110,121,0.07) 100%)",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: "contrast(1.04) saturate(1.08) brightness(1.02)",
                   }}
                 />
-                {/* Top-edge inner highlight */}
+                {/* Warm shimmer overlay */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-                  style={{ background: "rgba(212,175,55,0.35)" }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 45%, rgba(232,168,124,0.06) 100%)",
+                    pointerEvents: "none",
+                  }}
+                />
+                {/* Top edge inner highlight */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 1,
+                    background: "rgba(201,168,76,0.45)",
+                    pointerEvents: "none",
+                  }}
                 />
               </div>
 
-              {/* Floating badge: Celebrity Artist */}
+              {/* Badge — top right */}
               <motion.div
-                className="absolute -top-3 -right-6 glass-ultra px-3 py-1.5 rounded-full text-xs font-semibold text-gold"
                 style={{
+                  position: "absolute",
+                  top: -12,
+                  right: -24,
+                  padding: "6px 14px",
+                  borderRadius: 999,
+                  fontSize: "0.7rem",
+                  fontFamily: "var(--font-accent)",
+                  letterSpacing: "0.12em",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(201,168,76,0.45)",
+                  color: "#8b5e3c",
                   boxShadow:
-                    "0 0 22px rgba(212,175,55,0.38), 0 0 50px rgba(212,175,55,0.12)",
+                    "0 4px 20px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(12px)",
+                  whiteSpace: "nowrap",
                 }}
-                animate={{ y: [-3, 3, -3] }}
+                animate={{ y: [-3, 4, -3] }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
@@ -653,17 +752,29 @@ export default function HeroSection() {
                   delay: 1,
                 }}
               >
-                ✦ Celebrity Artist
+                ✦ Bridal Expert
               </motion.div>
 
-              {/* Floating badge: 10+ Years */}
+              {/* Badge — bottom left */}
               <motion.div
-                className="absolute -bottom-3 -left-6 glass-ultra px-3 py-1.5 rounded-full text-xs font-semibold text-rose-gold"
                 style={{
+                  position: "absolute",
+                  bottom: -12,
+                  left: -24,
+                  padding: "6px 14px",
+                  borderRadius: 999,
+                  fontSize: "0.7rem",
+                  fontFamily: "var(--font-accent)",
+                  letterSpacing: "0.12em",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(201,168,76,0.4)",
+                  color: "#8b5e3c",
                   boxShadow:
-                    "0 0 22px rgba(183,110,121,0.35), 0 0 50px rgba(183,110,121,0.12)",
+                    "0 4px 20px rgba(201,168,76,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(12px)",
+                  whiteSpace: "nowrap",
                 }}
-                animate={{ y: [3, -3, 3] }}
+                animate={{ y: [4, -3, 4] }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
@@ -671,7 +782,7 @@ export default function HeroSection() {
                   delay: 0.5,
                 }}
               >
-                ✦ 10+ Years Exp
+                ✦ 12+ Years Exp
               </motion.div>
             </motion.div>
           </motion.div>
@@ -681,21 +792,43 @@ export default function HeroSection() {
       {/* ── Scroll Indicator ── */}
       <motion.button
         type="button"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-gold/60 hover:text-gold transition-smooth cursor-pointer"
+        style={{
+          position: "absolute",
+          bottom: 28,
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 20,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 4,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: "rgba(139,94,60,0.65)",
+        }}
         animate={{ y: [0, 8, 0] }}
         transition={{
-          duration: 2,
+          duration: 2.2,
           repeat: Number.POSITIVE_INFINITY,
           ease: "easeInOut",
         }}
         onClick={handleScroll}
         aria-label="Scroll to next section"
         data-ocid="hero.scroll_down_button"
+        whileHover={{ color: "rgba(139,94,60,1)" }}
       >
-        <span className="text-[10px] uppercase tracking-widest font-semibold">
-          Scroll
+        <span
+          style={{
+            fontFamily: "var(--font-accent)",
+            fontSize: "0.6rem",
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+          }}
+        >
+          Scroll to explore
         </span>
-        <ChevronDown className="w-5 h-5" />
+        <ChevronDown style={{ width: 18, height: 18 }} />
       </motion.button>
     </section>
   );

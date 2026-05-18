@@ -2,66 +2,70 @@ import { X, ZoomIn } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
+const GOLD = "#c9a84c";
+const BROWN = "#6b3f1f";
+
 const images = [
   {
-    src: "/assets/hero-bride.png",
+    src: "/assets/snehal-hero.png",
     title: "Kundan Bridal Look",
     category: "bridal",
   },
   {
-    src: "/assets/nail-art-1.png",
-    title: "Dark Red Bow Nails",
-    category: "nail",
+    src: "/assets/snehal-gallery-1.png",
+    title: "Classic Bridal Elegance",
+    category: "bridal",
   },
   {
-    src: "/assets/celebrity-1.png",
+    src: "/assets/snehal-bridal-1.png",
     title: "Diamond Gala Look",
-    category: "celebrity",
+    category: "hd",
   },
   {
-    src: "/assets/bridal-gold.png",
+    src: "/assets/snehal-gallery-4.png",
     title: "Gold Floral Bridal",
     category: "bridal",
   },
   {
-    src: "/assets/nail-art-2.png",
-    title: "Pink Glitter Nails",
-    category: "nail",
+    src: "/assets/snehal-gallery-2.png",
+    title: "Radiant Bridal Glam",
+    category: "bridal",
   },
   {
-    src: "/assets/bridal-lehenga.png",
+    src: "/assets/snehal-gallery-5.png",
     title: "Red Lehenga Bride",
     category: "bridal",
   },
   {
-    src: "/assets/nail-art-3.png",
-    title: "Red Rhinestone Nails",
-    category: "nail",
+    src: "/assets/snehal-gallery-3.png",
+    title: "Festive Party Look",
+    category: "academy",
   },
   {
-    src: "/assets/celebrity-2.png",
-    title: "Smoky Eye Updo",
-    category: "celebrity",
+    src: "/assets/snehal-bridal-2.png",
+    title: "Smoky Eye Glam",
+    category: "hd",
   },
   {
-    src: "/assets/bridal-lipstick.png",
-    title: "Bridal Lipstick Artistry",
+    src: "/assets/snehal-about.png",
+    title: "Bridal Portrait Artistry",
     category: "bridal",
   },
   {
-    src: "/assets/celebrity-3.png",
-    title: "Purple Sequin Gown",
-    category: "celebrity",
+    src: "/assets/snehal-bridal-3.png",
+    title: "Premium Bridal Styling",
+    category: "nail",
   },
 ];
 
-type Filter = "all" | "bridal" | "celebrity" | "nail";
+type Filter = "all" | "bridal" | "hd" | "nail" | "academy";
 
 const filters: { label: string; value: Filter }[] = [
   { label: "All", value: "all" },
   { label: "Bridal", value: "bridal" },
-  { label: "Celebrity", value: "celebrity" },
+  { label: "HD Makeup", value: "hd" },
   { label: "Nail Art", value: "nail" },
+  { label: "Academy", value: "academy" },
 ];
 
 export default function GallerySection() {
@@ -73,9 +77,8 @@ export default function GallerySection() {
     (img) => activeFilter === "all" || img.category === activeFilter,
   );
 
-  const handleImgError = (idx: number) => {
+  const handleImgError = (idx: number) =>
     setImgErrors((prev) => ({ ...prev, [idx]: true }));
-  };
 
   const openLightbox = (idx: number) => setLightboxIndex(idx);
   const closeLightbox = () => setLightboxIndex(null);
@@ -83,31 +86,26 @@ export default function GallerySection() {
   return (
     <section
       id="gallery"
-      className="relative py-24 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #0a0a0a 0%, #111008 50%, #0a0a0a 100%)",
-      }}
+      className="relative section-padding overflow-hidden section-bg-beige"
     >
-      {/* Enhanced ambient glow */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 75% 45% at 50% 0%, rgba(212,175,55,0.10) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)",
+          filter: "blur(90px)",
         }}
       />
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+        className="absolute bottom-0 right-1/4 w-[350px] h-[350px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at bottom, rgba(183,110,121,0.07) 0%, transparent 65%)",
-          filter: "blur(40px)",
+            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 65%)",
+          filter: "blur(80px)",
         }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,37 +114,21 @@ export default function GallerySection() {
           className="text-center mb-14"
         >
           <p
-            className="text-xs uppercase tracking-[0.4em] mb-3"
-            style={{
-              color: "#d4af37",
-              textShadow: "0 0 16px rgba(212,175,55,0.5)",
-            }}
+            className="text-xs uppercase tracking-[0.4em] mb-3 font-accent"
+            style={{ color: GOLD }}
           >
             Portfolio
           </p>
-          <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-serif mb-4 leading-tight"
-            style={{
-              fontFamily: "var(--font-display)",
-              background:
-                "linear-gradient(135deg, #d4af37 0%, #f0d060 40%, #b8922e 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              filter: "drop-shadow(0 0 20px rgba(212,175,55,0.18))",
-            }}
-          >
-            Our Portfolio
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display mb-4 leading-tight gold-gradient-text">
+            Portfolio Gallery
           </h2>
-          <p
-            className="text-base md:text-lg max-w-xl mx-auto"
-            style={{ color: "rgba(212,175,55,0.65)" }}
-          >
-            A glimpse into our world of luxury beauty transformations
+          <div className="section-divider w-24 mx-auto mb-5" />
+          <p className="text-base md:text-lg max-w-xl mx-auto text-warm-brown">
+            A glimpse into our world of luxury beauty transformations across
+            Amravati &amp; Maharashtra
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -161,22 +143,19 @@ export default function GallerySection() {
               type="button"
               onClick={() => setActiveFilter(f.value)}
               data-ocid={`gallery.filter.tab.${f.value}`}
-              className="relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border"
+              className="relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border font-body"
               style={{
                 background:
                   activeFilter === f.value
-                    ? "linear-gradient(135deg, #d4af37, #b8922e)"
-                    : "rgba(255,255,255,0.04)",
-                color:
-                  activeFilter === f.value ? "#0a0a0a" : "rgba(212,175,55,0.8)",
+                    ? `linear-gradient(135deg, ${GOLD}, #d4af37)`
+                    : "rgba(255,255,255,0.65)",
+                color: activeFilter === f.value ? "#fff" : BROWN,
                 borderColor:
-                  activeFilter === f.value
-                    ? "#d4af37"
-                    : "rgba(212,175,55,0.22)",
+                  activeFilter === f.value ? GOLD : "rgba(201,168,76,0.30)",
                 boxShadow:
                   activeFilter === f.value
-                    ? "0 0 22px rgba(212,175,55,0.45), 0 0 50px rgba(212,175,55,0.15)"
-                    : "0 0 8px rgba(212,175,55,0.08)",
+                    ? "0 4px 20px rgba(201,168,76,0.45), 0 0 30px rgba(201,168,76,0.18)"
+                    : "0 2px 10px rgba(139,94,60,0.06)",
               }}
             >
               {f.label}
@@ -184,7 +163,6 @@ export default function GallerySection() {
           ))}
         </motion.div>
 
-        {/* Gallery Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
@@ -192,85 +170,76 @@ export default function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
             data-ocid="gallery.list"
+            className="columns-1 sm:columns-2 lg:columns-3 gap-5"
+            style={{ columnGap: "20px" }}
           >
             {filtered.map((img, i) => {
               const globalIdx = images.findIndex((im) => im.src === img.src);
+              if (imgErrors[globalIdx]) return null;
               return (
                 <motion.div
                   key={img.src}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className="group relative rounded-xl overflow-hidden cursor-pointer"
+                  className="group relative rounded-2xl overflow-hidden cursor-pointer mb-5 break-inside-avoid"
                   style={{
-                    aspectRatio: "4/3",
-                    boxShadow:
-                      "0 0 0 1px rgba(212,175,55,0.12), 0 8px 30px rgba(0,0,0,0.4)",
-                    transition: "box-shadow 0.4s ease",
+                    border: "1.5px solid rgba(201,168,76,0.18)",
+                    boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
+                    transition: "box-shadow 0.4s ease, border-color 0.4s ease",
                   }}
                   onClick={() => openLightbox(globalIdx)}
                   data-ocid={`gallery.item.${i + 1}`}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.boxShadow =
-                      "0 0 0 1.5px rgba(212,175,55,0.55), 0 0 28px rgba(212,175,55,0.22), 0 0 55px rgba(212,175,55,0.09)";
+                    const el = e.currentTarget as HTMLDivElement;
+                    el.style.boxShadow =
+                      "0 0 28px rgba(201,168,76,0.40), 0 0 60px rgba(201,168,76,0.15), 0 8px 30px rgba(107,63,31,0.12)";
+                    el.style.borderColor = "rgba(201,168,76,0.55)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.boxShadow =
-                      "0 0 0 1px rgba(212,175,55,0.12), 0 8px 30px rgba(0,0,0,0.4)";
+                    const el = e.currentTarget as HTMLDivElement;
+                    el.style.boxShadow = "0 4px 24px rgba(107,63,31,0.08)";
+                    el.style.borderColor = "rgba(201,168,76,0.18)";
                   }}
                 >
-                  {/* Image or fallback */}
-                  {imgErrors[globalIdx] ? (
-                    <div
-                      className="w-full h-full flex items-center justify-center"
-                      style={{ background: "rgba(212,175,55,0.05)" }}
-                    >
-                      <span
-                        className="text-xs"
-                        style={{ color: "rgba(212,175,55,0.4)" }}
-                      >
-                        {img.title}
-                      </span>
-                    </div>
-                  ) : (
-                    <img
-                      src={img.src}
-                      alt={img.title}
-                      onError={() => handleImgError(globalIdx)}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
-                      style={{ display: "block" }}
-                    />
-                  )}
-
-                  {/* Bottom label overlay */}
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    onError={() => handleImgError(globalIdx)}
+                    className="w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-105"
+                    style={{ display: "block" }}
+                  />
                   <div
-                    className="absolute bottom-0 left-0 right-0 px-4 py-3 transition-all duration-300"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
                       background:
-                        "linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                        "linear-gradient(to top, rgba(201,168,76,0.65) 0%, rgba(201,168,76,0.20) 40%, transparent 70%)",
                     }}
-                  >
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                     <p
-                      className="text-sm font-medium tracking-wide"
-                      style={{ color: "#f5e6a3" }}
+                      className="text-sm font-semibold tracking-wide"
+                      style={{ color: "#fff" }}
                     >
                       {img.title}
                     </p>
+                    <p
+                      className="text-xs mt-0.5"
+                      style={{ color: "rgba(255,255,255,0.78)" }}
+                    >
+                      View
+                    </p>
                   </div>
-
-                  {/* Zoom icon on hover */}
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      className="w-9 h-9 rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(212,175,55,0.88)",
-                        boxShadow:
-                          "0 0 16px rgba(212,175,55,0.65), 0 0 32px rgba(212,175,55,0.25)",
+                        background: "rgba(255,255,255,0.92)",
+                        boxShadow: "0 0 16px rgba(201,168,76,0.50)",
                       }}
                     >
-                      <ZoomIn size={14} color="#0a0a0a" />
+                      <ZoomIn size={16} style={{ color: BROWN }} />
                     </div>
                   </div>
                 </motion.div>
@@ -280,7 +249,6 @@ export default function GallerySection() {
         </AnimatePresence>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
@@ -290,8 +258,8 @@ export default function GallerySection() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             style={{
-              background: "rgba(0,0,0,0.94)",
-              backdropFilter: "blur(16px)",
+              background: "rgba(61,40,23,0.85)",
+              backdropFilter: "blur(20px)",
             }}
             onClick={closeLightbox}
             data-ocid="gallery.dialog"
@@ -301,49 +269,36 @@ export default function GallerySection() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.88, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative max-w-3xl w-full rounded-2xl overflow-hidden glass-ultra"
+              className="relative max-w-3xl w-full rounded-2xl overflow-hidden"
               style={{
+                background: "rgba(253,248,243,0.97)",
+                border: "1.5px solid rgba(201,168,76,0.45)",
                 boxShadow:
-                  "0 0 60px rgba(212,175,55,0.35), 0 0 120px rgba(212,175,55,0.12), 0 0 0 1px rgba(212,175,55,0.25)",
+                  "0 0 60px rgba(201,168,76,0.35), 0 0 120px rgba(201,168,76,0.12)",
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {imgErrors[lightboxIndex] ? (
-                <div
-                  className="w-full aspect-video flex items-center justify-center"
-                  style={{ background: "#111" }}
-                >
-                  <span style={{ color: "rgba(212,175,55,0.5)" }}>
-                    {images[lightboxIndex]?.title}
-                  </span>
-                </div>
-              ) : (
-                <img
-                  src={images[lightboxIndex]?.src}
-                  alt={images[lightboxIndex]?.title}
-                  onError={() => handleImgError(lightboxIndex)}
-                  className="w-full max-h-[80vh] object-contain"
-                  style={{ background: "#0a0a0a" }}
-                />
-              )}
-
-              {/* Title bar */}
+              <img
+                src={images[lightboxIndex]?.src}
+                alt={images[lightboxIndex]?.title}
+                onError={() => handleImgError(lightboxIndex)}
+                className="w-full max-h-[80vh] object-contain"
+                style={{ background: "#fdf8f3" }}
+              />
               <div
                 className="absolute bottom-0 left-0 right-0 px-5 py-3"
                 style={{
                   background:
-                    "linear-gradient(0deg, rgba(0,0,0,0.92) 0%, transparent 100%)",
+                    "linear-gradient(0deg, rgba(61,40,23,0.82) 0%, transparent 100%)",
                 }}
               >
                 <p
                   className="text-base font-medium"
-                  style={{ color: "#f5e6a3" }}
+                  style={{ color: "#f5e6d3" }}
                 >
                   {images[lightboxIndex]?.title}
                 </p>
               </div>
-
-              {/* Close button */}
               <button
                 type="button"
                 onClick={closeLightbox}
@@ -351,12 +306,11 @@ export default function GallerySection() {
                 className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
                 aria-label="Close lightbox"
                 style={{
-                  background: "rgba(212,175,55,0.9)",
-                  boxShadow:
-                    "0 0 18px rgba(212,175,55,0.55), 0 0 36px rgba(212,175,55,0.20)",
+                  background: "rgba(201,168,76,0.92)",
+                  boxShadow: "0 0 18px rgba(201,168,76,0.55)",
                 }}
               >
-                <X size={16} color="#0a0a0a" />
+                <X size={16} style={{ color: BROWN }} />
               </button>
             </motion.div>
           </motion.div>
