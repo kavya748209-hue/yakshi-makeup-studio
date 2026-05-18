@@ -26,7 +26,7 @@ export default function CTASection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(201,168,76,0.18) 0%, transparent 65%)",
+            "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(139,94,60,0.18) 0%, transparent 65%)",
           animation: "pulse-glow 5s ease-in-out infinite",
         }}
       />
@@ -34,7 +34,7 @@ export default function CTASection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(232,168,124,0.15) 0%, transparent 60%)",
+            "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(196,149,106,0.15) 0%, transparent 60%)",
           animation: "pulse-glow 7s ease-in-out infinite reverse",
         }}
       />
@@ -42,8 +42,8 @@ export default function CTASection() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
-          boxShadow: "0 0 18px rgba(212,175,55,0.55)",
+            "linear-gradient(90deg, transparent, rgba(139,94,60,0.8), rgba(181,132,90,1), rgba(139,94,60,0.8), transparent)",
+          boxShadow: "0 0 18px rgba(139,94,60,0.55)",
         }}
       />
 
@@ -71,8 +71,8 @@ export default function CTASection() {
           <Sparkles
             size={pos.size}
             style={{
-              color: "rgba(255,220,100,0.80)",
-              filter: "drop-shadow(0 0 8px rgba(212,175,55,0.70))",
+              color: "rgba(181,132,90,0.90)",
+              filter: "drop-shadow(0 0 8px rgba(139,94,60,0.70))",
             }}
           />
         </motion.div>
@@ -88,19 +88,19 @@ export default function CTASection() {
           style={{
             background: "rgba(255,255,255,0.12)",
             backdropFilter: "blur(16px)",
-            border: "1px solid rgba(255,220,100,0.40)",
-            color: "rgba(255,220,100,0.95)",
-            boxShadow: "0 0 20px rgba(212,175,55,0.22)",
+            border: "1px solid rgba(181,132,90,0.50)",
+            color: "rgba(253,248,243,0.95)",
+            boxShadow: "0 0 20px rgba(139,94,60,0.22)",
           }}
         >
           <Sparkles
             size={12}
-            style={{ filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }}
+            style={{ filter: "drop-shadow(0 0 5px rgba(181,132,90,0.8))" }}
           />
           Limited Slots Available
           <Sparkles
             size={12}
-            style={{ filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }}
+            style={{ filter: "drop-shadow(0 0 5px rgba(181,132,90,0.8))" }}
           />
         </motion.div>
 
@@ -115,11 +115,11 @@ export default function CTASection() {
           <span
             style={{
               background:
-                "linear-gradient(135deg, #f5d878 0%, #e8c060 40%, #d4a730 100%)",
+                "linear-gradient(135deg, #b5845a 0%, #8b5e3c 40%, #6b3f1f 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 22px rgba(212,175,55,0.35))",
+              filter: "drop-shadow(0 0 22px rgba(139,94,60,0.35))",
             }}
           >
             Ready for Your
@@ -132,8 +132,8 @@ export default function CTASection() {
           className="h-px w-32 mx-auto mb-8"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(255,220,100,0.9), transparent)",
-            boxShadow: "0 0 10px rgba(212,175,55,0.45)",
+              "linear-gradient(90deg, transparent, rgba(181,132,90,0.9), transparent)",
+            boxShadow: "0 0 10px rgba(139,94,60,0.45)",
           }}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -153,9 +153,9 @@ export default function CTASection() {
           your perfect wedding day transformation. Join{" "}
           <span
             style={{
-              color: "#f5d878",
+              color: "#fdf8f3",
               fontWeight: 600,
-              textShadow: "0 0 18px rgba(212,175,55,0.45)",
+              textShadow: "0 0 18px rgba(139,94,60,0.45)",
             }}
           >
             500+ brides
@@ -176,17 +176,17 @@ export default function CTASection() {
             className="flex items-center gap-3 px-10 py-4 rounded-xl font-accent font-semibold tracking-widest uppercase text-sm min-w-[260px] justify-center"
             style={{
               background:
-                "linear-gradient(135deg, #f0d060 0%, #d4a730 50%, #f0d060 100%)",
+                "linear-gradient(135deg, #b5845a 0%, #8b5e3c 50%, #b5845a 100%)",
               backgroundSize: "200% auto",
               color: "#3d2817",
               boxShadow:
-                "0 0 30px rgba(212,175,55,0.65), 0 0 65px rgba(212,175,55,0.28), 0 4px 20px rgba(0,0,0,0.25)",
+                "0 0 30px rgba(139,94,60,0.65), 0 0 65px rgba(139,94,60,0.28), 0 4px 20px rgba(0,0,0,0.15)",
               textDecoration: "none",
             }}
             whileHover={{
               scale: 1.05,
               boxShadow:
-                "0 0 45px rgba(212,175,55,0.80), 0 0 90px rgba(212,175,55,0.35)",
+                "0 0 45px rgba(139,94,60,0.80), 0 0 90px rgba(139,94,60,0.35)",
             }}
             whileTap={{ scale: 0.97 }}
           >
@@ -234,8 +234,8 @@ export default function CTASection() {
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
-          boxShadow: "0 0 18px rgba(212,175,55,0.55)",
+            "linear-gradient(90deg, transparent, rgba(139,94,60,0.8), rgba(181,132,90,1), rgba(139,94,60,0.8), transparent)",
+          boxShadow: "0 0 18px rgba(139,94,60,0.55)",
         }}
       />
     </section>

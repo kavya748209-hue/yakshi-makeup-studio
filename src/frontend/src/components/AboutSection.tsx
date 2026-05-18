@@ -43,7 +43,7 @@ export default function AboutSection() {
         className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(139,94,60,0.12) 0%, transparent 70%)",
           filter: "blur(100px)",
           transform: "translate(-40%, -40%)",
         }}
@@ -52,7 +52,7 @@ export default function AboutSection() {
         className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(196,149,106,0.10) 0%, transparent 70%)",
           filter: "blur(80px)",
           transform: "translate(30%, 30%)",
         }}
@@ -105,7 +105,7 @@ export default function AboutSection() {
                 className="glass-ultra p-3 rounded-3xl glow-gold"
                 style={{
                   boxShadow:
-                    "0 0 40px rgba(201,168,76,0.25), 0 0 100px rgba(201,168,76,0.10), inset 0 1px 0 rgba(255,255,255,0.95)",
+                    "0 0 40px rgba(139,94,60,0.25), 0 0 100px rgba(139,94,60,0.10), inset 0 1px 0 rgba(255,255,255,0.95)",
                 }}
               >
                 {/* Photo */}
@@ -124,7 +124,7 @@ export default function AboutSection() {
                     className="absolute inset-0 pointer-events-none rounded-2xl"
                     style={{
                       background:
-                        "linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.12) 80%, transparent 100%)",
+                        "linear-gradient(135deg, transparent 60%, rgba(139,94,60,0.12) 80%, transparent 100%)",
                     }}
                   />
                 </div>
@@ -150,15 +150,15 @@ export default function AboutSection() {
               <div
                 className="absolute -top-2 -left-2 w-6 h-6 rounded-full"
                 style={{
-                  background: "#c9a84c",
-                  boxShadow: "0 0 14px rgba(201,168,76,0.8)",
+                  background: "#8b5e3c",
+                  boxShadow: "0 0 14px rgba(139,94,60,0.8)",
                 }}
               />
               <div
                 className="absolute -top-2 -right-2 w-4 h-4 rounded-full"
                 style={{
-                  background: "#e8a87c",
-                  boxShadow: "0 0 10px rgba(232,168,124,0.8)",
+                  background: "#c4956a",
+                  boxShadow: "0 0 10px rgba(196,149,106,0.8)",
                 }}
               />
             </motion.div>
@@ -173,7 +173,7 @@ export default function AboutSection() {
             {/* Eyebrow */}
             <p
               className="font-accent text-xs uppercase mb-3"
-              style={{ color: "#c9a84c", letterSpacing: "3px" }}
+              style={{ color: "#8b5e3c", letterSpacing: "3px" }}
             >
               Meet Your Artist
             </p>
@@ -223,8 +223,8 @@ export default function AboutSection() {
                     size={18}
                     className="flex-shrink-0"
                     style={{
-                      color: "#c9a84c",
-                      filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))",
+                      color: "#8b5e3c",
+                      filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))",
                     }}
                   />
                   <span
@@ -261,14 +261,14 @@ export default function AboutSection() {
             style={{
               background: "rgba(245,230,211,0.75)",
               boxShadow:
-                "0 0 50px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
-              borderColor: "rgba(201,168,76,0.35)",
+                "0 0 50px rgba(139,94,60,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
+              borderColor: "rgba(139,94,60,0.35)",
             }}
           >
             <div className="text-center mb-8">
               <p
                 className="font-accent text-xs uppercase tracking-[3px] mb-2"
-                style={{ color: "#c9a84c" }}
+                style={{ color: "#8b5e3c" }}
               >
                 Portfolio
               </p>
@@ -294,7 +294,7 @@ export default function AboutSection() {
                   <div
                     className="w-20 h-20 rounded-full overflow-hidden mb-4 glow-gold"
                     style={{
-                      border: "2px solid rgba(201,168,76,0.45)",
+                      border: "2px solid rgba(139,94,60,0.45)",
                     }}
                   >
                     <img
@@ -311,7 +311,7 @@ export default function AboutSection() {
                   </p>
                   <p
                     className="font-accent text-xs uppercase tracking-wider"
-                    style={{ color: "#c9a84c" }}
+                    style={{ color: "#8b5e3c" }}
                   >
                     {celeb.event}
                   </p>

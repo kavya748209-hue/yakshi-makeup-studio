@@ -89,7 +89,7 @@ export default function FAQSection() {
           className="w-[800px] h-[600px] rounded-full"
           style={{
             background:
-              "radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 65%)",
+              "radial-gradient(ellipse, rgba(139,94,60,0.07) 0%, transparent 65%)",
             filter: "blur(100px)",
           }}
         />
@@ -98,7 +98,7 @@ export default function FAQSection() {
         className="absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(196,149,106,0.08) 0%, transparent 65%)",
           filter: "blur(80px)",
           transform: "translate(30%, -30%)",
         }}
@@ -117,7 +117,7 @@ export default function FAQSection() {
         >
           <p
             className="font-accent text-xs uppercase tracking-[3px] mb-3"
-            style={{ color: "#c9a84c", letterSpacing: "3px" }}
+            style={{ color: "#8b5e3c", letterSpacing: "3px" }}
           >
             Got Questions?
           </p>
@@ -134,20 +134,20 @@ export default function FAQSection() {
             <div
               className="h-px w-16"
               style={{
-                background: "linear-gradient(to right, transparent, #c9a84c)",
+                background: "linear-gradient(to right, transparent, #8b5e3c)",
               }}
             />
             <div
               className="h-1.5 w-1.5 rounded-full"
               style={{
-                background: "#c9a84c",
-                boxShadow: "0 0 10px rgba(201,168,76,0.8)",
+                background: "#8b5e3c",
+                boxShadow: "0 0 10px rgba(139,94,60,0.8)",
               }}
             />
             <div
               className="h-px w-16"
               style={{
-                background: "linear-gradient(to left, transparent, #c9a84c)",
+                background: "linear-gradient(to left, transparent, #8b5e3c)",
               }}
             />
           </div>
@@ -177,13 +177,13 @@ export default function FAQSection() {
                 className="relative card-premium overflow-hidden"
                 style={{
                   borderColor: isOpen
-                    ? "rgba(201,168,76,0.55)"
-                    : "rgba(201,168,76,0.25)",
+                    ? "rgba(139,94,60,0.55)"
+                    : "rgba(139,94,60,0.25)",
                   background: isOpen
                     ? "rgba(255,255,255,0.90)"
                     : "rgba(255,255,255,0.65)",
                   boxShadow: isOpen
-                    ? "0 0 32px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.06), 0 8px 30px rgba(107,63,31,0.08)"
+                    ? "0 0 32px rgba(139,94,60,0.18), 0 0 60px rgba(139,94,60,0.06), 0 8px 30px rgba(107,63,31,0.08)"
                     : "0 4px 16px rgba(107,63,31,0.06)",
                   transition:
                     "border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease",
@@ -197,8 +197,8 @@ export default function FAQSection() {
                   transition={{ duration: 0.3 }}
                   className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full origin-top"
                   style={{
-                    background: "linear-gradient(to bottom, #c9a84c, #d4af37)",
-                    boxShadow: "-2px 0 12px rgba(201,168,76,0.50)",
+                    background: "linear-gradient(to bottom, #8b5e3c, #6b3f1f)",
+                    boxShadow: "-2px 0 12px rgba(139,94,60,0.50)",
                   }}
                 />
 
@@ -217,7 +217,7 @@ export default function FAQSection() {
                   <span
                     className="pl-3 font-display text-base md:text-lg font-semibold leading-snug transition-colors duration-300"
                     style={{
-                      color: isOpen ? "#c9a84c" : "#3d2817",
+                      color: isOpen ? "#6b3f1f" : "#3d2817",
                     }}
                   >
                     {faq.question}
@@ -228,14 +228,14 @@ export default function FAQSection() {
                     className="mt-0.5 flex-shrink-0 rounded-full border p-1.5 transition-all duration-300"
                     style={{
                       borderColor: isOpen
-                        ? "rgba(201,168,76,0.65)"
-                        : "rgba(201,168,76,0.30)",
-                      color: isOpen ? "#c9a84c" : "#8b5e3c",
+                        ? "rgba(139,94,60,0.65)"
+                        : "rgba(139,94,60,0.30)",
+                      color: isOpen ? "#6b3f1f" : "#8b5e3c",
                       background: isOpen
-                        ? "rgba(201,168,76,0.12)"
+                        ? "rgba(139,94,60,0.12)"
                         : "transparent",
                       boxShadow: isOpen
-                        ? "0 0 10px rgba(201,168,76,0.30)"
+                        ? "0 0 10px rgba(139,94,60,0.30)"
                         : "none",
                     }}
                   >
@@ -262,7 +262,7 @@ export default function FAQSection() {
                           className="h-px w-full mb-4"
                           style={{
                             background:
-                              "linear-gradient(to right, rgba(201,168,76,0.5), rgba(201,168,76,0.2), transparent)",
+                              "linear-gradient(to right, rgba(139,94,60,0.5), rgba(139,94,60,0.2), transparent)",
                           }}
                         />
                         <p
@@ -296,8 +296,8 @@ export default function FAQSection() {
               rel="noopener noreferrer"
               className="font-semibold underline underline-offset-4 transition-colors duration-200"
               style={{
-                color: "#c9a84c",
-                textDecorationColor: "rgba(201,168,76,0.5)",
+                color: "#8b5e3c",
+                textDecorationColor: "rgba(139,94,60,0.5)",
               }}
             >
               Chat with us on WhatsApp

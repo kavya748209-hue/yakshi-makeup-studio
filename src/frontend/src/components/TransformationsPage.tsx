@@ -101,11 +101,11 @@ const filters = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Bridal: "#c9a84c",
+  Bridal: "#8b5e3c",
   "HD Makeup": "#8b5e3c",
-  Airbrush: "#c9a84c",
+  Airbrush: "#8b5e3c",
   Reception: "#8b5e3c",
-  Engagement: "#c9a84c",
+  Engagement: "#8b5e3c",
 };
 
 function FloatingOrbs() {
@@ -122,7 +122,7 @@ function FloatingOrbs() {
           top: "-20%",
           left: "-10%",
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.11) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(139,94,60,0.11) 0%, transparent 70%)",
           filter: "blur(65px)",
         }}
       />
@@ -146,10 +146,10 @@ function FloatingOrbs() {
           style={{
             width: 3 + (i % 3),
             height: 3 + (i % 3),
-            background: `rgba(201,168,76,${0.3 + (i % 3) * 0.12})`,
+            background: `rgba(139,94,60,${0.3 + (i % 3) * 0.12})`,
             left: `${5 + ((i * 9) % 90)}%`,
             top: `${15 + ((i * 11) % 70)}%`,
-            boxShadow: "0 0 6px rgba(201,168,76,0.3)",
+            boxShadow: "0 0 6px rgba(139,94,60,0.3)",
           }}
           animate={{ y: [0, -14, 0], opacity: [0.25, 0.75, 0.25] }}
           transition={{
@@ -196,7 +196,7 @@ export default function TransformationsPage() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            border: "1px solid rgba(201,168,76,0.09)",
+            border: "1px solid rgba(139,94,60,0.09)",
             zIndex: 0,
           }}
         />
@@ -210,7 +210,7 @@ export default function TransformationsPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full">
-              <Sparkles size={15} style={{ color: "#c9a84c" }} />
+              <Sparkles size={15} style={{ color: "#8b5e3c" }} />
               <span
                 className="text-xs tracking-[0.3em] uppercase font-accent"
                 style={{ color: "#8b5e3c" }}
@@ -250,7 +250,7 @@ export default function TransformationsPage() {
         style={{
           background: "rgba(255,255,255,0.8)",
           backdropFilter: "blur(20px)",
-          borderColor: "rgba(201,168,76,0.18)",
+          borderColor: "rgba(139,94,60,0.18)",
         }}
       >
         <div className="max-w-4xl mx-auto px-4">
@@ -267,12 +267,12 @@ export default function TransformationsPage() {
                   transition={{ delay: i * 0.1 }}
                   data-ocid={`transformations.stat.${i + 1}`}
                 >
-                  <Icon size={20} style={{ color: "#c9a84c" }} />
+                  <Icon size={20} style={{ color: "#8b5e3c" }} />
                   <p
                     className="text-3xl font-display font-bold"
                     style={{
-                      color: "#c9a84c",
-                      textShadow: "0 0 20px rgba(201,168,76,0.25)",
+                      color: "#8b5e3c",
+                      textShadow: "0 0 20px rgba(139,94,60,0.25)",
                     }}
                   >
                     {s.val}
@@ -319,16 +319,16 @@ export default function TransformationsPage() {
                 style={{
                   background:
                     activeFilter === filter
-                      ? "linear-gradient(135deg, #c9a84c, #d4af37)"
+                      ? "linear-gradient(135deg, #8b5e3c, #6b3f1f)"
                       : "rgba(255,255,255,0.7)",
                   color: activeFilter === filter ? "#3d2817" : "#8b5e3c",
                   border:
                     activeFilter === filter
-                      ? "1px solid rgba(201,168,76,0.6)"
-                      : "1px solid rgba(201,168,76,0.25)",
+                      ? "1px solid rgba(139,94,60,0.6)"
+                      : "1px solid rgba(139,94,60,0.25)",
                   boxShadow:
                     activeFilter === filter
-                      ? "0 4px 20px rgba(201,168,76,0.35)"
+                      ? "0 4px 20px rgba(139,94,60,0.35)"
                       : "none",
                   backdropFilter: "blur(12px)",
                 }}
@@ -357,7 +357,7 @@ export default function TransformationsPage() {
                     : i === 6
                       ? "row-span-2"
                       : "";
-              const catColor = categoryColors[item.category] ?? "#c9a84c";
+              const catColor = categoryColors[item.category] ?? "#8b5e3c";
               return (
                 <motion.div
                   key={`${item.src}-${i}`}
@@ -369,7 +369,7 @@ export default function TransformationsPage() {
                   transition={{ delay: i * 0.07, duration: 0.5 }}
                   whileHover={{ scale: 1.02 }}
                   style={{
-                    border: "1.5px solid rgba(201,168,76,0.2)",
+                    border: "1.5px solid rgba(139,94,60,0.2)",
                     boxShadow: "0 4px 20px rgba(107,63,31,0.07)",
                   }}
                   data-ocid={`transformations.gallery.item.${i + 1}`}
@@ -462,7 +462,7 @@ export default function TransformationsPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.09) 0%, transparent 70%)",
           }}
         />
         <div
@@ -478,8 +478,8 @@ export default function TransformationsPage() {
               size={50}
               className="mx-auto mb-5"
               style={{
-                color: "#c9a84c",
-                filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))",
+                color: "#8b5e3c",
+                filter: "drop-shadow(0 0 16px rgba(139,94,60,0.45))",
               }}
             />
             <h2 className="text-4xl font-display italic gradient-text mb-4">

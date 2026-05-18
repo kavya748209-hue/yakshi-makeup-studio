@@ -62,12 +62,12 @@ const testimonials: Testimonial[] = [
 ];
 
 const AVATAR_COLORS = [
-  "#c9a84c",
-  "#e8a87c",
+  "#8b5e3c",
+  "#c4956a",
   "#b5845a",
-  "#d4af37",
-  "#c9a84c",
-  "#e8c878",
+  "#6b3f1f",
+  "#8b5e3c",
+  "#7a4e2d",
 ];
 
 const cardVariants: Variants = {
@@ -152,7 +152,7 @@ export default function TestimonialsSection() {
         className="absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
           filter: "blur(80px)",
           transform: "translateX(-50%)",
         }}
@@ -161,7 +161,7 @@ export default function TestimonialsSection() {
         className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(196,149,106,0.10) 0%, transparent 65%)",
           filter: "blur(70px)",
           transform: "translate(30%, 30%)",
         }}
@@ -173,7 +173,7 @@ export default function TestimonialsSection() {
       <div
         className="absolute top-24 left-1/2 -translate-x-1/2 font-display text-[220px] leading-none pointer-events-none select-none"
         style={{
-          color: "rgba(201,168,76,0.06)",
+          color: "rgba(139,94,60,0.06)",
           fontWeight: 700,
         }}
         aria-hidden="true"
@@ -192,7 +192,7 @@ export default function TestimonialsSection() {
         >
           <p
             className="font-accent text-xs uppercase tracking-[3px] mb-3"
-            style={{ color: "#c9a84c", letterSpacing: "3px" }}
+            style={{ color: "#8b5e3c", letterSpacing: "3px" }}
           >
             Testimonials
           </p>
@@ -251,15 +251,15 @@ export default function TestimonialsSection() {
                   style={{
                     background: "rgba(255,255,255,0.80)",
                     boxShadow:
-                      "0 0 50px rgba(201,168,76,0.15), 0 20px 60px rgba(107,63,31,0.10), inset 0 1px 0 rgba(255,255,255,1)",
-                    borderColor: "rgba(201,168,76,0.35)",
+                      "0 0 50px rgba(139,94,60,0.15), 0 20px 60px rgba(107,63,31,0.10), inset 0 1px 0 rgba(255,255,255,1)",
+                    borderColor: "rgba(139,94,60,0.35)",
                   }}
                 >
                   {/* Background quote decoration */}
                   <div
                     className="absolute top-4 right-6 font-display text-8xl leading-none pointer-events-none select-none"
                     style={{
-                      color: "rgba(201,168,76,0.10)",
+                      color: "rgba(139,94,60,0.10)",
                       fontWeight: 700,
                     }}
                     aria-hidden="true"
@@ -275,9 +275,8 @@ export default function TestimonialsSection() {
                           key={k}
                           className="text-lg"
                           style={{
-                            color: "#d4af37",
-                            filter:
-                              "drop-shadow(0 0 5px rgba(212,175,55,0.65))",
+                            color: "#8b5e3c",
+                            filter: "drop-shadow(0 0 5px rgba(139,94,60,0.65))",
                           }}
                         >
                           ★
@@ -300,7 +299,7 @@ export default function TestimonialsSection() {
                         style={{
                           background:
                             AVATAR_COLORS[current % AVATAR_COLORS.length],
-                          boxShadow: "0 0 18px rgba(201,168,76,0.35)",
+                          boxShadow: "0 0 18px rgba(139,94,60,0.35)",
                           color: "#3d2817",
                         }}
                       >
@@ -335,10 +334,10 @@ export default function TestimonialsSection() {
               aria-label="Previous testimonial"
               onClick={handlePrev}
               className="w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth"
-              style={{ color: "#c9a84c" }}
+              style={{ color: "#8b5e3c" }}
               whileHover={{
                 scale: 1.12,
-                boxShadow: "0 0 22px rgba(201,168,76,0.40)",
+                boxShadow: "0 0 22px rgba(139,94,60,0.40)",
               }}
               whileTap={{ scale: 0.93 }}
             >
@@ -358,9 +357,9 @@ export default function TestimonialsSection() {
                     width: i === current ? 24 : 8,
                     height: 8,
                     background:
-                      i === current ? "#c9a84c" : "rgba(201,168,76,0.28)",
+                      i === current ? "#8b5e3c" : "rgba(139,94,60,0.28)",
                     boxShadow:
-                      i === current ? "0 0 12px rgba(201,168,76,0.65)" : "none",
+                      i === current ? "0 0 12px rgba(139,94,60,0.65)" : "none",
                   }}
                 />
               ))}
@@ -372,10 +371,10 @@ export default function TestimonialsSection() {
               aria-label="Next testimonial"
               onClick={handleNext}
               className="w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth"
-              style={{ color: "#c9a84c" }}
+              style={{ color: "#8b5e3c" }}
               whileHover={{
                 scale: 1.12,
-                boxShadow: "0 0 22px rgba(201,168,76,0.40)",
+                boxShadow: "0 0 22px rgba(139,94,60,0.40)",
               }}
               whileTap={{ scale: 0.93 }}
             >

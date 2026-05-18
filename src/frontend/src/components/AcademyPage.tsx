@@ -27,7 +27,7 @@ function FloatingOrbs() {
           top: "-15%",
           right: "-10%",
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(212,175,55,0.06) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(139,94,60,0.12) 0%, rgba(107,63,31,0.06) 40%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />
@@ -39,7 +39,7 @@ function FloatingOrbs() {
           bottom: "-10%",
           left: "-8%",
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(139,94,60,0.05) 40%, transparent 70%)",
           filter: "blur(50px)",
           animationDelay: "-3s",
         }}
@@ -52,10 +52,10 @@ function FloatingOrbs() {
           style={{
             width: 3 + (i % 3) * 2,
             height: 3 + (i % 3) * 2,
-            background: `rgba(201,168,76,${0.3 + (i % 4) * 0.1})`,
+            background: `rgba(139,94,60,${0.3 + (i % 4) * 0.1})`,
             left: `${8 + ((i * 8) % 88)}%`,
             top: `${10 + ((i * 13) % 80)}%`,
-            boxShadow: "0 0 8px rgba(201,168,76,0.4)",
+            boxShadow: "0 0 8px rgba(139,94,60,0.4)",
           }}
           animate={{ y: [0, -20, 0], opacity: [0.3, 0.9, 0.3] }}
           transition={{
@@ -96,7 +96,7 @@ function GoldParticlesCanvas() {
       for (const p of pts) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201,168,76,${p.op})`;
+        ctx.fillStyle = `rgba(139,94,60,${p.op})`;
         ctx.fill();
         p.x += p.dx;
         p.y += p.dy;
@@ -137,7 +137,7 @@ const courses = [
     title: "Foundation Course",
     subtitle: "Begin Your Journey",
     duration: "1 Month",
-    fee: "₹8,000",
+    fee: "\u20b98,000",
     popular: false,
     curriculum: [
       "Skincare prep & base application",
@@ -153,23 +153,23 @@ const courses = [
     title: "Professional Diploma",
     subtitle: "Complete Career Training",
     duration: "3 Months",
-    fee: "₹25,000",
+    fee: "\u20b925,000",
     popular: true,
     curriculum: [
       "HD & airbrush techniques",
-      "Bridal look creation A–Z",
+      "Bridal look creation A\u2013Z",
       "Regional bridal styles",
       "Portfolio & client management",
       "Live model practice sessions",
     ],
-    color: "#c9a84c",
+    color: "#8b5e3c",
   },
   {
     icon: Sparkles,
     title: "Bridal Specialist",
     subtitle: "Intensive Bridal Training",
     duration: "2 Months",
-    fee: "₹18,000",
+    fee: "\u20b918,000",
     popular: false,
     curriculum: [
       "Luxury bridal looks",
@@ -185,7 +185,7 @@ const courses = [
     title: "Advanced Master Class",
     subtitle: "For Working Professionals",
     duration: "1 Week",
-    fee: "₹5,000",
+    fee: "\u20b95,000",
     popular: false,
     curriculum: [
       "Advanced airbrush skills",
@@ -212,7 +212,7 @@ const whyJoin = [
   {
     icon: CheckCircle2,
     title: "Hands-On Training",
-    desc: "Every session is practical — you apply, practice, and master. No purely theoretical classes.",
+    desc: "Every session is practical \u2014 you apply, practice, and master. No purely theoretical classes.",
   },
   {
     icon: GraduationCap,
@@ -232,13 +232,13 @@ const studentReviews = [
     name: "Isha Kulkarni",
     location: "Nagpur, Maharashtra",
     rating: 5,
-    text: "Professional diploma course ne meri zindagi badal di. Portfolio shoot, real clients, certification — sab kuch ek jagah mila. Highly recommend to every aspiring artist!",
+    text: "Professional diploma course ne meri zindagi badal di. Portfolio shoot, real clients, certification \u2014 sab kuch ek jagah mila. Highly recommend to every aspiring artist!",
   },
   {
     name: "Tanvi Rathore",
     location: "Akola, Maharashtra",
     rating: 5,
-    text: "Foundation course bilkul beginner-friendly tha. Madam har student ko personally dhyan deti hain. Bahut kuch seekha — now I run my own studio!",
+    text: "Foundation course bilkul beginner-friendly tha. Madam har student ko personally dhyan deti hain. Bahut kuch seekha \u2014 now I run my own studio!",
   },
 ];
 
@@ -267,7 +267,7 @@ export default function AcademyPage() {
       style={{ backgroundColor: "#fdf8f3" }}
       data-ocid="academy.page"
     >
-      {/* ── Hero ── */}
+      {/* \u2500\u2500 Hero \u2500\u2500 */}
       <section
         className="relative overflow-hidden py-32"
         style={{
@@ -286,7 +286,7 @@ export default function AcademyPage() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            border: "1px solid rgba(201,168,76,0.10)",
+            border: "1px solid rgba(139,94,60,0.10)",
             zIndex: 0,
           }}
         />
@@ -298,7 +298,7 @@ export default function AcademyPage() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            border: "1px solid rgba(201,168,76,0.06)",
+            border: "1px solid rgba(139,94,60,0.06)",
             zIndex: 0,
           }}
         />
@@ -312,7 +312,7 @@ export default function AcademyPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full">
-              <GraduationCap size={15} style={{ color: "#c9a84c" }} />
+              <GraduationCap size={15} style={{ color: "#8b5e3c" }} />
               <span
                 className="text-xs tracking-[0.3em] uppercase font-accent"
                 style={{ color: "#8b5e3c" }}
@@ -341,18 +341,19 @@ export default function AcademyPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Learn from a Certified Professional — Transform Your Passion into a
-            Career
+            Learn from a Certified Professional \u2014 Transform Your Passion
+            into a Career
           </motion.p>
 
           <motion.p
             className="text-sm font-body mb-10 tracking-wide"
-            style={{ color: "#c9a84c" }}
+            style={{ color: "#6b3f1f" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            500+ Students Trained · 10+ Years Teaching · Certified Courses
+            500+ Students Trained \u00b7 10+ Years Teaching \u00b7 Certified
+            Courses
           </motion.p>
 
           <motion.div
@@ -379,13 +380,13 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Stats Bar ── */}
+      {/* \u2500\u2500 Stats Bar \u2500\u2500 */}
       <section
         className="py-10 border-y"
         style={{
           background: "rgba(255,255,255,0.75)",
           backdropFilter: "blur(20px)",
-          borderColor: "rgba(201,168,76,0.18)",
+          borderColor: "rgba(139,94,60,0.18)",
         }}
       >
         <div className="max-w-5xl mx-auto px-4">
@@ -407,7 +408,7 @@ export default function AcademyPage() {
               >
                 <p
                   className="text-3xl font-display font-bold gradient-text"
-                  style={{ WebkitTextFillColor: "unset", color: "#c9a84c" }}
+                  style={{ WebkitTextFillColor: "unset", color: "#8b5e3c" }}
                 >
                   {s.val}
                 </p>
@@ -423,7 +424,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Courses Grid ── */}
+      {/* \u2500\u2500 Courses Grid \u2500\u2500 */}
       <section
         id="courses"
         className="section-padding section-bg-cream relative overflow-hidden"
@@ -432,7 +433,7 @@ export default function AcademyPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)",
+              "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,94,60,0.07) 0%, transparent 60%)",
           }}
         />
         <div className="max-w-6xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
@@ -475,9 +476,7 @@ export default function AcademyPage() {
                       width: 120,
                       height: 120,
                       background:
-                        course.color === "#c9a84c"
-                          ? "radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%)"
-                          : "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%)",
                     }}
                   />
 
@@ -485,9 +484,9 @@ export default function AcademyPage() {
                     <div
                       className="absolute top-5 right-5 px-3 py-1 rounded-full text-xs font-accent font-bold tracking-widest"
                       style={{
-                        background: "linear-gradient(135deg,#c9a84c,#d4af37)",
-                        color: "#3d2817",
-                        boxShadow: "0 4px 16px rgba(201,168,76,0.4)",
+                        background: "linear-gradient(135deg,#8b5e3c,#6b3f1f)",
+                        color: "#fdf8f3",
+                        boxShadow: "0 4px 16px rgba(139,94,60,0.4)",
                       }}
                     >
                       Most Popular
@@ -498,10 +497,7 @@ export default function AcademyPage() {
                     <div
                       className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
                       style={{
-                        background:
-                          course.color === "#c9a84c"
-                            ? "rgba(201,168,76,0.14)"
-                            : "rgba(139,94,60,0.10)",
+                        background: "rgba(139,94,60,0.10)",
                         border: `1px solid ${course.color}44`,
                         boxShadow: `0 0 20px ${course.color}22`,
                       }}
@@ -533,7 +529,7 @@ export default function AcademyPage() {
                       >
                         <CheckCircle2
                           size={14}
-                          style={{ color: "#c9a84c", flexShrink: 0 }}
+                          style={{ color: "#8b5e3c", flexShrink: 0 }}
                         />
                         {item}
                       </li>
@@ -542,7 +538,7 @@ export default function AcademyPage() {
 
                   <div
                     className="flex items-center justify-between pt-5"
-                    style={{ borderTop: "1px solid rgba(201,168,76,0.18)" }}
+                    style={{ borderTop: "1px solid rgba(139,94,60,0.18)" }}
                   >
                     <div className="flex items-center gap-2">
                       <Clock size={14} style={{ color: "#8b5e3c" }} />
@@ -556,8 +552,8 @@ export default function AcademyPage() {
                     <span
                       className="text-2xl font-display font-bold"
                       style={{
-                        color: "#c9a84c",
-                        textShadow: "0 0 16px rgba(201,168,76,0.3)",
+                        color: "#8b5e3c",
+                        textShadow: "0 0 16px rgba(139,94,60,0.3)",
                       }}
                     >
                       {course.fee}
@@ -570,7 +566,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Why Join ── */}
+      {/* \u2500\u2500 Why Join \u2500\u2500 */}
       <section
         className="section-padding relative overflow-hidden"
         style={{
@@ -581,7 +577,7 @@ export default function AcademyPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,94,60,0.08) 0%, transparent 70%)",
           }}
         />
         <div className="max-w-5xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
@@ -613,19 +609,19 @@ export default function AcademyPage() {
                   transition={{ delay: i * 0.1 }}
                   whileHover={{
                     y: -5,
-                    boxShadow: "0 8px 40px rgba(201,168,76,0.2)",
+                    boxShadow: "0 8px 40px rgba(139,94,60,0.2)",
                   }}
                   data-ocid={`academy.why.item.${i + 1}`}
                 >
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
                     style={{
-                      background: "rgba(201,168,76,0.12)",
-                      border: "1px solid rgba(201,168,76,0.3)",
-                      boxShadow: "0 0 20px rgba(201,168,76,0.18)",
+                      background: "rgba(139,94,60,0.12)",
+                      border: "1px solid rgba(139,94,60,0.3)",
+                      boxShadow: "0 0 20px rgba(139,94,60,0.18)",
                     }}
                   >
-                    <Icon size={22} style={{ color: "#c9a84c" }} />
+                    <Icon size={22} style={{ color: "#8b5e3c" }} />
                   </div>
                   <h4
                     className="font-display italic text-base mb-2"
@@ -646,7 +642,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Student Testimonials ── */}
+      {/* \u2500\u2500 Student Testimonials \u2500\u2500 */}
       <section className="section-padding section-bg-cream">
         <div className="max-w-5xl mx-auto px-4">
           <motion.div
@@ -680,8 +676,8 @@ export default function AcademyPage() {
                     <Star
                       key={`star-${review.name}-${si}`}
                       size={14}
-                      fill="#c9a84c"
-                      style={{ color: "#c9a84c" }}
+                      fill="#8b5e3c"
+                      style={{ color: "#8b5e3c" }}
                     />
                   ))}
                 </div>
@@ -693,7 +689,7 @@ export default function AcademyPage() {
                 </p>
                 <div
                   className="pt-4"
-                  style={{ borderTop: "1px solid rgba(201,168,76,0.18)" }}
+                  style={{ borderTop: "1px solid rgba(139,94,60,0.18)" }}
                 >
                   <p
                     className="font-display italic text-sm"
@@ -711,7 +707,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Enrollment Form ── */}
+      {/* \u2500\u2500 Enrollment Form \u2500\u2500 */}
       <section
         id="enroll"
         className="section-padding relative overflow-hidden"
@@ -724,7 +720,7 @@ export default function AcademyPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.08) 0%, transparent 70%)",
           }}
         />
         <div className="max-w-2xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
@@ -738,8 +734,8 @@ export default function AcademyPage() {
               size={48}
               className="mx-auto mb-5"
               style={{
-                color: "#c9a84c",
-                filter: "drop-shadow(0 0 14px rgba(201,168,76,0.4))",
+                color: "#8b5e3c",
+                filter: "drop-shadow(0 0 14px rgba(139,94,60,0.4))",
               }}
             />
             <h2 className="text-4xl font-display italic gradient-text mb-3">
@@ -766,11 +762,11 @@ export default function AcademyPage() {
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
                   style={{
-                    background: "rgba(201,168,76,0.15)",
-                    border: "1px solid rgba(201,168,76,0.4)",
+                    background: "rgba(139,94,60,0.15)",
+                    border: "1px solid rgba(139,94,60,0.4)",
                   }}
                 >
-                  <CheckCircle2 size={32} style={{ color: "#c9a84c" }} />
+                  <CheckCircle2 size={32} style={{ color: "#8b5e3c" }} />
                 </div>
                 <h3 className="text-2xl font-display italic gradient-text mb-2">
                   Enrollment Initiated!
@@ -805,7 +801,7 @@ export default function AcademyPage() {
                     className="w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth"
                     style={{
                       background: "rgba(255,255,255,0.8)",
-                      border: "1px solid rgba(201,168,76,0.3)",
+                      border: "1px solid rgba(139,94,60,0.3)",
                       color: "#3d2817",
                       outline: "none",
                     }}
@@ -832,7 +828,7 @@ export default function AcademyPage() {
                     className="w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth"
                     style={{
                       background: "rgba(255,255,255,0.8)",
-                      border: "1px solid rgba(201,168,76,0.3)",
+                      border: "1px solid rgba(139,94,60,0.3)",
                       color: "#3d2817",
                       outline: "none",
                     }}
@@ -858,7 +854,7 @@ export default function AcademyPage() {
                     className="w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth"
                     style={{
                       background: "rgba(255,255,255,0.8)",
-                      border: "1px solid rgba(201,168,76,0.3)",
+                      border: "1px solid rgba(139,94,60,0.3)",
                       color: "#3d2817",
                       outline: "none",
                     }}
@@ -884,7 +880,7 @@ export default function AcademyPage() {
                     className="w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth"
                     style={{
                       background: "rgba(255,255,255,0.8)",
-                      border: "1px solid rgba(201,168,76,0.3)",
+                      border: "1px solid rgba(139,94,60,0.3)",
                       color: formData.course ? "#3d2817" : "#8b5e3c",
                       outline: "none",
                     }}
@@ -894,16 +890,16 @@ export default function AcademyPage() {
                       Select a course
                     </option>
                     <option value="Foundation Course">
-                      Foundation Course — ₹8,000
+                      Foundation Course \u2014 \u20b98,000
                     </option>
                     <option value="Professional Diploma">
-                      Professional Diploma — ₹25,000
+                      Professional Diploma \u2014 \u20b925,000
                     </option>
                     <option value="Bridal Specialist">
-                      Bridal Specialist — ₹18,000
+                      Bridal Specialist \u2014 \u20b918,000
                     </option>
                     <option value="Advanced Master Class">
-                      Advanced Master Class — ₹5,000
+                      Advanced Master Class \u2014 \u20b95,000
                     </option>
                   </select>
                 </div>

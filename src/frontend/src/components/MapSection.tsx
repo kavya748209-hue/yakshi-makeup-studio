@@ -1,7 +1,7 @@
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { motion } from "motion/react";
 
-const GOLD = "#c9a84c";
+const GOLD = "#8b5e3c";
 const WARM = "#8b5e3c";
 
 interface ContactCardProps {
@@ -26,14 +26,14 @@ function ContactCard({
       data-ocid={ocid}
       className="flex items-start gap-4 rounded-2xl p-4 glass-ultra transition-all duration-300"
       style={{
-        border: "1.5px solid rgba(201,168,76,0.25)",
-        boxShadow: "0 2px 16px rgba(107,63,31,0.06)",
+        border: "1.5px solid rgba(139,94,60,0.25)",
+        boxShadow: "0 2px 16px rgba(107,63,31,0.08)",
       }}
       whileHover={{
         y: -3,
         boxShadow:
-          "0 8px 32px rgba(201,168,76,0.28), 0 0 50px rgba(201,168,76,0.10)",
-        borderColor: "rgba(201,168,76,0.55)",
+          "0 8px 32px rgba(139,94,60,0.28), 0 0 50px rgba(139,94,60,0.10)",
+        borderColor: "rgba(139,94,60,0.55)",
       }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -44,9 +44,9 @@ function ContactCard({
         className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
         style={{
           background:
-            "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
-          border: "1.5px solid rgba(201,168,76,0.42)",
-          boxShadow: "0 0 16px rgba(201,168,76,0.24)",
+            "linear-gradient(135deg, rgba(139,94,60,0.20), rgba(139,94,60,0.06))",
+          border: "1.5px solid rgba(139,94,60,0.42)",
+          boxShadow: "0 0 16px rgba(139,94,60,0.24)",
         }}
       >
         {icon}
@@ -93,7 +93,7 @@ export default function MapSection() {
         className="absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
           filter: "blur(90px)",
         }}
       />
@@ -101,7 +101,7 @@ export default function MapSection() {
         className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(196,149,106,0.08) 0%, transparent 65%)",
           filter: "blur(80px)",
         }}
       />
@@ -155,7 +155,7 @@ export default function MapSection() {
                   size={18}
                   style={{
                     color: GOLD,
-                    filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))",
+                    filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))",
                   }}
                 />
               }
@@ -170,7 +170,7 @@ export default function MapSection() {
                   size={18}
                   style={{
                     color: GOLD,
-                    filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))",
+                    filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))",
                   }}
                 />
               }
@@ -186,7 +186,7 @@ export default function MapSection() {
                   size={18}
                   style={{
                     color: GOLD,
-                    filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))",
+                    filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))",
                   }}
                 />
               }
@@ -233,9 +233,9 @@ export default function MapSection() {
               className="rounded-2xl overflow-hidden"
               style={{
                 height: "380px",
-                border: "2px solid rgba(201,168,76,0.40)",
+                border: "2px solid rgba(139,94,60,0.40)",
                 boxShadow:
-                  "0 4px 40px rgba(107,63,31,0.10), 0 0 60px rgba(201,168,76,0.10)",
+                  "0 4px 40px rgba(107,63,31,0.10), 0 0 60px rgba(139,94,60,0.10)",
               }}
             >
               <iframe

@@ -13,7 +13,7 @@ import { Component, Suspense, useRef, useState } from "react";
 import type { ErrorInfo, ReactNode } from "react";
 import type * as THREE from "three";
 
-const GOLD = "#c9a84c";
+const GOLD = "#8b5e3c";
 const BROWN = "#6b3f1f";
 const WARM = "#8b5e3c";
 
@@ -52,10 +52,10 @@ function GoldGem({
       <mesh ref={ref} position={position} scale={scale}>
         <octahedronGeometry args={[1, 0]} />
         <meshStandardMaterial
-          color="#d4af37"
+          color="#8b5e3c"
           metalness={0.95}
           roughness={0.05}
-          emissive="#b8941f"
+          emissive="#6b3f1f"
           emissiveIntensity={0.6}
           transparent
           opacity={0.5}
@@ -69,7 +69,7 @@ function BackgroundScene() {
   return (
     <>
       <ambientLight intensity={0.6} color="#e8d5a0" />
-      <pointLight position={[5, 5, 5]} intensity={1.5} color="#d4af37" />
+      <pointLight position={[5, 5, 5]} intensity={1.5} color="#8b5e3c" />
       <pointLight position={[-5, -3, 3]} intensity={0.8} color="#e8a87c" />
       <GoldGem position={[-4, 2, -3]} scale={0.38} speed={0.35} />
       <GoldGem position={[4.5, -2, -4]} scale={0.5} speed={0.22} />
@@ -173,10 +173,10 @@ function FeatureCard({
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           border: hovered
-            ? "1.5px solid rgba(201,168,76,0.60)"
-            : "1.5px solid rgba(201,168,76,0.25)",
+            ? "1.5px solid rgba(139,94,60,0.60)"
+            : "1.5px solid rgba(139,94,60,0.25)",
           boxShadow: hovered
-            ? "0 0 30px rgba(201,168,76,0.40), 0 0 70px rgba(201,168,76,0.14), 0 20px 60px rgba(107,63,31,0.12)"
+            ? "0 0 30px rgba(139,94,60,0.40), 0 0 70px rgba(139,94,60,0.14), 0 20px 60px rgba(107,63,31,0.12)"
             : "0 4px 24px rgba(107,63,31,0.07)",
           transition:
             "border-color 0.4s ease, box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.23,1,0.32,1), background 0.3s ease",
@@ -188,7 +188,7 @@ function FeatureCard({
           className="pointer-events-none absolute inset-0 rounded-[20px]"
           style={{
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%)",
+              "linear-gradient(135deg, rgba(139,94,60,0.08) 0%, transparent 60%)",
             opacity: hovered ? 1 : 0,
             transition: "opacity 0.3s ease",
           }}
@@ -196,7 +196,7 @@ function FeatureCard({
         <span
           className="absolute top-5 right-5 font-accent text-xs font-bold tracking-widest select-none"
           style={{
-            color: hovered ? "rgba(201,168,76,0.85)" : "rgba(201,168,76,0.45)",
+            color: hovered ? "rgba(139,94,60,0.85)" : "rgba(139,94,60,0.45)",
             transition: "color 0.3s ease",
           }}
         >
@@ -206,11 +206,11 @@ function FeatureCard({
           className="mb-5 inline-flex items-center justify-center rounded-full w-14 h-14"
           style={{
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.07))",
-            border: "1.5px solid rgba(201,168,76,0.42)",
+              "linear-gradient(135deg, rgba(139,94,60,0.22), rgba(139,94,60,0.07))",
+            border: "1.5px solid rgba(139,94,60,0.42)",
             boxShadow: hovered
-              ? "0 0 26px rgba(201,168,76,0.55), 0 0 55px rgba(201,168,76,0.20)"
-              : "0 0 14px rgba(201,168,76,0.22)",
+              ? "0 0 26px rgba(139,94,60,0.55), 0 0 55px rgba(139,94,60,0.20)"
+              : "0 0 14px rgba(139,94,60,0.22)",
             transition: "box-shadow 0.3s ease",
           }}
         >
@@ -219,8 +219,8 @@ function FeatureCard({
             style={{
               color: GOLD,
               filter: hovered
-                ? "drop-shadow(0 0 8px rgba(201,168,76,0.85))"
-                : "drop-shadow(0 0 5px rgba(201,168,76,0.55))",
+                ? "drop-shadow(0 0 8px rgba(139,94,60,0.85))"
+                : "drop-shadow(0 0 5px rgba(139,94,60,0.55))",
             }}
             strokeWidth={1.5}
           />
@@ -241,7 +241,7 @@ function FeatureCard({
           className="absolute bottom-0 left-0 h-px w-full"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(201,168,76,0.65), transparent)",
+              "linear-gradient(90deg, transparent, rgba(139,94,60,0.65), transparent)",
             opacity: hovered ? 1 : 0.25,
             transition: "opacity 0.3s ease",
           }}
@@ -282,7 +282,7 @@ export default function WhyChooseUs() {
         className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
           filter: "blur(100px)",
         }}
       />
@@ -350,9 +350,9 @@ export default function WhyChooseUs() {
               key={stat.label}
               className="text-center py-7 rounded-xl glass-ultra"
               style={{
-                border: "1.5px solid rgba(201,168,76,0.35)",
+                border: "1.5px solid rgba(139,94,60,0.35)",
                 boxShadow:
-                  "0 0 24px rgba(201,168,76,0.12), 0 4px 20px rgba(107,63,31,0.06)",
+                  "0 0 24px rgba(139,94,60,0.12), 0 4px 20px rgba(107,63,31,0.06)",
               }}
               data-ocid={`why-choose.stat.${idx + 1}`}
             >

@@ -57,7 +57,7 @@ export default function Footer() {
       {/* Gold top border with enhanced glow */}
       <div
         className="divider-gold"
-        style={{ boxShadow: "0 0 12px rgba(212,175,55,0.28)" }}
+        style={{ boxShadow: "0 0 12px rgba(107,63,31,0.28)" }}
       />
 
       {/* Top glow */}
@@ -65,7 +65,7 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at top, rgba(212,175,55,0.09) 0%, transparent 70%)",
+            "radial-gradient(ellipse at top, rgba(107,63,31,0.09) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -140,7 +140,7 @@ export default function Footer() {
                   >
                     <span
                       className="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-smooth"
-                      style={{ boxShadow: "0 0 6px rgba(212,175,55,0.8)" }}
+                      style={{ boxShadow: "0 0 6px rgba(107,63,31,0.8)" }}
                     />
                     {label}
                   </a>
@@ -168,7 +168,7 @@ export default function Footer() {
                   >
                     <span
                       className="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-smooth"
-                      style={{ boxShadow: "0 0 6px rgba(212,175,55,0.8)" }}
+                      style={{ boxShadow: "0 0 6px rgba(107,63,31,0.8)" }}
                     />
                     {service}
                   </a>
@@ -193,7 +193,7 @@ export default function Footer() {
                   size={15}
                   className="mt-0.5 flex-shrink-0 text-gold"
                   style={{
-                    filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))",
+                    filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))",
                   }}
                 />
                 <span className="text-muted-foreground text-sm font-body leading-snug">
@@ -211,7 +211,7 @@ export default function Footer() {
                   size={15}
                   className="flex-shrink-0 text-gold"
                   style={{
-                    filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))",
+                    filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))",
                   }}
                 />
                 <a
@@ -246,7 +246,7 @@ export default function Footer() {
                   size={14}
                   className="flex-shrink-0 text-gold"
                   style={{
-                    filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))",
+                    filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))",
                   }}
                 />
                 <span className="text-muted-foreground text-sm font-body break-all">
@@ -278,7 +278,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gold hover:text-gold-light transition-smooth"
-              style={{ textShadow: "0 0 12px rgba(212,175,55,0.3)" }}
+              style={{ textShadow: "0 0 12px rgba(107,63,31,0.3)" }}
             >
               caffeine.ai
             </a>

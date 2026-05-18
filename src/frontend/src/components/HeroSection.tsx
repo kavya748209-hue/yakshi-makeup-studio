@@ -83,8 +83,8 @@ function GoldenParticles() {
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
       <sphereGeometry args={[1, 8, 8]} />
       <meshStandardMaterial
-        color="#c9a84c"
-        emissive="#d4af37"
+        color="#8b5e3c"
+        emissive="#6b3f1f"
         emissiveIntensity={0.8}
         roughness={0.15}
         metalness={0.9}
@@ -111,8 +111,8 @@ function TorusRing({
     <mesh ref={ref} position={position} scale={scale}>
       <torusGeometry args={[1.2, 0.04, 16, 80]} />
       <meshStandardMaterial
-        color="#d4af37"
-        emissive="#c9a84c"
+        color="#8b5e3c"
+        emissive="#6b3f1f"
         emissiveIntensity={0.5}
         roughness={0.05}
         metalness={1}
@@ -181,8 +181,8 @@ function RosePetals() {
         >
           <planeGeometry args={[1, 1.4, 1, 1]} />
           <meshStandardMaterial
-            color="#e8a87c"
-            emissive="#c9a84c"
+            color="#c4956a"
+            emissive="#8b5e3c"
             emissiveIntensity={0.35}
             side={THREE.DoubleSide}
             transparent
@@ -247,7 +247,7 @@ function Scene() {
     <>
       {/* Warm cream-toned ambient + gold point lights */}
       <ambientLight intensity={2.0} color="#fff8ee" />
-      <pointLight position={[6, 6, 4]} intensity={2.5} color="#d4af37" />
+      <pointLight position={[6, 6, 4]} intensity={2.5} color="#8b5e3c" />
       <pointLight position={[-6, -3, 4]} intensity={1.8} color="#e8c4a0" />
       <pointLight position={[0, 10, -4]} intensity={1.2} color="#fdf8f3" />
       <CameraParallax />
@@ -256,14 +256,14 @@ function Scene() {
       <TorusRing position={[-5, -1, -4]} scale={0.8} phase={1.2} />
       <TorusRing position={[3, 3, -5]} scale={0.6} phase={2.4} />
       <RosePetals />
-      <DistortOrb position={[-4, 2, -5]} color="#e8c4a0" emissive="#c9a84c" />
-      <DistortOrb position={[4, -2.5, -6]} color="#d4af37" emissive="#c9a84c" />
+      <DistortOrb position={[-4, 2, -5]} color="#e8c4a0" emissive="#8b5e3c" />
+      <DistortOrb position={[4, -2.5, -6]} color="#8b5e3c" emissive="#6b3f1f" />
       <Sparkles
         count={80}
         scale={[20, 16, 8]}
         size={1.5}
         speed={0.15}
-        color="#c9a84c"
+        color="#8b5e3c"
         opacity={0.45}
       />
     </>
@@ -331,7 +331,7 @@ export default function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.07) 40%, transparent 70%)",
+            "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(139,94,60,0.13) 0%, rgba(181,132,90,0.07) 40%, transparent 70%)",
           zIndex: 1,
         }}
       />
@@ -345,7 +345,7 @@ export default function HeroSection() {
           height: 500,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.18) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(196,149,106,0.18) 0%, transparent 65%)",
           filter: "blur(60px)",
           zIndex: 1,
         }}
@@ -408,13 +408,13 @@ export default function HeroSection() {
                   textTransform: "uppercase",
                   color: "#8b5e3c",
                   background: "rgba(255,255,255,0.72)",
-                  border: "1px solid rgba(201,168,76,0.35)",
+                  border: "1px solid rgba(139,94,60,0.35)",
                   boxShadow:
-                    "0 2px 20px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
+                    "0 2px 20px rgba(139,94,60,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
                   backdropFilter: "blur(14px)",
                 }}
               >
-                <span style={{ color: "#c9a84c" }}>✦</span>
+                <span style={{ color: "#8b5e3c" }}>✦</span>
                 Award-Winning Makeup Artist
               </span>
             </motion.div>
@@ -447,7 +447,7 @@ export default function HeroSection() {
                   fontWeight: 600,
                   letterSpacing: "-0.02em",
                   lineHeight: 1.05,
-                  filter: "drop-shadow(0 2px 16px rgba(201,168,76,0.22))",
+                  filter: "drop-shadow(0 2px 16px rgba(139,94,60,0.22))",
                 }}
               >
                 Snehal Pawar
@@ -532,7 +532,7 @@ export default function HeroSection() {
                 alignItems: "center",
                 gap: 0,
                 paddingTop: "1.25rem",
-                borderTop: "1px solid rgba(201,168,76,0.22)",
+                borderTop: "1px solid rgba(139,94,60,0.22)",
               }}
             >
               {[
@@ -546,7 +546,7 @@ export default function HeroSection() {
                       style={{
                         width: 1,
                         height: 32,
-                        background: "rgba(201,168,76,0.3)",
+                        background: "rgba(139,94,60,0.3)",
                         margin: "0 20px",
                       }}
                     />
@@ -557,8 +557,8 @@ export default function HeroSection() {
                         fontFamily: "var(--font-accent)",
                         fontSize: "1.35rem",
                         fontWeight: 700,
-                        color: "#c9a84c",
-                        textShadow: "0 0 18px rgba(201,168,76,0.35)",
+                        color: "#8b5e3c",
+                        textShadow: "0 0 18px rgba(139,94,60,0.35)",
                         lineHeight: 1.1,
                       }}
                     >
@@ -613,10 +613,10 @@ export default function HeroSection() {
                   width: size,
                   height: size,
                   borderRadius: "50%",
-                  border: `1px solid rgba(201,168,76,${opacity * 2.5})`,
+                  border: `1px solid rgba(139,94,60,${opacity * 2.5})`,
 
                   pointerEvents: "none",
-                  boxShadow: `0 0 14px rgba(201,168,76,${opacity * 0.6})`,
+                  boxShadow: `0 0 14px rgba(139,94,60,${opacity * 0.6})`,
                 }}
                 animate={{ rotate: 360 }}
                 transition={{
@@ -635,7 +635,7 @@ export default function HeroSection() {
                 height: 320,
                 borderRadius: "50%",
                 background:
-                  "radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(232,200,120,0.10) 40%, transparent 70%)",
+                  "radial-gradient(circle, rgba(139,94,60,0.22) 0%, rgba(181,132,90,0.10) 40%, transparent 70%)",
                 filter: "blur(40px)",
                 pointerEvents: "none",
               }}
@@ -652,9 +652,9 @@ export default function HeroSection() {
                   width: 7,
                   height: 7,
                   borderRadius: "50%",
-                  background: "rgba(201,168,76,0.9)",
+                  background: "rgba(139,94,60,0.9)",
                   boxShadow:
-                    "0 0 10px rgba(201,168,76,0.8), 0 0 22px rgba(201,168,76,0.35)",
+                    "0 0 10px rgba(139,94,60,0.8), 0 0 22px rgba(139,94,60,0.35)",
                   pointerEvents: "none",
                 }}
                 animate={{ scale: [1, 1.9, 1], opacity: [0.55, 1, 0.55] }}
@@ -683,9 +683,9 @@ export default function HeroSection() {
                   height: 400,
                   borderRadius: 20,
                   overflow: "hidden",
-                  border: "1.5px solid rgba(201,168,76,0.5)",
+                  border: "1.5px solid rgba(139,94,60,0.5)",
                   boxShadow:
-                    "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.15), 0 30px 70px rgba(139,94,60,0.25)",
+                    "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(139,94,60,0.35), 0 0 80px rgba(139,94,60,0.15), 0 30px 70px rgba(107,63,31,0.25)",
                   background: "rgba(255,255,255,0.08)",
                   backdropFilter: "blur(2px)",
                   position: "relative",
@@ -707,7 +707,7 @@ export default function HeroSection() {
                     position: "absolute",
                     inset: 0,
                     background:
-                      "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 45%, rgba(232,168,124,0.06) 100%)",
+                      "linear-gradient(135deg, rgba(139,94,60,0.08) 0%, transparent 45%, rgba(196,149,106,0.06) 100%)",
                     pointerEvents: "none",
                   }}
                 />
@@ -719,7 +719,7 @@ export default function HeroSection() {
                     left: 0,
                     right: 0,
                     height: 1,
-                    background: "rgba(201,168,76,0.45)",
+                    background: "rgba(139,94,60,0.45)",
                     pointerEvents: "none",
                   }}
                 />
@@ -737,10 +737,10 @@ export default function HeroSection() {
                   fontFamily: "var(--font-accent)",
                   letterSpacing: "0.12em",
                   background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(201,168,76,0.45)",
+                  border: "1px solid rgba(139,94,60,0.45)",
                   color: "#8b5e3c",
                   boxShadow:
-                    "0 4px 20px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
+                    "0 4px 20px rgba(139,94,60,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
                   backdropFilter: "blur(12px)",
                   whiteSpace: "nowrap",
                 }}
@@ -767,10 +767,10 @@ export default function HeroSection() {
                   fontFamily: "var(--font-accent)",
                   letterSpacing: "0.12em",
                   background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(201,168,76,0.4)",
+                  border: "1px solid rgba(139,94,60,0.4)",
                   color: "#8b5e3c",
                   boxShadow:
-                    "0 4px 20px rgba(201,168,76,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
+                    "0 4px 20px rgba(139,94,60,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
                   backdropFilter: "blur(12px)",
                   whiteSpace: "nowrap",
                 }}

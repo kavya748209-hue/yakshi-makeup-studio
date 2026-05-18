@@ -92,7 +92,7 @@ export default function GallerySection() {
         className="absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(139,94,60,0.12) 0%, transparent 65%)",
           filter: "blur(90px)",
         }}
       />
@@ -151,10 +151,10 @@ export default function GallerySection() {
                     : "rgba(255,255,255,0.65)",
                 color: activeFilter === f.value ? "#fff" : BROWN,
                 borderColor:
-                  activeFilter === f.value ? GOLD : "rgba(201,168,76,0.30)",
+                  activeFilter === f.value ? GOLD : "rgba(139,94,60,0.30)",
                 boxShadow:
                   activeFilter === f.value
-                    ? "0 4px 20px rgba(201,168,76,0.45), 0 0 30px rgba(201,168,76,0.18)"
+                    ? "0 4px 20px rgba(139,94,60,0.45), 0 0 30px rgba(139,94,60,0.18)"
                     : "0 2px 10px rgba(139,94,60,0.06)",
               }}
             >
@@ -185,7 +185,7 @@ export default function GallerySection() {
                   transition={{ duration: 0.5, delay: i * 0.07 }}
                   className="group relative rounded-2xl overflow-hidden cursor-pointer mb-5 break-inside-avoid"
                   style={{
-                    border: "1.5px solid rgba(201,168,76,0.18)",
+                    border: "1.5px solid rgba(139,94,60,0.18)",
                     boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
                     transition: "box-shadow 0.4s ease, border-color 0.4s ease",
                   }}
@@ -194,13 +194,13 @@ export default function GallerySection() {
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
                     el.style.boxShadow =
-                      "0 0 28px rgba(201,168,76,0.40), 0 0 60px rgba(201,168,76,0.15), 0 8px 30px rgba(107,63,31,0.12)";
-                    el.style.borderColor = "rgba(201,168,76,0.55)";
+                      "0 0 28px rgba(139,94,60,0.40), 0 0 60px rgba(139,94,60,0.15), 0 8px 30px rgba(107,63,31,0.12)";
+                    el.style.borderColor = "rgba(139,94,60,0.55)";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
                     el.style.boxShadow = "0 4px 24px rgba(107,63,31,0.08)";
-                    el.style.borderColor = "rgba(201,168,76,0.18)";
+                    el.style.borderColor = "rgba(139,94,60,0.18)";
                   }}
                 >
                   <img
@@ -214,7 +214,7 @@ export default function GallerySection() {
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(201,168,76,0.65) 0%, rgba(201,168,76,0.20) 40%, transparent 70%)",
+                        "linear-gradient(to top, rgba(139,94,60,0.65) 0%, rgba(139,94,60,0.20) 40%, transparent 70%)",
                     }}
                   />
                   <div className="absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
@@ -236,7 +236,7 @@ export default function GallerySection() {
                       className="w-9 h-9 rounded-full flex items-center justify-center"
                       style={{
                         background: "rgba(255,255,255,0.92)",
-                        boxShadow: "0 0 16px rgba(201,168,76,0.50)",
+                        boxShadow: "0 0 16px rgba(139,94,60,0.50)",
                       }}
                     >
                       <ZoomIn size={16} style={{ color: BROWN }} />
@@ -272,9 +272,9 @@ export default function GallerySection() {
               className="relative max-w-3xl w-full rounded-2xl overflow-hidden"
               style={{
                 background: "rgba(253,248,243,0.97)",
-                border: "1.5px solid rgba(201,168,76,0.45)",
+                border: "1.5px solid rgba(139,94,60,0.45)",
                 boxShadow:
-                  "0 0 60px rgba(201,168,76,0.35), 0 0 120px rgba(201,168,76,0.12)",
+                  "0 0 60px rgba(139,94,60,0.35), 0 0 120px rgba(139,94,60,0.12)",
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -306,8 +306,8 @@ export default function GallerySection() {
                 className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
                 aria-label="Close lightbox"
                 style={{
-                  background: "rgba(201,168,76,0.92)",
-                  boxShadow: "0 0 18px rgba(201,168,76,0.55)",
+                  background: "rgba(139,94,60,0.92)",
+                  boxShadow: "0 0 18px rgba(139,94,60,0.55)",
                 }}
               >
                 <X size={16} style={{ color: BROWN }} />

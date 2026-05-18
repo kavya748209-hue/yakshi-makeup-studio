@@ -17,14 +17,14 @@ export default {
     extend: {
       colors: {
         // ── Tailwind semantic tokens (flat hex, no oklch) ──
-        border:     "rgba(201,168,76,0.25)",
+        border:     "rgba(139,94,60,0.25)",
         input:      "#ede0d0",
-        ring:       "#c9a84c",
+        ring:       "#8b5e3c",
         background: "#fdf8f3",
         foreground: "#3d2817",
         primary: {
-          DEFAULT:    "#c9a84c",
-          foreground: "#3d2817",
+          DEFAULT:    "#8b5e3c",
+          foreground: "#fdf8f3",
         },
         secondary: {
           DEFAULT:    "#f5e6d3",
@@ -39,7 +39,7 @@ export default {
           foreground: "#8b5e3c",
         },
         accent: {
-          DEFAULT:    "#e8c878",
+          DEFAULT:    "#b5845a",
           foreground: "#3d2817",
         },
         popover: {
@@ -52,9 +52,9 @@ export default {
         },
         // ── Brand custom tokens ──
         gold: {
-          DEFAULT: "#c9a84c",
-          bright:  "#d4af37",
-          light:   "#e8c878",
+          DEFAULT: "#8b5e3c",
+          bright:  "#6b3f1f",
+          light:   "#b5845a",
         },
         cream: {
           DEFAULT: "#fdf8f3",
@@ -69,7 +69,7 @@ export default {
           light:   "#b5845a",
           warm:    "#8b5e3c",
         },
-        "rose-gold": "#e8a87c",
+        "rose-gold": "#c4956a",
       },
       fontFamily: {
         display: ["'Cormorant Garamond'", "Georgia", "serif"],
@@ -84,11 +84,11 @@ export default {
       },
       boxShadow: {
         xs:                 "0 1px 2px 0 rgba(0,0,0,0.05)",
-        "glow-gold":        "0 0 20px rgba(201,168,76,0.35), 0 0 60px rgba(201,168,76,0.12)",
-        "glow-gold-intense":"0 0 30px rgba(201,168,76,0.50), 0 0 80px rgba(201,168,76,0.20), 0 0 150px rgba(201,168,76,0.06)",
-        "glow-rose":        "0 0 20px rgba(232,168,124,0.35), 0 0 60px rgba(232,168,124,0.12)",
-        "glow-subtle":      "0 0 16px rgba(201,168,76,0.10), inset 0 0 20px rgba(201,168,76,0.04)",
-        "glass-ultra":      "inset 0 1px 0 rgba(255,255,255,0.95), 0 8px 32px rgba(201,168,76,0.12), 0 2px 8px rgba(107,63,31,0.08)",
+        "glow-gold":        "0 0 20px rgba(139,94,60,0.35), 0 0 60px rgba(139,94,60,0.12)",
+        "glow-gold-intense":"0 0 30px rgba(139,94,60,0.50), 0 0 80px rgba(107,63,31,0.20), 0 0 150px rgba(107,63,31,0.06)",
+        "glow-rose":        "0 0 20px rgba(196,149,106,0.35), 0 0 60px rgba(196,149,106,0.12)",
+        "glow-subtle":      "0 0 16px rgba(139,94,60,0.10), inset 0 0 20px rgba(139,94,60,0.04)",
+        "glass-ultra":      "inset 0 1px 0 rgba(255,255,255,0.95), 0 8px 32px rgba(139,94,60,0.12), 0 2px 8px rgba(107,63,31,0.08)",
         "card-premium":     "0 4px 24px rgba(107,63,31,0.08)",
       },
       keyframes: {
@@ -110,8 +110,8 @@ export default {
           "50%":      { transform: "translateY(-18px) rotate(3deg)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(201,168,76,0.20), 0 0 40px rgba(201,168,76,0.08)" },
-          "50%":      { boxShadow: "0 0 40px rgba(201,168,76,0.45), 0 0 80px rgba(201,168,76,0.18)" },
+          "0%, 100%": { boxShadow: "0 0 20px rgba(139,94,60,0.20), 0 0 40px rgba(139,94,60,0.08)" },
+          "50%":      { boxShadow: "0 0 40px rgba(139,94,60,0.45), 0 0 80px rgba(107,63,31,0.18)" },
         },
         "fade-in": {
           from: { opacity: "0", transform: "translateY(20px)" },

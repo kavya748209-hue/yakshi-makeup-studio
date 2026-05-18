@@ -107,11 +107,9 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             : "perspective(900px) rotateX(0deg) rotateY(0deg)",
           transition: hovered ? "transform 0.1s" : "transform 0.5s ease-out",
           boxShadow: hovered
-            ? "0 0 35px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.12), 0 20px 60px rgba(107,63,31,0.12)"
+            ? "0 0 35px rgba(139,94,60,0.35), 0 0 80px rgba(139,94,60,0.12), 0 20px 60px rgba(107,63,31,0.12)"
             : "0 4px 24px rgba(107,63,31,0.08)",
-          borderColor: hovered
-            ? "rgba(201,168,76,0.6)"
-            : "rgba(201,168,76,0.3)",
+          borderColor: hovered ? "rgba(139,94,60,0.6)" : "rgba(139,94,60,0.3)",
         }}
       >
         {/* Shimmer highlight */}
@@ -121,7 +119,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.09) 55%, transparent 70%)",
+                "linear-gradient(135deg, transparent 40%, rgba(139,94,60,0.09) 55%, transparent 70%)",
               opacity: hovered ? 1 : 0,
               transition: "opacity 0.4s",
             }}
@@ -133,11 +131,11 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
           className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(232,168,124,0.10))",
-            border: "1px solid rgba(201,168,76,0.35)",
+              "linear-gradient(135deg, rgba(139,94,60,0.18), rgba(196,149,106,0.10))",
+            border: "1px solid rgba(139,94,60,0.35)",
             boxShadow: hovered
-              ? "0 0 22px rgba(201,168,76,0.45), 0 0 45px rgba(201,168,76,0.18)"
-              : "0 0 10px rgba(201,168,76,0.15)",
+              ? "0 0 22px rgba(139,94,60,0.45), 0 0 45px rgba(139,94,60,0.18)"
+              : "0 0 10px rgba(139,94,60,0.15)",
             transition: "box-shadow 0.3s",
           }}
         >
@@ -203,7 +201,7 @@ export default function ServicesSection() {
         className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 65%)",
+            "radial-gradient(ellipse, rgba(139,94,60,0.09) 0%, transparent 65%)",
           filter: "blur(80px)",
           transform: "translateY(-30%)",
         }}
@@ -212,7 +210,7 @@ export default function ServicesSection() {
         className="absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(232,168,124,0.08) 0%, transparent 65%)",
+            "radial-gradient(ellipse, rgba(196,149,106,0.08) 0%, transparent 65%)",
           filter: "blur(70px)",
           transform: "translateY(20%)",
         }}
@@ -231,7 +229,7 @@ export default function ServicesSection() {
         >
           <p
             className="font-accent text-xs uppercase tracking-[3px] mb-3"
-            style={{ color: "#c9a84c", letterSpacing: "3px" }}
+            style={{ color: "#8b5e3c", letterSpacing: "3px" }}
           >
             What We Offer
           </p>
@@ -250,8 +248,8 @@ export default function ServicesSection() {
             <div
               className="w-2 h-2 rounded-full"
               style={{
-                background: "#d4af37",
-                boxShadow: "0 0 12px rgba(212,175,55,0.9)",
+                background: "#8b5e3c",
+                boxShadow: "0 0 12px rgba(139,94,60,0.9)",
               }}
             />
             <div className="divider-gold w-24" />
@@ -278,7 +276,7 @@ export default function ServicesSection() {
         >
           <p
             className="font-accent text-sm uppercase tracking-widest mb-6"
-            style={{ color: "#c9a84c", letterSpacing: "2px" }}
+            style={{ color: "#8b5e3c", letterSpacing: "2px" }}
           >
             All packages customizable — Contact for personalized quotes
           </p>

@@ -27058,7 +27058,7 @@ function AboutSection() {
           {
             className: "absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.12) 0%, transparent 70%)",
               filter: "blur(100px)",
               transform: "translate(-40%, -40%)"
             }
@@ -27069,7 +27069,7 @@ function AboutSection() {
           {
             className: "absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.10) 0%, transparent 70%)",
               filter: "blur(80px)",
               transform: "translate(30%, 30%)"
             }
@@ -27122,7 +27122,7 @@ function AboutSection() {
                         {
                           className: "glass-ultra p-3 rounded-3xl glow-gold",
                           style: {
-                            boxShadow: "0 0 40px rgba(201,168,76,0.25), 0 0 100px rgba(201,168,76,0.10), inset 0 1px 0 rgba(255,255,255,0.95)"
+                            boxShadow: "0 0 40px rgba(139,94,60,0.25), 0 0 100px rgba(139,94,60,0.10), inset 0 1px 0 rgba(255,255,255,0.95)"
                           },
                           children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                             "div",
@@ -27144,7 +27144,7 @@ function AboutSection() {
                                   {
                                     className: "absolute inset-0 pointer-events-none rounded-2xl",
                                     style: {
-                                      background: "linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.12) 80%, transparent 100%)"
+                                      background: "linear-gradient(135deg, transparent 60%, rgba(139,94,60,0.12) 80%, transparent 100%)"
                                     }
                                   }
                                 )
@@ -27172,8 +27172,8 @@ function AboutSection() {
                         {
                           className: "absolute -top-2 -left-2 w-6 h-6 rounded-full",
                           style: {
-                            background: "#c9a84c",
-                            boxShadow: "0 0 14px rgba(201,168,76,0.8)"
+                            background: "#8b5e3c",
+                            boxShadow: "0 0 14px rgba(139,94,60,0.8)"
                           }
                         }
                       ),
@@ -27182,8 +27182,8 @@ function AboutSection() {
                         {
                           className: "absolute -top-2 -right-2 w-4 h-4 rounded-full",
                           style: {
-                            background: "#e8a87c",
-                            boxShadow: "0 0 10px rgba(232,168,124,0.8)"
+                            background: "#c4956a",
+                            boxShadow: "0 0 10px rgba(196,149,106,0.8)"
                           }
                         }
                       )
@@ -27203,7 +27203,7 @@ function AboutSection() {
                     "p",
                     {
                       className: "font-accent text-xs uppercase mb-3",
-                      style: { color: "#c9a84c", letterSpacing: "3px" },
+                      style: { color: "#8b5e3c", letterSpacing: "3px" },
                       children: "Meet Your Artist"
                     }
                   ),
@@ -27249,8 +27249,8 @@ function AboutSection() {
                             size: 18,
                             className: "flex-shrink-0",
                             style: {
-                              color: "#c9a84c",
-                              filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                              color: "#8b5e3c",
+                              filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))"
                             }
                           }
                         ),
@@ -27293,8 +27293,8 @@ function AboutSection() {
                   className: "glass-ultra rounded-3xl p-8 md:p-10",
                   style: {
                     background: "rgba(245,230,211,0.75)",
-                    boxShadow: "0 0 50px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
-                    borderColor: "rgba(201,168,76,0.35)"
+                    boxShadow: "0 0 50px rgba(139,94,60,0.15), inset 0 1px 0 rgba(255,255,255,0.95)",
+                    borderColor: "rgba(139,94,60,0.35)"
                   },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-8", children: [
@@ -27302,7 +27302,7 @@ function AboutSection() {
                         "p",
                         {
                           className: "font-accent text-xs uppercase tracking-[3px] mb-2",
-                          style: { color: "#c9a84c" },
+                          style: { color: "#8b5e3c" },
                           children: "Portfolio"
                         }
                       ),
@@ -27333,7 +27333,7 @@ function AboutSection() {
                             {
                               className: "w-20 h-20 rounded-full overflow-hidden mb-4 glow-gold",
                               style: {
-                                border: "2px solid rgba(201,168,76,0.45)"
+                                border: "2px solid rgba(139,94,60,0.45)"
                               },
                               children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                                 "img",
@@ -27357,7 +27357,7 @@ function AboutSection() {
                             "p",
                             {
                               className: "font-accent text-xs uppercase tracking-wider",
-                              style: { color: "#c9a84c" },
+                              style: { color: "#8b5e3c" },
                               children: celeb.event
                             }
                           )
@@ -27392,7 +27392,7 @@ function FloatingOrbs$2() {
               height: 480,
               top: "-15%",
               right: "-10%",
-              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(212,175,55,0.06) 40%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.12) 0%, rgba(107,63,31,0.06) 40%, transparent 70%)",
               filter: "blur(60px)"
             }
           }
@@ -27406,7 +27406,7 @@ function FloatingOrbs$2() {
               height: 360,
               bottom: "-10%",
               left: "-8%",
-              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(139,94,60,0.05) 40%, transparent 70%)",
               filter: "blur(50px)",
               animationDelay: "-3s"
             }
@@ -27419,10 +27419,10 @@ function FloatingOrbs$2() {
             style: {
               width: 3 + i2 % 3 * 2,
               height: 3 + i2 % 3 * 2,
-              background: `rgba(201,168,76,${0.3 + i2 % 4 * 0.1})`,
+              background: `rgba(139,94,60,${0.3 + i2 % 4 * 0.1})`,
               left: `${8 + i2 * 8 % 88}%`,
               top: `${10 + i2 * 13 % 80}%`,
-              boxShadow: "0 0 8px rgba(201,168,76,0.4)"
+              boxShadow: "0 0 8px rgba(139,94,60,0.4)"
             },
             animate: { y: [0, -20, 0], opacity: [0.3, 0.9, 0.3] },
             transition: {
@@ -27464,7 +27464,7 @@ function GoldParticlesCanvas$1() {
       for (const p2 of pts) {
         ctx.beginPath();
         ctx.arc(p2.x, p2.y, p2.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201,168,76,${p2.op})`;
+        ctx.fillStyle = `rgba(139,94,60,${p2.op})`;
         ctx.fill();
         p2.x += p2.dx;
         p2.y += p2.dy;
@@ -27530,7 +27530,7 @@ const courses = [
       "Portfolio & client management",
       "Live model practice sessions"
     ],
-    color: "#c9a84c"
+    color: "#8b5e3c"
   },
   {
     icon: Sparkles$1,
@@ -27651,7 +27651,7 @@ function AcademyPage() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%,-50%)",
-                    border: "1px solid rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(139,94,60,0.10)",
                     zIndex: 0
                   }
                 }
@@ -27666,7 +27666,7 @@ function AcademyPage() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%,-50%)",
-                    border: "1px solid rgba(201,168,76,0.06)",
+                    border: "1px solid rgba(139,94,60,0.06)",
                     zIndex: 0
                   }
                 }
@@ -27684,7 +27684,7 @@ function AcademyPage() {
                         animate: { opacity: 1, y: 0 },
                         transition: { duration: 0.7 },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(GraduationCap, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(GraduationCap, { size: 15, style: { color: "#8b5e3c" } }),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             "span",
                             {
@@ -27719,18 +27719,18 @@ function AcademyPage() {
                         initial: { opacity: 0 },
                         animate: { opacity: 1 },
                         transition: { delay: 0.3 },
-                        children: "Learn from a Certified Professional — Transform Your Passion into a Career"
+                        children: "Learn from a Certified Professional \\u2014 Transform Your Passion into a Career"
                       }
                     ),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       motion.p,
                       {
                         className: "text-sm font-body mb-10 tracking-wide",
-                        style: { color: "#c9a84c" },
+                        style: { color: "#6b3f1f" },
                         initial: { opacity: 0 },
                         animate: { opacity: 1 },
                         transition: { delay: 0.4 },
-                        children: "500+ Students Trained · 10+ Years Teaching · Certified Courses"
+                        children: "500+ Students Trained \\u00b7 10+ Years Teaching \\u00b7 Certified Courses"
                       }
                     ),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -27775,7 +27775,7 @@ function AcademyPage() {
             style: {
               background: "rgba(255,255,255,0.75)",
               backdropFilter: "blur(20px)",
-              borderColor: "rgba(201,168,76,0.18)"
+              borderColor: "rgba(139,94,60,0.18)"
             },
             children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-5xl mx-auto px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-6", children: [
               { val: "500+", label: "Students Trained" },
@@ -27796,7 +27796,7 @@ function AcademyPage() {
                     "p",
                     {
                       className: "text-3xl font-display font-bold gradient-text",
-                      style: { WebkitTextFillColor: "unset", color: "#c9a84c" },
+                      style: { WebkitTextFillColor: "unset", color: "#8b5e3c" },
                       children: s.val
                     }
                   ),
@@ -27825,7 +27825,7 @@ function AcademyPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)"
+                    background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,94,60,0.07) 0%, transparent 60%)"
                   }
                 }
               ),
@@ -27869,7 +27869,7 @@ function AcademyPage() {
                                 style: {
                                   width: 120,
                                   height: 120,
-                                  background: course.color === "#c9a84c" ? "radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%)" : "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%)"
+                                  background: "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%)"
                                 }
                               }
                             ),
@@ -27878,9 +27878,9 @@ function AcademyPage() {
                               {
                                 className: "absolute top-5 right-5 px-3 py-1 rounded-full text-xs font-accent font-bold tracking-widest",
                                 style: {
-                                  background: "linear-gradient(135deg,#c9a84c,#d4af37)",
-                                  color: "#3d2817",
-                                  boxShadow: "0 4px 16px rgba(201,168,76,0.4)"
+                                  background: "linear-gradient(135deg,#8b5e3c,#6b3f1f)",
+                                  color: "#fdf8f3",
+                                  boxShadow: "0 4px 16px rgba(139,94,60,0.4)"
                                 },
                                 children: "Most Popular"
                               }
@@ -27891,7 +27891,7 @@ function AcademyPage() {
                                 {
                                   className: "w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0",
                                   style: {
-                                    background: course.color === "#c9a84c" ? "rgba(201,168,76,0.14)" : "rgba(139,94,60,0.10)",
+                                    background: "rgba(139,94,60,0.10)",
                                     border: `1px solid ${course.color}44`,
                                     boxShadow: `0 0 20px ${course.color}22`
                                   },
@@ -27927,7 +27927,7 @@ function AcademyPage() {
                                     CircleCheck,
                                     {
                                       size: 14,
-                                      style: { color: "#c9a84c", flexShrink: 0 }
+                                      style: { color: "#8b5e3c", flexShrink: 0 }
                                     }
                                   ),
                                   item
@@ -27939,7 +27939,7 @@ function AcademyPage() {
                               "div",
                               {
                                 className: "flex items-center justify-between pt-5",
-                                style: { borderTop: "1px solid rgba(201,168,76,0.18)" },
+                                style: { borderTop: "1px solid rgba(139,94,60,0.18)" },
                                 children: [
                                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                                     /* @__PURE__ */ jsxRuntimeExports.jsx(Clock$1, { size: 14, style: { color: "#8b5e3c" } }),
@@ -27957,8 +27957,8 @@ function AcademyPage() {
                                     {
                                       className: "text-2xl font-display font-bold",
                                       style: {
-                                        color: "#c9a84c",
-                                        textShadow: "0 0 16px rgba(201,168,76,0.3)"
+                                        color: "#8b5e3c",
+                                        textShadow: "0 0 16px rgba(139,94,60,0.3)"
                                       },
                                       children: course.fee
                                     }
@@ -27990,7 +27990,7 @@ function AcademyPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)"
+                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,94,60,0.08) 0%, transparent 70%)"
                   }
                 }
               ),
@@ -28021,7 +28021,7 @@ function AcademyPage() {
                       transition: { delay: i2 * 0.1 },
                       whileHover: {
                         y: -5,
-                        boxShadow: "0 8px 40px rgba(201,168,76,0.2)"
+                        boxShadow: "0 8px 40px rgba(139,94,60,0.2)"
                       },
                       "data-ocid": `academy.why.item.${i2 + 1}`,
                       children: [
@@ -28030,11 +28030,11 @@ function AcademyPage() {
                           {
                             className: "w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4",
                             style: {
-                              background: "rgba(201,168,76,0.12)",
-                              border: "1px solid rgba(201,168,76,0.3)",
-                              boxShadow: "0 0 20px rgba(201,168,76,0.18)"
+                              background: "rgba(139,94,60,0.12)",
+                              border: "1px solid rgba(139,94,60,0.3)",
+                              boxShadow: "0 0 20px rgba(139,94,60,0.18)"
                             },
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#c9a84c" } })
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#8b5e3c" } })
                           }
                         ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28091,8 +28091,8 @@ function AcademyPage() {
                   Star,
                   {
                     size: 14,
-                    fill: "#c9a84c",
-                    style: { color: "#c9a84c" }
+                    fill: "#8b5e3c",
+                    style: { color: "#8b5e3c" }
                   },
                   `star-${review.name}-${si}`
                 )) }),
@@ -28112,7 +28112,7 @@ function AcademyPage() {
                   "div",
                   {
                     className: "pt-4",
-                    style: { borderTop: "1px solid rgba(201,168,76,0.18)" },
+                    style: { borderTop: "1px solid rgba(139,94,60,0.18)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "p",
@@ -28145,7 +28145,7 @@ function AcademyPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)"
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.08) 0%, transparent 70%)"
                   }
                 }
               ),
@@ -28164,8 +28164,8 @@ function AcademyPage() {
                           size: 48,
                           className: "mx-auto mb-5",
                           style: {
-                            color: "#c9a84c",
-                            filter: "drop-shadow(0 0 14px rgba(201,168,76,0.4))"
+                            color: "#8b5e3c",
+                            filter: "drop-shadow(0 0 14px rgba(139,94,60,0.4))"
                           }
                         }
                       ),
@@ -28193,10 +28193,10 @@ function AcademyPage() {
                             {
                               className: "w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4",
                               style: {
-                                background: "rgba(201,168,76,0.15)",
-                                border: "1px solid rgba(201,168,76,0.4)"
+                                background: "rgba(139,94,60,0.15)",
+                                border: "1px solid rgba(139,94,60,0.4)"
                               },
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 32, style: { color: "#c9a84c" } })
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 32, style: { color: "#8b5e3c" } })
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-2xl font-display italic gradient-text mb-2", children: "Enrollment Initiated!" }),
@@ -28231,7 +28231,7 @@ function AcademyPage() {
                                 className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
                                 style: {
                                   background: "rgba(255,255,255,0.8)",
-                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  border: "1px solid rgba(139,94,60,0.3)",
                                   color: "#3d2817",
                                   outline: "none"
                                 },
@@ -28261,7 +28261,7 @@ function AcademyPage() {
                                 className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
                                 style: {
                                   background: "rgba(255,255,255,0.8)",
-                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  border: "1px solid rgba(139,94,60,0.3)",
                                   color: "#3d2817",
                                   outline: "none"
                                 },
@@ -28290,7 +28290,7 @@ function AcademyPage() {
                                 className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
                                 style: {
                                   background: "rgba(255,255,255,0.8)",
-                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  border: "1px solid rgba(139,94,60,0.3)",
                                   color: "#3d2817",
                                   outline: "none"
                                 },
@@ -28319,17 +28319,17 @@ function AcademyPage() {
                                 className: "w-full px-4 py-3 rounded-xl text-sm font-body transition-smooth",
                                 style: {
                                   background: "rgba(255,255,255,0.8)",
-                                  border: "1px solid rgba(201,168,76,0.3)",
+                                  border: "1px solid rgba(139,94,60,0.3)",
                                   color: formData.course ? "#3d2817" : "#8b5e3c",
                                   outline: "none"
                                 },
                                 "data-ocid": "academy.form.course_select",
                                 children: [
                                   /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Select a course" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Foundation Course", children: "Foundation Course — ₹8,000" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Professional Diploma", children: "Professional Diploma — ₹25,000" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Bridal Specialist", children: "Bridal Specialist — ₹18,000" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Advanced Master Class", children: "Advanced Master Class — ₹5,000" })
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Foundation Course", children: "Foundation Course \\u2014 \\u20b98,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Professional Diploma", children: "Professional Diploma \\u2014 \\u20b925,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Bridal Specialist", children: "Bridal Specialist \\u2014 \\u20b918,000" }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Advanced Master Class", children: "Advanced Master Class \\u2014 \\u20b95,000" })
                                 ]
                               }
                             )
@@ -28372,7 +28372,7 @@ function FloatingOrbs$1() {
               height: 500,
               top: "-20%",
               right: "-12%",
-              background: "radial-gradient(circle, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.06) 40%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.13) 0%, rgba(180,140,100,0.06) 40%, transparent 70%)",
               filter: "blur(70px)"
             }
           }
@@ -28386,7 +28386,7 @@ function FloatingOrbs$1() {
               height: 350,
               bottom: "-10%",
               left: "-8%",
-              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.10) 0%, rgba(139,94,60,0.05) 40%, transparent 70%)",
               filter: "blur(50px)",
               animationDelay: "-4s"
             }
@@ -28399,10 +28399,10 @@ function FloatingOrbs$1() {
             style: {
               width: 4 + i2 % 3 * 1.5,
               height: 4 + i2 % 3 * 1.5,
-              background: `rgba(201,168,76,${0.25 + i2 % 4 * 0.1})`,
+              background: `rgba(139,94,60,${0.25 + i2 % 4 * 0.1})`,
               left: `${6 + i2 * 7 % 90}%`,
               top: `${15 + i2 * 11 % 75}%`,
-              boxShadow: "0 0 6px rgba(201,168,76,0.35)"
+              boxShadow: "0 0 6px rgba(139,94,60,0.35)"
             },
             animate: { y: [0, -16, 0], opacity: [0.25, 0.8, 0.25] },
             transition: {
@@ -28444,7 +28444,7 @@ function GoldParticlesCanvas() {
       for (const p2 of pts) {
         ctx.beginPath();
         ctx.arc(p2.x, p2.y, p2.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201,168,76,${p2.op})`;
+        ctx.fillStyle = `rgba(139,94,60,${p2.op})`;
         ctx.fill();
         p2.x += p2.dx;
         p2.y += p2.dy;
@@ -28508,7 +28508,7 @@ const packages = [
       "Photoshoot ready look",
       "Hair styling for 1 event"
     ],
-    color: "#c9a84c"
+    color: "#8b5e3c"
   },
   {
     icon: Crown,
@@ -28585,7 +28585,7 @@ function BridalPackagesPage() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%,-50%)",
-                    border: "1px solid rgba(201,168,76,0.08)",
+                    border: "1px solid rgba(139,94,60,0.08)",
                     zIndex: 0
                   }
                 }
@@ -28603,7 +28603,7 @@ function BridalPackagesPage() {
                         animate: { opacity: 1, y: 0 },
                         transition: { duration: 0.7 },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { size: 15, style: { color: "#8b5e3c" } }),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             "span",
                             {
@@ -28680,7 +28680,7 @@ function BridalPackagesPage() {
             {
               className: "absolute inset-0 pointer-events-none",
               style: {
-                background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)"
+                background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,94,60,0.07) 0%, transparent 60%)"
               }
             }
           ),
@@ -28717,9 +28717,9 @@ function BridalPackagesPage() {
                       whileHover: { y: -8 },
                       "data-ocid": `packages.package.item.${i2 + 1}`,
                       style: pkg.popular ? {
-                        outline: "2.5px solid rgba(201,168,76,0.6)",
+                        outline: "2.5px solid rgba(139,94,60,0.6)",
                         outlineOffset: "0px",
-                        boxShadow: "0 0 40px rgba(201,168,76,0.18), 0 20px 60px rgba(107,63,31,0.10)"
+                        boxShadow: "0 0 40px rgba(139,94,60,0.18), 0 20px 60px rgba(107,63,31,0.10)"
                       } : {},
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28739,8 +28739,8 @@ function BridalPackagesPage() {
                           {
                             className: "absolute top-0 left-0 right-0 text-center py-2 text-xs font-accent font-bold tracking-widest uppercase rounded-t-2xl",
                             style: {
-                              background: "linear-gradient(135deg,#c9a84c,#d4af37)",
-                              color: "#3d2817"
+                              background: "linear-gradient(135deg,#8b5e3c,#6b3f1f)",
+                              color: "#fdf6ee"
                             },
                             children: "✦ Most Popular ✦"
                           }
@@ -28783,7 +28783,7 @@ function BridalPackagesPage() {
                                       {
                                         size: 14,
                                         style: {
-                                          color: "#c9a84c",
+                                          color: "#8b5e3c",
                                           flexShrink: 0,
                                           marginTop: 2
                                         }
@@ -28798,15 +28798,15 @@ function BridalPackagesPage() {
                                 "div",
                                 {
                                   className: "pt-5",
-                                  style: { borderTop: "1px solid rgba(201,168,76,0.2)" },
+                                  style: { borderTop: "1px solid rgba(139,94,60,0.2)" },
                                   children: [
                                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                                       "p",
                                       {
                                         className: "text-3xl font-display font-bold",
                                         style: {
-                                          color: "#c9a84c",
-                                          textShadow: "0 0 20px rgba(201,168,76,0.3)"
+                                          color: "#8b5e3c",
+                                          textShadow: "0 0 20px rgba(139,94,60,0.3)"
                                         },
                                         children: pkg.price
                                       }
@@ -28858,7 +28858,7 @@ function BridalPackagesPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%)"
+                    background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,94,60,0.07) 0%, transparent 70%)"
                   }
                 }
               ),
@@ -28895,11 +28895,11 @@ function BridalPackagesPage() {
                           {
                             className: "w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4",
                             style: {
-                              background: "rgba(201,168,76,0.12)",
-                              border: "1px solid rgba(201,168,76,0.3)",
-                              boxShadow: "0 0 18px rgba(201,168,76,0.18)"
+                              background: "rgba(139,94,60,0.12)",
+                              border: "1px solid rgba(139,94,60,0.3)",
+                              boxShadow: "0 0 18px rgba(139,94,60,0.18)"
                             },
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#c9a84c" } })
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 22, style: { color: "#8b5e3c" } })
                           }
                         ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28953,7 +28953,7 @@ function BridalPackagesPage() {
                   className: "relative overflow-hidden rounded-2xl group cursor-pointer",
                   style: {
                     height: i2 === 0 || i2 === 3 ? 340 : 240,
-                    border: "1.5px solid rgba(201,168,76,0.2)",
+                    border: "1.5px solid rgba(139,94,60,0.2)",
                     boxShadow: "0 4px 20px rgba(107,63,31,0.07)"
                   },
                   initial: { opacity: 0, scale: 0.94 },
@@ -28988,7 +28988,7 @@ function BridalPackagesPage() {
                       {
                         className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none",
                         style: {
-                          boxShadow: "inset 0 0 40px rgba(201,168,76,0.2)",
+                          boxShadow: "inset 0 0 40px rgba(139,94,60,0.2)",
                           borderRadius: "inherit"
                         }
                       }
@@ -29024,7 +29024,7 @@ function BridalPackagesPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)"
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.09) 0%, transparent 70%)"
                   }
                 }
               ),
@@ -29046,8 +29046,8 @@ function BridalPackagesPage() {
                             size: 50,
                             className: "mx-auto mb-5",
                             style: {
-                              color: "#c9a84c",
-                              filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))"
+                              color: "#8b5e3c",
+                              filter: "drop-shadow(0 0 16px rgba(139,94,60,0.45))"
                             }
                           }
                         ),
@@ -29115,7 +29115,7 @@ function CTASection() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(201,168,76,0.18) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(139,94,60,0.18) 0%, transparent 65%)",
               animation: "pulse-glow 5s ease-in-out infinite"
             }
           }
@@ -29125,7 +29125,7 @@ function CTASection() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(232,168,124,0.15) 0%, transparent 60%)",
+              background: "radial-gradient(ellipse 55% 40% at 20% 80%, rgba(196,149,106,0.15) 0%, transparent 60%)",
               animation: "pulse-glow 7s ease-in-out infinite reverse"
             }
           }
@@ -29135,8 +29135,8 @@ function CTASection() {
           {
             className: "absolute top-0 left-0 right-0 h-px",
             style: {
-              background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
-              boxShadow: "0 0 18px rgba(212,175,55,0.55)"
+              background: "linear-gradient(90deg, transparent, rgba(139,94,60,0.8), rgba(181,132,90,1), rgba(139,94,60,0.8), transparent)",
+              boxShadow: "0 0 18px rgba(139,94,60,0.55)"
             }
           }
         ),
@@ -29165,8 +29165,8 @@ function CTASection() {
               {
                 size: pos.size,
                 style: {
-                  color: "rgba(255,220,100,0.80)",
-                  filter: "drop-shadow(0 0 8px rgba(212,175,55,0.70))"
+                  color: "rgba(181,132,90,0.90)",
+                  filter: "drop-shadow(0 0 8px rgba(139,94,60,0.70))"
                 }
               }
             )
@@ -29185,16 +29185,16 @@ function CTASection() {
               style: {
                 background: "rgba(255,255,255,0.12)",
                 backdropFilter: "blur(16px)",
-                border: "1px solid rgba(255,220,100,0.40)",
-                color: "rgba(255,220,100,0.95)",
-                boxShadow: "0 0 20px rgba(212,175,55,0.22)"
+                border: "1px solid rgba(181,132,90,0.50)",
+                color: "rgba(253,248,243,0.95)",
+                boxShadow: "0 0 20px rgba(139,94,60,0.22)"
               },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Sparkles$1,
                   {
                     size: 12,
-                    style: { filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }
+                    style: { filter: "drop-shadow(0 0 5px rgba(181,132,90,0.8))" }
                   }
                 ),
                 "Limited Slots Available",
@@ -29202,7 +29202,7 @@ function CTASection() {
                   Sparkles$1,
                   {
                     size: 12,
-                    style: { filter: "drop-shadow(0 0 5px rgba(255,220,100,0.8))" }
+                    style: { filter: "drop-shadow(0 0 5px rgba(181,132,90,0.8))" }
                   }
                 )
               ]
@@ -29222,11 +29222,11 @@ function CTASection() {
                   "span",
                   {
                     style: {
-                      background: "linear-gradient(135deg, #f5d878 0%, #e8c060 40%, #d4a730 100%)",
+                      background: "linear-gradient(135deg, #b5845a 0%, #8b5e3c 40%, #6b3f1f 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
-                      filter: "drop-shadow(0 0 22px rgba(212,175,55,0.35))"
+                      filter: "drop-shadow(0 0 22px rgba(139,94,60,0.35))"
                     },
                     children: "Ready for Your"
                   }
@@ -29241,8 +29241,8 @@ function CTASection() {
             {
               className: "h-px w-32 mx-auto mb-8",
               style: {
-                background: "linear-gradient(90deg, transparent, rgba(255,220,100,0.9), transparent)",
-                boxShadow: "0 0 10px rgba(212,175,55,0.45)"
+                background: "linear-gradient(90deg, transparent, rgba(181,132,90,0.9), transparent)",
+                boxShadow: "0 0 10px rgba(139,94,60,0.45)"
               },
               initial: { scaleX: 0 },
               whileInView: { scaleX: 1 },
@@ -29266,9 +29266,9 @@ function CTASection() {
                   "span",
                   {
                     style: {
-                      color: "#f5d878",
+                      color: "#fdf8f3",
                       fontWeight: 600,
-                      textShadow: "0 0 18px rgba(212,175,55,0.45)"
+                      textShadow: "0 0 18px rgba(139,94,60,0.45)"
                     },
                     children: "500+ brides"
                   }
@@ -29294,15 +29294,15 @@ function CTASection() {
                     "data-ocid": "cta.book_button",
                     className: "flex items-center gap-3 px-10 py-4 rounded-xl font-accent font-semibold tracking-widest uppercase text-sm min-w-[260px] justify-center",
                     style: {
-                      background: "linear-gradient(135deg, #f0d060 0%, #d4a730 50%, #f0d060 100%)",
+                      background: "linear-gradient(135deg, #b5845a 0%, #8b5e3c 50%, #b5845a 100%)",
                       backgroundSize: "200% auto",
                       color: "#3d2817",
-                      boxShadow: "0 0 30px rgba(212,175,55,0.65), 0 0 65px rgba(212,175,55,0.28), 0 4px 20px rgba(0,0,0,0.25)",
+                      boxShadow: "0 0 30px rgba(139,94,60,0.65), 0 0 65px rgba(139,94,60,0.28), 0 4px 20px rgba(0,0,0,0.15)",
                       textDecoration: "none"
                     },
                     whileHover: {
                       scale: 1.05,
-                      boxShadow: "0 0 45px rgba(212,175,55,0.80), 0 0 90px rgba(212,175,55,0.35)"
+                      boxShadow: "0 0 45px rgba(139,94,60,0.80), 0 0 90px rgba(139,94,60,0.35)"
                     },
                     whileTap: { scale: 0.97 },
                     children: [
@@ -29357,8 +29357,8 @@ function CTASection() {
           {
             className: "absolute bottom-0 left-0 right-0 h-px",
             style: {
-              background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.8), rgba(255,220,80,1), rgba(212,175,55,0.8), transparent)",
-              boxShadow: "0 0 18px rgba(212,175,55,0.55)"
+              background: "linear-gradient(90deg, transparent, rgba(139,94,60,0.8), rgba(181,132,90,1), rgba(139,94,60,0.8), transparent)",
+              boxShadow: "0 0 18px rgba(139,94,60,0.55)"
             }
           }
         )
@@ -29366,7 +29366,7 @@ function CTASection() {
     }
   );
 }
-const GOLD$3 = "#c9a84c";
+const GOLD$3 = "#8b5e3c";
 const BROWN$2 = "#6b3f1f";
 const WARM$2 = "#8b5e3c";
 const celebCards = [
@@ -29428,7 +29428,7 @@ function CelebritySection() {
           {
             className: "absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(139,94,60,0.12) 0%, transparent 65%)",
               filter: "blur(80px)"
             }
           }
@@ -29438,7 +29438,7 @@ function CelebritySection() {
           {
             className: "absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, rgba(232,168,124,0.10) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(196,149,106,0.10) 0%, transparent 65%)",
               filter: "blur(90px)"
             }
           }
@@ -29485,7 +29485,7 @@ function CelebritySection() {
               className: "glass-ultra rounded-2xl overflow-hidden flex-shrink-0 group",
               style: {
                 width: "190px",
-                border: "1.5px solid rgba(201,168,76,0.30)",
+                border: "1.5px solid rgba(139,94,60,0.30)",
                 boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
                 animation: `float ${5 + i2 * 0.7}s ease-in-out infinite`,
                 animationDelay: `${i2 * 0.4}s`
@@ -29498,8 +29498,8 @@ function CelebritySection() {
                     {
                       className: "w-20 h-20 rounded-full overflow-hidden",
                       style: {
-                        border: "2.5px solid rgba(201,168,76,0.50)",
-                        boxShadow: "0 0 22px rgba(201,168,76,0.30), 0 0 50px rgba(201,168,76,0.10)"
+                        border: "2.5px solid rgba(139,94,60,0.50)",
+                        boxShadow: "0 0 22px rgba(139,94,60,0.30), 0 0 50px rgba(139,94,60,0.10)"
                       },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
@@ -29521,7 +29521,7 @@ function CelebritySection() {
                       className: "absolute top-3 right-4",
                       style: {
                         color: GOLD$3,
-                        filter: "drop-shadow(0 0 4px rgba(201,168,76,0.8))"
+                        filter: "drop-shadow(0 0 4px rgba(139,94,60,0.8))"
                       }
                     }
                   )
@@ -29565,9 +29565,9 @@ function CelebritySection() {
                       {
                         className: "w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3",
                         style: {
-                          background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
-                          border: "1.5px solid rgba(201,168,76,0.40)",
-                          boxShadow: "0 0 18px rgba(201,168,76,0.22)"
+                          background: "linear-gradient(135deg, rgba(139,94,60,0.20), rgba(139,94,60,0.06))",
+                          border: "1.5px solid rgba(139,94,60,0.40)",
+                          boxShadow: "0 0 18px rgba(139,94,60,0.22)"
                         },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                           badge.Icon,
@@ -29575,7 +29575,7 @@ function CelebritySection() {
                             size: 20,
                             style: {
                               color: GOLD$3,
-                              filter: "drop-shadow(0 0 6px rgba(201,168,76,0.7))"
+                              filter: "drop-shadow(0 0 6px rgba(139,94,60,0.7))"
                             }
                           }
                         )
@@ -29605,8 +29605,8 @@ function CelebritySection() {
               transition: { duration: 0.8, delay: 0.5 },
               className: "glass-ultra rounded-2xl p-8 md:p-12 text-center relative overflow-hidden",
               style: {
-                border: "1.5px solid rgba(201,168,76,0.35)",
-                boxShadow: "0 0 50px rgba(201,168,76,0.12), 0 8px 40px rgba(107,63,31,0.08)"
+                border: "1.5px solid rgba(139,94,60,0.35)",
+                boxShadow: "0 0 50px rgba(139,94,60,0.12), 0 8px 40px rgba(107,63,31,0.08)"
               },
               "data-ocid": "celebrity.quote",
               children: [
@@ -29723,7 +29723,7 @@ function FAQSection() {
               {
                 className: "w-[800px] h-[600px] rounded-full",
                 style: {
-                  background: "radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 65%)",
+                  background: "radial-gradient(ellipse, rgba(139,94,60,0.07) 0%, transparent 65%)",
                   filter: "blur(100px)"
                 }
               }
@@ -29735,7 +29735,7 @@ function FAQSection() {
           {
             className: "absolute top-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.08) 0%, transparent 65%)",
               filter: "blur(80px)",
               transform: "translate(30%, -30%)"
             }
@@ -29756,7 +29756,7 @@ function FAQSection() {
                   "p",
                   {
                     className: "font-accent text-xs uppercase tracking-[3px] mb-3",
-                    style: { color: "#c9a84c", letterSpacing: "3px" },
+                    style: { color: "#8b5e3c", letterSpacing: "3px" },
                     children: "Got Questions?"
                   }
                 ),
@@ -29775,7 +29775,7 @@ function FAQSection() {
                     {
                       className: "h-px w-16",
                       style: {
-                        background: "linear-gradient(to right, transparent, #c9a84c)"
+                        background: "linear-gradient(to right, transparent, #8b5e3c)"
                       }
                     }
                   ),
@@ -29784,8 +29784,8 @@ function FAQSection() {
                     {
                       className: "h-1.5 w-1.5 rounded-full",
                       style: {
-                        background: "#c9a84c",
-                        boxShadow: "0 0 10px rgba(201,168,76,0.8)"
+                        background: "#8b5e3c",
+                        boxShadow: "0 0 10px rgba(139,94,60,0.8)"
                       }
                     }
                   ),
@@ -29794,7 +29794,7 @@ function FAQSection() {
                     {
                       className: "h-px w-16",
                       style: {
-                        background: "linear-gradient(to left, transparent, #c9a84c)"
+                        background: "linear-gradient(to left, transparent, #8b5e3c)"
                       }
                     }
                   )
@@ -29821,9 +29821,9 @@ function FAQSection() {
                     "data-ocid": `faq.item.${index2 + 1}`,
                     className: "relative card-premium overflow-hidden",
                     style: {
-                      borderColor: isOpen ? "rgba(201,168,76,0.55)" : "rgba(201,168,76,0.25)",
+                      borderColor: isOpen ? "rgba(139,94,60,0.55)" : "rgba(139,94,60,0.25)",
                       background: isOpen ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.65)",
-                      boxShadow: isOpen ? "0 0 32px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.06), 0 8px 30px rgba(107,63,31,0.08)" : "0 4px 16px rgba(107,63,31,0.06)",
+                      boxShadow: isOpen ? "0 0 32px rgba(139,94,60,0.18), 0 0 60px rgba(139,94,60,0.06), 0 8px 30px rgba(107,63,31,0.08)" : "0 4px 16px rgba(107,63,31,0.06)",
                       transition: "border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease"
                     },
                     children: [
@@ -29836,8 +29836,8 @@ function FAQSection() {
                           transition: { duration: 0.3 },
                           className: "absolute left-0 top-3 bottom-3 w-[3px] rounded-full origin-top",
                           style: {
-                            background: "linear-gradient(to bottom, #c9a84c, #d4af37)",
-                            boxShadow: "-2px 0 12px rgba(201,168,76,0.50)"
+                            background: "linear-gradient(to bottom, #8b5e3c, #6b3f1f)",
+                            boxShadow: "-2px 0 12px rgba(139,94,60,0.50)"
                           }
                         }
                       ),
@@ -29858,7 +29858,7 @@ function FAQSection() {
                               {
                                 className: "pl-3 font-display text-base md:text-lg font-semibold leading-snug transition-colors duration-300",
                                 style: {
-                                  color: isOpen ? "#c9a84c" : "#3d2817"
+                                  color: isOpen ? "#6b3f1f" : "#3d2817"
                                 },
                                 children: faq.question
                               }
@@ -29869,10 +29869,10 @@ function FAQSection() {
                                 animate: { rotate: isOpen ? 0 : 0 },
                                 className: "mt-0.5 flex-shrink-0 rounded-full border p-1.5 transition-all duration-300",
                                 style: {
-                                  borderColor: isOpen ? "rgba(201,168,76,0.65)" : "rgba(201,168,76,0.30)",
-                                  color: isOpen ? "#c9a84c" : "#8b5e3c",
-                                  background: isOpen ? "rgba(201,168,76,0.12)" : "transparent",
-                                  boxShadow: isOpen ? "0 0 10px rgba(201,168,76,0.30)" : "none"
+                                  borderColor: isOpen ? "rgba(139,94,60,0.65)" : "rgba(139,94,60,0.30)",
+                                  color: isOpen ? "#6b3f1f" : "#8b5e3c",
+                                  background: isOpen ? "rgba(139,94,60,0.12)" : "transparent",
+                                  boxShadow: isOpen ? "0 0 10px rgba(139,94,60,0.30)" : "none"
                                 },
                                 children: isOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(Minus, { className: "h-4 w-4", strokeWidth: 2.5 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "h-4 w-4", strokeWidth: 2.5 })
                               }
@@ -29894,7 +29894,7 @@ function FAQSection() {
                               {
                                 className: "h-px w-full mb-4",
                                 style: {
-                                  background: "linear-gradient(to right, rgba(201,168,76,0.5), rgba(201,168,76,0.2), transparent)"
+                                  background: "linear-gradient(to right, rgba(139,94,60,0.5), rgba(139,94,60,0.2), transparent)"
                                 }
                               }
                             ),
@@ -29936,8 +29936,8 @@ function FAQSection() {
                     rel: "noopener noreferrer",
                     className: "font-semibold underline underline-offset-4 transition-colors duration-200",
                     style: {
-                      color: "#c9a84c",
-                      textDecorationColor: "rgba(201,168,76,0.5)"
+                      color: "#8b5e3c",
+                      textDecorationColor: "rgba(139,94,60,0.5)"
                     },
                     children: "Chat with us on WhatsApp"
                   }
@@ -30250,7 +30250,7 @@ function Footer() {
           "div",
           {
             className: "divider-gold",
-            style: { boxShadow: "0 0 12px rgba(212,175,55,0.28)" }
+            style: { boxShadow: "0 0 12px rgba(107,63,31,0.28)" }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30258,7 +30258,7 @@ function Footer() {
           {
             className: "absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse at top, rgba(212,175,55,0.09) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at top, rgba(107,63,31,0.09) 0%, transparent 70%)",
               filter: "blur(40px)"
             }
           }
@@ -30329,7 +30329,7 @@ function Footer() {
                           "span",
                           {
                             className: "w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-smooth",
-                            style: { boxShadow: "0 0 6px rgba(212,175,55,0.8)" }
+                            style: { boxShadow: "0 0 6px rgba(107,63,31,0.8)" }
                           }
                         ),
                         label
@@ -30358,7 +30358,7 @@ function Footer() {
                           "span",
                           {
                             className: "w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-smooth",
-                            style: { boxShadow: "0 0 6px rgba(212,175,55,0.8)" }
+                            style: { boxShadow: "0 0 6px rgba(107,63,31,0.8)" }
                           }
                         ),
                         service
@@ -30385,7 +30385,7 @@ function Footer() {
                           size: 15,
                           className: "mt-0.5 flex-shrink-0 text-gold",
                           style: {
-                            filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))"
+                            filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))"
                           }
                         }
                       ),
@@ -30404,7 +30404,7 @@ function Footer() {
                           size: 15,
                           className: "flex-shrink-0 text-gold",
                           style: {
-                            filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))"
+                            filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))"
                           }
                         }
                       ),
@@ -30449,7 +30449,7 @@ function Footer() {
                           size: 14,
                           className: "flex-shrink-0 text-gold",
                           style: {
-                            filter: "drop-shadow(0 0 4px rgba(212,175,55,0.6))"
+                            filter: "drop-shadow(0 0 4px rgba(107,63,31,0.6))"
                           }
                         }
                       ),
@@ -30485,7 +30485,7 @@ function Footer() {
                   target: "_blank",
                   rel: "noopener noreferrer",
                   className: "text-gold hover:text-gold-light transition-smooth",
-                  style: { textShadow: "0 0 12px rgba(212,175,55,0.3)" },
+                  style: { textShadow: "0 0 12px rgba(107,63,31,0.3)" },
                   children: "caffeine.ai"
                 }
               )
@@ -30579,7 +30579,7 @@ function GallerySection() {
           {
             className: "absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.12) 0%, transparent 65%)",
               filter: "blur(90px)"
             }
           }
@@ -30637,8 +30637,8 @@ function GallerySection() {
                   style: {
                     background: activeFilter === f.value ? `linear-gradient(135deg, ${GOLD$2}, #d4af37)` : "rgba(255,255,255,0.65)",
                     color: activeFilter === f.value ? "#fff" : BROWN$1,
-                    borderColor: activeFilter === f.value ? GOLD$2 : "rgba(201,168,76,0.30)",
-                    boxShadow: activeFilter === f.value ? "0 4px 20px rgba(201,168,76,0.45), 0 0 30px rgba(201,168,76,0.18)" : "0 2px 10px rgba(139,94,60,0.06)"
+                    borderColor: activeFilter === f.value ? GOLD$2 : "rgba(139,94,60,0.30)",
+                    boxShadow: activeFilter === f.value ? "0 4px 20px rgba(139,94,60,0.45), 0 0 30px rgba(139,94,60,0.18)" : "0 2px 10px rgba(139,94,60,0.06)"
                   },
                   children: f.label
                 },
@@ -30667,7 +30667,7 @@ function GallerySection() {
                     transition: { duration: 0.5, delay: i2 * 0.07 },
                     className: "group relative rounded-2xl overflow-hidden cursor-pointer mb-5 break-inside-avoid",
                     style: {
-                      border: "1.5px solid rgba(201,168,76,0.18)",
+                      border: "1.5px solid rgba(139,94,60,0.18)",
                       boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
                       transition: "box-shadow 0.4s ease, border-color 0.4s ease"
                     },
@@ -30675,13 +30675,13 @@ function GallerySection() {
                     "data-ocid": `gallery.item.${i2 + 1}`,
                     onMouseEnter: (e) => {
                       const el = e.currentTarget;
-                      el.style.boxShadow = "0 0 28px rgba(201,168,76,0.40), 0 0 60px rgba(201,168,76,0.15), 0 8px 30px rgba(107,63,31,0.12)";
-                      el.style.borderColor = "rgba(201,168,76,0.55)";
+                      el.style.boxShadow = "0 0 28px rgba(139,94,60,0.40), 0 0 60px rgba(139,94,60,0.15), 0 8px 30px rgba(107,63,31,0.12)";
+                      el.style.borderColor = "rgba(139,94,60,0.55)";
                     },
                     onMouseLeave: (e) => {
                       const el = e.currentTarget;
                       el.style.boxShadow = "0 4px 24px rgba(107,63,31,0.08)";
-                      el.style.borderColor = "rgba(201,168,76,0.18)";
+                      el.style.borderColor = "rgba(139,94,60,0.18)";
                     },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30699,7 +30699,7 @@ function GallerySection() {
                         {
                           className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
                           style: {
-                            background: "linear-gradient(to top, rgba(201,168,76,0.65) 0%, rgba(201,168,76,0.20) 40%, transparent 70%)"
+                            background: "linear-gradient(to top, rgba(139,94,60,0.65) 0%, rgba(139,94,60,0.20) 40%, transparent 70%)"
                           }
                         }
                       ),
@@ -30727,7 +30727,7 @@ function GallerySection() {
                           className: "w-9 h-9 rounded-full flex items-center justify-center",
                           style: {
                             background: "rgba(255,255,255,0.92)",
-                            boxShadow: "0 0 16px rgba(201,168,76,0.50)"
+                            boxShadow: "0 0 16px rgba(139,94,60,0.50)"
                           },
                           children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomIn, { size: 16, style: { color: BROWN$1 } })
                         }
@@ -30765,8 +30765,8 @@ function GallerySection() {
                 className: "relative max-w-3xl w-full rounded-2xl overflow-hidden",
                 style: {
                   background: "rgba(253,248,243,0.97)",
-                  border: "1.5px solid rgba(201,168,76,0.45)",
-                  boxShadow: "0 0 60px rgba(201,168,76,0.35), 0 0 120px rgba(201,168,76,0.12)"
+                  border: "1.5px solid rgba(139,94,60,0.45)",
+                  boxShadow: "0 0 60px rgba(139,94,60,0.35), 0 0 120px rgba(139,94,60,0.12)"
                 },
                 onClick: (e) => e.stopPropagation(),
                 children: [
@@ -30806,8 +30806,8 @@ function GallerySection() {
                       className: "absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110",
                       "aria-label": "Close lightbox",
                       style: {
-                        background: "rgba(201,168,76,0.92)",
-                        boxShadow: "0 0 18px rgba(201,168,76,0.55)"
+                        background: "rgba(139,94,60,0.92)",
+                        boxShadow: "0 0 18px rgba(139,94,60,0.55)"
                       },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 16, style: { color: BROWN$1 } })
                     }
@@ -82551,8 +82551,8 @@ function GoldenParticles() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
-        color: "#c9a84c",
-        emissive: "#d4af37",
+        color: "#8b5e3c",
+        emissive: "#6b3f1f",
         emissiveIntensity: 0.8,
         roughness: 0.15,
         metalness: 0.9
@@ -82578,8 +82578,8 @@ function TorusRing({
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
-        color: "#d4af37",
-        emissive: "#c9a84c",
+        color: "#8b5e3c",
+        emissive: "#6b3f1f",
         emissiveIntensity: 0.5,
         roughness: 0.05,
         metalness: 1,
@@ -82632,8 +82632,8 @@ function RosePetals() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "meshStandardMaterial",
           {
-            color: "#e8a87c",
-            emissive: "#c9a84c",
+            color: "#c4956a",
+            emissive: "#8b5e3c",
             emissiveIntensity: 0.35,
             side: DoubleSide,
             transparent: true,
@@ -82690,7 +82690,7 @@ function CameraParallax() {
 function Scene2() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 2, color: "#fff8ee" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2.5, color: "#d4af37" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2.5, color: "#8b5e3c" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -3, 4], intensity: 1.8, color: "#e8c4a0" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 10, -4], intensity: 1.2, color: "#fdf8f3" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(CameraParallax, {}),
@@ -82699,8 +82699,8 @@ function Scene2() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(TorusRing, { position: [-5, -1, -4], scale: 0.8, phase: 1.2 }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(TorusRing, { position: [3, 3, -5], scale: 0.6, phase: 2.4 }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(RosePetals, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [-4, 2, -5], color: "#e8c4a0", emissive: "#c9a84c" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [4, -2.5, -6], color: "#d4af37", emissive: "#c9a84c" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [-4, 2, -5], color: "#e8c4a0", emissive: "#8b5e3c" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DistortOrb, { position: [4, -2.5, -6], color: "#8b5e3c", emissive: "#6b3f1f" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Sparkles,
       {
@@ -82708,7 +82708,7 @@ function Scene2() {
         scale: [20, 16, 8],
         size: 1.5,
         speed: 0.15,
-        color: "#c9a84c",
+        color: "#8b5e3c",
         opacity: 0.45
       }
     )
@@ -82771,7 +82771,7 @@ function HeroSection() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.07) 40%, transparent 70%)",
+              background: "radial-gradient(ellipse 55% 60% at 72% 50%, rgba(139,94,60,0.13) 0%, rgba(181,132,90,0.07) 40%, transparent 70%)",
               zIndex: 1
             }
           }
@@ -82786,7 +82786,7 @@ function HeroSection() {
               width: 500,
               height: 500,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(232,168,124,0.18) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.18) 0%, transparent 65%)",
               filter: "blur(60px)",
               zIndex: 1
             }
@@ -82849,12 +82849,12 @@ function HeroSection() {
                           textTransform: "uppercase",
                           color: "#8b5e3c",
                           background: "rgba(255,255,255,0.72)",
-                          border: "1px solid rgba(201,168,76,0.35)",
-                          boxShadow: "0 2px 20px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
+                          border: "1px solid rgba(139,94,60,0.35)",
+                          boxShadow: "0 2px 20px rgba(139,94,60,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
                           backdropFilter: "blur(14px)"
                         },
                         children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#c9a84c" }, children: "✦" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#8b5e3c" }, children: "✦" }),
                           "Award-Winning Makeup Artist"
                         ]
                       }
@@ -82892,7 +82892,7 @@ function HeroSection() {
                                 fontWeight: 600,
                                 letterSpacing: "-0.02em",
                                 lineHeight: 1.05,
-                                filter: "drop-shadow(0 2px 16px rgba(201,168,76,0.22))"
+                                filter: "drop-shadow(0 2px 16px rgba(139,94,60,0.22))"
                               },
                               children: "Snehal Pawar"
                             }
@@ -82985,7 +82985,7 @@ function HeroSection() {
                           alignItems: "center",
                           gap: 0,
                           paddingTop: "1.25rem",
-                          borderTop: "1px solid rgba(201,168,76,0.22)"
+                          borderTop: "1px solid rgba(139,94,60,0.22)"
                         },
                         children: [
                           { val: "500+", label: "Brides" },
@@ -82998,7 +82998,7 @@ function HeroSection() {
                               style: {
                                 width: 1,
                                 height: 32,
-                                background: "rgba(201,168,76,0.3)",
+                                background: "rgba(139,94,60,0.3)",
                                 margin: "0 20px"
                               }
                             }
@@ -83011,8 +83011,8 @@ function HeroSection() {
                                   fontFamily: "var(--font-accent)",
                                   fontSize: "1.35rem",
                                   fontWeight: 700,
-                                  color: "#c9a84c",
-                                  textShadow: "0 0 18px rgba(201,168,76,0.35)",
+                                  color: "#8b5e3c",
+                                  textShadow: "0 0 18px rgba(139,94,60,0.35)",
                                   lineHeight: 1.1
                                 },
                                 children: stat.val
@@ -83070,9 +83070,9 @@ function HeroSection() {
                           width: size,
                           height: size,
                           borderRadius: "50%",
-                          border: `1px solid rgba(201,168,76,${opacity * 2.5})`,
+                          border: `1px solid rgba(139,94,60,${opacity * 2.5})`,
                           pointerEvents: "none",
-                          boxShadow: `0 0 14px rgba(201,168,76,${opacity * 0.6})`
+                          boxShadow: `0 0 14px rgba(139,94,60,${opacity * 0.6})`
                         },
                         animate: { rotate: 360 },
                         transition: {
@@ -83091,7 +83091,7 @@ function HeroSection() {
                           width: 320,
                           height: 320,
                           borderRadius: "50%",
-                          background: "radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(232,200,120,0.10) 40%, transparent 70%)",
+                          background: "radial-gradient(circle, rgba(139,94,60,0.22) 0%, rgba(181,132,90,0.10) 40%, transparent 70%)",
                           filter: "blur(40px)",
                           pointerEvents: "none"
                         }
@@ -83107,8 +83107,8 @@ function HeroSection() {
                           width: 7,
                           height: 7,
                           borderRadius: "50%",
-                          background: "rgba(201,168,76,0.9)",
-                          boxShadow: "0 0 10px rgba(201,168,76,0.8), 0 0 22px rgba(201,168,76,0.35)",
+                          background: "rgba(139,94,60,0.9)",
+                          boxShadow: "0 0 10px rgba(139,94,60,0.8), 0 0 22px rgba(139,94,60,0.35)",
                           pointerEvents: "none"
                         },
                         animate: { scale: [1, 1.9, 1], opacity: [0.55, 1, 0.55] },
@@ -83139,8 +83139,8 @@ function HeroSection() {
                                 height: 400,
                                 borderRadius: 20,
                                 overflow: "hidden",
-                                border: "1.5px solid rgba(201,168,76,0.5)",
-                                boxShadow: "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.15), 0 30px 70px rgba(139,94,60,0.25)",
+                                border: "1.5px solid rgba(139,94,60,0.5)",
+                                boxShadow: "0 0 0 1px rgba(255,255,255,0.6) inset, 0 0 40px rgba(139,94,60,0.35), 0 0 80px rgba(139,94,60,0.15), 0 30px 70px rgba(107,63,31,0.25)",
                                 background: "rgba(255,255,255,0.08)",
                                 backdropFilter: "blur(2px)",
                                 position: "relative"
@@ -83165,7 +83165,7 @@ function HeroSection() {
                                     style: {
                                       position: "absolute",
                                       inset: 0,
-                                      background: "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 45%, rgba(232,168,124,0.06) 100%)",
+                                      background: "linear-gradient(135deg, rgba(139,94,60,0.08) 0%, transparent 45%, rgba(196,149,106,0.06) 100%)",
                                       pointerEvents: "none"
                                     }
                                   }
@@ -83179,7 +83179,7 @@ function HeroSection() {
                                       left: 0,
                                       right: 0,
                                       height: 1,
-                                      background: "rgba(201,168,76,0.45)",
+                                      background: "rgba(139,94,60,0.45)",
                                       pointerEvents: "none"
                                     }
                                   }
@@ -83200,9 +83200,9 @@ function HeroSection() {
                                 fontFamily: "var(--font-accent)",
                                 letterSpacing: "0.12em",
                                 background: "rgba(255,255,255,0.85)",
-                                border: "1px solid rgba(201,168,76,0.45)",
+                                border: "1px solid rgba(139,94,60,0.45)",
                                 color: "#8b5e3c",
-                                boxShadow: "0 4px 20px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
+                                boxShadow: "0 4px 20px rgba(139,94,60,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
                                 backdropFilter: "blur(12px)",
                                 whiteSpace: "nowrap"
                               },
@@ -83229,9 +83229,9 @@ function HeroSection() {
                                 fontFamily: "var(--font-accent)",
                                 letterSpacing: "0.12em",
                                 background: "rgba(255,255,255,0.85)",
-                                border: "1px solid rgba(201,168,76,0.4)",
+                                border: "1px solid rgba(139,94,60,0.4)",
                                 color: "#8b5e3c",
-                                boxShadow: "0 4px 20px rgba(201,168,76,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
+                                boxShadow: "0 4px 20px rgba(139,94,60,0.2), inset 0 1px 0 rgba(255,255,255,0.9)",
                                 backdropFilter: "blur(12px)",
                                 whiteSpace: "nowrap"
                               },
@@ -83304,7 +83304,7 @@ function HeroSection() {
     }
   );
 }
-const GOLD$1 = "#c9a84c";
+const GOLD$1 = "#8b5e3c";
 const WARM$1 = "#8b5e3c";
 function ContactCard({
   icon,
@@ -83320,13 +83320,13 @@ function ContactCard({
       "data-ocid": ocid,
       className: "flex items-start gap-4 rounded-2xl p-4 glass-ultra transition-all duration-300",
       style: {
-        border: "1.5px solid rgba(201,168,76,0.25)",
-        boxShadow: "0 2px 16px rgba(107,63,31,0.06)"
+        border: "1.5px solid rgba(139,94,60,0.25)",
+        boxShadow: "0 2px 16px rgba(107,63,31,0.08)"
       },
       whileHover: {
         y: -3,
-        boxShadow: "0 8px 32px rgba(201,168,76,0.28), 0 0 50px rgba(201,168,76,0.10)",
-        borderColor: "rgba(201,168,76,0.55)"
+        boxShadow: "0 8px 32px rgba(139,94,60,0.28), 0 0 50px rgba(139,94,60,0.10)",
+        borderColor: "rgba(139,94,60,0.55)"
       },
       initial: { opacity: 0, y: 20 },
       whileInView: { opacity: 1, y: 0 },
@@ -83338,9 +83338,9 @@ function ContactCard({
           {
             className: "w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0",
             style: {
-              background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
-              border: "1.5px solid rgba(201,168,76,0.42)",
-              boxShadow: "0 0 16px rgba(201,168,76,0.24)"
+              background: "linear-gradient(135deg, rgba(139,94,60,0.20), rgba(139,94,60,0.06))",
+              border: "1.5px solid rgba(139,94,60,0.42)",
+              boxShadow: "0 0 16px rgba(139,94,60,0.24)"
             },
             children: icon
           }
@@ -83393,7 +83393,7 @@ function MapSection() {
           {
             className: "absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
               filter: "blur(90px)"
             }
           }
@@ -83403,7 +83403,7 @@ function MapSection() {
           {
             className: "absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.08) 0%, transparent 65%)",
               filter: "blur(80px)"
             }
           }
@@ -83473,7 +83473,7 @@ function MapSection() {
                       size: 18,
                       style: {
                         color: GOLD$1,
-                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                        filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))"
                       }
                     }
                   ),
@@ -83492,7 +83492,7 @@ function MapSection() {
                       size: 18,
                       style: {
                         color: GOLD$1,
-                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                        filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))"
                       }
                     }
                   ),
@@ -83512,7 +83512,7 @@ function MapSection() {
                       size: 18,
                       style: {
                         color: GOLD$1,
-                        filter: "drop-shadow(0 0 5px rgba(201,168,76,0.6))"
+                        filter: "drop-shadow(0 0 5px rgba(139,94,60,0.6))"
                       }
                     }
                   ),
@@ -83566,8 +83566,8 @@ function MapSection() {
                     className: "rounded-2xl overflow-hidden",
                     style: {
                       height: "380px",
-                      border: "2px solid rgba(201,168,76,0.40)",
-                      boxShadow: "0 4px 40px rgba(107,63,31,0.10), 0 0 60px rgba(201,168,76,0.10)"
+                      border: "2px solid rgba(139,94,60,0.40)",
+                      boxShadow: "0 4px 40px rgba(107,63,31,0.10), 0 0 60px rgba(139,94,60,0.10)"
                     },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "iframe",
@@ -83867,8 +83867,8 @@ function ServiceCard({ service, index: index2 }) {
           style: {
             transform: hovered ? `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : "perspective(900px) rotateX(0deg) rotateY(0deg)",
             transition: hovered ? "transform 0.1s" : "transform 0.5s ease-out",
-            boxShadow: hovered ? "0 0 35px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.12), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.08)",
-            borderColor: hovered ? "rgba(201,168,76,0.6)" : "rgba(201,168,76,0.3)"
+            boxShadow: hovered ? "0 0 35px rgba(139,94,60,0.35), 0 0 80px rgba(139,94,60,0.12), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.08)",
+            borderColor: hovered ? "rgba(139,94,60,0.6)" : "rgba(139,94,60,0.3)"
           },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none rounded-[20px] overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -83877,7 +83877,7 @@ function ServiceCard({ service, index: index2 }) {
                 style: {
                   position: "absolute",
                   inset: 0,
-                  background: "linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.09) 55%, transparent 70%)",
+                  background: "linear-gradient(135deg, transparent 40%, rgba(139,94,60,0.09) 55%, transparent 70%)",
                   opacity: hovered ? 1 : 0,
                   transition: "opacity 0.4s"
                 }
@@ -83888,9 +83888,9 @@ function ServiceCard({ service, index: index2 }) {
               {
                 className: "w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0",
                 style: {
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(232,168,124,0.10))",
-                  border: "1px solid rgba(201,168,76,0.35)",
-                  boxShadow: hovered ? "0 0 22px rgba(201,168,76,0.45), 0 0 45px rgba(201,168,76,0.18)" : "0 0 10px rgba(201,168,76,0.15)",
+                  background: "linear-gradient(135deg, rgba(139,94,60,0.18), rgba(196,149,106,0.10))",
+                  border: "1px solid rgba(139,94,60,0.35)",
+                  boxShadow: hovered ? "0 0 22px rgba(139,94,60,0.45), 0 0 45px rgba(139,94,60,0.18)" : "0 0 10px rgba(139,94,60,0.15)",
                   transition: "box-shadow 0.3s"
                 },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { role: "img", "aria-hidden": "true", children: service.emoji })
@@ -83953,7 +83953,7 @@ function ServicesSection() {
           {
             className: "absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(139,94,60,0.09) 0%, transparent 65%)",
               filter: "blur(80px)",
               transform: "translateY(-30%)"
             }
@@ -83964,7 +83964,7 @@ function ServicesSection() {
           {
             className: "absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, rgba(232,168,124,0.08) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(196,149,106,0.08) 0%, transparent 65%)",
               filter: "blur(70px)",
               transform: "translateY(20%)"
             }
@@ -83985,7 +83985,7 @@ function ServicesSection() {
                   "p",
                   {
                     className: "font-accent text-xs uppercase tracking-[3px] mb-3",
-                    style: { color: "#c9a84c", letterSpacing: "3px" },
+                    style: { color: "#8b5e3c", letterSpacing: "3px" },
                     children: "What We Offer"
                   }
                 ),
@@ -84005,8 +84005,8 @@ function ServicesSection() {
                     {
                       className: "w-2 h-2 rounded-full",
                       style: {
-                        background: "#d4af37",
-                        boxShadow: "0 0 12px rgba(212,175,55,0.9)"
+                        background: "#8b5e3c",
+                        boxShadow: "0 0 12px rgba(139,94,60,0.9)"
                       }
                     }
                   ),
@@ -84036,7 +84036,7 @@ function ServicesSection() {
                   "p",
                   {
                     className: "font-accent text-sm uppercase tracking-widest mb-6",
-                    style: { color: "#c9a84c", letterSpacing: "2px" },
+                    style: { color: "#8b5e3c", letterSpacing: "2px" },
                     children: "All packages customizable — Contact for personalized quotes"
                   }
                 ),
@@ -84107,12 +84107,12 @@ const testimonials = [
   }
 ];
 const AVATAR_COLORS = [
-  "#c9a84c",
-  "#e8a87c",
+  "#8b5e3c",
+  "#c4956a",
   "#b5845a",
-  "#d4af37",
-  "#c9a84c",
-  "#e8c878"
+  "#6b3f1f",
+  "#8b5e3c",
+  "#7a4e2d"
 ];
 const cardVariants = {
   enter: (d) => ({ x: d > 0 ? 140 : -140, opacity: 0, scale: 0.94 }),
@@ -84188,7 +84188,7 @@ function TestimonialsSection() {
           {
             className: "absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
               filter: "blur(80px)",
               transform: "translateX(-50%)"
             }
@@ -84199,7 +84199,7 @@ function TestimonialsSection() {
           {
             className: "absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(232,168,124,0.10) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(196,149,106,0.10) 0%, transparent 65%)",
               filter: "blur(70px)",
               transform: "translate(30%, 30%)"
             }
@@ -84211,7 +84211,7 @@ function TestimonialsSection() {
           {
             className: "absolute top-24 left-1/2 -translate-x-1/2 font-display text-[220px] leading-none pointer-events-none select-none",
             style: {
-              color: "rgba(201,168,76,0.06)",
+              color: "rgba(139,94,60,0.06)",
               fontWeight: 700
             },
             "aria-hidden": "true",
@@ -84232,7 +84232,7 @@ function TestimonialsSection() {
                   "p",
                   {
                     className: "font-accent text-xs uppercase tracking-[3px] mb-3",
-                    style: { color: "#c9a84c", letterSpacing: "3px" },
+                    style: { color: "#8b5e3c", letterSpacing: "3px" },
                     children: "Testimonials"
                   }
                 ),
@@ -84288,8 +84288,8 @@ function TestimonialsSection() {
                         className: "card-premium relative rounded-3xl p-8 md:p-10 overflow-hidden",
                         style: {
                           background: "rgba(255,255,255,0.80)",
-                          boxShadow: "0 0 50px rgba(201,168,76,0.15), 0 20px 60px rgba(107,63,31,0.10), inset 0 1px 0 rgba(255,255,255,1)",
-                          borderColor: "rgba(201,168,76,0.35)"
+                          boxShadow: "0 0 50px rgba(139,94,60,0.15), 0 20px 60px rgba(107,63,31,0.10), inset 0 1px 0 rgba(255,255,255,1)",
+                          borderColor: "rgba(139,94,60,0.35)"
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -84297,7 +84297,7 @@ function TestimonialsSection() {
                             {
                               className: "absolute top-4 right-6 font-display text-8xl leading-none pointer-events-none select-none",
                               style: {
-                                color: "rgba(201,168,76,0.10)",
+                                color: "rgba(139,94,60,0.10)",
                                 fontWeight: 700
                               },
                               "aria-hidden": "true",
@@ -84310,8 +84310,8 @@ function TestimonialsSection() {
                               {
                                 className: "text-lg",
                                 style: {
-                                  color: "#d4af37",
-                                  filter: "drop-shadow(0 0 5px rgba(212,175,55,0.65))"
+                                  color: "#8b5e3c",
+                                  filter: "drop-shadow(0 0 5px rgba(139,94,60,0.65))"
                                 },
                                 children: "★"
                               },
@@ -84336,7 +84336,7 @@ function TestimonialsSection() {
                                   className: "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0 font-display",
                                   style: {
                                     background: AVATAR_COLORS[current % AVATAR_COLORS.length],
-                                    boxShadow: "0 0 18px rgba(201,168,76,0.35)",
+                                    boxShadow: "0 0 18px rgba(139,94,60,0.35)",
                                     color: "#3d2817"
                                   },
                                   children: t.initial
@@ -84377,10 +84377,10 @@ function TestimonialsSection() {
                       "aria-label": "Previous testimonial",
                       onClick: handlePrev,
                       className: "w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth",
-                      style: { color: "#c9a84c" },
+                      style: { color: "#8b5e3c" },
                       whileHover: {
                         scale: 1.12,
-                        boxShadow: "0 0 22px rgba(201,168,76,0.40)"
+                        boxShadow: "0 0 22px rgba(139,94,60,0.40)"
                       },
                       whileTap: { scale: 0.93 },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-5 h-5" })
@@ -84397,8 +84397,8 @@ function TestimonialsSection() {
                       style: {
                         width: i2 === current ? 24 : 8,
                         height: 8,
-                        background: i2 === current ? "#c9a84c" : "rgba(201,168,76,0.28)",
-                        boxShadow: i2 === current ? "0 0 12px rgba(201,168,76,0.65)" : "none"
+                        background: i2 === current ? "#8b5e3c" : "rgba(139,94,60,0.28)",
+                        boxShadow: i2 === current ? "0 0 12px rgba(139,94,60,0.65)" : "none"
                       }
                     },
                     item.name
@@ -84411,10 +84411,10 @@ function TestimonialsSection() {
                       "aria-label": "Next testimonial",
                       onClick: handleNext,
                       className: "w-12 h-12 rounded-full flex items-center justify-center glass-ultra transition-smooth",
-                      style: { color: "#c9a84c" },
+                      style: { color: "#8b5e3c" },
                       whileHover: {
                         scale: 1.12,
-                        boxShadow: "0 0 22px rgba(201,168,76,0.40)"
+                        boxShadow: "0 0 22px rgba(139,94,60,0.40)"
                       },
                       whileTap: { scale: 0.93 },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-5 h-5" })
@@ -84531,11 +84531,11 @@ const filters = [
   "Reception"
 ];
 const categoryColors = {
-  Bridal: "#c9a84c",
+  Bridal: "#8b5e3c",
   "HD Makeup": "#8b5e3c",
-  Airbrush: "#c9a84c",
+  Airbrush: "#8b5e3c",
   Reception: "#8b5e3c",
-  Engagement: "#c9a84c"
+  Engagement: "#8b5e3c"
 };
 function FloatingOrbs() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -84553,7 +84553,7 @@ function FloatingOrbs() {
               height: 500,
               top: "-20%",
               left: "-10%",
-              background: "radial-gradient(circle, rgba(201,168,76,0.11) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.11) 0%, transparent 70%)",
               filter: "blur(65px)"
             }
           }
@@ -84580,10 +84580,10 @@ function FloatingOrbs() {
             style: {
               width: 3 + i2 % 3,
               height: 3 + i2 % 3,
-              background: `rgba(201,168,76,${0.3 + i2 % 3 * 0.12})`,
+              background: `rgba(139,94,60,${0.3 + i2 % 3 * 0.12})`,
               left: `${5 + i2 * 9 % 90}%`,
               top: `${15 + i2 * 11 % 70}%`,
-              boxShadow: "0 0 6px rgba(201,168,76,0.3)"
+              boxShadow: "0 0 6px rgba(139,94,60,0.3)"
             },
             animate: { y: [0, -14, 0], opacity: [0.25, 0.75, 0.25] },
             transition: {
@@ -84628,7 +84628,7 @@ function TransformationsPage() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%,-50%)",
-                    border: "1px solid rgba(201,168,76,0.09)",
+                    border: "1px solid rgba(139,94,60,0.09)",
                     zIndex: 0
                   }
                 }
@@ -84646,7 +84646,7 @@ function TransformationsPage() {
                         animate: { opacity: 1, y: 0 },
                         transition: { duration: 0.7 },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles$1, { size: 15, style: { color: "#c9a84c" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles$1, { size: 15, style: { color: "#8b5e3c" } }),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             "span",
                             {
@@ -84697,7 +84697,7 @@ function TransformationsPage() {
             style: {
               background: "rgba(255,255,255,0.8)",
               backdropFilter: "blur(20px)",
-              borderColor: "rgba(201,168,76,0.18)"
+              borderColor: "rgba(139,94,60,0.18)"
             },
             children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-4xl mx-auto px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-6", children: stats$1.map((s, i2) => {
               const Icon2 = s.icon;
@@ -84711,14 +84711,14 @@ function TransformationsPage() {
                   transition: { delay: i2 * 0.1 },
                   "data-ocid": `transformations.stat.${i2 + 1}`,
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 20, style: { color: "#c9a84c" } }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 20, style: { color: "#8b5e3c" } }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "p",
                       {
                         className: "text-3xl font-display font-bold",
                         style: {
-                          color: "#c9a84c",
-                          textShadow: "0 0 20px rgba(201,168,76,0.25)"
+                          color: "#8b5e3c",
+                          textShadow: "0 0 20px rgba(139,94,60,0.25)"
                         },
                         children: s.val
                       }
@@ -84758,10 +84758,10 @@ function TransformationsPage() {
                   onClick: () => setActiveFilter(filter2),
                   className: "px-5 py-2 rounded-full text-xs font-accent font-semibold tracking-widest uppercase transition-smooth",
                   style: {
-                    background: activeFilter === filter2 ? "linear-gradient(135deg, #c9a84c, #d4af37)" : "rgba(255,255,255,0.7)",
+                    background: activeFilter === filter2 ? "linear-gradient(135deg, #8b5e3c, #6b3f1f)" : "rgba(255,255,255,0.7)",
                     color: activeFilter === filter2 ? "#3d2817" : "#8b5e3c",
-                    border: activeFilter === filter2 ? "1px solid rgba(201,168,76,0.6)" : "1px solid rgba(201,168,76,0.25)",
-                    boxShadow: activeFilter === filter2 ? "0 4px 20px rgba(201,168,76,0.35)" : "none",
+                    border: activeFilter === filter2 ? "1px solid rgba(139,94,60,0.6)" : "1px solid rgba(139,94,60,0.25)",
+                    boxShadow: activeFilter === filter2 ? "0 4px 20px rgba(139,94,60,0.35)" : "none",
                     backdropFilter: "blur(12px)"
                   },
                   whileHover: { scale: 1.04 },
@@ -84782,7 +84782,7 @@ function TransformationsPage() {
               layout: true,
               children: filtered.map((item, i2) => {
                 const spanClass = i2 === 0 ? "row-span-2" : i2 === 4 ? "col-span-2" : i2 === 6 ? "row-span-2" : "";
-                const catColor = categoryColors[item.category] ?? "#c9a84c";
+                const catColor = categoryColors[item.category] ?? "#8b5e3c";
                 return /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   motion.div,
                   {
@@ -84794,7 +84794,7 @@ function TransformationsPage() {
                     transition: { delay: i2 * 0.07, duration: 0.5 },
                     whileHover: { scale: 1.02 },
                     style: {
-                      border: "1.5px solid rgba(201,168,76,0.2)",
+                      border: "1.5px solid rgba(139,94,60,0.2)",
                       boxShadow: "0 4px 20px rgba(107,63,31,0.07)"
                     },
                     "data-ocid": `transformations.gallery.item.${i2 + 1}`,
@@ -84907,7 +84907,7 @@ function TransformationsPage() {
                 {
                   className: "absolute inset-0 pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)"
+                    background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.09) 0%, transparent 70%)"
                   }
                 }
               ),
@@ -84929,8 +84929,8 @@ function TransformationsPage() {
                             size: 50,
                             className: "mx-auto mb-5",
                             style: {
-                              color: "#c9a84c",
-                              filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))"
+                              color: "#8b5e3c",
+                              filter: "drop-shadow(0 0 16px rgba(139,94,60,0.45))"
                             }
                           }
                         ),
@@ -84973,7 +84973,7 @@ function TransformationsPage() {
     }
   );
 }
-const GOLD = "#c9a84c";
+const GOLD = "#8b5e3c";
 const BROWN = "#6b3f1f";
 const WARM = "#8b5e3c";
 class CanvasErrorBoundary2 extends reactExports.Component {
@@ -85008,10 +85008,10 @@ function GoldGem({
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
-        color: "#d4af37",
+        color: "#8b5e3c",
         metalness: 0.95,
         roughness: 0.05,
-        emissive: "#b8941f",
+        emissive: "#6b3f1f",
         emissiveIntensity: 0.6,
         transparent: true,
         opacity: 0.5
@@ -85022,7 +85022,7 @@ function GoldGem({
 function BackgroundScene() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.6, color: "#e8d5a0" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 1.5, color: "#d4af37" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [5, 5, 5], intensity: 1.5, color: "#8b5e3c" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-5, -3, 3], intensity: 0.8, color: "#e8a87c" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [-4, 2, -3], scale: 0.38, speed: 0.35 }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(GoldGem, { position: [4.5, -2, -4], scale: 0.5, speed: 0.22 }),
@@ -85119,8 +85119,8 @@ function FeatureCard({
             background: hovered ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.65)",
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
-            border: hovered ? "1.5px solid rgba(201,168,76,0.60)" : "1.5px solid rgba(201,168,76,0.25)",
-            boxShadow: hovered ? "0 0 30px rgba(201,168,76,0.40), 0 0 70px rgba(201,168,76,0.14), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.07)",
+            border: hovered ? "1.5px solid rgba(139,94,60,0.60)" : "1.5px solid rgba(139,94,60,0.25)",
+            boxShadow: hovered ? "0 0 30px rgba(139,94,60,0.40), 0 0 70px rgba(139,94,60,0.14), 0 20px 60px rgba(107,63,31,0.12)" : "0 4px 24px rgba(107,63,31,0.07)",
             transition: "border-color 0.4s ease, box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.23,1,0.32,1), background 0.3s ease",
             borderRadius: "20px"
           },
@@ -85131,7 +85131,7 @@ function FeatureCard({
               {
                 className: "pointer-events-none absolute inset-0 rounded-[20px]",
                 style: {
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%)",
+                  background: "linear-gradient(135deg, rgba(139,94,60,0.08) 0%, transparent 60%)",
                   opacity: hovered ? 1 : 0,
                   transition: "opacity 0.3s ease"
                 }
@@ -85142,7 +85142,7 @@ function FeatureCard({
               {
                 className: "absolute top-5 right-5 font-accent text-xs font-bold tracking-widest select-none",
                 style: {
-                  color: hovered ? "rgba(201,168,76,0.85)" : "rgba(201,168,76,0.45)",
+                  color: hovered ? "rgba(139,94,60,0.85)" : "rgba(139,94,60,0.45)",
                   transition: "color 0.3s ease"
                 },
                 children: feature.number
@@ -85153,9 +85153,9 @@ function FeatureCard({
               {
                 className: "mb-5 inline-flex items-center justify-center rounded-full w-14 h-14",
                 style: {
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.07))",
-                  border: "1.5px solid rgba(201,168,76,0.42)",
-                  boxShadow: hovered ? "0 0 26px rgba(201,168,76,0.55), 0 0 55px rgba(201,168,76,0.20)" : "0 0 14px rgba(201,168,76,0.22)",
+                  background: "linear-gradient(135deg, rgba(139,94,60,0.22), rgba(139,94,60,0.07))",
+                  border: "1.5px solid rgba(139,94,60,0.42)",
+                  boxShadow: hovered ? "0 0 26px rgba(139,94,60,0.55), 0 0 55px rgba(139,94,60,0.20)" : "0 0 14px rgba(139,94,60,0.22)",
                   transition: "box-shadow 0.3s ease"
                 },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -85164,7 +85164,7 @@ function FeatureCard({
                     size: 22,
                     style: {
                       color: GOLD,
-                      filter: hovered ? "drop-shadow(0 0 8px rgba(201,168,76,0.85))" : "drop-shadow(0 0 5px rgba(201,168,76,0.55))"
+                      filter: hovered ? "drop-shadow(0 0 8px rgba(139,94,60,0.85))" : "drop-shadow(0 0 5px rgba(139,94,60,0.55))"
                     },
                     strokeWidth: 1.5
                   }
@@ -85192,7 +85192,7 @@ function FeatureCard({
               {
                 className: "absolute bottom-0 left-0 h-px w-full",
                 style: {
-                  background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.65), transparent)",
+                  background: "linear-gradient(90deg, transparent, rgba(139,94,60,0.65), transparent)",
                   opacity: hovered ? 1 : 0.25,
                   transition: "opacity 0.3s ease"
                 }
@@ -85235,7 +85235,7 @@ function WhyChooseUs() {
           {
             className: "absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 65%)",
               filter: "blur(100px)"
             }
           }
@@ -85308,8 +85308,8 @@ function WhyChooseUs() {
                 {
                   className: "text-center py-7 rounded-xl glass-ultra",
                   style: {
-                    border: "1.5px solid rgba(201,168,76,0.35)",
-                    boxShadow: "0 0 24px rgba(201,168,76,0.12), 0 4px 20px rgba(107,63,31,0.06)"
+                    border: "1.5px solid rgba(139,94,60,0.35)",
+                    boxShadow: "0 0 24px rgba(139,94,60,0.12), 0 4px 20px rgba(107,63,31,0.06)"
                   },
                   "data-ocid": `why-choose.stat.${idx + 1}`,
                   children: [

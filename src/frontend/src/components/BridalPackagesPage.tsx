@@ -25,7 +25,7 @@ function FloatingOrbs() {
           top: "-20%",
           right: "-12%",
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.13) 0%, rgba(232,200,120,0.06) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(139,94,60,0.13) 0%, rgba(180,140,100,0.06) 40%, transparent 70%)",
           filter: "blur(70px)",
         }}
       />
@@ -37,7 +37,7 @@ function FloatingOrbs() {
           bottom: "-10%",
           left: "-8%",
           background:
-            "radial-gradient(circle, rgba(232,168,124,0.10) 0%, rgba(201,168,76,0.05) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(196,149,106,0.10) 0%, rgba(139,94,60,0.05) 40%, transparent 70%)",
           filter: "blur(50px)",
           animationDelay: "-4s",
         }}
@@ -49,10 +49,10 @@ function FloatingOrbs() {
           style={{
             width: 4 + (i % 3) * 1.5,
             height: 4 + (i % 3) * 1.5,
-            background: `rgba(201,168,76,${0.25 + (i % 4) * 0.1})`,
+            background: `rgba(139,94,60,${0.25 + (i % 4) * 0.1})`,
             left: `${6 + ((i * 7) % 90)}%`,
             top: `${15 + ((i * 11) % 75)}%`,
-            boxShadow: "0 0 6px rgba(201,168,76,0.35)",
+            boxShadow: "0 0 6px rgba(139,94,60,0.35)",
           }}
           animate={{ y: [0, -16, 0], opacity: [0.25, 0.8, 0.25] }}
           transition={{
@@ -93,7 +93,7 @@ function GoldParticlesCanvas() {
       for (const p of pts) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201,168,76,${p.op})`;
+        ctx.fillStyle = `rgba(139,94,60,${p.op})`;
         ctx.fill();
         p.x += p.dx;
         p.y += p.dy;
@@ -167,7 +167,7 @@ const packages: PackageTier[] = [
       "Photoshoot ready look",
       "Hair styling for 1 event",
     ],
-    color: "#c9a84c",
+    color: "#8b5e3c",
   },
   {
     icon: Crown,
@@ -245,7 +245,7 @@ export default function BridalPackagesPage() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            border: "1px solid rgba(201,168,76,0.08)",
+            border: "1px solid rgba(139,94,60,0.08)",
             zIndex: 0,
           }}
         />
@@ -259,7 +259,7 @@ export default function BridalPackagesPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 mb-6 glass-ultra px-5 py-2.5 rounded-full">
-              <Crown size={15} style={{ color: "#c9a84c" }} />
+              <Crown size={15} style={{ color: "#8b5e3c" }} />
               <span
                 className="text-xs tracking-[0.3em] uppercase font-accent"
                 style={{ color: "#8b5e3c" }}
@@ -321,7 +321,7 @@ export default function BridalPackagesPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)",
+              "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,94,60,0.07) 0%, transparent 60%)",
           }}
         />
         <div className="max-w-6xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
@@ -359,10 +359,10 @@ export default function BridalPackagesPage() {
                   style={
                     pkg.popular
                       ? {
-                          outline: "2.5px solid rgba(201,168,76,0.6)",
+                          outline: "2.5px solid rgba(139,94,60,0.6)",
                           outlineOffset: "0px",
                           boxShadow:
-                            "0 0 40px rgba(201,168,76,0.18), 0 20px 60px rgba(107,63,31,0.10)",
+                            "0 0 40px rgba(139,94,60,0.18), 0 20px 60px rgba(107,63,31,0.10)",
                         }
                       : {}
                   }
@@ -382,8 +382,8 @@ export default function BridalPackagesPage() {
                     <div
                       className="absolute top-0 left-0 right-0 text-center py-2 text-xs font-accent font-bold tracking-widest uppercase rounded-t-2xl"
                       style={{
-                        background: "linear-gradient(135deg,#c9a84c,#d4af37)",
-                        color: "#3d2817",
+                        background: "linear-gradient(135deg,#8b5e3c,#6b3f1f)",
+                        color: "#fdf6ee",
                       }}
                     >
                       ✦ Most Popular ✦
@@ -422,7 +422,7 @@ export default function BridalPackagesPage() {
                           <CheckCircle2
                             size={14}
                             style={{
-                              color: "#c9a84c",
+                              color: "#8b5e3c",
                               flexShrink: 0,
                               marginTop: 2,
                             }}
@@ -434,13 +434,13 @@ export default function BridalPackagesPage() {
 
                     <div
                       className="pt-5"
-                      style={{ borderTop: "1px solid rgba(201,168,76,0.2)" }}
+                      style={{ borderTop: "1px solid rgba(139,94,60,0.2)" }}
                     >
                       <p
                         className="text-3xl font-display font-bold"
                         style={{
-                          color: "#c9a84c",
-                          textShadow: "0 0 20px rgba(201,168,76,0.3)",
+                          color: "#8b5e3c",
+                          textShadow: "0 0 20px rgba(139,94,60,0.3)",
                         }}
                       >
                         {pkg.price}
@@ -480,7 +480,7 @@ export default function BridalPackagesPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,94,60,0.07) 0%, transparent 70%)",
           }}
         />
         <div className="max-w-5xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
@@ -516,12 +516,12 @@ export default function BridalPackagesPage() {
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
                     style={{
-                      background: "rgba(201,168,76,0.12)",
-                      border: "1px solid rgba(201,168,76,0.3)",
-                      boxShadow: "0 0 18px rgba(201,168,76,0.18)",
+                      background: "rgba(139,94,60,0.12)",
+                      border: "1px solid rgba(139,94,60,0.3)",
+                      boxShadow: "0 0 18px rgba(139,94,60,0.18)",
                     }}
                   >
-                    <Icon size={22} style={{ color: "#c9a84c" }} />
+                    <Icon size={22} style={{ color: "#8b5e3c" }} />
                   </div>
                   <h4
                     className="font-display italic text-base mb-2"
@@ -570,7 +570,7 @@ export default function BridalPackagesPage() {
                 className="relative overflow-hidden rounded-2xl group cursor-pointer"
                 style={{
                   height: i === 0 || i === 3 ? 340 : 240,
-                  border: "1.5px solid rgba(201,168,76,0.2)",
+                  border: "1.5px solid rgba(139,94,60,0.2)",
                   boxShadow: "0 4px 20px rgba(107,63,31,0.07)",
                 }}
                 initial={{ opacity: 0, scale: 0.94 }}
@@ -598,7 +598,7 @@ export default function BridalPackagesPage() {
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
                   style={{
-                    boxShadow: "inset 0 0 40px rgba(201,168,76,0.2)",
+                    boxShadow: "inset 0 0 40px rgba(139,94,60,0.2)",
                     borderRadius: "inherit",
                   }}
                 />
@@ -631,7 +631,7 @@ export default function BridalPackagesPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.09) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,94,60,0.09) 0%, transparent 70%)",
           }}
         />
         <div
@@ -647,8 +647,8 @@ export default function BridalPackagesPage() {
               size={50}
               className="mx-auto mb-5"
               style={{
-                color: "#c9a84c",
-                filter: "drop-shadow(0 0 16px rgba(201,168,76,0.45))",
+                color: "#8b5e3c",
+                filter: "drop-shadow(0 0 16px rgba(139,94,60,0.45))",
               }}
             />
             <h2 className="text-4xl font-display italic gradient-text mb-4">

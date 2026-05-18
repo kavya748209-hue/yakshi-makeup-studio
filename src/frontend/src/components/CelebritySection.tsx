@@ -1,7 +1,7 @@
 import { Award, Quote, Sparkles, Star, Trophy } from "lucide-react";
 import { motion } from "motion/react";
 
-const GOLD = "#c9a84c";
+const GOLD = "#8b5e3c";
 const BROWN = "#6b3f1f";
 const WARM = "#8b5e3c";
 
@@ -71,7 +71,7 @@ export default function CelebritySection() {
         className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 65%)",
+            "radial-gradient(ellipse, rgba(139,94,60,0.12) 0%, transparent 65%)",
           filter: "blur(80px)",
         }}
       />
@@ -79,7 +79,7 @@ export default function CelebritySection() {
         className="absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(232,168,124,0.10) 0%, transparent 65%)",
+            "radial-gradient(ellipse, rgba(196,149,106,0.10) 0%, transparent 65%)",
           filter: "blur(90px)",
         }}
       />
@@ -126,7 +126,7 @@ export default function CelebritySection() {
                 className="glass-ultra rounded-2xl overflow-hidden flex-shrink-0 group"
                 style={{
                   width: "190px",
-                  border: "1.5px solid rgba(201,168,76,0.30)",
+                  border: "1.5px solid rgba(139,94,60,0.30)",
                   boxShadow: "0 4px 24px rgba(107,63,31,0.08)",
                   animation: `float ${5 + i * 0.7}s ease-in-out infinite`,
                   animationDelay: `${i * 0.4}s`,
@@ -137,9 +137,9 @@ export default function CelebritySection() {
                   <div
                     className="w-20 h-20 rounded-full overflow-hidden"
                     style={{
-                      border: "2.5px solid rgba(201,168,76,0.50)",
+                      border: "2.5px solid rgba(139,94,60,0.50)",
                       boxShadow:
-                        "0 0 22px rgba(201,168,76,0.30), 0 0 50px rgba(201,168,76,0.10)",
+                        "0 0 22px rgba(139,94,60,0.30), 0 0 50px rgba(139,94,60,0.10)",
                     }}
                   >
                     <img
@@ -157,7 +157,7 @@ export default function CelebritySection() {
                     className="absolute top-3 right-4"
                     style={{
                       color: GOLD,
-                      filter: "drop-shadow(0 0 4px rgba(201,168,76,0.8))",
+                      filter: "drop-shadow(0 0 4px rgba(139,94,60,0.8))",
                     }}
                   />
                 </div>
@@ -200,16 +200,16 @@ export default function CelebritySection() {
                 className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06))",
-                  border: "1.5px solid rgba(201,168,76,0.40)",
-                  boxShadow: "0 0 18px rgba(201,168,76,0.22)",
+                    "linear-gradient(135deg, rgba(139,94,60,0.20), rgba(139,94,60,0.06))",
+                  border: "1.5px solid rgba(139,94,60,0.40)",
+                  boxShadow: "0 0 18px rgba(139,94,60,0.22)",
                 }}
               >
                 <badge.Icon
                   size={20}
                   style={{
                     color: GOLD,
-                    filter: "drop-shadow(0 0 6px rgba(201,168,76,0.7))",
+                    filter: "drop-shadow(0 0 6px rgba(139,94,60,0.7))",
                   }}
                 />
               </div>
@@ -234,9 +234,9 @@ export default function CelebritySection() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="glass-ultra rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
           style={{
-            border: "1.5px solid rgba(201,168,76,0.35)",
+            border: "1.5px solid rgba(139,94,60,0.35)",
             boxShadow:
-              "0 0 50px rgba(201,168,76,0.12), 0 8px 40px rgba(107,63,31,0.08)",
+              "0 0 50px rgba(139,94,60,0.12), 0 8px 40px rgba(107,63,31,0.08)",
           }}
           data-ocid="celebrity.quote"
         >
