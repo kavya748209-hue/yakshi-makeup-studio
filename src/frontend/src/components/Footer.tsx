@@ -272,7 +272,7 @@ export default function Footer() {
             Made with ❤️ in Amravati, Maharashtra
           </p>
           <p className="text-muted-foreground text-xs font-body text-center sm:text-right">
-            Built with love using{" "}
+            Built with love using
             <a
               href={utmUrl}
               target="_blank"
@@ -280,7 +280,7 @@ export default function Footer() {
               className="text-gold hover:text-gold-light transition-smooth"
               style={{ textShadow: "0 0 12px rgba(107,63,31,0.3)" }}
             >
-              caffeine.ai
+              
             </a>
           </p>
         </div>
